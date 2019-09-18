@@ -31,6 +31,7 @@ if [ -d "/snap/bin" ] ; then
 fi
 
 if [ -d "$HOME/.local/kitty.app/bin" ] ; then
+    export KITTY_DISABLE_WAYLAND=1
     PATH="$HOME/.local/kitty.app/bin:$PATH"
 fi
 
