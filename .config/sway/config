@@ -21,7 +21,7 @@ set $menu ~/.config/sway/dmenu.sh
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/Pictures/jp-fw.png fill
+output * background ~/Pictures/jp-fw.png fill
 #output * bg /usr/share/backgrounds/Morning_by_Bernhard_Hanakam.jpg fill
 #exec settimed /usr/share/backgrounds/gnome/mojave-timed.xml
 #
@@ -58,7 +58,6 @@ output * bg ~/Pictures/jp-fw.png fill
 
     # start your launcher
     bindsym $mod+d exec $menu
-    bindsym $mod+Space exec $menu
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -117,6 +116,9 @@ output * bg ~/Pictures/jp-fw.png fill
     bindsym $mod+alt+Shift+1 move containter to workspace 11
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
+    #
+    bindsym $mod+tab workspace next_on_output
+    bindsym $mod+Shift+tab workspace prev_on_output
 #
 # Layout stuff:
 #
@@ -127,7 +129,7 @@ output * bg ~/Pictures/jp-fw.png fill
     bindsym $mod+v splitv
 
     # Switch the current container between different layout styles
-    #bindsym $mod+s layout stacking
+    bindsym $mod+s layout stacking
     bindsym $mod+w layout tabbed
     bindsym $mod+e layout toggle split
 
@@ -138,7 +140,7 @@ output * bg ~/Pictures/jp-fw.png fill
     bindsym $mod+Shift+space floating toggle
 
     # Swap focus between the tiling area and the floating area
-    #bindsym $mod+space focus mode_toggle
+    bindsym $mod+space focus mode_toggle
 
     # move focus to the parent container
     bindsym $mod+a focus parent
@@ -257,7 +259,7 @@ smart_gaps on
 gaps inner 15
 gaps outer 15
 
-bindsym $mod+s			gaps inner current plus 5
+#bindsym $mod+s			gaps inner current plus 5
 bindsym $mod+Shift+s		gaps inner current minus 5
 bindsym $mod+z			gaps outer current plus 5 
 bindsym $mod+Shift+z		gaps outer current minus 5
