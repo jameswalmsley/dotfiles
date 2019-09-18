@@ -36,6 +36,10 @@ if [ -d "$HOME/.local/kitty.app/bin" ] ; then
 fi
 
 
-if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-    exec fish
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ] || [ -n "$KITTY_WINDOW_ID" ] ; then
+    if [ -f "/usr/bin/fish" ] ; then
+    	SHELL=fish
+    	exec fish
+    fi
 fi
+
