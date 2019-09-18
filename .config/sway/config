@@ -1,0 +1,290 @@
+# Default config for sway
+#
+# Copy this to ~/.config/sway/config and edit it to your liking.
+#
+# Read `man 5 sway` for a complete reference.
+
+### Variables
+#
+# Logo key. Use Mod1 for Alt.
+set $mod Mod4
+# Home row direction keys, like vim
+set $left Left
+set $down Down
+set $up Up
+set $right Right
+# Your preferred terminal emulator
+set $term 'kitty'
+# Your preferred application launcher
+set $menu ~/.config/sway/dmenu.sh
+
+### Output configuration
+#
+# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
+output * bg ~/Pictures/jp-fw.png fill
+#output * bg /usr/share/backgrounds/Morning_by_Bernhard_Hanakam.jpg fill
+#exec settimed /usr/share/backgrounds/gnome/mojave-timed.xml
+#
+# Example configuration:
+#
+#   output HDMI-A-1 resolution 1920x1080 position 1920,0
+#
+# You can get the names of your outputs by running: swaymsg -t get_outputs
+
+### Input configuration
+#
+# Example configuration:
+#
+#   input "2:14:SynPS/2_Synaptics_TouchPad" {
+#       dwt enabled
+#       tap enabled
+#       natural_scroll enabled
+#       middle_emulation enabled
+#   }
+#
+# You can get the names of your inputs by running: swaymsg -t get_inputs
+# Read `man 5 sway-input` for more information about this section.
+
+### Key bindings
+#
+# Basics:
+#
+    # start a terminal
+    bindsym $mod+Return exec TERM=xterm-256 $term
+    #bindsym Ctrl+Alt+t exec $term
+
+    # kill focused window
+    bindsym $mod+q kill
+
+    # start your launcher
+    bindsym $mod+d exec $menu
+    bindsym $mod+Space exec $menu
+
+    # Drag floating windows by holding down $mod and left mouse button.
+    # Resize them with right mouse button + $mod.
+    # Despite the name, also works for non-floating windows.
+    # Change normal to inverse to use left mouse button for resizing and right
+    # mouse button for dragging.
+    floating_modifier $mod normal
+
+    # reload the configuration file
+    bindsym $mod+Shift+c reload
+
+    # exit sway (logs you out of your wayland session)
+    bindsym $mod+Shift+e exec swaymsg exit
+#
+# Moving around:
+#
+    # Move your focus around
+    bindsym $mod+$left focus left
+    bindsym $mod+$down focus down
+    bindsym $mod+$up focus up
+    bindsym $mod+$right focus right
+    # or use $mod+[up|down|left|right]
+
+    # _move_ the focused window with the same, but add Shift
+    bindsym $mod+Shift+$left move left
+    bindsym $mod+Shift+$down move down
+    bindsym $mod+Shift+$up move up
+    bindsym $mod+Shift+$right move right
+    # ditto, with arrow keys
+#
+# Workspaces:
+#
+    # switch to workspace
+    bindsym $mod+1 workspace 1
+    bindsym $mod+2 workspace 2
+    bindsym $mod+3 workspace 3
+    bindsym $mod+4 workspace 4
+    bindsym $mod+5 workspace 5
+    bindsym $mod+6 workspace 6
+    bindsym $mod+7 workspace 7
+    bindsym $mod+8 workspace 8
+    bindsym $mod+9 workspace 9
+    bindsym $mod+0 workspace 10
+    bindsym $mod+alt+1 workspace 11
+    # move focused container to workspace
+    bindsym $mod+Shift+1 move container to workspace 1
+    bindsym $mod+Shift+2 move container to workspace 2
+    bindsym $mod+Shift+3 move container to workspace 3
+    bindsym $mod+Shift+4 move container to workspace 4
+    bindsym $mod+Shift+5 move container to workspace 5
+    bindsym $mod+Shift+6 move container to workspace 6
+    bindsym $mod+Shift+7 move container to workspace 7
+    bindsym $mod+Shift+8 move container to workspace 8
+    bindsym $mod+Shift+9 move container to workspace 9
+    bindsym $mod+Shift+0 move container to workspace 10
+    bindsym $mod+alt+Shift+1 move containter to workspace 11
+    # Note: workspaces can have any name you want, not just numbers.
+    # We just use 1-10 as the default.
+#
+# Layout stuff:
+#
+    # You can "split" the current object of your focus with
+    # $mod+b or $mod+v, for horizontal and vertical splits
+    # respectively.
+    bindsym $mod+b splith
+    bindsym $mod+v splitv
+
+    # Switch the current container between different layout styles
+    #bindsym $mod+s layout stacking
+    bindsym $mod+w layout tabbed
+    bindsym $mod+e layout toggle split
+
+    # Make the current focus fullscreen
+    bindsym $mod+f fullscreen
+
+    # Toggle the current focus between tiling and floating mode
+    bindsym $mod+Shift+space floating toggle
+
+    # Swap focus between the tiling area and the floating area
+    #bindsym $mod+space focus mode_toggle
+
+    # move focus to the parent container
+    bindsym $mod+a focus parent
+
+    bindsym $mod+Shift+p sticky toggle
+#
+# Scratchpad:
+#
+    # Sway has a "scratchpad", which is a bag of holding for windows.
+    # You can send windows there and get them back later.
+
+    # Move the currently focused window to the scratchpad
+    bindsym $mod+Shift+minus move scratchpad
+
+    # Show the next scratchpad window or hide the focused scratchpad window.
+    # If there are multiple scratchpad windows, this command cycles through them.
+    bindsym $mod+minus scratchpad show
+#
+# Resizing containers:
+#
+mode "resize" {
+    # left will shrink the containers width
+    # right will grow the containers width
+    # up will shrink the containers height
+    # down will grow the containers height
+    bindsym $left resize shrink width 10 px or 10 ppt
+    bindsym $down resize grow height 10 px or 10 ppt
+    bindsym $up resize shrink height 10 px or 10 ppt
+    bindsym $right resize grow width 10 px or 10 ppt
+
+    # return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+
+# Status Bar:
+#
+# Read `man 5 sway-bar` for more information about this section.
+#bar {
+#    position top
+#    font pango:DejaVu Sans Mono 14
+    #status_command i3blocks
+#    
+#    tray_output all
+#    colors {
+#        statusline #ffffff
+#        background #323232
+#        inactive_workspace #32323200 #32323200 #5c5c5c
+#    }
+#}
+
+mode "music" {
+	bindsym p exec playerctl play-pause
+	bindsym comma exec playerctl previous
+	bindsym period exec playerctl next
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+bindsym $mod+m mode "music"
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+include /etc/sway/config.d/*
+
+output HDMI-A-1 resolution 1920x1080 position 0,0
+output eDP-1 resolution 2560x1440 position 1920,0
+output DP-4 resolution 3840x2160 position 4480,0
+
+set $laptop eDP-1
+bindswitch --locked lid:on output $laptop disable
+bindswitch --locked lid:off output $laptop enable
+
+bindsym $mod+Alt+$right move workspace to output right
+bindsym $mod+Alt+$left move workspace to output left
+
+bindsym $mod+l exec swaylock -c 000000FF --indicator-radius 120 --indicator-thickness 25
+
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioRaiseVolume exec amixer set Master 1%+
+bindsym XF86AudioLowerVolume exec amixer set Master 1%-
+bindsym XF86AudioMicMute exec pactl set-source-mute 1 toggle
+
+#
+# Input Config
+#
+
+input 2:7:SynPS/2_Synaptics_TouchPad {
+    tap enabled
+    natural_scroll enabled
+}
+
+input * xkb_layout gb
+input * xkb_variant basic
+input * xkb_options "misc:extend,lv5:caps_switch_lock,grp:shifts_toggle,compose:menu"
+
+bindsym Alt+Shift+1 input * xkb_layout gb; input * xkb_variant basic; input * xkb_options "misc:extend,lv5:caps_switch_lock,grp:shifts_toggle,compose:menu"; exec notify-send "Switched layout to gb-basic"
+bindsym Alt+Shift+2 input * xkb_layout gb; input * xkb_variant colemak; exec notify-send "Switched layout to gb-colemak"
+
+bindsym Alt+Shift+3 input * xkb_layout gb; input * xkb_variant cmk_ed_ks; input * xkb_model pc105curl-z; input * xkb_options "misc:extend,lv5:caps_switch_lock,grp:shifts_toggle,compose:menu,misc:cmk_curl_dh"; exec notify-send "Switch layout to gb-colemak-mod-dh"
+
+
+bindcode $mod+Shift+61 exec imv ~/Pictures/mod_dh_extend.png
+bindcode $mod+61 exec imv ~/Pictures/mod_dh_main.png
+
+for_window [class="imv"] floating enable
+
+
+# Gaps Config
+smart_gaps on
+gaps inner 15
+gaps outer 15
+
+bindsym $mod+s			gaps inner current plus 5
+bindsym $mod+Shift+s		gaps inner current minus 5
+bindsym $mod+z			gaps outer current plus 5 
+bindsym $mod+Shift+z		gaps outer current minus 5
+bindsym $mod+Shift+d		gaps inner current set 0; gaps outer current set 0
+
+hide_edge_borders both
+default_border none
+
+bindsym Print exec ~/.scripts/screenshot-focused.sh; exec notify-send "took screenshot"
+bindsym Shift+Print exec ~/.scripts/screenshot-selection.sh
+
+# First I have a tmux window used for background scripts.
+# # I'll later bind this to mod+u.
+for_window [instance="tmuxdd"] floating enable
+for_window [instance="tmuxdd"] resize set 625 450
+for_window [instance="tmuxdd"] move scratchpad
+for_window [instance="tmuxdd"] border pixel 3
+# for_window [instance="tmuxdd"] sticky enable
+
+
+#for_window [class="SpeedCrunch"] floating enable
+
+assign [class="Code*"] workspace 3
+for_window [class="Spotify*"] move to workspace 10
+
+exec waybar
+exec nm-applet
+exec powerline-daemon
+exec mako
+
+exec redshift
