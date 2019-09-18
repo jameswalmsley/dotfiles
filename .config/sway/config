@@ -205,10 +205,11 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 include /etc/sway/config.d/*
+include ~/.config/sway/config.d/*
 
-output HDMI-A-1 resolution 1920x1080 position 0,0
-output eDP-1 resolution 2560x1440 position 1920,0
-output DP-4 resolution 3840x2160 position 4480,0
+#output eDP-1 resolution 2560x1440 position 1920,0
+#output HDMI-A-1 resolution 1920x1080 position 0,0
+#output DP-4 resolution 3840x2160 position 4480,0
 
 set $laptop eDP-1
 bindswitch --locked lid:on output $laptop disable
@@ -286,5 +287,5 @@ exec waybar
 exec nm-applet
 exec powerline-daemon
 exec mako
-
+exec ~/.config/sway/outputs.sh
 exec redshift
