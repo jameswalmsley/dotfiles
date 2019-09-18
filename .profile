@@ -35,3 +35,7 @@ if [ -d "$HOME/.local/kitty.app/bin" ] ; then
     PATH="$HOME/.local/kitty.app/bin:$PATH"
 fi
 
+
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+    exec fish
+fi
