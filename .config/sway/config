@@ -14,7 +14,7 @@ set $down Down
 set $up Up
 set $right Right
 # Your preferred terminal emulator
-set $term 'kitty'
+set $term 'alacritty'
 # Your preferred application launcher
 set $menu ~/.config/sway/dmenu.sh
 
