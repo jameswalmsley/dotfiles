@@ -287,5 +287,11 @@ exec waybar
 exec nm-applet
 exec powerline-daemon
 exec mako
-exec ~/.config/sway/outputs.sh
+#exec ~/.config/sway/outputs.sh
 exec redshift
+
+output "Goldstar Company Ltd LG Ultra HD 0x0000661B" pos 2560,0
+output "Unknown 0x2036 0x00000000" pos 0,0
+
+output "Unknown 0x0792 0x00000000" pos 3840,0
+
