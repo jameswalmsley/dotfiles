@@ -11,3 +11,6 @@ alias swc="vim ~/.config/sway/config"
 
 alias h="env GIT_WORK_TREE=$HOME GIT_DIR=$HOME/develop/.dot-files.git"
 
+function hs
+	h git status -uno
+end
