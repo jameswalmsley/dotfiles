@@ -269,7 +269,7 @@ hide_edge_borders both
 default_border none
 
 bindsym Print exec ~/.config/sway/scripts/screenshot-focused.sh; exec notify-send "took screenshot"
-bindsym Shift+Print exec ~/.config/swaym/scripts/screenshot-selection.sh
+bindsym Shift+Print exec ~/.config/sway/scripts/screenshot-selection.sh
 
 # First I have a tmux window used for background scripts.
 # # I'll later bind this to mod+u.
