@@ -9,7 +9,7 @@ alias code="code-insiders --force-device-scale-factor=1.25"
 alias cf="vim ~/.config/fish/config.fish"
 alias swc="vim ~/.config/sway/config"
 
-alias h="env GIT_WORK_TREE=$HOME GIT_DIR=$HOME/develop/.dot-files.git"
+alias h="env GIT_WORK_TREE=$HOME GIT_DIR=$HOME/.dot-files.git"
 
 function hs
 	h git status -uno
