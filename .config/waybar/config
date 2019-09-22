@@ -1,0 +1,64 @@
+{
+    "layer": "top",
+    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-center": ["sway/window"],
+    "modules-right": ["battery", "clock", "network", "pulseaudio", "tray"],
+    "sway/workspaces": {
+	    "disable-scroll": true,
+	    "all-outputs": false,
+	    "format": "{name}: {icon}",
+	    "format-icons": {
+				"1": "",
+				"2": "",
+				"3": "",
+				"6": "",
+				"10": "",
+				"urgent": "",
+				"focused": "",
+				"default": ""
+	    }
+	},
+
+    "sway/window": {
+        "max-length": 50
+    },
+
+    "battery": {
+        "format": "{capacity}% {icon}",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "clock": {
+        "format": "{:%a, %d. %b  %H:%M}"
+    },
+    
+    "tray": {
+        "icon-size": 32,
+        "spacing": 10
+    },
+    
+    "network": {
+        "interface": "wlp2s0",
+        "format": "{ifname}",
+        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-ethernet": "{ifname} ",
+        "format-disconnected": "", //An empty format will hide the module.
+        "max-length": 50
+    },
+
+    "pulseaudio": {
+        "format": "{volume}% {icon}",
+        "format-bluetooth": "{volume}% {icon}",
+        "format-muted": "",
+        "format-icons": {
+            "headphones": "",
+            "handsfree": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", ""]
+        },
+        "scroll-step": 1,
+        "on-click": "pavucontrol"
+    }
+}
