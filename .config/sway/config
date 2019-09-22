@@ -220,7 +220,7 @@ bindswitch --locked lid:off output $laptop enable
 bindsym $mod+Alt+$right move workspace to output right
 bindsym $mod+Alt+$left move workspace to output left
 
-bindsym $mod+l exec swaylock --clock --indicator --screenshots --effect-blur 7x5 --effect-vignette 0.2:0.6 --effect-greyscale -c 000000FF --indicator-radius 120 --indicator-thickness 25
+bindsym $mod+l exec swaylock
 
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 bindsym XF86MonBrightnessUp exec brightnessctl set 5%+

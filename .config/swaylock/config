@@ -1,0 +1,13 @@
+clock
+indicator
+screenshots
+effect-vignette=0.2:0.6
+effect-blur=7x5
+effect-greyscale
+indicator-radius=120
+indicator-thickness=25
+inside-color=002b36
+ring-color=073542
+text-color=839496
+
+
