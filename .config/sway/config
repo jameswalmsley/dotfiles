@@ -14,7 +14,7 @@ set $down Down
 set $up Up
 set $right Right
 # Your preferred terminal emulator
-set $term 'alacritty'
+set $term 'kitty'
 # Your preferred application launcher
 set $menu ~/.config/sway/dmenu.sh
 
@@ -50,7 +50,7 @@ output * background ~/Pictures/jp-fw.png fill
 # Basics:
 #
     # start a terminal
-    bindsym $mod+Return exec TERM=xterm-256 $term
+    bindsym $mod+Return exec $term
     #bindsym Ctrl+Alt+t exec $term
 
     # kill focused window
