@@ -40,6 +40,7 @@ export VIMINIT="source ~/.config/vim/.vimrc"
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ] || [ -n "$KITTY_WINDOW_ID" ] ; then
     if [ -f "/usr/bin/fish" ] ; then
     	SHELL=fish
+	powerline-daemon
     	exec fish
     fi
 fi
