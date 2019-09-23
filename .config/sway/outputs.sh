@@ -24,12 +24,9 @@ else
 
 echo Configuring GC Office Monitors.
 
-swaymsg output eDP-1 resolution 1920x1080 position \'3840,0\'
-swaymsg output HDMI-A-1 disable
-swaymsg output DP-4 disable
-
-swaymsg output HDMI-A-1 resolution 3840x2160 position \'0,0\' enable
-
+swaymsg output DP-3 resolution 2560x1440 position \'0,0\'
+swaymsg output DP-5 resolution 2560x1440 position \'2560,0\'
+swaymsg output eDP-1 resolution 1920x1080 position \'5120,0\'
 
 
 fi
