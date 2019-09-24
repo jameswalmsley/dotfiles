@@ -1,7 +1,7 @@
 clock
 indicator
 screenshots
-effect-vignette=0.2:0.6
+effect-vignette=0.4:0.7
 effect-blur=7x5
 effect-greyscale
 indicator-radius=120
