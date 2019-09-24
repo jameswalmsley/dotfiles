@@ -24,8 +24,8 @@ else
 
 echo Configuring GC Office Monitors.
 
-swaymsg output DP-3 resolution 2560x1440 position \'0,0\'
-swaymsg output DP-5 resolution 2560x1440 position \'2560,0\'
+swaymsg output \'Samsung Electric Company S27H85x H4ZM303519\' resolution 2560x1440 position \'0,0\'
+swaymsg output \'Samsung Electric Company S27H85x H4ZKC00773\' resolution 2560x1440 position \'2560,0\'
 swaymsg output eDP-1 resolution 1920x1080 position \'5120,0\'
 
 
