@@ -1,0 +1,10 @@
+{
+	output "Unknown 0x2036 0x00000000" mode 2560x1440 position 0,0
+}
+
+{
+	 output "Samsung Electric Company S27H85x H4ZM303519" resolution 2560x1440 position '0,0'
+	 output 'Samsung Electric Company S27H85x H4ZKC00773' resolution 2560x1440 position '2560,0'
+	output "Unknown 0x0792 0x00000000" resolution 1920x1080 position '5120,0'
+}
+
