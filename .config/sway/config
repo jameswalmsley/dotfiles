@@ -281,7 +281,8 @@ for_window [instance="tmuxdd"] border pixel 3
 # for_window [instance="tmuxdd"] sticky enable
 
 
-#for_window [class="SpeedCrunch"] floating enable
+for_window [class="SpeedCrunch"] floating enable
+for_window [class="SpeedCrunch"] move scratchpad
 
 assign [class="Code*"] workspace 3
 for_window [class="Spotify*"] move to workspace 10
@@ -293,6 +294,7 @@ exec mako
 exec redshift
 exec ibus-daemon --xim
 exec kanshi
+exec speedcrunch
 
 #output "Unknown 0x0792 0x00000000" mode 1920x1080 pos 3840,0
 #output "Goldstar Company Ltd LG Ultra HD 0x0000661B" mode 3840x2160 pos 0,0
