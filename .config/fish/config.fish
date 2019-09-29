@@ -15,5 +15,5 @@ function hs
 	h git status -uno
 end
 
-alias tmux="tmux attach"
+alias tmux="tmux -2 attach"
 

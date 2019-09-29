@@ -20,5 +20,5 @@ hinit() {
 }
 
 
-alias tmux="tmux attach"
+alias tmux="tmux -2 attach"
 
