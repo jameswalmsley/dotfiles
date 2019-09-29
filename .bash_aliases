@@ -20,3 +20,5 @@ hinit() {
 }
 
 
+alias tmux="tmux attach"
+

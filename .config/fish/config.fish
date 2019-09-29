@@ -14,3 +14,6 @@ alias h="env GIT_WORK_TREE=$HOME GIT_DIR=$HOME/.dot-files.git"
 function hs
 	h git status -uno
 end
+
+alias tmux="tmux attach"
+
