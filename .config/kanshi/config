@@ -1,10 +1,20 @@
+# Thinkpad Carbon X1 6th Gen - Alone.
 {
 	output "Unknown 0x2036 0x00000000" mode 2560x1440 position 0,0
 }
 
+# Work Office with P1
 {
 	output "Samsung Electric Company S27H85x H4ZM303519" mode 2560x1440 position 0,0
 	output "Samsung Electric Company S27H85x H4ZKC00773" mode 2560x1440 position 2560,0
 	output "Unknown 0x0792 0x00000000" mode 1920x1080 position 5120,0
 }
+
+# Home Office with Carbon
+{
+	output "Unknown 0x2036 0x00000000" mode 2560x1440 position 0,0
+	output "Unknown BenQ GL2450 Y9D00749019" mode 1920x1080 position 2560,0
+	output "Goldstar Company Ltd LG Ultra HD 0x0000661B" mode 3840x2160 position 4460,0
+}
+
 
