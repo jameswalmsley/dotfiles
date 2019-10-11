@@ -13,6 +13,9 @@ set relativenumber
 
 set tabstop=4 shiftwidth=4 expandtab
 
+" Remove trailing whitespace on save.
+autocmd BufWritePre * :%s/\s\+$//e
+
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
