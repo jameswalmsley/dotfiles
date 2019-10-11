@@ -28,5 +28,6 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'kana/vim-arpeggio'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'tpope/vim-sleuth'
 call plug#end()
 
