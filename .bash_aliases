@@ -20,6 +20,10 @@ hinit() {
 	ssh $1 "${HGIT_ENVIRONMENT} git checkout master $2"
 }
 
+hsync() {
+	ssh $1 "${HGIT_ENVIRONMENT} git pull"
+}
+
 
 alias tmux="tmux -2 attach"
 
