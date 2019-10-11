@@ -11,6 +11,8 @@ let g:Powerline_symbols = "fancy"
 set number
 set relativenumber
 
+set tabstop=4 shiftwidth=4 expandtab
+
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
