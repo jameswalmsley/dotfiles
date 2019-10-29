@@ -35,6 +35,7 @@ if [ -d "$HOME/.local/kitty.app/bin" ] ; then
     PATH="$HOME/.local/kitty.app/bin:$PATH"
 fi
 
+export EDITOR=vim
 export VIMINIT="source ~/.config/vim/.vimrc"
 source ~/.config/sway/sway-env.sh
 
