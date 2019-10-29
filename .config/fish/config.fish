@@ -17,3 +17,5 @@ end
 
 alias tmux="tmux -2 attach"
 
+fish_vi_key_bindings
+
