@@ -295,4 +295,5 @@ exec kanshi
 exec speedcrunch
 
 exec rm -rf /tmp/wobpipe && mkfifo /tmp/wobpipe && tail -f /tmp/wobpipe | wob
+exec xrdb -load ~/.Xresources
 
