@@ -211,10 +211,6 @@ bindsym XF86AudioPrev exec playerctl previous
 include /etc/sway/config.d/*
 include ~/.config/sway/config.d/*
 
-#output eDP-1 resolution 2560x1440 position 1920,0
-#output HDMI-A-1 resolution 1920x1080 position 0,0
-#output DP-4 resolution 3840x2160 position 4480,0
-
 set $laptop eDP-1
 bindswitch --locked lid:on output $laptop disable
 bindswitch --locked lid:off output $laptop enable
@@ -224,17 +220,12 @@ bindsym $mod+Alt+$left move workspace to output left
 
 bindsym $mod+l exec swaylock
 
-#bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
-#bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
 bindsym XF86MonBrightnessUp exec light -A 5 && light -G | cut -d'.' -f1 > /tmp/wobpipe
 bindsym XF86MonBrightnessDown exec light -U 5 && light -G | cut -d'.' -f1 > /tmp/wobpipe
-
 
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioRaiseVolume exec pamixer -ui 2 && pamixer --get-volume > /tmp/wobpipe
 bindsym XF86AudioLowerVolume exec pamixer -ud 2 && pamixer --get-volume > /tmp/wobpipe
-#bindsym XF86AudioRaiseVolume exec amixer set Master 1%+
-#bindsym XF86AudioLowerVolume exec amixer set Master 1%-
 bindsym XF86AudioMicMute exec pactl set-source-mute 1 toggle
 
 #
@@ -303,8 +294,5 @@ exec ibus-daemon --xim
 exec kanshi
 exec speedcrunch
 
-#output "Unknown 0x0792 0x00000000" mode 1920x1080 pos 3840,0
-#output "Goldstar Company Ltd LG Ultra HD 0x0000661B" mode 3840x2160 pos 0,0
-#output "Unknown 0x2036 0x00000000" pos 0,0
 exec rm -rf /tmp/wobpipe && mkfifo /tmp/wobpipe && tail -f /tmp/wobpipe | wob
 
