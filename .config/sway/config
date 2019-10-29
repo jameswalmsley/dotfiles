@@ -196,12 +196,13 @@ bindsym $mod+r mode "resize"
 #}
 
 mode "music" {
-	bindsym p exec playerctl play-pause
+	bindsym p mode "default"; exec playerctl play-pause
 	bindsym comma exec playerctl previous
 	bindsym period exec playerctl next
 	bindsym Return mode "default"
 	bindsym Escape mode "default"
 }
+
 bindsym $mod+m mode "music"
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
