@@ -279,8 +279,8 @@ for_window [instance="tmuxdd"] border pixel 3
 # for_window [instance="tmuxdd"] sticky enable
 
 
-for_window [class="SpeedCrunch"] floating enable
-for_window [class="SpeedCrunch"] move scratchpad
+for_window [app_id="org.speedcrunch.speedcrunch"] floating enable
+for_window [app_id="org.speedcrunch.speedcrunch"] move scratchpad
 
 assign [class="Code*"] workspace 3
 for_window [class="Spotify*"] move to workspace 10
