@@ -36,6 +36,11 @@ if [ -d "$HOME/.local/kitty.app/bin" ] ; then
 fi
 
 export EDITOR=vim
+
+if [ -d "$HOME/.local/arcanist/arcanist/bin" ] ; then
+    PATH="$HOME/.local/arcanist/arcanist/bin:$PATH"
+fi
+
 export VIMINIT="source ~/.config/vim/.vimrc"
 source ~/.config/sway/sway-env.sh
 
