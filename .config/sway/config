@@ -186,7 +186,7 @@ bindsym $mod+r mode "resize"
 #    position top
 #    font pango:DejaVu Sans Mono 14
     #status_command i3blocks
-#    
+#
 #    tray_output all
 #    colors {
 #        statusline #ffffff
@@ -220,12 +220,12 @@ bindsym $mod+Alt+$left move workspace to output left
 
 bindsym $mod+l exec swaylock
 
-bindsym XF86MonBrightnessUp exec light -A 5 && light -G | cut -d'.' -f1 > /tmp/wobpipe
-bindsym XF86MonBrightnessDown exec light -U 5 && light -G | cut -d'.' -f1 > /tmp/wobpipe
+bindsym XF86MonBrightnessUp exec lightctl raise
+bindsym XF86MonBrightnessDown exec lightctl lower
 
-bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
-bindsym XF86AudioRaiseVolume exec pamixer -ui 2 && pamixer --get-volume > /tmp/wobpipe
-bindsym XF86AudioLowerVolume exec pamixer -ud 2 && pamixer --get-volume > /tmp/wobpipe
+bindsym XF86AudioMute exec volumectl mute
+bindsym XF86AudioRaiseVolume exec volumectl raise
+bindsym XF86AudioLowerVolume exec volumectl lower
 bindsym XF86AudioMicMute exec pactl set-source-mute 1 toggle
 
 #
@@ -260,7 +260,7 @@ gaps outer 15
 
 #bindsym $mod+s			gaps inner current plus 5
 bindsym $mod+Shift+s		gaps inner current minus 5
-bindsym $mod+z			gaps outer current plus 5 
+bindsym $mod+z			gaps outer current plus 5
 bindsym $mod+Shift+z		gaps outer current minus 5
 bindsym $mod+Shift+d		gaps inner current set 0; gaps outer current set 0
 
@@ -285,6 +285,10 @@ for_window [app_id="org.speedcrunch.speedcrunch"] move scratchpad
 assign [class="Code*"] workspace 3
 for_window [class="Spotify*"] move to workspace 10
 
+for_window [app_id="avizo-service"] border pixel 0
+for_window [app_id="avizo-service"] sticky toggle
+no_focus [app_id="avizo-service"]
+
 exec waybar
 exec nm-applet
 exec powerline-daemon
@@ -293,7 +297,7 @@ exec redshift
 exec ibus-daemon --xim
 exec kanshi
 exec speedcrunch
+exec avizo-service
 
-exec rm -rf /tmp/wobpipe && mkfifo /tmp/wobpipe && tail -f /tmp/wobpipe | wob
 exec xrdb -load ~/.Xresources
 
