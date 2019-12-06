@@ -14,7 +14,7 @@
 {
 	output "Unknown 0x2036 0x00000000" mode 2560x1440 position 0,0
 	output "Unknown BenQ GL2450 Y9D00749019" mode 1920x1080 position 2560,0
-	output "Goldstar Company Ltd LG Ultra HD 0x0000661B" mode 3840x2160 position 4460,0
+	output "Goldstar Company Ltd LG Ultra HD 0x0000661B" mode 3840x2160 position 4480,0
 }
 
 # Home Office with Carbon
