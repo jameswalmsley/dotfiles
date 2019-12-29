@@ -1,8 +1,7 @@
 set nocompatible
 filetype plugin on
 
-set ttymouse=xterm2
-set mouse=a
+set shell=/bin/bash
 
 set rtp+=~/.local/lib/python3.6/site-packages/powerline/bindings/vim
 set laststatus=2
@@ -29,5 +28,16 @@ Plug 'junegunn/limelight.vim'
 Plug 'kana/vim-arpeggio'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-sleuth'
+Plug 'universal-ctags/ctags'
+Plug 'vim-nerdtree/nerdtree'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-fugitive'
 call plug#end()
+
+nnoremap <C-p> :Files<Cr>
+
+xnoremap "+y y:call system("wl-copy", @")<cr>
+nnoremap "+p :let @"=substitute(system("wl-paste --no-newline"), '<C-v><C-m>', '', 'g')<cr>p
+nnoremap "*p :let @"=substitute(system("wl-paste --no-newline --primary"), '<C-v><C-m>', '', 'g')<cr>p
 
