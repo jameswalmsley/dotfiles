@@ -11,6 +11,7 @@ set number
 set relativenumber
 
 set tabstop=4 shiftwidth=4 expandtab
+set backspace=indent,eol,start
 
 " Remove trailing whitespace on save.
 autocmd BufWritePre * :%s/\s\+$//e
