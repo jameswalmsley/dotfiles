@@ -30,12 +30,12 @@
     "clock": {
         "format": "{:%a, %d. %b  %H:%M}"
     },
-    
+
     "tray": {
-        "icon-size": 32,
+        "icon-size": 14,
         "spacing": 10
     },
-    
+
     "network": {
         "interface": "wlp2s0",
         "format": "{ifname}",
