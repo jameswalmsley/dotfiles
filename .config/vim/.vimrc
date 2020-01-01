@@ -38,6 +38,7 @@ Plug 'easymotion/vim-easymotion'
 call plug#end()
 
 nnoremap <C-p> :Files<Cr>
+nnoremap <C-b> :Buffers<Cr>
 
 xnoremap "+y y:call system("wl-copy", @")<cr>
 nnoremap "+p :let @"=substitute(system("wl-paste --no-newline"), '<C-v><C-m>', '', 'g')<cr>p
