@@ -40,6 +40,24 @@ call plug#end()
 nnoremap <C-p> :Files<Cr>
 nnoremap <C-b> :Buffers<Cr>
 
+nnoremap <C-x>1 :only<Cr>
+nnoremap <C-x>2 :split<Cr>
+nnoremap <C-x>3 :vsplit<Cr>
+" nnoremap <C-x>o
+nnoremap <C-x><Left> <C-w><Left>
+nnoremap <C-x><Right> <C-w><Right>
+nnoremap <C-x><Up> <C-w><Up>
+nnoremap <C-x><Down> <C-w><Down>
+
+
+map <C-t><up> :tabr<cr>
+map <C-t><down> :tabl<cr>
+map <C-t><left> :tabp<cr>
+map <C-t><right> :tabn<cr>
+map <C-t>n :tabnew<cr>
+map <C-x>n :tabn<cr>
+map <C-x>p :tabp<cr>
+
 xnoremap "+y y:call system("wl-copy", @")<cr>
 nnoremap "+p :let @"=substitute(system("wl-paste --no-newline"), '<C-v><C-m>', '', 'g')<cr>p
 nnoremap "*p :let @"=substitute(system("wl-paste --no-newline --primary"), '<C-v><C-m>', '', 'g')<cr>p
