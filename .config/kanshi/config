@@ -1,6 +1,6 @@
 # Thinkpad Carbon X1 6th Gen - Alone.
 {
-	output "Unknown 0x2036 0x00000000" mode 2560x1440 position 0,0 scale 1.0
+	output "Unknown 0x2036 0x00000000" mode 2560x1440 position 0,0 scale 1.333
 }
 
 # Work Office with P1
