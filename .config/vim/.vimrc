@@ -43,7 +43,7 @@ nnoremap <C-b> :Buffers<Cr>
 nnoremap <C-x>1 :only<Cr>
 nnoremap <C-x>2 :split<Cr>
 nnoremap <C-x>3 :vsplit<Cr>
-" nnoremap <C-x>o
+nnoremap <C-x>o <C-w><C-w>
 nnoremap <C-x><Left> <C-w><Left>
 nnoremap <C-x><Right> <C-w><Right>
 nnoremap <C-x><Up> <C-w><Up>
