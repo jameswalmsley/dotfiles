@@ -34,6 +34,7 @@ Plug 'vim-nerdtree/nerdtree'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
+Plug 'easymotion/vim-easymotion'
 call plug#end()
 
 nnoremap <C-p> :Files<Cr>
