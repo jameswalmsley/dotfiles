@@ -37,6 +37,7 @@ Plug 'universal-ctags/ctags'
 Plug 'preservim/nerdtree'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
 Plug 'easymotion/vim-easymotion'
@@ -48,7 +49,6 @@ call plug#end()
 set background=dark
 colorscheme solarized8
 
-nnoremap <C-p> :Files<Cr>
 nnoremap <C-b> :NERDTreeToggle %:p:h<Cr>
 
 nnoremap <C-x>1 :only<Cr>
