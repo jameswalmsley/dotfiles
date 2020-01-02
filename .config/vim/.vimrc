@@ -3,19 +3,19 @@ filetype plugin on
 
 set shell=/bin/bash
 
-set rtp+=~/.local/lib/python3.6/site-packages/powerline/bindings/vim
-set laststatus=2
-let g:Powerline_symbols = "fancy"
-
 set number
 set relativenumber
+set hidden
+set colorcolumn=80
+set nohlsearch
 
 set tabstop=4 shiftwidth=4 expandtab
 set backspace=indent,eol,start
 set termguicolors
+autocmd vimenter * silent! lcd %:p:h
+
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-
 
 " Remove trailing whitespace on save.
 autocmd BufWritePre * :%s/\s\+$//e
@@ -34,19 +34,22 @@ Plug 'kana/vim-arpeggio'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-sleuth'
 Plug 'universal-ctags/ctags'
-Plug 'vim-nerdtree/nerdtree'
+Plug 'preservim/nerdtree'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-sensible'
 Plug 'easymotion/vim-easymotion'
 Plug 'lifepillar/vim-solarized8'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
 set background=dark
 colorscheme solarized8
 
 nnoremap <C-p> :Files<Cr>
-nnoremap <C-b> :Buffers<Cr>
+nnoremap <C-b> :NERDTreeToggle %:p:h<Cr>
 
 nnoremap <C-x>1 :only<Cr>
 nnoremap <C-x>2 :split<Cr>
@@ -68,7 +71,7 @@ map <C-x>c :tabnew<cr>
 map <C-x>t :tab terminal<cr>
 
 let mapleader=" "
-map \ <Leader>
+"map \ <Leader>
 map <Leader> <Plug>(easymotion-prefix)
 "let g:EasyMotion_do_mapping = 0 " Disable default mappings
 
@@ -92,10 +95,17 @@ map <Leader>k <Plug>(easymotion-k)
 
 " CDC = Change to Directory of Current file
 "
-map <Leader>cd :cd %:p:h<cr>
+map <Leader>cd :NERDTreeCWD %:p:h<cr>
 
 
 xnoremap "+y y:call system("wl-copy", @")<cr>
 nnoremap "+p :let @"=substitute(system("wl-paste --no-newline"), '<C-v><C-m>', '', 'g')<cr>p
 nnoremap "*p :let @"=substitute(system("wl-paste --no-newline --primary"), '<C-v><C-m>', '', 'g')<cr>p
+
+
+" NERDTree
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+let g:NERDTreeWinPos = "right"
+" let NERDTreeChDirMode=2
 
