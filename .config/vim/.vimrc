@@ -64,6 +64,8 @@ map <C-t><right> :tabn<cr>
 map <C-t>n :tabnew<cr>
 map <C-x>n :tabn<cr>
 map <C-x>p :tabp<cr>
+map <C-x>c :tabnew<cr>
+map <C-x>t :tab terminal<cr>
 
 let mapleader=" "
 map \ <Leader>
