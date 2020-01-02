@@ -12,6 +12,10 @@ set relativenumber
 
 set tabstop=4 shiftwidth=4 expandtab
 set backspace=indent,eol,start
+set termguicolors
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
 
 " Remove trailing whitespace on save.
 autocmd BufWritePre * :%s/\s\+$//e
@@ -35,7 +39,11 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'easymotion/vim-easymotion'
+Plug 'lifepillar/vim-solarized8'
 call plug#end()
+
+set background=dark
+colorscheme solarized8
 
 nnoremap <C-p> :Files<Cr>
 nnoremap <C-b> :Buffers<Cr>
