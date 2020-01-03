@@ -3,6 +3,7 @@ filetype plugin on
 
 set shell=/bin/bash
 
+
 set number
 set relativenumber
 set hidden
@@ -96,13 +97,8 @@ map <Leader>k <Plug>(easymotion-k)
 
 " CDC = Change to Directory of Current file
 "
-map <Leader>cd :NERDTreeCWD %:p:h<cr>
-
-
-xnoremap "+y y:call system("wl-copy", @")<cr>
-nnoremap "+p :let @"=substitute(system("wl-paste --no-newline"), '<C-v><C-m>', '', 'g')<cr>p
-nnoremap "*p :let @"=substitute(system("wl-paste --no-newline --primary"), '<C-v><C-m>', '', 'g')<cr>p
-
+"map <Leader>cd :NERDTreeCWD %:p:h<cr>
+map <leader>cd :lcd %:h<CR>
 
 " NERDTree
 let NERDTreeMinimalUI = 1
