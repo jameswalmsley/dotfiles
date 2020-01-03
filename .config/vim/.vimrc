@@ -44,6 +44,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'lifepillar/vim-solarized8'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'unblevable/quick-scope'
 call plug#end()
 
 set background=dark
@@ -108,4 +109,23 @@ let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let g:NERDTreeWinPos = "right"
 " let NERDTreeChDirMode=2
+
+
+" Quick Scope
+"let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+"let g:qs_lazy_highlight = 1
+
+" Map the leader key + q to toggle quick-scope's highlighting in normal/visual mode.
+" Note that you must use nmap/xmap instead of their non-recursive versions (nnoremap/xnoremap).
+"nmap <leader>m <plug>(QuickScopeToggle)
+"xmap <leader>m <plug>(QuickScopeToggle)
+
+
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
+
 
