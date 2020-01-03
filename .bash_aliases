@@ -26,6 +26,5 @@ hsync() {
 
 
 alias tmux="tmux -2 attach"
-alias v="vim --remote-silent"
-alias vim="vim --servername VIM"
+alias vim="nvim"
 
