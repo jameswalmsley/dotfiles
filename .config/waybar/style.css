@@ -34,12 +34,13 @@ window#waybar.solo {
 }
 
 #workspaces button.visible {
-   color:      rgba(217, 216, 216, 1);
+   border-top: 1px solid #2aa198;
+   color:      #2aa198;
 }
 
 #workspaces button.focused {
-   border-top: 1px solid #2aa198;
-   color: #2aa198;
+   border-top: 1px solid #b58900;
+   color: #b58900;
 }
 
 #workspaces button:hover {
