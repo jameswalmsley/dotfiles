@@ -10,6 +10,8 @@ set hidden
 set colorcolumn=80
 set nohlsearch
 
+set encoding=UTF-8
+
 set tabstop=4 shiftwidth=4 expandtab
 set backspace=indent,eol,start
 set termguicolors
@@ -46,6 +48,8 @@ Plug 'lifepillar/vim-solarized8'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'unblevable/quick-scope'
+Plug 'ryanoasis/vim-devicons'
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 call plug#end()
 
 set background=dark
