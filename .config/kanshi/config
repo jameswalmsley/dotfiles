@@ -1,7 +1,8 @@
 # Thinkpad Carbon X1 6th Gen - Alone.
 {
-	output "Unknown 0x2036 0x00000000" mode 2560x1440 position 0,0 scale 1.333
+	output "Unknown 0x2036 0x00000000" mode 2560x1440 position 0,0 scale 1.333333
 	exec swaymsg output \"Unknown 0x2036 0x00000000\" scale_filter linear
+	exec swaymsg output \"Unknown 0x2036 0x00000000\" scale 1.333333
 }
 
 # Work Office with P1
@@ -13,18 +14,20 @@
 
 # Home Office with Carbon
 {
-	output "Unknown 0x2036 0x00000000" mode 2560x1440 position 0,0 scale 1.333
+	output "Unknown 0x2036 0x00000000" mode 2560x1440 position 0,0 scale 1.333333
 	output "BenQ Corporation BenQ GL2450 Y9D00749019" mode 1920x1080 position 1927,0
 	output "Goldstar Company Ltd LG Ultra HD 0x0000661B" mode 3840x2160 position 3847,0 scale 1.666
 	exec swaymsg output \"Unknown 0x2036 0x00000000\" scale_filter linear
 	exec swaymsg output \"Goldstar Company Ltd LG Ultra HD 0x0000661B\" scale_filter linear
+	exec swaymsg output \"Unknown 0x2036 0x00000000\" scale 1.333333
 }
 
 # Home Office with Carbon
 {
-	output "Unknown 0x2036 0x00000000" mode 2560x1440 position 0,0 scale 1.333
+	output "Unknown 0x2036 0x00000000" mode 2560x1440 position 0,0 scale 1.333333
 	output "Goldstar Company Ltd LG Ultra HD 0x0000661B" mode 3840x2160 position 1927,0 scale 1.666
+	exec swaymsg output \"Unknown 0x2036 0x00000000\" scale_filter linear
 	exec swaymsg output \"Goldstar Company Ltd LG Ultra HD 0x0000661B\" scale_filter linear
+	exec swaymsg output \"Unknown 0x2036 0x00000000\" scale 1.333333
 }
-
 
