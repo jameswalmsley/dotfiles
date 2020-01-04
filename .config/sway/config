@@ -196,12 +196,18 @@ bindsym $mod+r mode "resize"
 #}
 
 mode "music" {
-	bindsym p mode "default"; exec playerctl play-pause
-	bindsym comma exec playerctl previous
-	bindsym period exec playerctl next
-	bindsym Return mode "default"
-	bindsym Escape mode "default"
+    bindsym p mode "default"; exec playerctl play-pause
+    bindsym comma exec playerctl previous
+    bindsym period exec playerctl next
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
 }
+
+mode "utils" {
+    bindsym i mode "default"; exec env GTK_THEME=Yuru firefox
+}
+
+bindsym $mod+x mode "utils"
 
 bindsym $mod+m mode "music"
 bindsym XF86AudioPlay exec playerctl play-pause
