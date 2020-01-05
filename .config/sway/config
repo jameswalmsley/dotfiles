@@ -249,21 +249,26 @@ input 2:7:SynPS/2_Synaptics_TouchPad {
     pointer_accel 0
 }
 
+set $kb_gb_options "misc:extend,lv5:caps_switch_lock,grp:shifts_toggle"
+set $kb_gb_options_capsswap $kb_gb_options",caps:swapescape"
+
 input * xkb_layout gb
 input * xkb_variant basic
-input * xkb_options "misc:extend,lv5:caps_switch_lock,grp:shifts_toggle,compose:menu"
+input * xkb_options $kb_gb_options_capsswap
 
-bindsym Alt+Shift+1 input * xkb_layout gb; input * xkb_variant basic; input * xkb_options "misc:extend,lv5:caps_switch_lock,grp:shifts_toggle,compose:menu"; exec notify-send "Switched layout to gb-basic"
-bindsym Alt+Shift+2 input * xkb_layout gb; input * xkb_variant colemak; exec notify-send "Switched layout to gb-colemak"
+bindsym Alt+Shift+1 input * xkb_layout gb; input * xkb_variant basic; input * xkb_options $kb_gb_options; exec notify-send "Switched layout to gb"
+bindsym Alt+Shift+2 input * xkb_layout gb; input * xkb_variant basic; input * xkb_options $kb_gb_options_capsswap; exec notify-send $kb_gb_options_capsswap
 
-bindsym Alt+Shift+3 input * xkb_layout gb; input * xkb_variant cmk_ed_ks; input * xkb_model pc105curl-z; input * xkb_options "misc:extend,lv5:caps_switch_lock,grp:shifts_toggle,compose:menu,misc:cmk_curl_dh"; exec notify-send "Switch layout to gb-colemak-mod-dh"
+#bindsym Alt+Shift+2 input * xkb_layout gb; input * xkb_variant colemak; exec notify-send "Switched layout to gb-colemak"
+#bindsym Alt+Shift+3 input * xkb_layout gb; input * xkb_variant cmk_ed_ks; input * xkb_model pc105curl-z; input * xkb_options "misc:extend,lv5:caps_switch_lock,grp:shifts_toggle,compose:menu,misc:cmk_curl_dh"; exec notify-send "Switch layout to gb-colemak-mod-dh"
 
 
-bindcode $mod+Shift+61 exec imv ~/Pictures/mod_dh_extend.png
-bindcode $mod+61 exec imv ~/Pictures/mod_dh_main.png
+# mod+/ (code 61).
+
+bindcode $mod+Shift+61 exec notify-send "overlay 2"; exec imv ~/Pictures/mod_dh_extend.png
+bindcode $mod+61 exec notify-send "overlay 1"; exec imv ~/Pictures/mod_dh_main.png
 
 for_window [class="imv"] floating enable
-
 
 # Gaps Config
 smart_gaps on
