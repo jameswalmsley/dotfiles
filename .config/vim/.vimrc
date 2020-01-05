@@ -50,10 +50,11 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'unblevable/quick-scope'
 Plug 'ryanoasis/vim-devicons'
 Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+Plug 'jeffkreeftmeijer/vim-numbertoggle'
 call plug#end()
 
 set background=dark
-colorscheme solarized8
+colorscheme solarized8_flat
 
 nnoremap <C-b> :NERDTreeToggle %:p:h<Cr>
 
@@ -75,6 +76,10 @@ map <C-x>n :tabn<cr>
 map <C-x>p :tabp<cr>
 map <C-x>c :tabnew<cr>
 map <C-x>t :tab terminal<cr>
+
+" Toggle Margin
+map <C-x>m :set number! relativenumber!<cr>
+
 
 let mapleader=" "
 "map \ <Leader>
@@ -128,4 +133,6 @@ inoremap <A-k> <Esc>:m .-2<CR>==gi
 vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
 
+let g:ctrlp_show_hidden = 1
+let g:ctrlp_working_path_mode = 0
 
