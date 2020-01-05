@@ -204,7 +204,9 @@ mode "music" {
 }
 
 mode "utils" {
-    bindsym i mode "default"; exec env GTK_THEME=Yuru firefox
+    bindsym i mode "default"; exec firefox
+    bindsym w mode "default"; exec waybar
+    bindsym k mode "default"; exec pkill kanshi; exec kanshi;
 }
 
 bindsym $mod+x mode "utils"
