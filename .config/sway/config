@@ -312,7 +312,7 @@ exec powerline-daemon
 exec mako
 exec redshift
 exec ibus-daemon --xim
-exec kanshi
+exec_always pkill kanshi && kanshi
 exec speedcrunch
 exec avizo-service
 
