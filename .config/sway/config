@@ -205,8 +205,11 @@ mode "music" {
 
 mode "utils" {
     bindsym i mode "default"; exec firefox
-    bindsym w mode "default"; exec waybar
-    bindsym k mode "default"; exec pkill kanshi; exec kanshi;
+    bindsym w mode "default"; exec "pkill waybar; sleep 1; waybar"
+    bindsym k mode "default"; exec "pkill kanshi; sleep 1; kanshi"
+    bindsym r mode "default"; exec "pkill redshift; sleep 5; redshift"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
 }
 
 bindsym $mod+x mode "utils"
@@ -257,7 +260,7 @@ input * xkb_variant basic
 input * xkb_options $kb_gb_options_capsswap
 
 bindsym Alt+Shift+1 input * xkb_layout gb; input * xkb_variant basic; input * xkb_options $kb_gb_options; exec notify-send "Switched layout to gb"
-bindsym Alt+Shift+2 input * xkb_layout gb; input * xkb_variant basic; input * xkb_options $kb_gb_options_capsswap; exec notify-send $kb_gb_options_capsswap
+bindsym Alt+Shift+2 input * xkb_layout gb; input * xkb_variant basic; input * xkb_options $kb_gb_options_capsswap; exec notify-send "Switched layout to gb (caps-swap)"
 
 #bindsym Alt+Shift+2 input * xkb_layout gb; input * xkb_variant colemak; exec notify-send "Switched layout to gb-colemak"
 #bindsym Alt+Shift+3 input * xkb_layout gb; input * xkb_variant cmk_ed_ks; input * xkb_model pc105curl-z; input * xkb_options "misc:extend,lv5:caps_switch_lock,grp:shifts_toggle,compose:menu,misc:cmk_curl_dh"; exec notify-send "Switch layout to gb-colemak-mod-dh"
@@ -306,13 +309,21 @@ for_window [title="avizo"] border pixel 0
 for_window [title="avizo"] sticky toggle
 no_focus [title="avizo"]<Paste>
 
+set $gnome-schema org.gnome.desktop.interface
+
+exec_always {
+    gsettings set $gnome-schema gtk-theme 'Yaru-dark'
+    #gsettings set $gnome-schema icon-theme 'Yaru-dark'
+    #gsettings set $gnome-schema cursor-theme 'Yaru-dark'
+}
+
 exec waybar
 exec nm-applet
 exec powerline-daemon
 exec mako
 exec redshift
 exec ibus-daemon --xim
-exec_always pkill kanshi && kanshi
+exec_always "pkill kanshi; sleep 1; kanshi"
 exec speedcrunch
 exec avizo-service
 
