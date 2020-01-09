@@ -134,5 +134,5 @@ vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
 
 let g:ctrlp_show_hidden = 1
-let g:ctrlp_working_path_mode = 0
+" let g:ctrlp_working_path_mode = 0
 
