@@ -208,6 +208,7 @@ mode "utils" {
     bindsym w mode "default"; exec "pkill waybar; sleep 1; waybar"
     bindsym k mode "default"; exec "pkill kanshi; sleep 1; kanshi"
     bindsym r mode "default"; exec "pkill redshift; sleep 5; redshift"
+    bindsym z mode "default"; exec env QT_QPA_PLATFORM=xcb zoom
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
