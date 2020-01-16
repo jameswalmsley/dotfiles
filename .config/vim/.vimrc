@@ -51,6 +51,7 @@ Plug 'unblevable/quick-scope'
 Plug 'ryanoasis/vim-devicons'
 Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
+Plug 'takac/vim-hardtime'
 call plug#end()
 
 set background=dark
@@ -135,6 +136,13 @@ vnoremap <A-k> :m '<-2<CR>gv=gv
 
 let g:ctrlp_show_hidden = 1
 " let g:ctrlp_working_path_mode = 0
+
+let g:hardtime_default_on = 1
+
+let g:list_of_normal_keys = ["j", "k", "-", "+", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
+let g:list_of_visual_keys = ["-", "+", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
+let g:list_of_insert_keys = ["<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
+let g:list_of_disabled_keys = []
 
 let g:firenvim_config = {
     \ 'localSettings': {
