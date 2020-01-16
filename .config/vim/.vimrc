@@ -57,7 +57,6 @@ call plug#end()
 set background=dark
 colorscheme solarized8_flat
 
-nnoremap <C-b> :NERDTreeToggle %:p:h<Cr>
 
 nnoremap <C-x>1 :only<Cr>
 nnoremap <C-x>2 :split<Cr>
@@ -81,8 +80,12 @@ map <C-x>t :tab terminal<cr>
 " Toggle Margin
 map <C-x>m :set number! relativenumber!<cr>
 
-
 let mapleader=" "
+
+nnoremap <Leader>b :NERDTreeToggle %:p:h<Cr>
+nnoremap <silent> <Leader>v :NERDTreeFind<CR>
+
+
 "map \ <Leader>
 map <Leader> <Plug>(easymotion-prefix)
 "let g:EasyMotion_do_mapping = 0 " Disable default mappings
@@ -137,7 +140,7 @@ vnoremap <A-k> :m '<-2<CR>gv=gv
 let g:ctrlp_show_hidden = 1
 " let g:ctrlp_working_path_mode = 0
 
-let g:hardtime_default_on = 1
+" let g:hardtime_default_on = 1
 
 let g:list_of_normal_keys = ["j", "k", "-", "+", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
 let g:list_of_visual_keys = ["-", "+", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
