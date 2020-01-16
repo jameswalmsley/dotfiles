@@ -136,3 +136,14 @@ vnoremap <A-k> :m '<-2<CR>gv=gv
 let g:ctrlp_show_hidden = 1
 " let g:ctrlp_working_path_mode = 0
 
+let g:firenvim_config = {
+    \ 'localSettings': {
+        \ 'riot.im': {
+            \ 'selector': '',
+        \ },
+        \ 'slack.com': {
+            \ 'selector': '',
+        \ }
+    \ }
+\ }
+
