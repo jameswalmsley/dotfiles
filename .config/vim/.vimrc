@@ -158,3 +158,6 @@ let g:firenvim_config = {
     \ }
 \ }
 
+
+source ~/.config/vim/coc.nvim.vim
+
