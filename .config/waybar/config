@@ -2,7 +2,7 @@
     "layer": "top",
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["sway/window"],
-    "modules-right": ["battery", "clock", "network", "pulseaudio", "tray"],
+    "modules-right": ["battery", "clock", "network", "cpu", "memory", "pulseaudio", "tray"],
     "sway/workspaces": {
 	    "disable-scroll": true,
 	    "all-outputs": false,
@@ -34,6 +34,16 @@
     "tray": {
         "icon-size": 14,
         "spacing": 10
+    },
+
+    "cpu": {
+        "format": "{usage}% ",
+        "interval": 5,
+        "tooltip": false
+    },
+
+    "memory": {
+        "format": "{}% "
     },
 
     "network": {
