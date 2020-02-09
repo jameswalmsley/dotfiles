@@ -52,6 +52,7 @@ Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'takac/vim-hardtime'
 Plug 'gcmt/taboo.vim'
+Plug 'tomasiser/vim-code-dark'
 call plug#end()
 
 set background=dark
