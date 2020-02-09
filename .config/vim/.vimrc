@@ -3,7 +3,6 @@ filetype plugin on
 
 set shell=/bin/bash
 
-
 set number
 set relativenumber
 set hidden
@@ -34,7 +33,7 @@ Plug 'junegunn/seoul256.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'kana/vim-arpeggio'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install()}}
 Plug 'tpope/vim-sleuth'
 Plug 'universal-ctags/ctags'
 Plug 'preservim/nerdtree'
@@ -52,11 +51,11 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'takac/vim-hardtime'
+Plug 'gcmt/taboo.vim'
 call plug#end()
 
 set background=dark
 colorscheme solarized8_flat
-
 
 nnoremap <C-x>1 :only<Cr>
 nnoremap <C-x>2 :split<Cr>
@@ -138,7 +137,7 @@ vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
 
 let g:ctrlp_show_hidden = 1
-" let g:ctrlp_working_path_mode = 0
+"let g:ctrlp_working_path_mode = 0
 
 " let g:hardtime_default_on = 1
 
@@ -158,6 +157,9 @@ let g:firenvim_config = {
     \ }
 \ }
 
+
+let g:ctrlp_custom_ignore = 'out|build|.git'
+set sessionoptions+=tabpages,globals
 
 source ~/.config/vim/coc.nvim.vim
 
