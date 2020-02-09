@@ -235,9 +235,11 @@ bindsym $mod+l exec swaylock
 bindsym XF86MonBrightnessUp exec lightctl raise
 bindsym XF86MonBrightnessDown exec lightctl lower
 
-bindsym XF86AudioMute exec volumectl mute
-bindsym XF86AudioRaiseVolume exec volumectl raise
-bindsym XF86AudioLowerVolume exec volumectl lower
+set $volumectl  ~/.config/sway/scripts/volumectl.sh
+
+bindsym XF86AudioMute exec $volumectl mute
+bindsym XF86AudioRaiseVolume exec $volumectl raise
+bindsym XF86AudioLowerVolume exec $volumectl lower
 bindsym XF86AudioMicMute exec pactl set-source-mute 1 toggle
 
 #
