@@ -21,7 +21,7 @@ set $menu ~/.config/sway/dmenu.sh
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * background ~/Pictures/wallpaper fill
+output * background ~/Pictures/wallpaper fit #000000
 #output * bg /usr/share/backgrounds/Morning_by_Bernhard_Hanakam.jpg fill
 #exec settimed /usr/share/backgrounds/gnome/mojave-timed.xml
 #
