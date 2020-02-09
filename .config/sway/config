@@ -272,8 +272,8 @@ input * xkb_options $kb_gb_options_capsswap
 bindsym Alt+Shift+1 input * xkb_layout gb; input * xkb_variant basic; input * xkb_options $kb_gb_options; exec notify-send "Switched layout to gb"
 bindsym Alt+Shift+2 input * xkb_layout gb; input * xkb_variant basic; input * xkb_options $kb_gb_options_capsswap; exec notify-send "Switched layout to gb (caps-swap)"
 
-#bindsym Alt+Shift+2 input * xkb_layout gb; input * xkb_variant colemak; exec notify-send "Switched layout to gb-colemak"
-#bindsym Alt+Shift+3 input * xkb_layout gb; input * xkb_variant cmk_ed_ks; input * xkb_model pc105curl-z; input * xkb_options "misc:extend,lv5:caps_switch_lock,grp:shifts_toggle,compose:menu,misc:cmk_curl_dh"; exec notify-send "Switch layout to gb-colemak-mod-dh"
+bindsym Alt+Shift+3 input * xkb_layout gb; input * xkb_variant colemak; exec notify-send "Switched layout to gb-colemak"
+#bindsym Alt+Shift+4 input * xkb_layout gb; input * xkb_variant cmk_ed_ks; input * xkb_model pc105curl-z; input * xkb_options "misc:extend,lv5:caps_switch_lock,grp:shifts_toggle,compose:menu,misc:cmk_curl_dh"; exec notify-send "Switch layout to gb-colemak-mod-dh"
 
 
 # mod+/ (code 61).
