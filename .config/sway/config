@@ -330,6 +330,6 @@ exec ibus-daemon --xim
 exec_always "pkill kanshi; sleep 1; kanshi"
 exec speedcrunch
 exec avizo-service
-
+exec solaar
 exec xrdb -load ~/.Xresources
 
