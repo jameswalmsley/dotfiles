@@ -6,7 +6,7 @@ set -x
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 
-deb_packages="node.js tmux npm byobu python3-pip"
+deb_packages="node.js tmux npm python3-pip"
 
 
 sudo apt -y install ${deb_packages}

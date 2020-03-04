@@ -16,7 +16,13 @@ function hs
 end
 
 alias tmux="tmux -2 attach"
-alias vim="nvim"
+
+set -l nvimvar (which nvim)
+if test -z "$nvimvar"
+
+else
+    alias vim="nvim"
+end
 
 fish_hybrid_key_bindings
 

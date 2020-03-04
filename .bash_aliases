@@ -26,5 +26,8 @@ hsync() {
 
 
 alias tmux="tmux -2 attach"
-alias vim="nvim"
+
+if [ -n "$(which nvim)" ]; then
+	alias vim="nvim"
+fi
 
