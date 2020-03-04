@@ -6,7 +6,7 @@ set shell=/bin/bash
 set number
 set relativenumber
 set hidden
-set colorcolumn=80
+set colorcolumn=100
 set nohlsearch
 
 set encoding=UTF-8
@@ -139,6 +139,10 @@ vnoremap <A-k> :m '<-2<CR>gv=gv
 
 let g:ctrlp_show_hidden = 1
 "let g:ctrlp_working_path_mode = 0
+let g:ctrlp_cmd = 'CtrlPBuffer'
+
+
+
 
 " let g:hardtime_default_on = 1
 
