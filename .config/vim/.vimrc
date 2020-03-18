@@ -82,7 +82,7 @@ map <C-x>m :set number! relativenumber!<cr>
 
 let mapleader=" "
 
-nnoremap <Leader>b :NERDTreeToggle %:p:h<Cr>
+nnoremap <Leader>b :NERDTreeToggle <Cr>
 nnoremap <silent> <Leader>v :NERDTreeFind<CR>
 
 
