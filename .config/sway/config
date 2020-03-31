@@ -203,23 +203,36 @@ mode "music" {
     bindsym Escape mode "default"
 }
 
+bindsym $mod+m mode "music"; workspace spotify
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
 mode "utils" {
     bindsym i mode "default"; exec firefox
-    bindsym w mode "default"; exec "pkill waybar; sleep 1; waybar"
+    bindsym w mode "switch-workspace";
     bindsym k mode "default"; exec "pkill kanshi; sleep 1; kanshi"
     bindsym r mode "default"; exec "pkill redshift; sleep 5; redshift"
     bindsym z mode "default"; exec env QT_QPA_PLATFORM=xcb zoom
-    bindsym s mode "default"; exec env QT_QPA_PLATFORM=xcb speedcrunch
+    bindsym s mode "default"; exec spotify
+    bindsym b mode "default"; exec blueman-applet
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+mode "switch-workspace" {
+    bindsym z mode "default"; workspace zoom
+    bindsym shift+z mode "default"; move container to workspace zoom
+    bindsym s mode "default"; workspace spotify
+    bindsym shift+s mode "default"; move container to workspace spotify
+    bindsym w mode "default"; workspace whatsapp
+    bindsym shift+w mode "default"; move container to workspace whatsapp
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 
 bindsym $mod+x mode "utils"
 
-bindsym $mod+m mode "music"
-bindsym XF86AudioPlay exec playerctl play-pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
 
 include /etc/sway/config.d/*
 include ~/.config/sway/config.d/*
@@ -318,7 +331,7 @@ for_window [app_id="firefox" title="^Picture-in-Picture$"] \
     floating enable, move position 877 450, sticky enable
 
 assign [class="Code*"] workspace 3
-for_window [class="Spotify*"] move to workspace 10
+for_window [class="Spotify*"] move to workspace spotify
 
 for_window [title="avizo"] border pixel 0
 for_window [title="avizo"] sticky toggle
@@ -342,5 +355,6 @@ exec_always "pkill kanshi; sleep 1; kanshi"
 exec speedcrunch
 exec avizo-service
 exec solaar
+exec blueman-applet
 exec xrdb -load ~/.Xresources
 
