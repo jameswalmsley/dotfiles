@@ -56,7 +56,8 @@ Plug 'tomasiser/vim-code-dark'
 call plug#end()
 
 set background=dark
-colorscheme solarized8_flat
+" colorscheme solarized8_flat
+colorscheme codedark
 
 nnoremap <C-x>1 :only<Cr>
 nnoremap <C-x>2 :split<Cr>
