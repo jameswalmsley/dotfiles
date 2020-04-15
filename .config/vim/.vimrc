@@ -53,6 +53,7 @@ Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'takac/vim-hardtime'
 Plug 'gcmt/taboo.vim'
 Plug 'tomasiser/vim-code-dark'
+Plug 'moll/vim-bbye'
 call plug#end()
 
 set background=dark
@@ -113,6 +114,8 @@ map <Leader>k <Plug>(easymotion-k)
 "
 "map <Leader>cd :NERDTreeCWD %:p:h<cr>
 map <leader>cd :lcd %:h<CR>
+
+map <leader>d :Bdelete<CR>
 
 " NERDTree
 let NERDTreeMinimalUI = 1
