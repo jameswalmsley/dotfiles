@@ -171,4 +171,5 @@ let g:ctrlp_custom_ignore = 'out|build|.git'
 set sessionoptions+=tabpages,globals
 
 source ~/.config/vim/coc.nvim.vim
+set statusline^=%{coc#status()}
 
