@@ -15,4 +15,7 @@ sudo apt -y install ${deb_packages}
 
 pip3 install powerline-status
 
+# Python support for Coc (CocInstall coc-python)
+pip3 install jedi
+
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
