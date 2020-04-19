@@ -67,7 +67,8 @@ output * background ~/Pictures/wallpaper fit #000000
     floating_modifier $mod normal
 
     # reload the configuration file
-    bindsym $mod+Shift+c reload
+    bindsym $mod+Shift+c nop # suppress the keystroke (or it will type a capital C before reloading sway)
+    bindsym --release $mod+Shift+c reload
 
     # exit sway (logs you out of your wayland session)
     bindsym $mod+Shift+e exec swaymsg exit
