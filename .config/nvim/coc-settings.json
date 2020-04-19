@@ -21,6 +21,10 @@
             }
         }
     },
-    "python.jediEnabled": false
+    "python.jediEnabled": false,
+    "git.enableGutters": true,
+    "git.realtimeGutters": true,
+    "git.addGBlameToBufferVar": true
+
 }
 

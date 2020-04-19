@@ -33,13 +33,22 @@ Plug 'junegunn/seoul256.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'kana/vim-arpeggio'
-Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install()}}
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-tslint', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-git', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-yank', {'do': 'yarn install --frozen-lockfile'}
 Plug 'tpope/vim-sleuth'
 Plug 'universal-ctags/ctags'
 Plug 'preservim/nerdtree'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
 Plug 'easymotion/vim-easymotion'
@@ -141,9 +150,9 @@ inoremap <A-k> <Esc>:m .-2<CR>==gi
 vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
 
-let g:ctrlp_show_hidden = 1
+"let g:ctrlp_show_hidden = 1
 "let g:ctrlp_working_path_mode = 0
-let g:ctrlp_cmd = 'CtrlPBuffer'
+"let g:ctrlp_cmd = 'CtrlPBuffer'
 
 
 
@@ -170,6 +179,59 @@ let g:firenvim_config = {
 let g:ctrlp_custom_ignore = 'out|build|.git'
 set sessionoptions+=tabpages,globals
 
+com! FormatXML :%!python3 -c "import xml.dom.minidom, sys; print(xml.dom.minidom.parse(sys.stdin).toprettyxml())"
+
+nnoremap = :FormatXML<Cr>
+
 source ~/.config/vim/coc.nvim.vim
-set statusline^=%{coc#status()}
+let g:airline#extensions#coc#enabled = 1
+function! CocMinimalStatus() abort
+  return get(b:, 'coc_git_blame', '')
+endfunction
+
+let g:airline_section_c = '%t %#LineNr#%{CocMinimalStatus()}'
+
+nnoremap <silent> <C-b>     :make<CR>
+nnoremap <silent> <C-b>b    :make<CR>
+nnoremap <silent> <C-b>c    :make clean<CR>
+nnoremap <silent> <C-b>dc   :make distclean<CR>
+nnoremap <silent> <C-b>C    :terminal make menuconfig<CR>
+
+" Get the exit status from a terminal buffer by looking for a line near the end
+" of the buffer with the format, '[Process exited ?]'.
+func! s:getExitStatus() abort
+  let ln = line('$')
+  " The terminal buffer includes several empty lines after the 'Process exited'
+  " line that need to be skipped over.
+  while ln >= 1
+    let l = getline(ln)
+    let ln -= 1
+    let exitCode = substitute(l, '^\[Process exited \([0-9]\+\)\]$', '\1', '')
+    if l != '' && l == exitCode
+      " The pattern did not match, and the line was not empty. It looks like
+      " there is no process exit message in this buffer.
+      break
+    elseif exitCode != ''
+      return str2nr(exitCode)
+    endif
+  endwhile
+  throw 'Could not determine exit status for buffer, ' . expand('%')
+endfunc
+
+func! s:afterTermClose() abort
+  if s:getExitStatus() == 0
+    bdelete!
+  endif
+endfunc
+
+augroup MyNeoterm
+  autocmd!
+  " The line '[Process exited ?]' is appended to the terminal buffer after the
+  " `TermClose` event. So we use a timer to wait a few milliseconds to read the
+  " exit status. Setting the timer to 0 or 1 ms is not sufficient; 20 ms seems
+  " to work for me.
+  autocmd TermClose * call timer_start(20, { -> s:afterTermClose() })
+augroup END
+
+autocmd TermOpen * startinsert
 
