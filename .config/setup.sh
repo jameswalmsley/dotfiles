@@ -17,5 +17,7 @@ pip3 install powerline-status
 # Python support for Coc (CocInstall coc-python)
 pip3 install jedi
 
+# Some yarn stuff to build coc plugins for VIM/NVIM
+npm install -g npx
 
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
