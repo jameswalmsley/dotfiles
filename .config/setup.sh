@@ -12,6 +12,8 @@ deb_packages="node.js tmux npm python3-pip yarn"
 sudo apt update
 sudo apt -y install ${deb_packages}
 
+sudo snap install ccls --classic
+
 pip3 install powerline-status
 
 # Python support for Coc (CocInstall coc-python)
