@@ -1,0 +1,4 @@
+#!/bin/bash
+
+arc diff --allow-untracked -m "Auto update!" HEAD~1
+
