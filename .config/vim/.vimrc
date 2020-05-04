@@ -138,6 +138,7 @@ let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let g:NERDTreeWinPos = "right"
 " let NERDTreeChDirMode=2
+let NERDTreeQuitOnOpen = 1
 
 
 " Quick Scope
@@ -242,3 +243,4 @@ if has('nvim')
 
   autocmd TermOpen * startinsert
 endif
+
