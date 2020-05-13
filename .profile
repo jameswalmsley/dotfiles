@@ -51,7 +51,7 @@ source ~/.config/sway/sway-env.sh
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ] || [ -n "$KITTY_WINDOW_ID" ] ; then
     if [ -f "/usr/bin/fish" ] ; then
     	SHELL=fish
-	powerline-daemon
+	powerline-daemon -q
     	exec fish
     fi
 fi
