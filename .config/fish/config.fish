@@ -1,6 +1,8 @@
-if test -d ~/.local/lib/python3.6/site-packages/powerline/bindings/fish
-	set fish_function_path $fish_function_path  "~/.local/lib/python3.6/site-packages/powerline/bindings/fish"
-	source ~/.local/lib/python3.6/site-packages/powerline/bindings/fish/powerline-setup.fish
+set -x POWERLINE (pip3 show powerline-status | grep "Location*" | cut -d " " -f2 )
+
+if test -d $POWERLINE/powerline/bindings/fish
+	set fish_function_path $fish_function_path  "$POWERLINE/powerline/bindings/fish"
+	source $POWERLINE/powerline/bindings/fish/powerline-setup.fish
 	powerline-setup
 end
 
