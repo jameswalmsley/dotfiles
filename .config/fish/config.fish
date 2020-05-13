@@ -1,3 +1,5 @@
+fish_hybrid_key_bindings
+
 set -x POWERLINE (pip3 show powerline-status | grep "Location*" | cut -d " " -f2 )
 
 if test -d $POWERLINE/powerline/bindings/fish
