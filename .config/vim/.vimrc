@@ -76,6 +76,8 @@ set background=dark
 " colorscheme solarized8_flat
 colorscheme codedark
 
+:imap jk <Esc>
+
 nnoremap <C-x>1 :only<Cr>
 nnoremap <C-x>2 :split<Cr>
 nnoremap <C-x>3 :vsplit<Cr>
