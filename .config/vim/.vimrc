@@ -55,6 +55,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 " Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-fugitive'
+Plug 'rbong/vim-flog'
 Plug 'tpope/vim-sensible'
 Plug 'easymotion/vim-easymotion'
 Plug 'lifepillar/vim-solarized8'
@@ -70,6 +71,8 @@ Plug 'takac/vim-hardtime'
 Plug 'gcmt/taboo.vim'
 Plug 'tomasiser/vim-code-dark'
 Plug 'moll/vim-bbye'
+Plug 'liuchengxu/vim-which-key'
+Plug 'airblade/vim-gitgutter'
 call plug#end()
 
 set background=dark
@@ -134,6 +137,9 @@ map <Leader>k <Plug>(easymotion-k)
 map <leader>cd :lcd %:h<CR>
 
 map <leader>d :Bdelete<CR>
+
+map <leader>z :Goyo<CR>
+let g:goyo_width = 100
 
 " NERDTree
 let NERDTreeMinimalUI = 1
