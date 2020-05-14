@@ -1,12 +1,12 @@
 fish_hybrid_key_bindings
 
-set -x POWERLINE (pip3 show powerline-status | grep "Location*" | cut -d " " -f2 )
+#set -x POWERLINE (pip3 show powerline-status | grep "Location*" | cut -d " " -f2 )
 
-if test -d $POWERLINE/powerline/bindings/fish
-	set fish_function_path $fish_function_path  "$POWERLINE/powerline/bindings/fish"
-	source $POWERLINE/powerline/bindings/fish/powerline-setup.fish
-	powerline-setup
-end
+#if test -d $POWERLINE/powerline/bindings/fish
+#	set fish_function_path $fish_function_path  "$POWERLINE/powerline/bindings/fish"
+#	source $POWERLINE/powerline/bindings/fish/powerline-setup.fish
+#	powerline-setup
+#end
 
 alias code="code-insiders --force-device-scale-factor=1.25"
 
