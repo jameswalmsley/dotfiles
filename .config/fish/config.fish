@@ -32,4 +32,7 @@ else
     alias vim="nvim"
 end
 
-
+alias t.wc="kitty @ set-colors -a ~/.config/kitty/kitty-themes/themes/WildCherry.conf"
+alias t.sl="kitty @ set-colors -a ~/.config/kitty/kitty-themes/themes/Solarized_Light.conf"
+alias t.sd="kitty @ set-colors -a ~/.config/kitty/kitty-themes/themes/Solarized_Dark.conf"
+alias t.at="kitty @ set-colors -a ~/.config/kitty/kitty-themes/themes/AdventureTime.conf"
