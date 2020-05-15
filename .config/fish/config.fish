@@ -32,5 +32,4 @@ else
     alias vim="nvim"
 end
 
-fish_hybrid_key_bindings
 
