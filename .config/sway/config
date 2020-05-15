@@ -14,7 +14,8 @@ set $down Down
 set $up Up
 set $right Right
 # Your preferred terminal emulator
-set $term 'SHELL=~/.local/bin/fishlogin termite'
+#set $term 'SHELL=~/.local/bin/fishlogin termite'
+set $term kitty
 # Your preferred application launcher
 set $menu ~/.config/sway/dmenu.sh
 
