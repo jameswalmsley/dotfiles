@@ -127,3 +127,14 @@ nnoremap <silent> <C-p>b     :CocList buffers<CR>
 
 " List errors
 nnoremap <silent> <leader>cl  :<C-u>CocList locationlist<cr>
+
+
+"
+" Airline coc status.
+"
+let g:airline#extensions#coc#enabled = 1
+function! CocMinimalStatus() abort
+  return get(b:, 'coc_git_blame', '')
+endfunction
+
+let g:airline_section_c = '%t %#LineNr#%{CocMinimalStatus()}'

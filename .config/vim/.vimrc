@@ -1,4 +1,15 @@
+"    ____      _ __        _
+"   /  _/___  (_) /__   __(_)___ ___
+"   / // __ \/ / __/ | / / / __ `__ \
+" _/ // / / / / /__| |/ / / / / / / /
+"/___/_/ /_/_/\__(_)___/_/_/ /_/ /_/
+"
+"
 set nocompatible
+
+" Always source these:
+source ~/.config/vim/vim-plug/plugins.vim
+
 filetype plugin on
 
 set shell=fish
@@ -34,53 +45,9 @@ endif
 " Remove trailing whitespace on save.
 autocmd BufWritePre * :%s/\s\+$//e
 
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
 
-call plug#begin('~/.vim/plugged')
-Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
-Plug 'kana/vim-arpeggio'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-tslint', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-git', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-yank', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'}
-Plug 'tpope/vim-sleuth'
-Plug 'universal-ctags/ctags'
-Plug 'preservim/nerdtree'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-fugitive'
-Plug 'rbong/vim-flog'
-Plug 'tpope/vim-sensible'
-Plug 'lifepillar/vim-solarized8'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'unblevable/quick-scope'
-Plug 'ryanoasis/vim-devicons'
-if has('nvim')
-  Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
-endif
-Plug 'jeffkreeftmeijer/vim-numbertoggle'
-Plug 'takac/vim-hardtime'
-Plug 'gcmt/taboo.vim'
-Plug 'tomasiser/vim-code-dark'
-Plug 'moll/vim-bbye'
-Plug 'liuchengxu/vim-which-key'
-Plug 'airblade/vim-gitgutter'
-Plug 'voldikss/vim-floaterm'
-Plug 'justinmk/vim-sneak'
-Plug 'unblevable/quick-scope'
-Plug 'morhetz/gruvbox'
-call plug#end()
-
+source ~/.config/vim/keys/which-key.vim
+source ~/.config/vim/plug-config/coc.nvim.vim
 source ~/.config/vim/plug-config/limelight.vim
 source ~/.config/vim/plug-config/nerdtree.vim
 source ~/.config/vim/plug-config/goyo.vim
@@ -148,20 +115,12 @@ let g:firenvim_config = {
 \ }
 
 
-let g:ctrlp_custom_ignore = 'out|build|.git'
 set sessionoptions+=tabpages,globals
 
 com! FormatXML :%!python3 -c "import xml.dom.minidom, sys; print(xml.dom.minidom.parse(sys.stdin).toprettyxml())"
 
 nnoremap = :FormatXML<Cr>
 
-source ~/.config/vim/coc.nvim.vim
-let g:airline#extensions#coc#enabled = 1
-function! CocMinimalStatus() abort
-  return get(b:, 'coc_git_blame', '')
-endfunction
-
-let g:airline_section_c = '%t %#LineNr#%{CocMinimalStatus()}'
 
 nnoremap <silent> <C-b>     :make<CR>
 nnoremap <silent> <C-b>b    :make<CR>
@@ -169,110 +128,6 @@ nnoremap <silent> <C-b>c    :make clean<CR>
 nnoremap <silent> <C-b>dc   :make distclean<CR>
 nnoremap <silent> <C-b>C    :terminal make menuconfig<CR>
 
-" if has('nvim')
-"   " Get the exit status from a terminal buffer by looking for a line near the end
-"   " of the buffer with the format, '[Process exited ?]'.
-"   func! s:getExitStatus() abort
-"     let ln = line('$')
-"     " The terminal buffer includes several empty lines after the 'Process exited'
-"     " line that need to be skipped over.
-"     while ln >= 1
-"       let l = getline(ln)
-"       let ln -= 1
-"       let exitCode = substitute(l, '^\[Process exited \([0-9]\+\)\]$', '\1', '')
-"       if l != '' && l == exitCode
-"         " The pattern did not match, and the line was not empty. It looks like
-"         " there is no process exit message in this buffer.
-"         break
-"       elseif exitCode != ''
-"         return str2nr(exitCode)
-"       endif
-"     endwhile
-"     throw 'Could not determine exit status for buffer, ' . expand('%')
-"   endfunc
-"
-"   func! s:afterTermClose() abort
-"     if s:getExitStatus() == 0
-"       bdelete!
-"     endif
-"   endfunc
-"
-"   augroup MyNeoterm
-"     autocmd!
-"     " The line '[Process exited ?]' is appended to the terminal buffer after the
-"     " `TermClose` event. So we use a timer to wait a few milliseconds to read the
-"     " exit status. Setting the timer to 0 or 1 ms is not sufficient; 20 ms seems
-"     " to work for me.
-"     autocmd TermClose * call timer_start(20, { -> s:afterTermClose() })
-"   augroup END
-"
-"   autocmd TermOpen * startinsert
-" endif
-"
-" Map leader to which_key
-nnoremap <silent> <leader> :silent WhichKey '<Space>'<CR>
-vnoremap <silent> <leader> :silent <c-u> :silent WhichKeyVisual '<Space>'<CR>
-
-" Create map to add keys to
-let g:which_key_map =  {}
-" Define a separator
-let g:which_key_sep = '→'
-" set timeoutlen=100
-
-
-" Not a fan of floating windows for this
-let g:which_key_use_floating_win = 0
-
-" Change the colors if you want
-highlight default link WhichKey          Operator
-highlight default link WhichKeySeperator DiffAdded
-highlight default link WhichKeyGroup     Identifier
-highlight default link WhichKeyDesc      Function
-
-" Hide status line
-autocmd! FileType which_key
-autocmd  FileType which_key set laststatus=0 noshowmode noruler
-  \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
-
-" Single mappings
-let g:which_key_map['/'] = [ '<Plug>NERDCommenterToggle'  , 'comment' ]
-let g:which_key_map['e'] = [ ':CocCommand explorer'       , 'explorer' ]
-let g:which_key_map['f'] = [ ':Files'                     , 'search files' ]
-let g:which_key_map['h'] = [ '<C-W>s'                     , 'split below']
-let g:which_key_map['r'] = [ ':Ranger'                    , 'ranger' ]
-let g:which_key_map['S'] = [ ':Startify'                  , 'start screen' ]
-let g:which_key_map['T'] = [ ':Rg'                        , 'search text' ]
-let g:which_key_map['v'] = [ '<C-W>v'                     , 'split right']
-let g:which_key_map['z'] = [ 'Goyo'                       , 'zen' ]
-
-" s is for search
-let g:which_key_map['s'] = {
-      \ 'name' : '+search' ,
-      \ '/' : [':History/'     , 'history'],
-      \ ';' : [':Commands'     , 'commands'],
-      \ 'a' : [':Ag'           , 'text Ag'],
-      \ 'b' : [':BLines'       , 'current buffer'],
-      \ 'B' : [':Buffers'      , 'open buffers'],
-      \ 'c' : [':Commits'      , 'commits'],
-      \ 'C' : [':BCommits'     , 'buffer commits'],
-      \ 'f' : [':Files'        , 'files'],
-      \ 'g' : [':GFiles'       , 'git files'],
-      \ 'G' : [':GFiles?'      , 'modified git files'],
-      \ 'h' : [':History'      , 'file history'],
-      \ 'H' : [':History:'     , 'command history'],
-      \ 'l' : [':Lines'        , 'lines'] ,
-      \ 'm' : [':Marks'        , 'marks'] ,
-      \ 'M' : [':Maps'         , 'normal maps'] ,
-      \ 'p' : [':Helptags'     , 'help tags'] ,
-      \ 'P' : [':Tags'         , 'project tags'],
-      \ 's' : [':Snippets'     , 'snippets'],
-      \ 'S' : [':Colors'       , 'color schemes'],
-      \ 't' : [':Rg'           , 'text Rg'],
-      \ 'T' : [':BTags'        , 'buffer tags'],
-      \ 'w' : [':Windows'      , 'search windows'],
-      \ 'y' : [':Filetypes'    , 'file types'],
-      \ 'z' : [':FZF'          , 'FZF'],
-      \ }
 
 set timeoutlen=500
 let g:floaterm_keymap_toggle = '<F1>'
