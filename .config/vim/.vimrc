@@ -41,7 +41,6 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
-Plug 'junegunn/seoul256.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'kana/vim-arpeggio'
@@ -82,6 +81,7 @@ Plug 'unblevable/quick-scope'
 Plug 'morhetz/gruvbox'
 call plug#end()
 
+source ~/.config/vim/plug-config/limelight.vim
 source ~/.config/vim/plug-config/nerdtree.vim
 source ~/.config/vim/plug-config/goyo.vim
 source ~/.config/vim/plug-config/quickscope.vim
@@ -91,7 +91,9 @@ set background=dark
 " colorscheme solarized8_flat
 colorscheme codedark
 
-:imap jk <Esc>
+" Use arpeggio to map j&k simultaneously pressed to <Esc>
+call arpeggio#map('i', '', 0, 'jk', '<Esc>')
+"imap jk <Esc>
 
 nnoremap <C-x>1 :only<Cr>
 nnoremap <C-x>2 :split<Cr>
