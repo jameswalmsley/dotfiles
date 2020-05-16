@@ -1,7 +1,7 @@
 set nocompatible
 filetype plugin on
 
-set shell=/bin/bash
+set shell=fish
 
 set number
 set relativenumber
@@ -23,8 +23,13 @@ set backspace=indent,eol,start
 set termguicolors
 autocmd vimenter * silent! lcd %:p:h
 
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+let mapleader=" "
+
+" Color-schemes work on real VIM.
+if !has('nvim')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+endif
 
 " Remove trailing whitespace on save.
 autocmd BufWritePre * :%s/\s\+$//e
@@ -53,11 +58,9 @@ Plug 'universal-ctags/ctags'
 Plug 'preservim/nerdtree'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-" Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'rbong/vim-flog'
 Plug 'tpope/vim-sensible'
-Plug 'easymotion/vim-easymotion'
 Plug 'lifepillar/vim-solarized8'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -73,7 +76,16 @@ Plug 'tomasiser/vim-code-dark'
 Plug 'moll/vim-bbye'
 Plug 'liuchengxu/vim-which-key'
 Plug 'airblade/vim-gitgutter'
+Plug 'voldikss/vim-floaterm'
+Plug 'justinmk/vim-sneak'
+Plug 'unblevable/quick-scope'
+Plug 'morhetz/gruvbox'
 call plug#end()
+
+source ~/.config/vim/plug-config/nerdtree.vim
+source ~/.config/vim/plug-config/goyo.vim
+source ~/.config/vim/plug-config/quickscope.vim
+source ~/.config/vim/plug-config/sneak.vim
 
 set background=dark
 " colorscheme solarized8_flat
@@ -103,60 +115,9 @@ map <C-x>t :tab terminal<cr>
 " Toggle Margin
 map <C-x>m :set number! relativenumber!<cr>
 
-let mapleader=" "
 
-nnoremap <Leader>b :NERDTreeToggle <Cr>
-nnoremap <silent> <Leader>v :NERDTreeFind<CR>
-
-
-"map \ <Leader>
-map <Leader> <Plug>(easymotion-prefix)
-"let g:EasyMotion_do_mapping = 0 " Disable default mappings
-
-" Jump to anywhere you want with minimal keystrokes, with just one key
-" binding.
-" `s{char}{label}`
-nmap s <Plug>(easymotion-overwin-f)
-
-" or
-" `s{char}{char}{label}`
-" Need one more keystroke, but on average, it may be more comfortable.
-nmap s <Plug>(easymotion-overwin-f2)
-
-" Turn on case-insensitive feature
-
-let g:EasyMotion_smartcase = 1
-
-" JK motions: Line motions
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
-
-" CDC = Change to Directory of Current file
-"
-"map <Leader>cd :NERDTreeCWD %:p:h<cr>
-map <leader>cd :lcd %:h<CR>
 
 map <leader>d :Bdelete<CR>
-
-map <leader>z :Goyo<CR>
-let g:goyo_width = 100
-
-" NERDTree
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
-let g:NERDTreeWinPos = "right"
-" let NERDTreeChDirMode=2
-let NERDTreeQuitOnOpen = 1
-
-
-" Quick Scope
-"let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
-"let g:qs_lazy_highlight = 1
-
-" Map the leader key + q to toggle quick-scope's highlighting in normal/visual mode.
-" Note that you must use nmap/xmap instead of their non-recursive versions (nnoremap/xnoremap).
-"nmap <leader>m <plug>(QuickScopeToggle)
-"xmap <leader>m <plug>(QuickScopeToggle)
 
 
 nnoremap <A-j> :m .+1<CR>==
@@ -165,13 +126,6 @@ inoremap <A-j> <Esc>:m .+1<CR>==gi
 inoremap <A-k> <Esc>:m .-2<CR>==gi
 vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
-
-"let g:ctrlp_show_hidden = 1
-"let g:ctrlp_working_path_mode = 0
-"let g:ctrlp_cmd = 'CtrlPBuffer'
-
-
-
 
 " let g:hardtime_default_on = 1
 
@@ -212,43 +166,144 @@ nnoremap <silent> <C-b>b    :make<CR>
 nnoremap <silent> <C-b>c    :make clean<CR>
 nnoremap <silent> <C-b>dc   :make distclean<CR>
 nnoremap <silent> <C-b>C    :terminal make menuconfig<CR>
-if has('nvim')
-  " Get the exit status from a terminal buffer by looking for a line near the end
-  " of the buffer with the format, '[Process exited ?]'.
-  func! s:getExitStatus() abort
-    let ln = line('$')
-    " The terminal buffer includes several empty lines after the 'Process exited'
-    " line that need to be skipped over.
-    while ln >= 1
-      let l = getline(ln)
-      let ln -= 1
-      let exitCode = substitute(l, '^\[Process exited \([0-9]\+\)\]$', '\1', '')
-      if l != '' && l == exitCode
-        " The pattern did not match, and the line was not empty. It looks like
-        " there is no process exit message in this buffer.
-        break
-      elseif exitCode != ''
-        return str2nr(exitCode)
-      endif
-    endwhile
-    throw 'Could not determine exit status for buffer, ' . expand('%')
-  endfunc
 
-  func! s:afterTermClose() abort
-    if s:getExitStatus() == 0
-      bdelete!
-    endif
-  endfunc
+" if has('nvim')
+"   " Get the exit status from a terminal buffer by looking for a line near the end
+"   " of the buffer with the format, '[Process exited ?]'.
+"   func! s:getExitStatus() abort
+"     let ln = line('$')
+"     " The terminal buffer includes several empty lines after the 'Process exited'
+"     " line that need to be skipped over.
+"     while ln >= 1
+"       let l = getline(ln)
+"       let ln -= 1
+"       let exitCode = substitute(l, '^\[Process exited \([0-9]\+\)\]$', '\1', '')
+"       if l != '' && l == exitCode
+"         " The pattern did not match, and the line was not empty. It looks like
+"         " there is no process exit message in this buffer.
+"         break
+"       elseif exitCode != ''
+"         return str2nr(exitCode)
+"       endif
+"     endwhile
+"     throw 'Could not determine exit status for buffer, ' . expand('%')
+"   endfunc
+"
+"   func! s:afterTermClose() abort
+"     if s:getExitStatus() == 0
+"       bdelete!
+"     endif
+"   endfunc
+"
+"   augroup MyNeoterm
+"     autocmd!
+"     " The line '[Process exited ?]' is appended to the terminal buffer after the
+"     " `TermClose` event. So we use a timer to wait a few milliseconds to read the
+"     " exit status. Setting the timer to 0 or 1 ms is not sufficient; 20 ms seems
+"     " to work for me.
+"     autocmd TermClose * call timer_start(20, { -> s:afterTermClose() })
+"   augroup END
+"
+"   autocmd TermOpen * startinsert
+" endif
+"
+" Map leader to which_key
+nnoremap <silent> <leader> :silent WhichKey '<Space>'<CR>
+vnoremap <silent> <leader> :silent <c-u> :silent WhichKeyVisual '<Space>'<CR>
 
-  augroup MyNeoterm
-    autocmd!
-    " The line '[Process exited ?]' is appended to the terminal buffer after the
-    " `TermClose` event. So we use a timer to wait a few milliseconds to read the
-    " exit status. Setting the timer to 0 or 1 ms is not sufficient; 20 ms seems
-    " to work for me.
-    autocmd TermClose * call timer_start(20, { -> s:afterTermClose() })
-  augroup END
+" Create map to add keys to
+let g:which_key_map =  {}
+" Define a separator
+let g:which_key_sep = '→'
+" set timeoutlen=100
 
-  autocmd TermOpen * startinsert
-endif
+
+" Not a fan of floating windows for this
+let g:which_key_use_floating_win = 0
+
+" Change the colors if you want
+highlight default link WhichKey          Operator
+highlight default link WhichKeySeperator DiffAdded
+highlight default link WhichKeyGroup     Identifier
+highlight default link WhichKeyDesc      Function
+
+" Hide status line
+autocmd! FileType which_key
+autocmd  FileType which_key set laststatus=0 noshowmode noruler
+  \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
+
+" Single mappings
+let g:which_key_map['/'] = [ '<Plug>NERDCommenterToggle'  , 'comment' ]
+let g:which_key_map['e'] = [ ':CocCommand explorer'       , 'explorer' ]
+let g:which_key_map['f'] = [ ':Files'                     , 'search files' ]
+let g:which_key_map['h'] = [ '<C-W>s'                     , 'split below']
+let g:which_key_map['r'] = [ ':Ranger'                    , 'ranger' ]
+let g:which_key_map['S'] = [ ':Startify'                  , 'start screen' ]
+let g:which_key_map['T'] = [ ':Rg'                        , 'search text' ]
+let g:which_key_map['v'] = [ '<C-W>v'                     , 'split right']
+let g:which_key_map['z'] = [ 'Goyo'                       , 'zen' ]
+
+" s is for search
+let g:which_key_map['s'] = {
+      \ 'name' : '+search' ,
+      \ '/' : [':History/'     , 'history'],
+      \ ';' : [':Commands'     , 'commands'],
+      \ 'a' : [':Ag'           , 'text Ag'],
+      \ 'b' : [':BLines'       , 'current buffer'],
+      \ 'B' : [':Buffers'      , 'open buffers'],
+      \ 'c' : [':Commits'      , 'commits'],
+      \ 'C' : [':BCommits'     , 'buffer commits'],
+      \ 'f' : [':Files'        , 'files'],
+      \ 'g' : [':GFiles'       , 'git files'],
+      \ 'G' : [':GFiles?'      , 'modified git files'],
+      \ 'h' : [':History'      , 'file history'],
+      \ 'H' : [':History:'     , 'command history'],
+      \ 'l' : [':Lines'        , 'lines'] ,
+      \ 'm' : [':Marks'        , 'marks'] ,
+      \ 'M' : [':Maps'         , 'normal maps'] ,
+      \ 'p' : [':Helptags'     , 'help tags'] ,
+      \ 'P' : [':Tags'         , 'project tags'],
+      \ 's' : [':Snippets'     , 'snippets'],
+      \ 'S' : [':Colors'       , 'color schemes'],
+      \ 't' : [':Rg'           , 'text Rg'],
+      \ 'T' : [':BTags'        , 'buffer tags'],
+      \ 'w' : [':Windows'      , 'search windows'],
+      \ 'y' : [':Filetypes'    , 'file types'],
+      \ 'z' : [':FZF'          , 'FZF'],
+      \ }
+
+set timeoutlen=500
+let g:floaterm_keymap_toggle = '<F1>'
+let g:floaterm_keymap_next   = '<F2>'
+let g:floaterm_keymap_prev   = '<F3>'
+let g:floaterm_keymap_new    = '<F4>'
+
+" Floaterm
+let g:floaterm_gitcommit='floaterm'
+let g:floaterm_autoinsert=1
+let g:floaterm_width=0.8
+let g:floaterm_height=0.8
+let g:floaterm_wintitle=0
+let g:floaterm_autoclose=1
+
+nnoremap <silent> <leader>tt :FloatermToggle <CR>
+nnoremap <silent> <leader>tf :FloatermNew fzf <CR>
+nnoremap <silent> <leader>tcg :colorscheme gruvbox <CR>
+nnoremap <silent> <leader>tcs :colorscheme solarized8 <CR>
+nnoremap <silent> <leader>tcc :colorscheme codedark <CR>
+
+let g:which_key_map['t'] = {
+      \ 'name' : '+terminal' ,
+      \ ';' : [':FloatermNew --wintype=popup --height=6'        , 'terminal'],
+      \ 'f' : [':FloatermNew fzf'                               , 'fzf'],
+      \ 'g' : [':FloatermNew lazygit'                           , 'git'],
+      \ 'd' : [':FloatermNew lazydocker'                        , 'docker'],
+      \ 'n' : [':FloatermNew node'                              , 'node'],
+      \ 'N' : [':FloatermNew nnn'                               , 'nnn'],
+      \ 'p' : [':FloatermNew python'                            , 'python'],
+      \ 'r' : [':FloatermNew ranger'                            , 'ranger'],
+      \ 't' : [':FloatermToggle'                                , 'toggle'],
+      \ 'y' : [':FloatermNew ytop'                              , 'ytop'],
+      \ 's' : [':FloatermNew ncdu'                              , 'ncdu'],
+      \ }
 

@@ -120,11 +120,10 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
-nnoremap <silent> <C-p>     :CocList files<CR>
-nnoremap <silent> <C-p><C-p>    :CocList files<CR>
-nnoremap <silent> <C-p>c    :CocList vimcommands<CR>
-nnoremap <silent> <C-p>C    :CocList commands<CR>
-nnoremap <silent> <C-p>b    :CocList buffers<CR>
+nnoremap <silent> <C-p><C-p> :CocList files<CR>
+nnoremap <silent> <C-p>c     :CocList vimcommands<CR>
+nnoremap <silent> <C-p>C     :CocList commands<CR>
+nnoremap <silent> <C-p>b     :CocList buffers<CR>
 
 " List errors
 nnoremap <silent> <leader>cl  :<C-u>CocList locationlist<cr>
