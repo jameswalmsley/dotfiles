@@ -1,12 +1,8 @@
 
-nnoremap <silent> <Leader>b :NERDTreeToggle <Cr>
-nnoremap <silent> <Leader>v :NERDTreeFind<CR>
-
-
 " CDC = Change to Directory of Current file
 "
 "map <Leader>cd :NERDTreeCWD %:p:h<cr>
-map <leader>cd :lcd %:h<CR>
+"map <leader>cd :lcd %:h<CR>
 
 " NERDTree
 let NERDTreeMinimalUI = 1
