@@ -12,27 +12,27 @@ call arpeggio#map('i', '', 0, 'jk', '<Esc>')
 "
 " Windows and Splits
 "
-nnoremap <C-x>1 :only<Cr>
-nnoremap <C-x>2 :split<Cr>
-nnoremap <C-x>3 :vsplit<Cr>
-nnoremap <C-x>o <C-w><C-w>
-nnoremap <C-x><Left> <C-w><Left>
-nnoremap <C-x><Right> <C-w><Right>
-nnoremap <C-x><Up> <C-w><Up>
-nnoremap <C-x><Down> <C-w><Down>
+nnoremap <silent> <C-x>1 :only<Cr>
+nnoremap <silent> <C-x>2 :split<Cr>
+nnoremap <silent> <C-x>3 :vsplit<Cr>
+nnoremap <silent> <C-x>o <C-w><C-w>
+nnoremap <silent> <C-x><Left> <C-w><Left>
+nnoremap <silent> <C-x><Right> <C-w><Right>
+nnoremap <silent> <C-x><Up> <C-w><Up>
+nnoremap <silent> <C-x><Down> <C-w><Down>
 
 "
 " Tabs
 "
-map <C-t><up> :tabr<cr>
-map <C-t><down> :tabl<cr>
-map <C-t><left> :tabp<cr>
-map <C-t><right> :tabn<cr>
-map <C-t>n :tabnew<cr>
-map <C-x>n :tabn<cr>
-map <C-x>p :tabp<cr>
-map <C-x>c :tabnew<cr>
-map <C-x>t :tab terminal<cr>
+map <silent> <C-t><up> :tabr<cr>
+map <silent> <C-t><down> :tabl<cr>
+map <silent> <C-t><left> :tabp<cr>
+map <silent> <C-t><right> :tabn<cr>
+map <silent> <C-t>n :tabnew<cr>
+map <silent> <C-x>n :tabn<cr>
+map <silent> <C-x>p :tabp<cr>
+map <silent> <C-x>c :tabnew<cr>
+map <silent> <C-x>t :tab terminal<cr>
 
 "
 " Margin / Gutter
