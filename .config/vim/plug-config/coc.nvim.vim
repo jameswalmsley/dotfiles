@@ -87,11 +87,6 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " Add status line support, for integration with other plugin, checkout `:h coc-status`
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
-nnoremap <silent> <C-p><C-p> :CocList files<CR>
-nnoremap <silent> <C-p>c     :CocList vimcommands<CR>
-nnoremap <silent> <C-p>C     :CocList commands<CR>
-nnoremap <silent> <C-p>b     :CocList buffers<CR>
-
 "
 " Airline coc status
 "

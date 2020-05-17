@@ -66,3 +66,10 @@ nnoremap <silent> <C-b>C    :terminal make menuconfig<CR>
 vnoremap < <gv
 vnoremap > >gv
 
+
+" C-p
+nnoremap <silent> <C-p><C-p> :Files<CR>
+nnoremap <silent> <C-p>c     :Commands<CR>
+nnoremap <silent> <C-p>C     :CocList commands<CR>
+nnoremap <silent> <C-p>b     :Buffers<CR>
+
