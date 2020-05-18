@@ -45,7 +45,9 @@ if [ -d "$HOME/.local/git-subrepo" ] ; then
     source $HOME/.local/git-subrepo/.rc
 fi
 
-export VIMINIT="source ~/.config/vim/.vimrc"
+export VIMINIT="source ~/.config/vim/vimrc"
+export MYVIMRC="~/.config/vim/vimrc"
+
 source ~/.config/sway/sway-env.sh
 
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ] || [ -n "$KITTY_WINDOW_ID" ] ; then
