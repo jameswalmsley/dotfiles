@@ -17,9 +17,13 @@ nnoremap <silent> <C-x>2 :split<Cr>
 nnoremap <silent> <C-x>3 :vsplit<Cr>
 nnoremap <silent> <C-x>o <C-w><C-w>
 nnoremap <silent> <C-x><Left> <C-w><Left>
+nnoremap <silent> <C-h> <C-w><Left>
 nnoremap <silent> <C-x><Right> <C-w><Right>
+nnoremap <silent> <C-l> <C-w><Right>
 nnoremap <silent> <C-x><Up> <C-w><Up>
+nnoremap <silent> <C-k> <C-w><Up>
 nnoremap <silent> <C-x><Down> <C-w><Down>
+nnoremap <silent> <C-j> <C-w><Down>
 
 "
 " Tabs
