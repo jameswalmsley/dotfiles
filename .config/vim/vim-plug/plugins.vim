@@ -46,6 +46,7 @@ Plug 'voldikss/vim-floaterm'
 Plug 'justinmk/vim-sneak'
 Plug 'unblevable/quick-scope'
 Plug 'morhetz/gruvbox'
+Plug 'puremourning/vimspector'
 call plug#end()
 
 " Automatically install missing plugins on startup

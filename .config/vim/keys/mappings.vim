@@ -77,3 +77,5 @@ nnoremap <silent> <C-p>c     :Commands<CR>
 nnoremap <silent> <C-p>C     :CocList commands<CR>
 nnoremap <silent> <C-p>b     :Buffers<CR>
 
+nmap <Leader><Leader> <c-^>
+
