@@ -23,7 +23,7 @@ function h.omf
     curl -L https://get.oh-my.fish | fish
 end
 
-alias tmux="tmux -2 attach"
+#alias tmux="tmux -2 attach"
 
 set -l nvimvar (which nvim)
 if test -z "$nvimvar"
