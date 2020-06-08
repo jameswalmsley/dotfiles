@@ -24,7 +24,7 @@ hsync() {
 	ssh $1 "${HGIT_ENVIRONMENT} git pull"
 }
 
-alias tmux="tmux -2 attach || tmux -2"
+alias tmux="tmux -2 attach -d || tmux -2"
 
 if [ -n "$(which nvim)" ]; then
 	alias vim="nvim"
