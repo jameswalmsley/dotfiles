@@ -54,7 +54,7 @@ export MYVIMRC="~/.config/vim/vimrc"
 source ~/.config/sway/sway-env.sh
 
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ] || [ -n "$KITTY_WINDOW_ID" ] ; then
-    if [ -f "/usr/bin/fish" ] ; then
+    if [ -f "/usr/local/bin/fish" ] ; then
     	SHELL=fish
 	powerline-daemon -q
     	exec fish
