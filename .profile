@@ -30,6 +30,9 @@ if [ -d "/snap/bin" ] ; then
     PATH="/snap/bin:$PATH"
 fi
 
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
 if [ -d "$HOME/.local/kitty.app/bin" ] ; then
     export KITTY_DISABLE_WAYLAND=1
     PATH="$HOME/.local/kitty.app/bin:$PATH"
