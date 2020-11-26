@@ -2,8 +2,7 @@
 
 set -x
 
-curl -sL https://deb.nodesource.com/setup_10.x  | sudo -E bash
-
+curl -sL install-node.now.sh/lts | bash
 
 # Clone tpm
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
