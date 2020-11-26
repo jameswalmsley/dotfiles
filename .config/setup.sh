@@ -14,8 +14,6 @@ deb_packages="nodejs tmux npm python3-pip yarn"
 sudo apt update
 sudo apt -y install ${deb_packages}
 
-sudo snap install ccls --classic
-
 pip3 install powerline-status
 
 # Python support for Coc (CocInstall coc-python)
@@ -25,6 +23,5 @@ pip3 install jedi
 sudo npm install -g npx
 
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
 curl -L https://get.oh-my.fish | fish
 
