@@ -31,7 +31,7 @@ if [ -d "/snap/bin" ] ; then
 fi
 
 #export LC_ALL=en_GB.UTF-8
-export LC_CTYPE=UTF-8
+export LC_CTYPE=en_GB.UTF-8
 export LANG=en_GB.UTF-8
 
 if [ -d "$HOME/.local/kitty.app/bin" ] ; then
