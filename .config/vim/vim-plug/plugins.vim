@@ -18,6 +18,8 @@ Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-git', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-yank', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'}
+Plug 'honza/vim-snippets',
+Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
 Plug 'tpope/vim-sleuth'
 Plug 'universal-ctags/ctags'
 Plug 'preservim/nerdtree'
@@ -47,6 +49,7 @@ Plug 'justinmk/vim-sneak'
 Plug 'unblevable/quick-scope'
 Plug 'morhetz/gruvbox'
 Plug 'puremourning/vimspector'
+Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 
 " Automatically install missing plugins on startup
