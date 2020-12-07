@@ -2,7 +2,7 @@
 
 set -x
 
-curl -sL install-node.now.sh/lts | bash
+curl -sL install-node.now.sh/lts | sudo bash
 
 # Clone tpm
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
@@ -26,4 +26,5 @@ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.g
 curl -L https://get.oh-my.fish | fish
 
 pip3 install --user --upgrade pynvim
+pip3 install --user --upgrade nvim-remote
 
