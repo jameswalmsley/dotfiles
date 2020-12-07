@@ -32,6 +32,9 @@ let g:list_of_disabled_keys = []
 
 let g:firenvim_config = {
     \ 'localSettings': {
+        \ '.*': {
+            \ 'takeover': 'never',
+        \ },
         \ 'riot.im': {
             \ 'selector': '',
         \ },
