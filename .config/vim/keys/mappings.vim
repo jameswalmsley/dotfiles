@@ -79,3 +79,17 @@ nnoremap <silent> <C-p>b     :Buffers<CR>
 
 nmap <Leader><Leader> <c-^>
 
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
+
+" Skylight
+nnoremap <silent>       go    :SkylightJumpTo<CR>
+nnoremap <silent>       gp    :SkylightPreview<CR>
+
+nnoremap <silent><expr> <C-f> skylight#float#has_scroll() ? skylight#float#scroll(1) : "\<C-f>"
+nnoremap <silent><expr> <C-b> skylight#float#has_scroll() ? skylight#float#scroll(0) : "\<C-b>"
+

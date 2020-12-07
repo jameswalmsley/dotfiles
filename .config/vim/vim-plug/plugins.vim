@@ -44,13 +44,15 @@ Plug 'tomasiser/vim-code-dark'
 Plug 'moll/vim-bbye'
 Plug 'liuchengxu/vim-which-key'
 Plug 'airblade/vim-gitgutter'
-Plug 'voldikss/vim-floaterm'
-Plug 'voldikss/vim-skylight'
+Plug 'voldikss/vim-floaterm', {'do': 'yarn install --frozen-lockfile'}
+Plug 'voldikss/vim-skylight', {'do': 'yarn install --frozen-lockfile'}
+Plug 'voldikss/coc-todolist', {'do': 'yarn install --frozen-lockfile'}
 Plug 'justinmk/vim-sneak'
 Plug 'unblevable/quick-scope'
 Plug 'morhetz/gruvbox'
 Plug 'puremourning/vimspector'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'mhinz/vim-startify'
 call plug#end()
 
 " Automatically install missing plugins on startup
