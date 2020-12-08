@@ -75,6 +75,13 @@ let g:which_key_map.b = {
       \ '?' : ['Buffers'   , 'fzf-buffer']      ,
      \ }
 
+let g:which_key_map.h = {
+      \ 'name' : '+git - hunks',
+      \ 'n': [':GitGutterNextHunk', 'next-hunk'],
+      \ 'p': [':GitGutterPrevHunk', 'previous-hunk'],
+      \ 'l': [':GitGutterLineHighlightsToggle', 'highlight'],
+    \ }
+
 " l is for language server protocol
 let g:which_key_map.l = {
       \ 'name' : '+lsp' ,
@@ -111,6 +118,25 @@ let g:which_key_map.l = {
       \ 'v' : [':Vista!!'                            , 'tag viewer'],
       \ 'z' : [':CocDisable'                         , 'disable CoC'],
       \ 'Z' : [':CocEnable'                          , 'enable CoC'],
+      \ }
+let g:which_key_map.r = {
+      \ 'name' : '+riv - rst',
+      \ }
+
+let g:which_key_map.r.s = {
+      \ 'name' : '+section headers',
+      \ '1': [':RivTitle1', 'Create type 1 title'],
+      \ '2': [':RivTitle2', 'Create type 2 title'],
+      \ '3': [':RivTitle3', 'Create type 3 title'],
+      \ '4': [':RivTitle4', 'Create type 4 title'],
+      \ '5': [':RivTitle5', 'Create type 5 title'],
+      \ '6': [':RivTitle6', 'Create type 6 title'],
+      \ }
+
+let g:which_key_map.r.t = {
+      \ 'name' : '+tables',
+      \ 'c' : [':RivTableCreate',   'Create new table'],
+      \ 'f' : [':RivTableNextCell', 'Next cell'],
       \ }
 
 " s is for search

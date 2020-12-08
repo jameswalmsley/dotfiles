@@ -53,6 +53,8 @@ Plug 'morhetz/gruvbox'
 Plug 'puremourning/vimspector'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'mhinz/vim-startify'
+Plug 'Rykka/InstantRst'
+Plug 'Rykka/riv.vim'
 call plug#end()
 
 " Automatically install missing plugins on startup

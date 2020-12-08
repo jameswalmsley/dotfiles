@@ -93,3 +93,12 @@ nnoremap <silent>       gp    :SkylightPreview<CR>
 nnoremap <silent><expr> <C-f> skylight#float#has_scroll() ? skylight#float#scroll(1) : "\<C-f>"
 nnoremap <silent><expr> <C-b> skylight#float#has_scroll() ? skylight#float#scroll(0) : "\<C-b>"
 
+" Remap Riv onto a leader menu:
+let g:riv_global_leader = '<Leader><r>'
+
+" Git Gutter Next/Prev Hunks:
+"
+let g:gitgutter_map_keys = 0
+nmap ]h <Plug>(GitGutterNextHunk)
+nmap [h <Plug>(GitGutterPrevHunk)
+
