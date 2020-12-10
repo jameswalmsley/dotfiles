@@ -2,6 +2,9 @@
 
 set -x
 
+sudo locale-gen en_GB.UTF-8
+sudo update-locale
+
 curl -sL install-node.now.sh/lts | sudo bash
 
 # Clone tpm
@@ -27,4 +30,5 @@ curl -L https://get.oh-my.fish | fish
 
 pip3 install --user --upgrade pynvim
 pip3 install --user --upgrade nvim-remote
+
 
