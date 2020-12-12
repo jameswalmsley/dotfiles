@@ -80,6 +80,9 @@ let g:which_key_map.h = {
       \ 'n': [':GitGutterNextHunk', 'next-hunk'],
       \ 'p': [':GitGutterPrevHunk', 'previous-hunk'],
       \ 'l': [':GitGutterLineHighlightsToggle', 'highlight'],
+      \ 's': [':GitGutterStageHunk', 'stage-hunk'],
+      \ 'u': [':GitGutterUndoHunk', 'undo-hunk'],
+      \ 'v': [':GitGutterPreviewHunk', 'view-hunk'],
     \ }
 
 " l is for language server protocol
@@ -121,6 +124,11 @@ let g:which_key_map.l = {
       \ }
 let g:which_key_map.r = {
       \ 'name' : '+riv - rst',
+      \ }
+
+let g:which_key_map.r.c = {
+      \ 'name': '+create',
+      \ 'l': [':RivCreateLiteralBlock', 'Literal Block'],
       \ }
 
 let g:which_key_map.r.s = {

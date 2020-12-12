@@ -18,6 +18,8 @@ set tabstop=4 shiftwidth=4 expandtab
 set softtabstop=4
 set autoindent
 
+set updatetime=100
+
 set backspace=indent,eol,start
 set termguicolors
 

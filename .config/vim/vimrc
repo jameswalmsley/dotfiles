@@ -6,7 +6,9 @@
 "
 "
 set nocompatible
+let g:gitgutter_map_keys = 0
 
+let g:startify_change_to_vcs_root = 0
 " Always source these:
 source ~/.config/vim/vim-plug/plugins.vim
 source ~/.config/vim/general/settings.vim
@@ -22,6 +24,7 @@ source ~/.config/vim/plug-config/goyo.vim
 source ~/.config/vim/plug-config/quickscope.vim
 source ~/.config/vim/plug-config/sneak.vim
 source ~/.config/vim/plug-config/floaterm.vim
+source ~/.config/vim/plug-config/vimwiki.vim
 
 " let g:hardtime_default_on = 1
 
