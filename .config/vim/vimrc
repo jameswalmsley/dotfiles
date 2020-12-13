@@ -25,6 +25,7 @@ source ~/.config/vim/plug-config/quickscope.vim
 source ~/.config/vim/plug-config/sneak.vim
 source ~/.config/vim/plug-config/floaterm.vim
 source ~/.config/vim/plug-config/vimwiki.vim
+source ~/.config/vim/plug-config/startify.vim
 
 " let g:hardtime_default_on = 1
 

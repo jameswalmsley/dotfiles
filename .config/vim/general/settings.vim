@@ -23,6 +23,8 @@ set updatetime=100
 set backspace=indent,eol,start
 set termguicolors
 
+set cursorline
+
 
 " Color-schemes work on real VIM.
 if !has('nvim')
@@ -33,13 +35,10 @@ endif
 set background=dark
 " colorscheme solarized8_flat
 " colorscheme codedark
-colorscheme elly
-
+" colorscheme elly
+colorscheme gruvbox
 
 set sessionoptions+=tabpages,globals
 
-
 let g:airline_powerline_fonts = 1
-
-
 

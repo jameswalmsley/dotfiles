@@ -24,6 +24,7 @@ Plug 'clangd/coc-clangd', {'do': 'yarn install --frozen-lockfile'}
 Plug 'honza/vim-snippets',
 Plug 'jackguo380/vim-lsp-cxx-highlight'
 Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
 
 Plug 'tpope/vim-sleuth'
 Plug 'universal-ctags/ctags'
