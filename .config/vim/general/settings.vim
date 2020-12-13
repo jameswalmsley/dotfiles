@@ -32,7 +32,8 @@ endif
 
 set background=dark
 " colorscheme solarized8_flat
-colorscheme codedark
+" colorscheme codedark
+colorscheme elly
 
 
 set sessionoptions+=tabpages,globals
