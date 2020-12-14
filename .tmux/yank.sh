@@ -10,7 +10,7 @@ is_app_installed() {
 buf=$(cat "$@")
 
 copy_backend_remote_tunnel_port=19988
-copy_use_osc52_fallback=$(tmux show-option -gvq "@copy_use_osc52_fallback")
+#copy_use_osc52_fallback=$(tmux show-option -gvq "@copy_use_osc52_fallback")
 
 # Resolve copy backend: pbcopy (OSX), reattach-to-user-namespace (OSX), xclip/xsel (Linux)
 copy_backend=""
