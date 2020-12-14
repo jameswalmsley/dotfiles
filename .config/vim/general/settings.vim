@@ -40,5 +40,3 @@ colorscheme gruvbox
 
 set sessionoptions+=tabpages,globals
 
-let g:airline_powerline_fonts = 1
-

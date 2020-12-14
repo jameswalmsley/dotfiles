@@ -16,6 +16,7 @@ source ~/.config/vim/general/functions.vim
 source ~/.config/vim/keys/mappings.vim
 source ~/.config/vim/keys/which-key.vim
 
+source ~/.config/vim/plug-config/airline.vim
 source ~/.config/vim/plug-config/coc.nvim.vim
 source ~/.config/vim/plug-config/coc-explorer.vim
 source ~/.config/vim/plug-config/limelight.vim
