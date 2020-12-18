@@ -36,3 +36,5 @@ alias t.wc="kitty @ set-colors -a ~/.config/kitty/kitty-themes/themes/WildCherry
 alias t.sl="kitty @ set-colors -a ~/.config/kitty/kitty-themes/themes/Solarized_Light.conf"
 alias t.sd="kitty @ set-colors -a ~/.config/kitty/kitty-themes/themes/Solarized_Dark.conf"
 alias t.at="kitty @ set-colors -a ~/.config/kitty/kitty-themes/themes/AdventureTime.conf"
+
+alias gl="git log --graph --pretty=format:\"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset\" --abbrev-commit"
