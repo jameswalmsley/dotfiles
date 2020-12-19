@@ -215,7 +215,7 @@ mode "utils" {
     bindsym w mode "switch-workspace";
     bindsym k mode "default"; exec "pkill kanshi; sleep 1; kanshi"
     bindsym r mode "default"; exec "pkill redshift; sleep 5; redshift"
-    bindsym z mode "default"; exec env QT_QPA_PLATFORM=xcb zoom
+    bindsym z mode "default"; exec /opt/zoom/ZoomLauncher
     bindsym s mode "default"; exec spotify
     bindsym b mode "default"; exec blueman-applet
     bindsym Return mode "default"
