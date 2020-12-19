@@ -314,8 +314,10 @@ bindsym $mod+Shift+d		gaps inner current set 0; gaps outer current set 0
 hide_edge_borders both
 default_border none
 
-bindsym Print exec ~/.config/sway/scripts/screenshot-focused.sh; exec notify-send "took screenshot"
+bindsym Print exec ~/.config/sway/scripts/screenshot-window.sh
+bindsym $mod+Print exec ~/.config/sway/scripts/screenshot-screen.sh
 bindsym Shift+Print exec ~/.config/sway/scripts/screenshot-selection.sh
+
 
 # First I have a tmux window used for background scripts.
 # # I'll later bind this to mod+u.
