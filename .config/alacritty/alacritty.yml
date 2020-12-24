@@ -157,11 +157,11 @@ env:
 font:
   size: 14.0
   normal:
-    family: Source Code Pro
+    family: SauceCodePro Nerd Font
   bold:
-    family: Source Code Pro
+    family: SauceCodePro Nerd Font
   italic:
-    family: Source Code Pro
+    family: SauceCodePro Nerd Font
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter

@@ -47,7 +47,7 @@ if [ -d "$HOME/.local/git-subrepo" ] ; then
     source $HOME/.local/git-subrepo/.rc
 fi
 
-if [ -F "/usr/local/bin/sway" ] ; then
+if [ -f "/usr/local/bin/sway" ] ; then
     source ~/.config/sway/sway-env.sh
 fi
 
