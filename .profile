@@ -37,6 +37,7 @@ export LC_CTYPE=en_GB.UTF-8
 export LANG=en_GB.UTF-8
 
 export EDITOR=nvim
+export NVIM_LISTEN_ADDRESS=/tmp/nvim
 
 if [ -d "$HOME/.local/arcanist/arcanist/bin" ] ; then
     PATH="$HOME/.local/arcanist/arcanist/bin:$PATH"

@@ -27,7 +27,7 @@ set -l nvimvar (which nvim)
 if test -z "$nvimvar"
 
 else
-    alias vim="nvim"
+    alias vim="nvr -s"
 end
 
 alias tm="tmux attach || tmux new"

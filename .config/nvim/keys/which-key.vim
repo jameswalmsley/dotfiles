@@ -24,19 +24,18 @@ autocmd  FileType which_key set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
 
 " Single mappings
-let g:which_key_map['/'] = [ '<Plug>NERDCommenterToggle'  , 'comment' ]
+let g:which_key_map['/'] = [ ':Commentary'  , 'comment' ]
 let g:which_key_map['.'] = [ ':e $MYVIMRC'                , 'open init' ]
 let g:which_key_map[';'] = [ ':Commands'                  , 'commands' ]
 let g:which_key_map['='] = [ '<C-W>='                     , 'balance windows' ]
 let g:which_key_map[','] = [ 'Startify'                   , 'start screen' ]
-let g:which_key_map['d'] = [ ':bd'                        , 'delete buffer']
-let g:which_key_map['e'] = [ ':NERDTreeToggle'            , 'explorer' ]
-let g:which_key_map['E'] = [ ':NERDTreeFind'              , 'show-file-in-explorer']
+let g:which_key_map['d'] = [ ':Sayonara'                        , 'delete buffer']
+
+let g:which_key_map['e'] = [ ':CocCommand explorer --toggle --sources=buffer+,file+ --preset=floatingRightside'            , 'explorer' ]
 let g:which_key_map['f'] = [ ':Files'                     , 'search files' ]
 let g:which_key_map['S'] = [ ':SSave'                     , 'save session' ]
 let g:which_key_map['T'] = [ ':Rg'                        , 'search text' ]
 let g:which_key_map['v'] = [ '<C-W>v'                     , 'split right']
-let g:which_key_map['w'] = [ 'w'                          , 'write' ]
 let g:which_key_map['z'] = [ 'Goyo'                       , 'zen' ]
 
 
@@ -64,16 +63,28 @@ let g:which_key_map.a.t = {
 " b is for buffer
 let g:which_key_map.b = {
       \ 'name' : '+buffer' ,
-      \ '1' : ['b1'        , 'buffer 1']        ,
-      \ '2' : ['b2'        , 'buffer 2']        ,
-      \ 'd' : ['bd'        , 'delete-buffer']   ,
-      \ 'f' : ['bfirst'    , 'first-buffer']    ,
-      \ 'h' : ['Startify'  , 'home-buffer']     ,
-      \ 'l' : ['blast'     , 'last-buffer']     ,
-      \ 'n' : ['bnext'     , 'next-buffer']     ,
-      \ 'p' : ['bprevious' , 'previous-buffer'] ,
-      \ '?' : ['Buffers'   , 'fzf-buffer']      ,
-     \ }
+      \ '>' : [':BufferMoveNext'        , 'move next'],
+      \ '<' : [':BufferMovePrevious'    , 'move prev'],
+      \ '1' : [':BufferGoto 1'          , 'buffer 1'],
+      \ '2' : [':BufferGoto 2'          , 'buffer 2'],
+      \ '3' : [':BufferGoto 3'          , 'buffer 3'],
+      \ '4' : [':BufferGoto 4'          , 'buffer 4'],
+      \ '5' : [':BufferGoto 5'          , 'buffer 5'],
+      \ '6' : [':BufferGoto 6'          , 'buffer 6'],
+      \ '7' : [':BufferGoto 7'          , 'buffer 7'],
+      \ '8' : [':BufferGoto 8'          , 'buffer 8'],
+      \ '9' : [':BufferGoto 9'          , 'buffer 9'],
+      \ '0' : [':BufferGoto 0'          , 'buffer 0'],
+      \ 'b' : [':BufferPick'            , 'pick buffer'],
+      \ 'd' : [':Bdelete'               , 'delete-buffer'],
+      \ 'D' : [':BufferOrderByDirectory', 'order by directory'],
+      \ 'f' : ['bfirst'                 , 'first-buffer'],
+      \ 'l' : ['blast'                  , 'last buffer'],
+      \ 'L' : [':BufferOrderByLanguage' , 'order by language'],
+      \ 'n' : ['bnext'                  , 'next-buffer'],
+      \ 'p' : ['bprevious'              , 'previous-buffer'],
+      \ '?' : ['Buffers'                , 'fzf-buffer'],
+      \ }
 
 let g:which_key_map.h = {
       \ 'name' : '+git - hunks',
@@ -107,8 +118,8 @@ let g:which_key_map.l = {
       \ 'l' : ['<Plug>(coc-codelens-action)'         , 'code lens'],
       \ 'n' : ['<Plug>(coc-diagnostic-next)'         , 'next diagnostic'],
       \ 'N' : ['<Plug>(coc-diagnostic-next-error)'   , 'next error'],
-      \ 'o' : ['<Plug>(coc-openlink)'                , 'open link'],
-      \ 'O' : [':CocList outline'                    , 'outline'],
+      \ 'o' : [':Vista!!'                            , 'outline'],
+      \ 'O' : ['<Plug>(coc-openlink)'                , 'open link'],
       \ 'p' : ['<Plug>(coc-diagnostic-prev)'         , 'prev diagnostic'],
       \ 'P' : ['<Plug>(coc-diagnostic-prev-error)'   , 'prev error'],
       \ 'q' : ['<Plug>(coc-fix-current)'             , 'quickfix'],
@@ -122,16 +133,16 @@ let g:which_key_map.l = {
       \ 'z' : [':CocDisable'                         , 'disable CoC'],
       \ 'Z' : [':CocEnable'                          , 'enable CoC'],
       \ }
-let g:which_key_map.r = {
+let g:which_key_map.m = {
       \ 'name' : '+riv - rst',
       \ }
 
-let g:which_key_map.r.c = {
+let g:which_key_map.m.c = {
       \ 'name': '+create',
       \ 'l': [':RivCreateLiteralBlock', 'Literal Block'],
       \ }
 
-let g:which_key_map.r.s = {
+let g:which_key_map.m.s = {
       \ 'name' : '+section headers',
       \ '1': [':RivTitle1', 'Create type 1 title'],
       \ '2': [':RivTitle2', 'Create type 2 title'],
@@ -141,7 +152,7 @@ let g:which_key_map.r.s = {
       \ '6': [':RivTitle6', 'Create type 6 title'],
       \ }
 
-let g:which_key_map.r.t = {
+let g:which_key_map.m.t = {
       \ 'name' : '+tables',
       \ 'c' : [':RivTableCreate',   'Create new table'],
       \ 'f' : [':RivTableNextCell', 'Next cell'],

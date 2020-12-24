@@ -25,6 +25,9 @@ hsync() {
 }
 
 if [ -n "$(which nvim)" ]; then
-	alias vim="nvim"
+	alias vim="nvr -s"
 fi
+
+
+#alias sway="dbus-launch --exit-with-session sway -d"
 

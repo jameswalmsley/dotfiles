@@ -44,9 +44,6 @@ map <silent> <C-x>t :tab terminal<cr>
 " Line numbers.
 map <C-x>m :set number! relativenumber!<cr>
 
-" Close a buffer.
-map <leader>d :Bdelete<CR>
-
 "
 " Move lines up/down.
 "
@@ -87,8 +84,8 @@ nmap ga <Plug>(EasyAlign)
 
 
 " Skylight
-nnoremap <silent>       go    :SkylightJumpTo<CR>
-nnoremap <silent>       gp    :SkylightPreview<CR>
+nnoremap <silent>       go    :Skylight! file<CR>
+nnoremap <silent>       gp    :Skylight file<CR>
 
 nnoremap <silent><expr> <C-f> skylight#float#has_scroll() ? skylight#float#scroll(1) : "\<C-f>"
 nnoremap <silent><expr> <C-b> skylight#float#has_scroll() ? skylight#float#scroll(0) : "\<C-b>"

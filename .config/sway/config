@@ -17,7 +17,8 @@ set $right Right
 #set $term 'SHELL=~/.local/bin/fishlogin termite'
 set $term alacritty
 # Your preferred application launcher
-set $menu ~/.config/sway/dmenu.sh
+#set $menu ~/.config/sway/dmenu.sh
+set $menu wofi -f
 
 ### Output configuration
 #
