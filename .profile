@@ -21,25 +21,22 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
+export PATH="/usr/local/bin:$PATH"
+
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
+    export PATH="$HOME/.local/bin:$PATH"
 fi
 
 if [ -d "/snap/bin" ] ; then
-    PATH="/snap/bin:$PATH"
+    export PATH="/snap/bin:$PATH"
 fi
 
 #export LC_ALL=en_GB.UTF-8
 export LC_CTYPE=en_GB.UTF-8
 export LANG=en_GB.UTF-8
 
-if [ -d "$HOME/.local/kitty.app/bin" ] ; then
-    export KITTY_DISABLE_WAYLAND=1
-    PATH="$HOME/.local/kitty.app/bin:$PATH"
-fi
-
-export EDITOR=vim
+export EDITOR=nvim
 
 if [ -d "$HOME/.local/arcanist/arcanist/bin" ] ; then
     PATH="$HOME/.local/arcanist/arcanist/bin:$PATH"
@@ -49,10 +46,9 @@ if [ -d "$HOME/.local/git-subrepo" ] ; then
     source $HOME/.local/git-subrepo/.rc
 fi
 
-export VIMINIT="source ~/.config/vim/vimrc"
-export MYVIMRC="~/.config/vim/vimrc"
-
-source ~/.config/sway/sway-env.sh
+if [ -F "/usr/local/bin/sway" ] ; then
+    source ~/.config/sway/sway-env.sh
+fi
 
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ] || [ -n "$KITTY_WINDOW_ID" ] || [ -n "$ALACRITTY_LOG" ] ; then
     if [ -f "/usr/local/bin/fish" ] ; then

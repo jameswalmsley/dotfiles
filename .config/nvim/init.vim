@@ -10,23 +10,23 @@ let g:gitgutter_map_keys = 0
 
 let g:startify_change_to_vcs_root = 0
 " Always source these:
-source ~/.config/vim/vim-plug/plugins.vim
-source ~/.config/vim/general/settings.vim
-source ~/.config/vim/general/functions.vim
-source ~/.config/vim/keys/mappings.vim
-source ~/.config/vim/keys/which-key.vim
+source ~/.config/nvim/vim-plug/plugins.vim
+source ~/.config/nvim/general/settings.vim
+source ~/.config/nvim/general/functions.vim
+source ~/.config/nvim/keys/mappings.vim
+source ~/.config/nvim/keys/which-key.vim
 
-source ~/.config/vim/plug-config/airline.vim
-source ~/.config/vim/plug-config/coc.nvim.vim
-source ~/.config/vim/plug-config/coc-explorer.vim
-source ~/.config/vim/plug-config/limelight.vim
-source ~/.config/vim/plug-config/nerdtree.vim
-source ~/.config/vim/plug-config/goyo.vim
-source ~/.config/vim/plug-config/quickscope.vim
-source ~/.config/vim/plug-config/sneak.vim
-source ~/.config/vim/plug-config/floaterm.vim
-source ~/.config/vim/plug-config/vimwiki.vim
-source ~/.config/vim/plug-config/startify.vim
+source ~/.config/nvim/plug-config/airline.vim
+source ~/.config/nvim/plug-config/coc.nvim.vim
+source ~/.config/nvim/plug-config/coc-explorer.vim
+source ~/.config/nvim/plug-config/limelight.vim
+source ~/.config/nvim/plug-config/nerdtree.vim
+source ~/.config/nvim/plug-config/goyo.vim
+source ~/.config/nvim/plug-config/quickscope.vim
+source ~/.config/nvim/plug-config/sneak.vim
+source ~/.config/nvim/plug-config/floaterm.vim
+source ~/.config/nvim/plug-config/vimwiki.vim
+source ~/.config/nvim/plug-config/startify.vim
 
 " let g:hardtime_default_on = 1
 
