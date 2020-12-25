@@ -23,6 +23,8 @@ fi
 
 export PATH="/usr/local/bin:$PATH"
 
+export PATH="$(python3 -m site --user-base)/bin":$PATH
+
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/.local/bin" ] ; then
     export PATH="$HOME/.local/bin:$PATH"
