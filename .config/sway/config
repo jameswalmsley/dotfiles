@@ -370,6 +370,7 @@ exec blueman-applet
 exec xrdb -load ~/.Xresources
 set $keyring "/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh"
 exec $keyring
+exec alacritty --command aerc
 exec wl-paste -t text --watch clipman store
 exec wl-paste -p -t text --watch clipman store -P --histpath="~/.local/share/clipman-primary.json"
 bindsym $mod+Shift+p exec clipman pick -t wofi
