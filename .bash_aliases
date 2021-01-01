@@ -25,7 +25,7 @@ hsync() {
 }
 
 if [ -n "$(which nvim)" ]; then
-	alias vim="nvr -s"
+	alias vim="nvim"
 fi
 
 
