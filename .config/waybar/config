@@ -2,7 +2,7 @@
     "layer": "top",
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["sway/window"],
-    "modules-right": ["battery", "clock", "network", "cpu", "memory", "pulseaudio", "tray"],
+    "modules-right": ["sway/language", "battery", "clock", "cpu", "backlight", "pulseaudio", "tray"],
     "sway/workspaces": {
 	    "disable-scroll": true,
 	    "all-outputs": false,
@@ -23,14 +23,28 @@
         "max-length": 50
     },
 
+    "sway/language": {
+        "format": "{}",
+        "max-length": 50
+    },
+
     "battery": {
         "format": "{capacity}% {icon}",
         "format-icons": ["", "", "", "", ""]
     },
     "clock": {
-        "format": "{:%a, %d. %b  %H:%M}"
+        "format": "{:%a, %d. %b  %H:%M}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
     },
-
+    "backlight": {
+        "interval": 5,
+        "format": "{icon}",
+        "format-alt": "{percent}% {icon}",
+        "format-alt-click": "click-right",
+        "format-icons": [ "🌑", "🌒", "🌓", "🌔", "🌕" ],
+        "on-scroll-down": "brightnessctl -c backlight set 5%-",
+        "on-scroll-up": "brightnessctl -c backlight set +5%"
+    },
     "tray": {
         "icon-size": 14,
         "spacing": 10

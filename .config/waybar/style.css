@@ -115,7 +115,7 @@ window#waybar.solo {
 }
 
 #battery.charging {
-   color:      rgba(217, 216, 216, 1);
+   color:      #b58900;
 }
 
 #custom-tidepool {
