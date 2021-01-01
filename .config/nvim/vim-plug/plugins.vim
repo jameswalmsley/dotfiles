@@ -50,6 +50,15 @@ Plug 'universal-ctags/ctags'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 Plug 'previm/previm'
 Plug 'stsewd/sphinx.nvim', { 'do': ':UpdateRemotePlugins' }
+"Plug 'fatih/vim-go'
+
+" Mail
+" Plug 'felipec/notmuch-vim'
+" Plug 'dcbaker/vim-abook'
+
+" IM
+Plug 'twitvim/twitvim'
+
 " Better Syntax Support
 Plug 'sheerun/vim-polyglot'
 " Treesitter

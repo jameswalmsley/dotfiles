@@ -84,8 +84,8 @@ nmap ga <Plug>(EasyAlign)
 
 
 " Skylight
-nnoremap <silent>       go    :Skylight! file<CR>
-nnoremap <silent>       gp    :Skylight file<CR>
+nnoremap <silent>       go    :Skylight!<CR>
+nnoremap <silent>       gp    :Skylight<CR>
 
 nnoremap <silent><expr> <C-f> skylight#float#has_scroll() ? skylight#float#scroll(1) : "\<C-f>"
 nnoremap <silent><expr> <C-b> skylight#float#has_scroll() ? skylight#float#scroll(0) : "\<C-b>"

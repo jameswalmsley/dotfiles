@@ -28,6 +28,7 @@ source ~/.config/nvim/plug-config/limelight.vim
 source ~/.config/nvim/plug-config/nerdtree.vim
 source ~/.config/nvim/plug-config/nvim-treesitter.vim
 source ~/.config/nvim/plug-config/goyo.vim
+"source ~/.config/nvim/plug-config/vim-go.vim
 source ~/.config/nvim/plug-config/quickscope.vim
 source ~/.config/nvim/plug-config/riv.vim
 source ~/.config/nvim/plug-config/sneak.vim
@@ -35,8 +36,9 @@ source ~/.config/nvim/plug-config/floaterm.vim
 source ~/.config/nvim/plug-config/vim-rooter.vim
 source ~/.config/nvim/plug-config/vimwiki.vim
 source ~/.config/nvim/plug-config/startify.vim
-luafile ~/.config/nvim/lua/evilline.lua
-"luafile ~/.config/vim/lua/spaceline.lua
+source ~/.config/nvim/plug-config/twitvim.vim
+" luafile ~/.config/nvim/lua/evilline.lua
+luafile ~/.config/nvim/lua/spaceline.lua
 
 " let g:hardtime_default_on = 1
 
