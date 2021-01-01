@@ -148,7 +148,7 @@ output * background ~/Pictures/wallpaper fit #000000
     # move focus to the parent container
     bindsym $mod+a focus parent
 
-    bindsym $mod+Shift+p sticky toggle
+    bindsym $mod+Shift+s sticky toggle
 #
 # Scratchpad:
 #
@@ -370,4 +370,7 @@ exec blueman-applet
 exec xrdb -load ~/.Xresources
 set $keyring "/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh"
 exec $keyring
-
+exec wl-paste -t text --watch clipman store
+exec wl-paste -p -t text --watch clipman store -P --histpath="~/.local/share/clipman-primary.json"
+bindsym $mod+Shift+p exec clipman pick -t wofi
+bindsym $mod+p exec clipman --histpath="~/.local/share/clipman-primary.json" pick -t wofi
