@@ -18,7 +18,7 @@ set $right Right
 set $term alacritty
 # Your preferred application launcher
 #set $menu ~/.config/sway/dmenu.sh
-set $menu wofi -f
+set $menu wofi -f --show=drun,run
 
 ### Output configuration
 #
@@ -162,6 +162,12 @@ output * background ~/Pictures/wallpaper fit #000000
     # If there are multiple scratchpad windows, this command cycles through them.
     bindsym $mod+minus scratchpad show
     bindsym $mod+space scratchpad show
+
+#
+# Alt-Tab
+#
+bindsym Mod1+Tab exec ~/.config/sway/scripts/select-window.sh
+
 #
 # Resizing containers:
 #

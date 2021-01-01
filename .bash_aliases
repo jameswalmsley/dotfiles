@@ -29,5 +29,6 @@ if [ -n "$(which nvim)" ]; then
 fi
 
 
-#alias sway="dbus-launch --exit-with-session sway -d"
+alias sway="dbus-launch --exit-with-session sway"
+
 
