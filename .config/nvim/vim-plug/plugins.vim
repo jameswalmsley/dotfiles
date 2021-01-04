@@ -28,20 +28,10 @@ Plug 'jiangmiao/auto-pairs'
 
 " CoC
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-tslint', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-git', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-yank', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'}
-Plug 'clangd/coc-clangd', {'do': 'yarn install --frozen-lockfile'}
 Plug 'Shougo/neco-vim'
 Plug 'neoclide/coc-neco'
 Plug 'honza/vim-snippets',
 Plug 'jackguo380/vim-lsp-cxx-highlight'
-Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
 Plug 'liuchengxu/vista.vim'
 Plug 'glepnir/galaxyline.nvim'
 
@@ -93,7 +83,6 @@ Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'gcmt/taboo.vim'
 Plug 'moll/vim-bbye'
-Plug 'voldikss/coc-todolist', {'do': 'yarn install --frozen-lockfile'}
 Plug 'puremourning/vimspector'
 Plug 'junegunn/vim-easy-align'
 Plug 'christoomey/vim-tmux-navigator'
@@ -117,7 +106,20 @@ Plug 'ulwlu/elly.vim'
 
 call plug#end()
 
-let g:coc_global_extensions = ['coc-explorer']
+let g:coc_global_extensions = [
+			\	'coc-explorer',
+			\	'coc-eslint',
+			\	'coc-tslint',
+			\	'coc-css',
+			\	'coc-highlight',
+			\	'coc-git',
+			\	'coc-yank',
+			\	'coc-lists',
+			\	'coc-clangd',
+			\	'coc-snippets',
+			\	'coc-json',
+			\ ]
+
 " Automatically install missing plugins on startup
 autocmd VimEnter *
   \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
