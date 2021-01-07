@@ -133,6 +133,12 @@ let g:which_key_map.l = {
       \ 'z' : [':CocDisable'                         , 'disable CoC'],
       \ 'Z' : [':CocEnable'                          , 'enable CoC'],
       \ }
+
+let g:which_key_map.p = {
+      \ 'name' : '+phabricator',
+      \ 'u': [':call v:lua.phab.update_task()', 'Update Task'],
+      \ }
+
 let g:which_key_map.m = {
       \ 'name' : '+riv - rst',
       \ }

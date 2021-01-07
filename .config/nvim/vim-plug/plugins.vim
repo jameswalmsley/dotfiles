@@ -104,6 +104,10 @@ Plug 'aonemd/kuroi.vim'
 Plug 'lifepillar/vim-solarized8'
 Plug 'ulwlu/elly.vim'
 
+" Phabricator
+Plug 'jameswalmsley/phab-nvim'
+"Plug '~/develop/nvim-phteven'
+
 call plug#end()
 
 let g:coc_global_extensions = [
