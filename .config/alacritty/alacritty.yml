@@ -155,7 +155,7 @@ env:
   #size: 11.0
 
 font:
-  size: 14.0
+  size: 11.0
   normal:
     family: SauceCodePro Nerd Font
   bold:
