@@ -88,14 +88,14 @@ Plug 'junegunn/vim-easy-align'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'mhinz/vim-startify'
 Plug 'gu-fan/riv.vim'
-Plug 'vimwiki/vimwiki'
+Plug 'vimwiki/vimwiki', {'branch': 'dev'}
 
 " Git
 Plug 'tpope/vim-fugitive'
 Plug 'APZelos/blamer.nvim'
-Plug 'mhinz/vim-signify'
 Plug 'rhysd/git-messenger.vim'
-"Plug 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter'
+Plug 'jparise/vim-phabricator'
 
 " Themes
 Plug 'tomasiser/vim-code-dark'
