@@ -22,6 +22,8 @@ set updatetime=100
 set backspace=indent,eol,start
 set termguicolors
 
+set scrolloff=25
+
 set cursorline
 
 
