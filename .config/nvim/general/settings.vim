@@ -22,7 +22,7 @@ set updatetime=100
 set backspace=indent,eol,start
 set termguicolors
 
-set scrolloff=25
+let g:scrolloff_fraction = 0.5
 
 set cursorline
 

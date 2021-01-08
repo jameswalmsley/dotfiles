@@ -25,6 +25,7 @@ Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
 Plug 'airblade/vim-rooter'
 " Auto pairs for '(' '[' '{'
 Plug 'jiangmiao/auto-pairs'
+Plug 'drzel/vim-scrolloff-fraction'
 
 " CoC
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
