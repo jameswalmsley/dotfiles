@@ -1,6 +1,6 @@
 filetype plugin on
 
-set shell=fish
+set shell=bash
 
 set number
 set relativenumber
@@ -8,7 +8,7 @@ set hidden
 set colorcolumn=100
 set nohlsearch
 set showmatch
-set ignorecase
+"set ignorecase
 set wildmode=longest,list
 filetype plugin indent on
 syntax on
@@ -22,10 +22,9 @@ set updatetime=100
 set backspace=indent,eol,start
 set termguicolors
 
-let g:scrolloff_fraction = 0.5
+let g:scrolloff_fraction = 0.25
 
 set cursorline
-
 
 " Color-schemes work on real VIM.
 if !has('nvim')
@@ -41,3 +40,9 @@ colorscheme gruvbox
 
 set sessionoptions+=tabpages,globals
 
+" trigger `autoread` when files changes on disk
+set autoread
+autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
+" notification after file change
+autocmd FileChangedShellPost *
+      \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
