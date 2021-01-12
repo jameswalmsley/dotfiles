@@ -26,6 +26,9 @@ Plug 'airblade/vim-rooter'
 " Auto pairs for '(' '[' '{'
 Plug 'jiangmiao/auto-pairs'
 Plug 'drzel/vim-scrolloff-fraction'
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 
 " CoC
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
