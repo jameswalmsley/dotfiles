@@ -140,6 +140,8 @@ let g:which_key_map.p = {
       \ 's': [':call v:lua.phab.sync_task()', 'Sync Task'],
       \ 'u': [':call v:lua.phab.update_task()', 'Update Task'],
       \ 'd': [':call v:lua.phab.get_diff()', 'Get Diff'],
+      \ 'a': [':call v:lua.phab.approve_diff()', 'Approve Diff'],
+      \ 'p': [':call v:lua.phab.apply_patch()', 'Patch Diff'],
       \ }
 
 let g:which_key_map.m = {
