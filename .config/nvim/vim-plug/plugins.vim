@@ -112,7 +112,7 @@ Plug 'ulwlu/elly.vim'
 Plug 'sk1418/HowMuch'
 
 " Phabricator
-Plug 'jameswalmsley/phabrik'
+Plug 'jameswalmsley/phabrik', {'do': ':lua phab.install()'}
 
 call plug#end()
 
