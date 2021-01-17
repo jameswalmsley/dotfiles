@@ -108,9 +108,11 @@ Plug 'aonemd/kuroi.vim'
 Plug 'lifepillar/vim-solarized8'
 Plug 'ulwlu/elly.vim'
 
+" Utils
+Plug 'sk1418/HowMuch'
+
 " Phabricator
-Plug 'jameswalmsley/phab-nvim'
-"Plug '~/develop/nvim-phteven'
+Plug 'jameswalmsley/phabrik'
 
 call plug#end()
 

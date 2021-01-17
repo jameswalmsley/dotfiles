@@ -136,6 +136,7 @@ let g:which_key_map.l = {
 
 let g:which_key_map.p = {
       \ 'name' : '+phabricator',
+      \ 'o': [':call v:lua.phab.dashboard()', 'Dashboard'],
       \ 'c': [':call v:lua.phab.create_task()', 'Create Task'],
       \ 's': [':call v:lua.phab.sync_task()', 'Sync Task'],
       \ 'u': [':call v:lua.phab.update_task()', 'Update Task'],
