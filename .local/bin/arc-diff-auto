@@ -1,4 +1,4 @@
 #!/bin/bash
 
-arc diff --allow-untracked -m "Auto update! - from $(hostname)" HEAD~1
+arc diff --allow-untracked -m "Auto update! - from $(hostname) - {$@}" HEAD~1
 
