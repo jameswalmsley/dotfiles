@@ -137,11 +137,12 @@ let g:which_key_map.l = {
 let g:which_key_map.p = {
       \ 'name' : '+phabricator',
       \ 'o': [':call v:lua.phab.dashboard()', 'Dashboard'],
+      \ 'r': [':call v:lua.phab.dashboard_refresh()', 'Refresh Dash'],
       \ 'c': [':call v:lua.phab.create_task()', 'Create Task'],
       \ 's': [':call v:lua.phab.sync_task()', 'Sync Task'],
       \ 'u': [':call v:lua.phab.update_task()', 'Update Task'],
       \ 'd': [':call v:lua.phab.diff_abandon()', 'Abandon Diff'],
-      \ 'a': [':call v:lua.phab.approve_diff()', 'Approve Diff'],
+      \ 'a': [':call v:lua.phab.diff_approve()', 'Approve Diff'],
       \ 'p': [':call v:lua.phab.apply_patch()', 'Patch Diff'],
       \ }
 
