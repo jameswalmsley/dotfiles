@@ -22,7 +22,7 @@ Plug 'unblevable/quick-scope'
 "Plug 'justinmk/vim-sneak'
 Plug 'easymotion/vim-easymotion'
 Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
-Plug 'airblade/vim-rooter'
+"Plug 'airblade/vim-rooter'
 " Auto pairs for '(' '[' '{'
 Plug 'jiangmiao/auto-pairs'
 Plug 'drzel/vim-scrolloff-fraction'
@@ -75,7 +75,7 @@ Plug 'voldikss/vim-skylight', {'do': 'yarn install --frozen-lockfile'}
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'romgrk/barbar.nvim'
 Plug 'mbbill/undotree'
-Plug 'psliwka/vim-smoothie'
+"Plug 'psliwka/vim-smoothie'
 
 Plug 'rbong/vim-flog'
 if has('nvim')
