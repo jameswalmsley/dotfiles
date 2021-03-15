@@ -29,6 +29,8 @@ Plug 'drzel/vim-scrolloff-fraction'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzy-native.nvim'
+Plug 'nvim-telescope/telescope-fzf-writer.nvim'
 
 " CoC
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
@@ -89,7 +91,6 @@ Plug 'gcmt/taboo.vim'
 Plug 'moll/vim-bbye'
 Plug 'puremourning/vimspector'
 Plug 'junegunn/vim-easy-align'
-Plug 'christoomey/vim-tmux-navigator'
 Plug 'mhinz/vim-startify'
 Plug 'gu-fan/riv.vim'
 Plug 'vimwiki/vimwiki', {'branch': 'dev'}

@@ -12,18 +12,10 @@ call arpeggio#map('i', '', 0, 'jk', '<Esc>')
 "
 " Windows and Splits
 "
-nnoremap <silent> <C-x>1 :only<Cr>
-nnoremap <silent> <C-x>2 :split<Cr>
-nnoremap <silent> <C-x>3 :vsplit<Cr>
-nnoremap <silent> <C-x>o <C-w><C-w>
 nnoremap <silent> <C-x><Left> <C-w><Left>
-nnoremap <silent> <C-h> <C-w><Left>
 nnoremap <silent> <C-x><Right> <C-w><Right>
-nnoremap <silent> <C-l> <C-w><Right>
 nnoremap <silent> <C-x><Up> <C-w><Up>
-nnoremap <silent> <C-k> <C-w><Up>
 nnoremap <silent> <C-x><Down> <C-w><Down>
-nnoremap <silent> <C-j> <C-w><Down>
 
 "
 " Tabs
@@ -37,6 +29,14 @@ map <silent> <C-x>n :tabn<cr>
 map <silent> <C-x>p :tabp<cr>
 map <silent> <C-x>c :tabnew<cr>
 map <silent> <C-x>t :tab terminal<cr>
+
+"
+" QuickFix
+"
+map <silent> <C-q> :call copen<cr>
+map <silent> <C-l> :call cclose<cr>
+nnoremap <C-k> :cnext<CR>
+nnoremap <C-j> :cprev<CR>
 
 "
 " Margin / Gutter
