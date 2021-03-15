@@ -32,7 +32,7 @@ let g:which_key_map[','] = [ 'Startify'                   , 'start screen' ]
 let g:which_key_map['d'] = [ ':Sayonara'                        , 'delete buffer']
 
 let g:which_key_map['e'] = [ ':Telescope file_browser'     , 'explorer' ]
-let g:which_key_map['f'] = [ ':Telescope fzf_writer files', 'search files' ]
+let g:which_key_map['f'] = [ ':Telescope find_files', 'search files' ]
 let g:which_key_map['g'] = [ ':Telescope fzf_writer staged_grep', 'live_grep' ]
 let g:which_key_map['S'] = [ ':SSave'                     , 'save session' ]
 let g:which_key_map['T'] = [ ':Telescope current_buffer_fuzzy_find' , 'search text' ]
