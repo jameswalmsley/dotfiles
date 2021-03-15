@@ -72,7 +72,7 @@ vnoremap > >gv
 nnoremap <silent> <C-p><C-p> :Files<CR>
 nnoremap <silent> <C-p>c     :Commands<CR>
 nnoremap <silent> <C-p>C     :CocList commands<CR>
-nnoremap <silent> <C-p>b     :Buffers<CR>
+nnoremap <silent> <C-p>b     :Telescope buffers<CR>
 
 nmap <Leader><Leader> <c-^>
 
