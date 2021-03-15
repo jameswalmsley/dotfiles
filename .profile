@@ -71,3 +71,4 @@ if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ] || [ -n "$KITTY_WINDOW_ID" ] || [ -
 fi
 
 
+source "$HOME/.cargo/env"
