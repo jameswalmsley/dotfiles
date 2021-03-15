@@ -31,11 +31,11 @@ let g:which_key_map['='] = [ '<C-W>='                     , 'balance windows' ]
 let g:which_key_map[','] = [ 'Startify'                   , 'start screen' ]
 let g:which_key_map['d'] = [ ':Sayonara'                        , 'delete buffer']
 
-let g:which_key_map['e'] = [ ':CocCommand explorer --toggle --sources=buffer+,file+ --preset=floatingRightside'            , 'explorer' ]
+let g:which_key_map['e'] = [ ':Telescope file_browser'     , 'explorer' ]
 let g:which_key_map['f'] = [ ':Telescope fzf_writer files', 'search files' ]
 let g:which_key_map['g'] = [ ':Telescope fzf_writer staged_grep', 'live_grep' ]
 let g:which_key_map['S'] = [ ':SSave'                     , 'save session' ]
-let g:which_key_map['T'] = [ ':Rg'                        , 'search text' ]
+let g:which_key_map['T'] = [ ':Telescope current_buffer_fuzzy_find' , 'search text' ]
 let g:which_key_map['v'] = [ '<C-W>v'                     , 'split right']
 let g:which_key_map['z'] = [ 'Goyo'                       , 'zen' ]
 
@@ -189,7 +189,7 @@ let g:which_key_map['s'] = {
       \ 'l' : [':Telescope grep_string'        , 'lines'] ,
       \ 'm' : [':Telescope marks'        , 'marks'] ,
       \ 'M' : [':Telescope keymaps'         , 'normal maps'] ,
-      \ 'p' : [':Helptags'     , 'help tags'] ,
+      \ 'p' : ['Telescope planets'     , 'Planets'] ,
       \ 'P' : [':Tags'         , 'project tags'],
       \ 's' : [':Snippets'     , 'snippets'],
       \ 'S' : [':Telescope colorscheme'       , 'color schemes'],
