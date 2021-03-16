@@ -12,8 +12,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
   execute 'packadd packer.nvim'
 end
 
--- vim.cmd 'autocmd BufWritePost plugins.lua PackerCompile' -- Auto compile when there are changes in plugins.lua
-
+vim.cmd 'autocmd BufWritePost plugins.lua PackerCompile' -- Auto compile when there are changes in plugins.lua
 
 return require('packer').startup(function()
   -- Packer can manage itself as an optional plugin

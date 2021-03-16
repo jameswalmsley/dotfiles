@@ -122,10 +122,10 @@ pip3 list | grep pynvim > /dev/null && echo "pynvim installed, moving on..." || 
 # [ -d "$HOME/.config/nvim" ] && moveoldnvim
 
 # clone config down
-cloneconfig
+#cloneconfig
 
-echo 'export PATH=/home/$USER/.config/nvcode/utils/bin:$PATH' >> ~/.zshrc
-echo 'export PATH=/home/$USER/.config/nvcode/utils/bin:$PATH' >> ~/.bashrc
+#echo 'export PATH=/home/$USER/.config/nvcode/utils/bin:$PATH' >> ~/.zshrc
+#echo 'export PATH=/home/$USER/.config/nvcode/utils/bin:$PATH' >> ~/.bashrc
 
 echo "I recommend you also install and activate a font from here: https://github.com/ryanoasis/nerd-fonts"
 
