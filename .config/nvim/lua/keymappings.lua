@@ -49,6 +49,9 @@ vim.api.nvim_set_keymap('n', '<S-TAB>', ':bprevious<CR>', { noremap = true, sile
 vim.api.nvim_set_keymap('x', 'K', ':move \'<-2<CR>gv-gv', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('x', 'J', ':move \'>+1<CR>gv-gv', { noremap = true, silent = true })
 
+-- Remove search highlight when pressing escape in normal mode.
+vim.api.nvim_set_keymap('n', '<esc>', ':noh<return><esc>', { noremap = true, silent = true})
+
 -- QuickFix
 vim.cmd([[
   nnoremap <silent> <C-j> :cnext<CR>
