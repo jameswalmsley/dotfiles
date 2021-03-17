@@ -66,7 +66,7 @@ return require('packer').startup(function()
   -- Telescope
   use 'nvim-lua/popup.nvim'
   use 'nvim-lua/plenary.nvim'
-  use 'nvim-telescope/telescope.nvim'
+  use 'jameswalmsley/telescope.nvim'
   use 'nvim-telescope/telescope-media-files.nvim'
   use 'nvim-telescope/telescope-fzy-native.nvim'
   use 'nvim-telescope/telescope-fzf-writer.nvim'
@@ -122,4 +122,5 @@ return require('packer').startup(function()
   -- use 'tpope/vim-commentary'
   -- use 'suy/vim-context-commentstring'
   use 'b3nj5m1n/kommentary'
+  use 'jeffkreeftmeijer/vim-numbertoggle'
 end)
