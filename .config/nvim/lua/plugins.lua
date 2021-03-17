@@ -68,14 +68,21 @@ return require('packer').startup(function()
   use 'nvim-lua/plenary.nvim'
   use 'nvim-telescope/telescope.nvim'
   use 'nvim-telescope/telescope-media-files.nvim'
+  use 'nvim-telescope/telescope-fzy-native.nvim'
+  use 'nvim-telescope/telescope-fzf-writer.nvim'
+
+
 
   -- Explorer
   use 'kyazdani42/nvim-tree.lua'
 
 
   -- Color
-  use 'christianchiarulli/nvcode-color-schemes.vim'
+  --use 'christianchiarulli/nvcode-color-schemes.vim'
   use 'norcalli/nvim-colorizer.lua'
+  --use {"npxbr/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
+  use 'morhetz/gruvbox'
+  use 'lifepillar/vim-solarized8'
 
   -- Git
   use 'TimUntersberger/neogit'
@@ -83,6 +90,7 @@ return require('packer').startup(function()
   use 'f-person/git-blame.nvim'
   use 'tpope/vim-fugitive'
   use 'tpope/vim-rhubarb'
+  use 'jameswalmsley/phabrik'
 
   -- Easily Create Gists
   use 'mattn/vim-gist'
@@ -108,7 +116,7 @@ return require('packer').startup(function()
   use 'voldikss/vim-floaterm'
   use 'phaazon/hop.nvim'
   use 'liuchengxu/vista.vim'
-  use { 'npxbr/glow.nvim', run = ':GlowInstall' }
+  -- use { 'npxbr/glow.nvim', run = ':GlowInstall' }
   -- figure out how to disable or configure for things with tags like <div></div> because it will highlight all divs
   use 'RRethy/vim-illuminate'
   -- use 'tpope/vim-commentary'

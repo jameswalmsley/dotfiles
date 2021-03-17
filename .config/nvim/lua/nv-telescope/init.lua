@@ -3,6 +3,9 @@ local actions = require('telescope.actions')
 ------------------------------
 -- '--color=never',
 require('telescope').load_extension('media_files')
+require('telescope').load_extension('fzy_native')
+require('telescope').load_extension('fzf_writer')
+
 require('telescope').setup {
     defaults = {
         vimgrep_arguments = {'rg', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case'},
@@ -39,6 +42,7 @@ require('telescope').setup {
             i = {
                 ["<C-j>"] = actions.move_selection_next,
                 ["<C-k>"] = actions.move_selection_previous,
+                ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
                 -- To disable a keymap, put [map] = false
                 -- So, to not map "<C-n>", just put
                 -- ["<c-x>"] = false,
@@ -54,7 +58,8 @@ require('telescope').setup {
             },
             n = {
                 ["<C-j>"] = actions.move_selection_next,
-                ["<C-k>"] = actions.move_selection_previous
+                ["<C-k>"] = actions.move_selection_previous,
+                ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
                 -- ["<esc>"] = actions.close,
                 -- ["<C-i>"] = my_cool_custom_action,
             }
@@ -67,6 +72,19 @@ require('telescope').setup {
                 -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
                 filetypes = {"png", "webp", "jpg", "jpeg"},
                 find_cmd = "rg" -- find command (defaults to `fd`)
+            },
+            fzy_native = {
+                override_generic_sorter = true,
+                override_file_sorter = true,
+            },
+            fzf_writer = {
+                minimum_grep_characters = 2,
+                minimum_files_characters = 1,
+
+                -- Disabled by default.
+                -- Will probably slow down some aspects of the sorter, but can make color highlights.
+                -- I will work on this more later.
+                use_highlighter = true,
             }
         }
     }

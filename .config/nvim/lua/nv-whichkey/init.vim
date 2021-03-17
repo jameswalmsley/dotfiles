@@ -67,7 +67,7 @@ let g:which_key_map.b = {
       \ 'd' : [':Bdelete'               , 'delete-buffer'],
       \ 'n' : ['bnext'                  , 'next-buffer'],
       \ 'p' : ['bprevious'              , 'previous-buffer'],
-      \ '?' : ['Buffers'                , 'fzf-buffer'],
+      \ '?' : [':Telescope buffers'     , 'fzf-buffer'],
       \ }
 
 
@@ -99,7 +99,7 @@ let g:which_key_map.s = {
       \ 'm' : [':Telescope marks'                       , 'marks'],
       \ 'M' : [':Telescope man_pages'                   , 'man_pages'],
       \ 'o' : [':Telescope vim_options'                 , 'vim_options'],
-      \ 't' : [':Telescope live_grep'                   , 'text'],
+      \ 't' : [':Telescope fzf_writer staged_grep'      , 'text'],
       \ 'r' : [':Telescope registers'                   , 'registers'],
       \ 'w' : [':Telescope file_browser'                , 'buf_fuz_find'],
       \ 'u' : [':Telescope colorscheme'                 , 'colorschemes'],
