@@ -1,20 +1,20 @@
 
-vim.cmd [[packadd packer.nvim]]
 
 local execute = vim.api.nvim_command
 local fn = vim.fn
 
 local install_path = fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
 
-
 if fn.empty(fn.glob(install_path)) > 0 then
   execute('!git clone https://github.com/wbthomason/packer.nvim '..install_path)
   execute 'packadd packer.nvim'
 end
 
+vim.cmd [[packadd packer.nvim]]
+
 vim.cmd 'autocmd BufWritePost plugins.lua PackerCompile' -- Auto compile when there are changes in plugins.lua
 
-return require('packer').startup(function()
+return require('packer').startup(function(use)
   -- Packer can manage itself as an optional plugin
   use {'wbthomason/packer.nvim', opt = true}
 
@@ -38,7 +38,7 @@ return require('packer').startup(function()
   use 'hrsh7th/nvim-compe'
   use 'hrsh7th/vim-vsnip'
   use 'hrsh7th/vim-vsnip-integ'
-  -- use 'honza/vim-snippets'
+  use 'honza/vim-snippets'
   -- use 'epilande/vim-react-snippets'
   -- use 'xabikos/vscode-javascript'
   -- use 'cstrap/python-snippets'
@@ -78,7 +78,7 @@ return require('packer').startup(function()
 
 
   -- Color
-  --use 'christianchiarulli/nvcode-color-schemes.vim'
+  use 'christianchiarulli/nvcode-color-schemes.vim'
   use 'norcalli/nvim-colorizer.lua'
   --use {"npxbr/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
   use 'morhetz/gruvbox'
@@ -112,15 +112,21 @@ return require('packer').startup(function()
   use 'alvan/vim-closetag'
   use { 'glacambre/firenvim', run = function() vim.fn['firenvim#install'](1) end }
   use 'liuchengxu/vim-which-key'
-  use 'tpope/vim-sleuth'
   use 'voldikss/vim-floaterm'
-  use 'phaazon/hop.nvim'
   use 'liuchengxu/vista.vim'
+  use 'terrortylor/nvim-comment'
+  use 'bfredl/nvim-miniyank'
+  use 'brooth/far.vim'
+  use 'junegunn/goyo.vim'
+  use 'andymass/vim-matchup'
+  use 'tpope/vim-sleuth'
+  use 'phaazon/hop.nvim'
+  use 'gennaro-tedesco/nvim-jqx'
+  -- use 'RRethy/vim-illuminate'
+  -- use 'b3nj5m1n/kommentary'
   -- use { 'npxbr/glow.nvim', run = ':GlowInstall' }
   -- figure out how to disable or configure for things with tags like <div></div> because it will highlight all divs
-  use 'RRethy/vim-illuminate'
   -- use 'tpope/vim-commentary'
   -- use 'suy/vim-context-commentstring'
-  use 'b3nj5m1n/kommentary'
   use 'jeffkreeftmeijer/vim-numbertoggle'
 end)

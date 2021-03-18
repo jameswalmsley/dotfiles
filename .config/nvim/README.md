@@ -4,6 +4,8 @@ If you are looking for my old configs checkout the two snapshot branches on this
 
 ## Install in one command
 
+**WARNING** Still very experimental will not work without some configuation
+
 ```bash
 bash <(curl -s https://raw.githubusercontent.com/ChristianChiarulli/nvcode/master/utils/installer/install-nv-code.sh)
 ```
@@ -40,30 +42,36 @@ or if you are using this config alongside your own:
 $HOME/.config/nvim/lua/nv-vscode/init.vim
 ```
 
+## efm server is slow on close
+
+Install the latest with:
+
+```
+go get github.com/mattn/efm-langserver@HEAD
+```
+
 ## TODO
 
 **HIGH PRIORITY**
-- snippet support
-- react commenting
-- toggle virtual text diagnostics
-- improve VSCode support
 - formatting using efm server for python
 - formatting using efm server for prettier/eslint
+- learn what opt is
+- better install script
+- learn nvim-dap in depth
+- snippet support
 
 **LOW PRIORITY**
 - redo barbar highlight groups
-- wrap all whichkey lsp in functions
+- more handsome/modern galaxyline
 - make java code actions prettier
 - figure out how to format java
 - setup junit tests for java
-- add git signs to whichkey (This will require wrapping in Lua commands)
 - add lots of lsp
 - configure illuminate according to readme
 - neovim lightbulb config
 - move language servers not installed with npm to neovim local share location
-- more handsome/modern galaxyline
 - better autoimport
-- potentially custom colorscheme
 - look into autoinstall lsp
 - get logo
 - configure neogit
+- toggle virtual text diagnostics
