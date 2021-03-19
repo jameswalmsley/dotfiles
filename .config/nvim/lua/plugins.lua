@@ -1,20 +1,20 @@
+--vim.cmd [[packadd packer.nvim]]
+
 local execute = vim.api.nvim_command
 local fn = vim.fn
 
-local install_path = fn.stdpath('data') .. '/site/pack/packer/opt/packer.nvim'
+local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 
 if fn.empty(fn.glob(install_path)) > 0 then
     execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
     execute 'packadd packer.nvim'
 end
 
-vim.cmd [[packadd packer.nvim]]
-
 vim.cmd 'autocmd BufWritePost plugins.lua PackerCompile' -- Auto compile when there are changes in plugins.lua
 
 return require('packer').startup(function(use)
     -- Packer can manage itself as an optional plugin
-    use {'wbthomason/packer.nvim', opt = true}
+    use 'wbthomason/packer.nvim'
 
     -- Information
     use 'nanotee/nvim-lua-guide'
@@ -48,7 +48,8 @@ return require('packer').startup(function(use)
 
 
     -- Treesitter
-    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+    use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+    use 'nvim-treesitter/nvim-treesitter-refactor'
     use 'nvim-treesitter/playground'
     use 'p00f/nvim-ts-rainbow'
 
@@ -84,7 +85,7 @@ return require('packer').startup(function(use)
 
     -- Git
     use 'TimUntersberger/neogit'
-    use {'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
+    use {'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}}
     use 'f-person/git-blame.nvim'
     use 'tpope/vim-fugitive'
     use 'tpope/vim-rhubarb'
@@ -93,6 +94,14 @@ return require('packer').startup(function(use)
     -- Easily Create Gists
     use 'mattn/vim-gist'
     use 'mattn/webapi-vim'
+
+    -- Webdev
+    use 'windwp/nvim-ts-autotag'
+    use 'gennaro-tedesco/nvim-jqx'
+    use 'turbio/bracey.vim'
+
+    -- Registers
+    use 'gennaro-tedesco/nvim-peekup'
 
     -- General Plugins
     use 'windwp/nvim-autopairs'
@@ -103,28 +112,34 @@ return require('packer').startup(function(use)
     use 'mhinz/vim-startify'
     use 'metakirby5/codi.vim'
     use 'psliwka/vim-smoothie'
-    use {'iamcco/markdown-preview.nvim', run = 'cd app && npm install' }
     use 'moll/vim-bbye'
-    use 'turbio/bracey.vim'
-    use 'AndrewRadev/tagalong.vim'
-    use 'alvan/vim-closetag'
-    use { 'glacambre/firenvim', run = function() vim.fn['firenvim#install'](1) end }
+    use {'iamcco/markdown-preview.nvim', run = 'cd app && npm install'}
     use 'liuchengxu/vim-which-key'
     use 'voldikss/vim-floaterm'
     use 'liuchengxu/vista.vim'
     use 'terrortylor/nvim-comment'
     use 'bfredl/nvim-miniyank'
-    use 'brooth/far.vim'
     use 'junegunn/goyo.vim'
     use 'andymass/vim-matchup'
-    use 'tpope/vim-sleuth'
     use 'phaazon/hop.nvim'
-    use 'gennaro-tedesco/nvim-jqx'
+    use 'tpope/vim-sleuth'
+
+	-- TODO put this back when stable for indent lines
+-- 	use { 'lukas-reineke/indent-blankline.nvim', branch = 'lua'}
+-- 	vim.g.indent_blankline_space_char = ' '
+-- 	vim.g.indent_blankline_buftype_exclude = {'terminal'}
+-- 	vim.g.indent_blankline_filetype_exclude = {'help', 'startify'}
+-- 	vim.g.indent_blankline_char = '▏'
+-- 	vim.g.indent_blankline_use_treesitter=true
+    -- use 'AndrewRadev/tagalong.vim'
+    -- use 'alvan/vim-closetag'
     -- use 'RRethy/vim-illuminate'
     -- use 'b3nj5m1n/kommentary'
-    -- use { 'npxbr/glow.nvim', run = ':GlowInstall' }
-    -- figure out how to disable or configure for things with tags like <div></div> because it will highlight all divs
-    -- use 'tpope/vim-commentary'
-    -- use 'suy/vim-context-commentstring'
+    -- use {
+    --     'glacambre/firenvim',
+    --     run = function()
+    --         vim.fn['firenvim#install'](1)
+    --     end
+    -- }
     use 'jeffkreeftmeijer/vim-numbertoggle'
 end)

@@ -1,6 +1,8 @@
+-- vim.cmd('set rtp+=~/.config/nvcode')
 if vim.g.vscode then
   vim.cmd('source ~/.config/nvim/vimscript/nv-vscode/init.vim')
   require('settings')
+  require('nv-quickscope')
 else
   -- General mappings
   require('plugins')
@@ -32,6 +34,7 @@ else
   require('nv-hop')
   require('nv-gitblame')
   require('nv-galaxyline')
+  require('nv-nvim-peekup')
 
   -- Which Key (Hope to replace with Lua plugin someday)
   vim.cmd('source ~/.config/nvim/vimscript/nv-whichkey/init.vim')
@@ -54,4 +57,5 @@ else
   require('lsp.efm-general-ls')
   require('lsp.virtual_text')
 end
+
 

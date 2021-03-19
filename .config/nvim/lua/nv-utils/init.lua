@@ -25,7 +25,7 @@ nv_utils.define_augroups({
     _general_settings = {
         {
             'TextYankPost', '*',
-            'lua require(\'vim.highlight\').on_yank({higroup = \'QuickScopePrimary\', timeout = 200})'
+            'lua require(\'vim.highlight\').on_yank({higroup = \'Search\', timeout = 200})'
         }, {'BufWinEnter', '*', 'setlocal formatoptions-=c formatoptions-=r formatoptions-=o'},
         {'BufRead', '*', 'setlocal formatoptions-=c formatoptions-=r formatoptions-=o'},
         {'BufNewFile', '*', 'setlocal formatoptions-=c formatoptions-=r formatoptions-=o'},
@@ -195,6 +195,10 @@ function nv_utils.blame_line()
 end
 
 -- misc
+function nv_utils.file_exists(name)
+   local f=io.open(name,"r")
+   if f~=nil then io.close(f) return true else return false end
+end
 
 -- autoformat
 -- autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 1000)
