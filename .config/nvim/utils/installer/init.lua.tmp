@@ -1,6 +1,6 @@
--- vim.cmd('set rtp+=~/.config/nvcode')
+vim.cmd('set rtp+=~/.config/nvcode')
 if vim.g.vscode then
-  vim.cmd('source ~/.config/nvim/vimscript/nv-vscode/init.vim')
+  vim.cmd('source ~/.config/nvcode/vimscript/nv-vscode/init.vim')
   require('settings')
   require('nv-quickscope')
 else
@@ -17,7 +17,6 @@ else
   require('nv-nvimtree')
   require('nv-treesitter')
   require('nv-barbar')
-  require('nv-emmet')
   require('nv-quickscope')
   require('nv-gitsigns')
   require('nv-nvim-autopairs')
@@ -35,15 +34,13 @@ else
   require('nv-hop')
   require('nv-gitblame')
   require('nv-galaxyline')
-  require('nv-nvim-peekup')
 
   -- Which Key (Hope to replace with Lua plugin someday)
-  vim.cmd('source ~/.config/nvim/vimscript/nv-whichkey/init.vim')
-  vim.cmd('source ~/.config/nvim/vimscript/functions.vim')
+  vim.cmd('source ~/.config/nvcode/vimscript/nv-whichkey/init.vim')
+  vim.cmd('source ~/.config/nvcode/vimscript/functions.vim')
 
   -- LSP
   require('lsp')
-  require('lsp.clangd')
   require('lsp.lua-ls')
   require('lsp.bash-ls')
   require('lsp.js-ts-ls')
@@ -58,5 +55,4 @@ else
   require('lsp.efm-general-ls')
   require('lsp.virtual_text')
 end
-
 
