@@ -6,10 +6,11 @@ if vim.g.vscode then
 else
   -- General mappings
   require('plugins')
-  require('keymappings')
-  require('settings')
-  require('colorscheme')
   require('nv-utils')
+  require('settings')
+  require('keymappings')
+  require('colorscheme')
+  require('nv-galaxyline')
 
   -- Plugins
   require('nv-compe')
@@ -25,17 +26,16 @@ else
   require('nv-neogit')
   require('nv-comment')
   require('nv-rnvimr')
-  require('nv-startify')
   require('nv-telescope')
   require('nv-floaterm')
   require('nv-vim-rooter')
-  require('nv-closetag')
   require('nv-matchup')
   require('nv-lspkind')
   require('nv-hop')
   require('nv-gitblame')
-  require('nv-galaxyline')
   require('nv-nvim-peekup')
+  require('nv-dashboard')
+  require('nv-dial')
 
   -- Which Key (Hope to replace with Lua plugin someday)
   vim.cmd('source ~/.config/nvim/vimscript/nv-whichkey/init.vim')

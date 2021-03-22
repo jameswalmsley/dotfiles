@@ -34,7 +34,7 @@ return require('packer').startup(function(use)
 
     -- Autocomplete
     use 'hrsh7th/nvim-compe'
-    use 'christianchiarulli/emmet-vim'
+    use 'mattn/emmet-vim'
     use 'hrsh7th/vim-vsnip'
     use 'xabikos/vscode-javascript'
     use 'dsznajder/vscode-es7-javascript-react-snippets'
@@ -111,7 +111,8 @@ return require('packer').startup(function(use)
     use 'unblevable/quick-scope'
     use 'airblade/vim-rooter'
     use 'kevinhwang91/rnvimr'
-    use 'mhinz/vim-startify'
+    -- use 'mhinz/vim-startify'
+    use 'ChristianChiarulli/dashboard-nvim'
     use 'metakirby5/codi.vim'
     use 'psliwka/vim-smoothie'
     use 'moll/vim-bbye'
@@ -125,6 +126,9 @@ return require('packer').startup(function(use)
     use 'andymass/vim-matchup'
     use 'phaazon/hop.nvim'
     use 'tpope/vim-sleuth'
+    use 'sheerun/vim-polyglot'
+    use 'monaqa/dial.nvim'
+    use 'MattesGroeger/vim-bookmarks' -- Look for more up to date version of this
 
 	-- TODO put this back when stable for indent lines
 -- 	use { 'lukas-reineke/indent-blankline.nvim', branch = 'lua'}
