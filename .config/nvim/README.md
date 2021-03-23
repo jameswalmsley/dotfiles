@@ -1,6 +1,5 @@
 ![NVCode Logo](./utils/media/nvcode_logo.png)
 
-
 ![NVCode Demo](./utils/media/demo.png)
 
 If you are looking for my old configs checkout the two snapshot branches
@@ -23,21 +22,23 @@ sudo rm -r neovim
 After installing the [Neovim
 extension](https://github.com/asvetliakov/vscode-neovim) in VSCode
 
-I recommend using this alongside the VSCode which-key extension
+I recommend using this alongside the VSCode
+[which-key](https://github.com/VSpaceCode/vscode-which-key) extension
 
-Along with some of my config files you can find in utils/vscode\_config
+You will also need `settings.json` and `keybindings.json` which can be
+found in utils/vscode\_config
 
 Point the nvim path to your `nvim` binary
 
-Point your `init.lua` path to:
+Point your `init.vim` path to:
 
 ``` vim
-$HOME/.config/nvim/lua/nv-vscode/init.lua
+$HOME/.config/nvim/vimscript/nv-vscode/init.vim
 ```
 
 ## Clipboard Support
 
-- On Mac `pbcopy` should be builtin
+- On Mac `pbcopy` should be built-in
 
 - Ubuntu
 
@@ -138,26 +139,30 @@ git config --global github.user <username>
 If you are looking for snippets checkout this github topic: [Snippet
 Topic](https://github.com/topics/vscode-snippets)
 
+## De-bugging
+
+To set up your particular debugger, look here:
+[link](https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation)
+
 ## TODO
 
 **HIGH PRIORITY**
 
-- learn nvim-dap in depth
+- better install script, simple install just support `~/.config/nvim`
+  path
+- add badges to readme
+
+**LOW PRIORITY**
+
+- move to ultisnips
 - Implement what I can from this java config:
   [link](https://github.com/mfussenegger/nvim-jdtls/wiki/Sample-Configurations)
   - better ui for code actions - formatting
   - setup junit tests for java
-- neovim lightbulb config
-- better vscode support
-
-
-**LOW PRIORITY**
-
-- look into autoinstall lsp
-- get logo
+- look into auto-install lsp
 - json config file (luajson)
+- get logo
 - look into emmet-ls
-- better install script, support both nvim and nvcode paths
 - toggle virtual text diagnostics
 - configure neogit
 - list all binaries needed for functionality
@@ -166,11 +171,10 @@ Topic](https://github.com/topics/vscode-snippets)
 - vim ult test
 - what is `fzy`
 - https://github.com/pwntester/octo.nvim
+- configure surround
 
 **PLUGIN BUGS**
 
 - finding files from dashboard sometimes number not set
-- spell not activated in readme Markdown
-- better autoimport
-- can't find global binary for markdownlint
+- better auto-import (jsx)
 - keep and eye on indent guides plugin for thin lines

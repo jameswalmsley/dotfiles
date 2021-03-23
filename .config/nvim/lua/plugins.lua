@@ -1,5 +1,4 @@
---vim.cmd [[packadd packer.nvim]]
-
+-- vim.cmd [[packadd packer.nvim]]
 local execute = vim.api.nvim_command
 local fn = vim.fn
 
@@ -72,6 +71,10 @@ return require('packer').startup(function(use)
     use 'nvim-telescope/telescope-fzy-native.nvim'
     use 'nvim-telescope/telescope-fzf-writer.nvim'
 
+    -- Debug DAP
+    use 'nvim-telescope/telescope-dap.nvim'
+    use 'mfussenegger/nvim-dap'
+    use 'mfussenegger/nvim-dap-python'
 
 
     -- Explorer
@@ -81,9 +84,10 @@ return require('packer').startup(function(use)
     -- Color
     use 'christianchiarulli/nvcode-color-schemes.vim'
     use 'norcalli/nvim-colorizer.lua'
-    --use {"npxbr/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
+    use 'sheerun/vim-polyglot'
     use 'morhetz/gruvbox'
     use 'lifepillar/vim-solarized8'
+    use 'windwp/wind-colors'
 
     -- Git
     use 'TimUntersberger/neogit'
@@ -105,38 +109,37 @@ return require('packer').startup(function(use)
     -- Registers
     use 'gennaro-tedesco/nvim-peekup'
 
-    -- General Plugins
-    use 'windwp/nvim-autopairs'
-    use 'kevinhwang91/nvim-bqf'
+    -- Navigation
     use 'unblevable/quick-scope'
-    use 'airblade/vim-rooter'
+    use 'phaazon/hop.nvim'
     use 'kevinhwang91/rnvimr'
-    -- use 'mhinz/vim-startify'
-    use 'ChristianChiarulli/dashboard-nvim'
+
+    -- General Plugins
+    use 'liuchengxu/vim-which-key'
+    use 'kevinhwang91/nvim-bqf'
+    use 'airblade/vim-rooter'
+    use 'glepnir/dashboard-nvim'
     use 'metakirby5/codi.vim'
     use 'psliwka/vim-smoothie'
     use 'moll/vim-bbye'
     use {'iamcco/markdown-preview.nvim', run = 'cd app && npm install'}
-    use 'liuchengxu/vim-which-key'
     use 'voldikss/vim-floaterm'
     use 'liuchengxu/vista.vim'
     use 'terrortylor/nvim-comment'
     use 'bfredl/nvim-miniyank'
+    use 'monaqa/dial.nvim'
     use 'junegunn/goyo.vim'
     use 'andymass/vim-matchup'
-    use 'phaazon/hop.nvim'
-    use 'tpope/vim-sleuth'
-    use 'sheerun/vim-polyglot'
-    use 'monaqa/dial.nvim'
-    use 'MattesGroeger/vim-bookmarks' -- Look for more up to date version of this
+    use 'windwp/nvim-autopairs'
+    use 'blackcauldron7/surround.nvim'
 
-	-- TODO put this back when stable for indent lines
--- 	use { 'lukas-reineke/indent-blankline.nvim', branch = 'lua'}
--- 	vim.g.indent_blankline_space_char = ' '
--- 	vim.g.indent_blankline_buftype_exclude = {'terminal'}
--- 	vim.g.indent_blankline_filetype_exclude = {'help', 'startify'}
--- 	vim.g.indent_blankline_char = '▏'
--- 	vim.g.indent_blankline_use_treesitter=true
+    -- TODO put this back when stable for indent lines
+    -- 	use { 'lukas-reineke/indent-blankline.nvim', branch = 'lua'}
+    -- 	vim.g.indent_blankline_space_char = ' '
+    -- 	vim.g.indent_blankline_buftype_exclude = {'terminal'}
+    -- 	vim.g.indent_blankline_filetype_exclude = {'help', 'startify'}
+    -- 	vim.g.indent_blankline_char = '▏'
+    -- 	vim.g.indent_blankline_use_treesitter=true
     -- use 'AndrewRadev/tagalong.vim'
     -- use 'alvan/vim-closetag'
     -- use 'RRethy/vim-illuminate'
@@ -147,5 +150,7 @@ return require('packer').startup(function(use)
     --         vim.fn['firenvim#install'](1)
     --     end
     -- }
+    -- use 'tpope/vim-sleuth'
+    -- use 'mhinz/vim-startify'
     use 'jeffkreeftmeijer/vim-numbertoggle'
 end)
