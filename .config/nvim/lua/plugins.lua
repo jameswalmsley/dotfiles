@@ -30,6 +30,7 @@ return require('packer').startup(function(use)
 
     -- Debugging
     use 'mfussenegger/nvim-dap'
+    use 'mfussenegger/nvim-dap-python'
 
     -- Autocomplete
     use 'hrsh7th/nvim-compe'
@@ -70,11 +71,7 @@ return require('packer').startup(function(use)
     use 'nvim-telescope/telescope-media-files.nvim'
     use 'nvim-telescope/telescope-fzy-native.nvim'
     use 'nvim-telescope/telescope-fzf-writer.nvim'
-
-    -- Debug DAP
     use 'nvim-telescope/telescope-dap.nvim'
-    use 'mfussenegger/nvim-dap'
-    use 'mfussenegger/nvim-dap-python'
 
 
     -- Explorer
