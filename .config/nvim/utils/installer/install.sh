@@ -1,5 +1,3 @@
-#!/bin/bash
-
 set -o nounset # error when referencing undefined variable
 set -o errexit # exit when command fails
 
@@ -12,6 +10,12 @@ installnodemac() {
 installnodeubuntu() {
 	sudo apt install nodejs
 	sudo apt install npm
+}
+
+moveoldnvim() {
+	echo "Not installing NVCode"
+	echo "Please move your ~/.config/nvim folder before installing"
+	exit
 }
 
 installnodearch() {
@@ -62,17 +66,12 @@ installpacker() {
 
 cloneconfig() {
 	echo "Cloning NVCode configuration"
-	git clone https://github.com/ChristianChiarulli/nvcode.git ~/.config/nvcode
-    mv $HOME/.config/nvcode/init.lua $HOME/.config/nvcode/init.lua.tmp
-    mv $HOME/.config/nvcode/utils/init.lua $HOME/.config/nvcode/init.lua
-    mv $HOME/.config/nvcode/lua/plugins.lua $HOME/.config/nvcode/utils/plugins.lua
-    mkdir $HOME/.config/nvcode/utils/tmp/
-    mv $HOME/.config/nvcode/lua/* $HOME/.config/nvcode/utils/tmp/
-    mv $HOME/.config/nvcode/utils/plugins.lua $HOME/.config/nvcode/lua/
-	nvim -u $HOME/.config/nvcode/init.lua --headless +PackerSync +qall
-    mv $HOME/.config/nvcode/utils/tmp/* $HOME/.config/nvcode/lua/
-    rm $HOME/.config/nvcode/init.lua
-    mv $HOME/.config/nvcode/init.lua.tmp $HOME/.config/nvcode/init.lua
+	git clone https://github.com/ChristianChiarulli/nvcode.git ~/.config/nvim
+    mv $HOME/.config/nvim/init.lua $HOME/.config/nvim/init.lua.tmp
+    mv $HOME/.config/nvim/utils/init.lua $HOME/.config/nvim/init.lua
+	nvim -u $HOME/.config/nvim/init.lua --headless --noplugin +PackerInstall +qall
+    rm $HOME/.config/nvim/init.lua
+    mv $HOME/.config/nvim/init.lua.tmp $HOME/.config/nvim/init.lua
 }
 
 asktoinstallnode() {
@@ -122,6 +121,9 @@ installextrapackages() {
 # Welcome
 echo 'Installing NVCode'
 
+# move old nvim directory if it exists
+[ -d "$HOME/.config/nvim" ] && moveoldnvim
+
 # install pip
 which pip3 >/dev/null && echo "pip installed, moving on..." || asktoinstallpip
 
@@ -131,8 +133,6 @@ which node >/dev/null && echo "node installed, moving on..." || asktoinstallnode
 # install pynvim
 pip3 list | grep pynvim >/dev/null && echo "pynvim installed, moving on..." || installpynvim
 
-# move old nvim directory if it exists
-# [ -d "$HOME/.config/nvim" ] && moveoldnvim
 
 if [ -a "$HOME/.local/share/nvim/site/pack/packer/start/packer.nvim" ]; then
     echo 'packer already installed'
