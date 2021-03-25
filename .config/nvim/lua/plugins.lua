@@ -11,6 +11,9 @@ end
 
 vim.cmd 'autocmd BufWritePost plugins.lua PackerCompile' -- Auto compile when there are changes in plugins.lua
 
+-- require('packer').init({display = {non_interactive = true}})
+require('packer').init({display = {auto_clean = false}})
+
 return require('packer').startup(function(use)
     -- Packer can manage itself as an optional plugin
     use 'wbthomason/packer.nvim'
@@ -44,10 +47,6 @@ return require('packer').startup(function(use)
     use 'ChristianChiarulli/html-snippets'
     use 'ChristianChiarulli/java-snippets'
     use 'ChristianChiarulli/python-snippets'
-    -- use 'cstrap/python-snippets'
-    -- use 'ylcnfrht/vscode-python-snippet-pack'
-    -- use 'SirVer/ultisnips'
-    -- use 'norcalli/snippets.nvim'
 
 
     -- Treesitter
@@ -55,6 +54,7 @@ return require('packer').startup(function(use)
     use 'nvim-treesitter/nvim-treesitter-refactor'
     use 'nvim-treesitter/playground'
     use 'p00f/nvim-ts-rainbow'
+    use {'lukas-reineke/indent-blankline.nvim', branch = 'lua'}
 
     -- Icons
     use 'kyazdani42/nvim-web-devicons'
@@ -62,7 +62,6 @@ return require('packer').startup(function(use)
 
     -- Status Line and Bufferline
     use 'glepnir/galaxyline.nvim'
-    -- use {'akinsho/nvim-bufferline.lua', requires = 'kyazdani42/nvim-web-devicons'}
     use 'romgrk/barbar.nvim'
 
     -- Telescope
@@ -116,7 +115,7 @@ return require('packer').startup(function(use)
     use 'liuchengxu/vim-which-key'
     use 'kevinhwang91/nvim-bqf'
     use 'airblade/vim-rooter'
-    -- use 'glepnir/dashboard-nvim'
+    use 'ChristianChiarulli/dashboard-nvim'
     use 'metakirby5/codi.vim'
     use 'psliwka/vim-smoothie'
     use 'moll/vim-bbye'
@@ -129,18 +128,9 @@ return require('packer').startup(function(use)
     use 'junegunn/goyo.vim'
     use 'andymass/vim-matchup'
     use 'windwp/nvim-autopairs'
-    use 'blackcauldron7/surround.nvim'
 
     -- TODO put this back when stable for indent lines
-    -- 	use { 'lukas-reineke/indent-blankline.nvim', branch = 'lua'}
-    -- 	vim.g.indent_blankline_space_char = ' '
-    -- 	vim.g.indent_blankline_buftype_exclude = {'terminal'}
-    -- 	vim.g.indent_blankline_filetype_exclude = {'help', 'startify'}
-    -- 	vim.g.indent_blankline_char = '▏'
-    -- 	vim.g.indent_blankline_use_treesitter=true
-    -- use 'AndrewRadev/tagalong.vim'
-    -- use 'alvan/vim-closetag'
-    -- use 'RRethy/vim-illuminate'
+    -- vim.g.indent_blankline_space_char = ''
     -- use 'b3nj5m1n/kommentary'
     -- use {
     --     'glacambre/firenvim',
@@ -148,7 +138,11 @@ return require('packer').startup(function(use)
     --         vim.fn['firenvim#install'](1)
     --     end
     -- }
-    -- use 'tpope/vim-sleuth'
-    use 'mhinz/vim-startify'
+    -- use 'glepnir/dashboard-nvim'
+    -- use 'mhinz/vim-startify'
+    -- use 'cstrap/python-snippets'
+    -- use 'ylcnfrht/vscode-python-snippet-pack'
+    -- use 'norcalli/snippets.nvim'
+    -- use {'akinsho/nvim-bufferline.lua', requires = 'kyazdani42/nvim-web-devicons'}
     use 'jeffkreeftmeijer/vim-numbertoggle'
 end)

@@ -3,9 +3,11 @@ vim.cmd('set shortmess+=c') -- Don't pass messages to |ins-completion-menu|.
 vim.o.hidden = true -- Required to keep multiple buffers open multiple buffers
 vim.wo.wrap = false -- Display long lines as just one line
 vim.cmd('set whichwrap+=<,>,[,],h,l') -- move to next line with theses keys
+vim.cmd('syntax on') -- move to next line with theses keys
 vim.o.pumheight = 10 -- Makes popup menu smaller
 vim.o.fileencoding = "utf-8" -- The encoding written to file
 vim.o.cmdheight = 2 -- More space for displaying messages
+vim.cmd('set colorcolumn=99999') -- fix indentline for now
 vim.o.mouse = "a" -- Enable your mouse
 vim.o.splitbelow = true -- Horizontal splits will automatically be below
 vim.o.termguicolors = true -- set term giu colors most terminals support this
@@ -28,3 +30,4 @@ vim.o.timeoutlen = 100 -- By default timeoutlen is 1000 ms
 vim.o.clipboard = "unnamedplus" -- Copy paste between vim and everything else
 vim.o.guifont = "JetBrainsMono\\ Nerd\\ Font\\ Mono:h18"
 vim.g.polyglot_disabled = {'sensible'}
+vim.o.shell = '/bin/bash'
