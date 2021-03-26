@@ -47,8 +47,8 @@ vim.cmd([[
 ]])
 
 -- Better nav for omnicomplete
---vim.cmd('inoremap <expr> <c-j> (\"\\<C-n>\")')
---vim.cmd('inoremap <expr> <c-k> (\"\\<C-p>\")')
+vim.cmd('inoremap <expr> <c-j> (\"\\<C-n>\")')
+vim.cmd('inoremap <expr> <c-k> (\"\\<C-p>\")')
 -- vim.cmd('inoremap <expr> <TAB> (\"\\<C-n>\")')
 -- vim.cmd('inoremap <expr> <S-TAB> (\"\\<C-p>\")')
 

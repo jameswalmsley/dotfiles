@@ -48,7 +48,6 @@ return require('packer').startup(function(use)
     use 'ChristianChiarulli/java-snippets'
     use 'ChristianChiarulli/python-snippets'
 
-
     -- Treesitter
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
     use 'nvim-treesitter/nvim-treesitter-refactor'
@@ -144,5 +143,11 @@ return require('packer').startup(function(use)
     -- use 'ylcnfrht/vscode-python-snippet-pack'
     -- use 'norcalli/snippets.nvim'
     -- use {'akinsho/nvim-bufferline.lua', requires = 'kyazdani42/nvim-web-devicons'}
+    -- use 'SirVer/ultisnips'
+    -- use 'honza/vim-snippets'
+    -- vim.g.UltiSnipsExpandTrigger="<CR>"
+    -- vim.g.UltiSnipsJumpForwardTrigger="<Tab>"
+    -- vim.g.UltiSnipsJumpBackwardTrigger="<S-Tab>"
+    -- use 'blackcauldron7/surround.nvim'
     use 'jeffkreeftmeijer/vim-numbertoggle'
 end)
