@@ -65,27 +65,25 @@ require('telescope').setup {
             }
         }
     },
-    require'telescope'.setup {
-        extensions = {
-            media_files = {
-                -- filetypes whitelist
-                -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
-                filetypes = {"png", "webp", "jpg", "jpeg"},
-                find_cmd = "rg" -- find command (defaults to `fd`)
-            },
-            fzy_native = {
-                override_generic_sorter = true,
-                override_file_sorter = true,
-            },
-            fzf_writer = {
-                minimum_grep_characters = 2,
-                minimum_files_characters = 1,
+    extensions = {
+        media_files = {
+            -- filetypes whitelist
+            -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
+            filetypes = {"png", "webp", "jpg", "jpeg"},
+            find_cmd = "rg" -- find command (defaults to `fd`)
+        },
+        fzy_native = {
+            override_generic_sorter = true,
+            override_file_sorter = true,
+        },
+        fzf_writer = {
+            minimum_grep_characters = 2,
+            minimum_files_characters = 1,
 
-                -- Disabled by default.
-                -- Will probably slow down some aspects of the sorter, but can make color highlights.
-                -- I will work on this more later.
-                use_highlighter = true,
-            }
+            -- Disabled by default.
+            -- Will probably slow down some aspects of the sorter, but can make color highlights.
+            -- I will work on this more later.
+            use_highlighter = true,
         }
     }
 }
