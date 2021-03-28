@@ -40,13 +40,14 @@ return require('packer').startup(function(use)
     use 'hrsh7th/nvim-compe'
     use 'mattn/emmet-vim'
     use 'hrsh7th/vim-vsnip'
-    use 'xabikos/vscode-javascript'
-    use 'dsznajder/vscode-es7-javascript-react-snippets'
-    use 'golang/vscode-go'
-    use 'rust-lang/vscode-rust'
-    use 'ChristianChiarulli/html-snippets'
     use 'ChristianChiarulli/java-snippets'
-    use 'ChristianChiarulli/python-snippets'
+	use "rafamadriz/friendly-snippets"
+    -- use 'xabikos/vscode-javascript'
+    -- use 'dsznajder/vscode-es7-javascript-react-snippets'
+    -- use 'golang/vscode-go'
+    -- use 'rust-lang/vscode-rust'
+    -- use 'ChristianChiarulli/html-snippets'
+    -- use 'ChristianChiarulli/python-snippets'
 
     -- Treesitter
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
@@ -54,6 +55,7 @@ return require('packer').startup(function(use)
     use 'nvim-treesitter/playground'
     use 'p00f/nvim-ts-rainbow'
     use {'lukas-reineke/indent-blankline.nvim', branch = 'lua'}
+	use 'JoosepAlviste/nvim-ts-context-commentstring'
 
     -- Icons
     use 'kyazdani42/nvim-web-devicons'
@@ -126,7 +128,12 @@ return require('packer').startup(function(use)
     use 'monaqa/dial.nvim'
     use 'junegunn/goyo.vim'
     use 'andymass/vim-matchup'
-    use 'windwp/nvim-autopairs'
+    use 'cohama/lexima.vim'
+    use 'MattesGroeger/vim-bookmarks'
+    -- use 'kshenoy/vim-signature'
+    -- use 'nelstrom/vim-visual-star-search'
+	-- TODO switch back when config support snips
+    -- use 'windwp/nvim-autopairs'
 
     -- TODO put this back when stable for indent lines
     -- vim.g.indent_blankline_space_char = ''

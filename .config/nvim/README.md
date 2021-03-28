@@ -1,5 +1,13 @@
 ![NVCode Logo](./utils/media/nvcode_logo.png)
 
+[![Support Server](https://img.shields.io/discord/591914197219016707.svg?color=7289da&label=AtMachine&logo=discord&style=flat-square)](https://discord.gg/Xb9B4Ny)
+[![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/ChristianChiarulli/nvcode/blob/master/LICENSE)
+[![GitHub contributors](https://img.shields.io/github/contributors/Naereen/StrapDown.js.svg)](https://github.com/ChristianChiarulli/nvcode/graphs/contributors)
+[![Open Source? Yes!](https://badgen.net/badge/Open%20Source%20%3F/Yes%21/blue?icon=github)](https://github.com/Naereen/badges/)
+
+
+
+
 ![NVCode Demo](./utils/media/demo.png)
 
 If you are looking for my old configs checkout the two snapshot branches
@@ -61,7 +69,7 @@ $HOME/.config/nvim/vimscript/nv-vscode/init.vim
     ```bash
     sudo pacman -S xsel
     ```
-    
+
 - WSL2
 
     Make sure ~/bin is in your path in this case.
@@ -176,13 +184,16 @@ features when I have time
 - look into emmet-ls
 - toggle virtual text diagnostics
 - configure neogit
-- configure kshenoy/vim-signature
 - vim ult test
 - what is `fzy`
 - https://github.com/pwntester/octo.nvim
 - configure surround
 - maybe incorporate ultisnips
+- switch back to `nvim-autopairs` when/if it doesn't break snippets 
+- Implement this for typescript https://github.com/jose-elias-alvarez/nvim-lsp-ts-utils
+- look into tabnine
+
 
 **PLUGIN BUGS**
 
-- html snippets are broken with vsnip
+REACT COMMENTING IS A NIGHTMARE (the filetype is just not recognized idk why)
