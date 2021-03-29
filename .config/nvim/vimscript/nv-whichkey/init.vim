@@ -229,4 +229,17 @@ let g:which_key_map.R = {
       \ 'p' : [':Farr --source=rgnvim'     , 'project'],
       \ }
 
+
+" p is for phabricator
+let g:which_key_map.p = {
+      \ 'name' : '+phabricator',
+      \ 'o': [':call phabrik#dashboard()', 'Dashboard'],
+      \ 'r': [':call phabrik#refresh()', 'Refresh Page'],
+      \ 'c': [':call phabrik#task_create()', 'Create Task'],
+      \ 'u': [':call phabrik#task_update()', 'Update Task'],
+      \ 'd': [':call phabrik#diff_abandon()', 'Abandon Diff'],
+      \ 'a': [':call phabrik#diff_approve()', 'Approve Diff'],
+      \ 'p': [':call phabrik#diff_patch()', 'Patch Diff'],
+      \ }
+
 call which_key#register('<Space>', "g:which_key_map")
