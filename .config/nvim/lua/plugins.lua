@@ -40,14 +40,7 @@ return require('packer').startup(function(use)
     use 'hrsh7th/nvim-compe'
     use 'mattn/emmet-vim'
     use 'hrsh7th/vim-vsnip'
-    use 'ChristianChiarulli/java-snippets'
-	use "rafamadriz/friendly-snippets"
-    -- use 'xabikos/vscode-javascript'
-    -- use 'dsznajder/vscode-es7-javascript-react-snippets'
-    -- use 'golang/vscode-go'
-    -- use 'rust-lang/vscode-rust'
-    -- use 'ChristianChiarulli/html-snippets'
-    -- use 'ChristianChiarulli/python-snippets'
+    use "rafamadriz/friendly-snippets"
 
     -- Treesitter
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
@@ -55,7 +48,8 @@ return require('packer').startup(function(use)
     use 'nvim-treesitter/playground'
     use 'p00f/nvim-ts-rainbow'
     use {'lukas-reineke/indent-blankline.nvim', branch = 'lua'}
-	use 'JoosepAlviste/nvim-ts-context-commentstring'
+    use 'JoosepAlviste/nvim-ts-context-commentstring'
+    use 'windwp/nvim-ts-autotag'
 
     -- Icons
     use 'kyazdani42/nvim-web-devicons'
@@ -100,8 +94,8 @@ return require('packer').startup(function(use)
     use 'mattn/webapi-vim'
 
     -- Webdev
-    use 'windwp/nvim-ts-autotag'
-    use 'gennaro-tedesco/nvim-jqx'
+    -- TODO add back when I learn it better 
+    -- use 'gennaro-tedesco/nvim-jqx'
     use 'turbio/bracey.vim'
 
     -- Registers
@@ -132,7 +126,7 @@ return require('packer').startup(function(use)
     use 'MattesGroeger/vim-bookmarks'
     -- use 'kshenoy/vim-signature'
     -- use 'nelstrom/vim-visual-star-search'
-	-- TODO switch back when config support snips
+    -- TODO switch back when config support snips
     -- use 'windwp/nvim-autopairs'
 
     -- TODO put this back when stable for indent lines
@@ -156,5 +150,12 @@ return require('packer').startup(function(use)
     -- vim.g.UltiSnipsJumpForwardTrigger="<Tab>"
     -- vim.g.UltiSnipsJumpBackwardTrigger="<S-Tab>"
     -- use 'blackcauldron7/surround.nvim'
+    -- use 'ChristianChiarulli/java-snippets'
+    -- use 'xabikos/vscode-javascript'
+    -- use 'dsznajder/vscode-es7-javascript-react-snippets'
+    -- use 'golang/vscode-go'
+    -- use 'rust-lang/vscode-rust'
+    -- use 'ChristianChiarulli/html-snippets'
+    -- use 'ChristianChiarulli/python-snippets'
     use 'jeffkreeftmeijer/vim-numbertoggle'
 end)
