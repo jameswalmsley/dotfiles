@@ -1,2 +1,6 @@
 #!/bin/bash
-nvim -u ~/.config/nvcode/init.lua
+source /usr/local/share/nvcode/nvim/utils/bin/nvcode-env.sh
+
+export NVCODE_BASE
+nvim -u ${NVCODE_CONFIG} $@
+

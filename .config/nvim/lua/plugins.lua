@@ -19,10 +19,10 @@ return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
     -- Information
-    use 'nanotee/nvim-lua-guide'
+    -- use 'nanotee/nvim-lua-guide'
 
     -- Quality of life improvements
-    use 'norcalli/nvim_utils'
+    -- use 'norcalli/nvim_utils'
 
     -- LSP
     use 'neovim/nvim-lspconfig'
@@ -41,11 +41,10 @@ return require('packer').startup(function(use)
     use 'mattn/emmet-vim'
     use 'hrsh7th/vim-vsnip'
     use "rafamadriz/friendly-snippets"
+    use 'ChristianChiarulli/html-snippets'
 
     -- Treesitter
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
-    use 'nvim-treesitter/nvim-treesitter-refactor'
-    use 'nvim-treesitter/playground'
     use 'p00f/nvim-ts-rainbow'
     use {'lukas-reineke/indent-blankline.nvim', branch = 'lua'}
     use 'JoosepAlviste/nvim-ts-context-commentstring'
@@ -82,7 +81,7 @@ return require('packer').startup(function(use)
     use 'windwp/wind-colors'
 
     -- Git
-    use 'TimUntersberger/neogit'
+    -- use 'TimUntersberger/neogit'
     use {'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}}
     use 'f-person/git-blame.nvim'
     use 'tpope/vim-fugitive'
@@ -96,15 +95,18 @@ return require('packer').startup(function(use)
     -- Webdev
     -- TODO add back when I learn it better 
     -- use 'gennaro-tedesco/nvim-jqx'
-    use 'turbio/bracey.vim'
+    -- use 'turbio/bracey.vim'
+
+    -- Flutter
+    use 'thosakwe/vim-flutter'
 
     -- Registers
-    use 'gennaro-tedesco/nvim-peekup'
+    -- use 'gennaro-tedesco/nvim-peekup'
 
     -- Navigation
-    use 'unblevable/quick-scope'
+    use 'unblevable/quick-scope' -- hop may replace you
     use 'phaazon/hop.nvim'
-    use 'kevinhwang91/rnvimr'
+    use 'kevinhwang91/rnvimr' -- telescope may fully replace you
 
     -- General Plugins
     use 'liuchengxu/vim-which-key'
@@ -112,22 +114,14 @@ return require('packer').startup(function(use)
     use 'airblade/vim-rooter'
     use 'ChristianChiarulli/dashboard-nvim'
     use 'metakirby5/codi.vim'
-    use 'psliwka/vim-smoothie'
-    use 'moll/vim-bbye'
     use {'iamcco/markdown-preview.nvim', run = 'cd app && npm install'}
     use 'voldikss/vim-floaterm'
-    use 'liuchengxu/vista.vim'
     use 'terrortylor/nvim-comment'
-    use 'bfredl/nvim-miniyank'
     use 'monaqa/dial.nvim'
     use 'junegunn/goyo.vim'
     use 'andymass/vim-matchup'
-    use 'cohama/lexima.vim'
     use 'MattesGroeger/vim-bookmarks'
-    -- use 'kshenoy/vim-signature'
-    -- use 'nelstrom/vim-visual-star-search'
-    -- TODO switch back when config support snips
-    -- use 'windwp/nvim-autopairs'
+    use 'windwp/nvim-autopairs'
 
     -- TODO put this back when stable for indent lines
     -- vim.g.indent_blankline_space_char = ''
@@ -155,7 +149,18 @@ return require('packer').startup(function(use)
     -- use 'dsznajder/vscode-es7-javascript-react-snippets'
     -- use 'golang/vscode-go'
     -- use 'rust-lang/vscode-rust'
-    -- use 'ChristianChiarulli/html-snippets'
     -- use 'ChristianChiarulli/python-snippets'
+    -- use 'kshenoy/vim-signature'
+    -- use 'nelstrom/vim-visual-star-search'
+    -- TODO switch back when config support snips
+    -- use 'cohama/lexima.vim'
+    -- use 'bfredl/nvim-miniyank'
+    -- use 'brooth/far.vim'
+    -- use 'liuchengxu/vista.vim'
+    -- use 'psliwka/vim-smoothie'
+    -- use 'nvim-treesitter/nvim-treesitter-refactor'
+    -- use 'nvim-treesitter/playground'
+    -- use 'moll/vim-bbye'
     use 'jeffkreeftmeijer/vim-numbertoggle'
 end)
+

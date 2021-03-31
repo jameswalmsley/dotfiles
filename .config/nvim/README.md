@@ -1,17 +1,44 @@
 ![NVCode Logo](./utils/media/nvcode_logo.png)
 
-[![Support Server](https://img.shields.io/discord/591914197219016707.svg?color=7289da&label=AtMachine&logo=discord&style=flat-square)](https://discord.gg/Xb9B4Ny)
+
+<a href="https://discord.gg/Xb9B4Ny"><img src="https://img.shields.io/discord/308323056592486420?logo=discord" alt="chat on Discord"></a>
 [![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/ChristianChiarulli/nvcode/blob/master/LICENSE)
-[![GitHub contributors](https://img.shields.io/github/contributors/Naereen/StrapDown.js.svg)](https://github.com/ChristianChiarulli/nvcode/graphs/contributors)
-[![Open Source? Yes!](https://badgen.net/badge/Open%20Source%20%3F/Yes%21/blue?icon=github)](https://github.com/Naereen/badges/)
+[![Open Source? Yes!](https://badgen.net/badge/Open%20Source%20%3F/Yes%21/blue?icon=github)](https://github.com/ChristianChiarulli/nvcode)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+<a href="https://patreon.com/chrisatmachine" title="Donate to this project using Patreon"><img src="https://img.shields.io/badge/patreon-donate-yellow.svg" alt="Patreon donate button" /></a>
+<a href="https://twitter.com/intent/follow?screen_name=chrisatmachine"><img src="https://img.shields.io/twitter/follow/chrisatmachine?style=social&logo=twitter" alt="follow on Twitter"></a>
 
 
 
 
 ![NVCode Demo](./utils/media/demo.png)
 
-If you are looking for my old configs checkout the two snapshot branches
-on this repo, there is one for CoC and one for Native LSP
+# Global Install
+
+To install globally:
+
+```
+git clone https://github.com/jameswalmsley/nvcode.git -b global-install nvcode.global
+cd nvcode.global/utils/bin
+sudo ./nvcode-upgrade.sh -g
+```
+
+This install a copy of the nvcode config into `/usr/local/share/nvcode/nvim`, and installs the nv,
+starter script to `/usr/local/bin`
+
+The script will use sudo to run nvim as the calling user to sync plugins to `~/.local/share/nvcode/data/nvim`.
+
+It leaves nvim open, simply exit nvim when finished. (Couldn't get headless nvim to not quit early on packer).
+
+Once completed you should be able to run nv without interfering with the main .config/nvim config.
+
+NOTE.. This global install will use `.config/nvcode/nvim`
+
+# Overview
+
+This project aims to help one transition away from VSCode, and into a superior text editing experience. (Just making this clear)
+
+This is also a community project, if you would like to see support for a feature or language consider making a PR.
 
 ## Install In One Command!
 
@@ -25,7 +52,7 @@ After installation run `nvim` and then `:PackerInstall`
 
 ## Get the latest version of Neovim
 
-``` bash
+```bash
 cd ~
 sudo rm -r neovim
 git clone https://github.com/neovim/neovim
@@ -36,6 +63,12 @@ sudo rm -r neovim
 ```
 
 ## VSCode support
+
+I recommend you support Free/Libre versions if you plan to use VSCode:
+
+- [VSCodium](https://vscodium.com/)
+
+- Article to get you set up with VSCodium: [link](https://www.chrisatmachine.com/Neovim/22-vscodium-neovim/) 
 
 After installing the [Neovim
 extension](https://github.com/asvetliakov/vscode-neovim) in VSCode

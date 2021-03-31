@@ -1,8 +1,13 @@
+-- Environment
+require('environment')
+
 -- General mappings
 require('plugins')
 require('nv-globals')
 require('nv-utils')
-vim.cmd('luafile ~/.config/nvim/nv-settings.lua')
+if io.open(CONFIG_PATH .. '/nv-settings.lua', 'r') then
+	vim.cmd('luafile ' .. CONFIG_PATH .. '/nv-settings.lua')
+end
 require('nv-autocommands')
 -- require('config')
 require('settings')
@@ -20,7 +25,6 @@ require('nv-emmet')
 require('nv-quickscope')
 require('nv-gitsigns')
 require('nv-autopairs')
-require('nv-neogit')
 require('nv-comment')
 require('nv-rnvimr')
 require('nv-telescope')
@@ -40,12 +44,14 @@ require('nv-bookmark')
 -- require('nv-lspinstall')
 
 -- Which Key (Hope to replace with Lua plugin someday)
-vim.cmd('source ~/.config/nvim/vimscript/nv-whichkey/init.vim')
-vim.cmd('source ~/.config/nvim/vimscript/functions.vim')
+vim.cmd('source ' .. nvcode_base .. '/vimscript/nv-whichkey/init.vim')
+vim.cmd('source ' .. nvcode_base .. '/vimscript/functions.vim')
 
 -- LSP
 require('lsp')
 require('lsp.clangd')
+require('lsp.php-ls')
+require('lsp.dart-ls')
 require('lsp.lua-ls')
 require('lsp.bash-ls')
 require('lsp.go-ls')
@@ -65,3 +71,6 @@ require('lsp.latex-ls')
 
 -- vim.lsp.callbacks["textDocument/publishDiagnostics"] = function() end
 -- vim.lsp.handlers["textDocument/publishDiagnostics"] = nil
+
+require('packer').install()
+
