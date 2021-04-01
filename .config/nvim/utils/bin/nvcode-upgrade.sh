@@ -28,18 +28,18 @@ fi
 
 cloneconfig() {
   echo "Cloning NVCode configuration"
-  git clone https://github.com/jameswalmsley/nvcode.git -b global-install ${NVCODE_BASE}/nvim
-  #mkdir -p ${NVCODE_BASE}
+  sudo git clone https://github.com/jameswalmsley/nvcode.git -b global-install ${NVCODE_BASE}/nvim
+  #sudo mkdir -p ${NVCODE_BASE}
   #rsync -av /home/james/.config/nvim/* /usr/local/share/nvcode/nvim/
-  sudo -S -u ${SUDO_USER} -i ${NVCODE_BASE}/nvim/utils/bin/nv -u ${NVCODE_BASE}/nvim/utils/init.lua --noplugin +PackerInstall
-  cp ${NVCODE_BASE}/nvim/utils/bin/nv /usr/local/bin
+  ${NVCODE_BASE}/nvim/utils/bin/nv -u ${NVCODE_BASE}/nvim/utils/init.lua +PackerInstall
+  sudo cp ${NVCODE_BASE}/nvim/utils/bin/nv /usr/local/bin
 }
 
 upgrade_nvcode() {
   echo upgrading
-  cd ${NVCODE_BASE}/nvim && git fetch && git reset --hard origin/global-install
-  sudo -S -u ${SUDO_USER} -i ${NVCODE_BASE}/nvim/utils/bin/nv -u ${NVCODE_BASE}/nvim/utils/init.lua --noplugin +PackerSync
-  cp ${NVCODE_BASE}/nvim/utils/bin/nv /usr/local/bin
+  cd ${NVCODE_BASE}/nvim && sudo git fetch && sudo git reset --hard origin/global-install
+  ${NVCODE_BASE}/nvim/utils/bin/nv -u ${NVCODE_BASE}/nvim/utils/init.lua +PackerSync
+  sudo cp ${NVCODE_BASE}/nvim/utils/bin/nv /usr/local/bin
 }
 
 install_nvcode() {
