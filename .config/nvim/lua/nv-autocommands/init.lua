@@ -37,12 +37,17 @@ utils.define_augroups({
         {
             'FileType', 'dashboard',
             'setlocal nocursorline noswapfile synmaxcol& signcolumn=no norelativenumber nocursorcolumn nospell  nolist  nonumber bufhidden=wipe colorcolumn= foldcolumn=0 matchpairs= '
-        }, {'FileType', 'dashboard', 'set showtabline=0 | autocmd WinLeave <buffer> set showtabline=2'}
+        }, {'FileType', 'dashboard', 'set showtabline=0 | autocmd BufLeave <buffer> set showtabline=2'}
     },
     _markdown = {{'FileType', 'markdown', 'setlocal wrap'}, {'FileType', 'markdown', 'setlocal spell'}},
     _solidity = {
         {'BufWinEnter', '.sol', 'setlocal filetype=solidity'}, {'BufRead', '*.sol', 'setlocal filetype=solidity'},
         {'BufNewFile', '*.sol', 'setlocal filetype=solidity'}
+    },
+    _buffer_bindings = {
+        {'FileType', 'dashboard', 'nnoremap <silent> <buffer> q :q<CR>'},
+        {'FileType', 'lspinfo', 'nnoremap <silent> <buffer> q :q<CR>'},
+        {'FileType', 'floaterm', 'nnoremap <silent> <buffer> q :q<CR>'}
     },
     _auto_formatters = auto_formatters
 })

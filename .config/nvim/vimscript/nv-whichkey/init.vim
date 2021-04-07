@@ -30,8 +30,10 @@ let g:which_key_map['e'] = [ ':NvimTreeToggle'                                 ,
 let g:which_key_map['f'] = [ ':Telescope find_files'                           , 'find files' ]
 let g:which_key_map['h'] = [ '<C-W>s'                                          , 'split below']
 let g:which_key_map['M'] = [ ':MarkdownPreviewToggle'                          , 'markdown preview']
-let g:which_key_map['h'] = [ ':let @/ = ""'                                    , 'no highlight' ]
+let g:which_key_map['H'] = [ ':let @/ = ""'                                    , 'no highlight' ]
 let g:which_key_map['r'] = [ ':RnvimrToggle'                                   , 'ranger' ]
+let g:which_key_map['*'] = [ ':DogeGenerate'                                   , 'documentation generator' ]
+let g:which_key_map['u'] = [ ':UndotreeToggle'                                 , 'undo tree' ]
 " TODO create entire treesitter section
 let g:which_key_map['T'] = [ ':TSHighlightCapturesUnderCursor'                 , 'treesitter highlight' ]
 let g:which_key_map['v'] = [ '<C-W>v'                                          , 'split right']
@@ -100,6 +102,14 @@ let g:which_key_map.d = {
       " \ 'O' : ['DebugStepOut'                  , 'next-buffer'],
       " \ 'S' : ['DebugGetSession '              , 'fzf-buffer'],
 
+" D is for database
+let g:which_key_map.D = {
+      \ 'name' : '+database' ,
+      \ 'u' : ['DBUIToggle '        , 'db ui toggle'],
+      \ 'f' : ['DBUIFindBuffer'     , 'db find buffer'],
+      \ 'r' : ['DBUIRenameBuffer'   , 'db rename buffer'],
+      \ 'l' : ['DBUILastQueryInfo'  , 'db last query'],
+      \ }
 
 " F is for fold
 let g:which_key_map.F = {
@@ -119,7 +129,7 @@ let g:which_key_map.F = {
 " m is for mark
 " I'd rather use regular marks but they never clear
 let g:which_key_map.m = {
-    \ 'name': '+fold',
+\ 'name': '+mark',
     \ 't' : [':BookmarkToggle'   , 'toggle'],
     \ 'j' : [':BookmarkNext'   , 'next mark'],
     \ 'k' : [':BookmarkPrev'   , 'prev mark']

@@ -9,6 +9,10 @@ while (( "$#" )); do
       GLOBAL=1
       shift
       ;;
+    -i|--info)
+      INFO=1
+      shift
+      ;;
     -*|--*=) # unsupported flags
       echo "Error: Unsupported flag $1" >&2
       exit 1
@@ -22,24 +26,28 @@ done
 # set positional arguments in their proper place
 eval set -- "$PARAMS"
 
-if [[ ! -v GLOBAL ]]; then
-  user_environment
+if [[ -v INFO ]]; then
+  echo "NVCODE_BASE: ${NVCODE_BASE}"
+  echo "NVCODE_USER: ${NVCODE_USER}"
+  echo "NVCODE_USER_CONFIG: ${NVCODE_USER_CONFIG}"
+  exit 1
 fi
 
 cloneconfig() {
   echo "Cloning NVCode configuration"
+  sudo mkdir -p ${NVCODE_BASE}
   sudo git clone https://github.com/jameswalmsley/nvcode.git -b global-install ${NVCODE_BASE}/nvim
-  #sudo mkdir -p ${NVCODE_BASE}
-  #rsync -av /home/james/.config/nvim/* /usr/local/share/nvcode/nvim/
-  ${NVCODE_BASE}/nvim/utils/bin/nv -u ${NVCODE_BASE}/nvim/utils/init.lua +PackerInstall
-  sudo cp ${NVCODE_BASE}/nvim/utils/bin/nv /usr/local/bin
+  sudo rm /usr/local/bin/nv
+  sudo ln -s ${NVCODE_BASE}/nvim/utils/bin/nv /usr/local/bin/nv
+  sudo touch ${NVCODE_BASE}/.packer_sync
 }
 
 upgrade_nvcode() {
   echo upgrading
   cd ${NVCODE_BASE}/nvim && sudo git fetch && sudo git reset --hard origin/global-install
-  ${NVCODE_BASE}/nvim/utils/bin/nv -u ${NVCODE_BASE}/nvim/utils/init.lua +PackerSync
-  sudo cp ${NVCODE_BASE}/nvim/utils/bin/nv /usr/local/bin
+  sudo rm /usr/local/bin/nv
+  sudo ln -s ${NVCODE_BASE}/nvim/utils/bin/nv /usr/local/bin/nv
+  sudo touch ${NVCODE_BASE}/.packer_sync
 }
 
 install_nvcode() {

@@ -8,7 +8,7 @@ require('telescope').load_extension('fzf_writer')
 
 require('telescope').setup {
     defaults = {
-        vimgrep_arguments = {'rg', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case'},
+        find_command = {'rg', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case'},
         prompt_position = "top",
         prompt_prefix = " ",
         selection_caret = " ",

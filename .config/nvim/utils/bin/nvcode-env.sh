@@ -1,24 +1,48 @@
 #!/bin/bash
-NVCODE_BASE="/usr/local/share/nvcode"
+
+# PREFIX:
+#   Where to install nvcode.
+#
+PREFIX=${PREFIX:-/opt}
+
+# NVCODE_BASE:
+#   Path to the "base" NVCode configuration (the global repo).
+#
+NVCODE_BASE="${PREFIX}/nvcode"
+
+# NVCODE_USER:
+#   Path to the "user" data/cache folders.
+#
 NVCODE_USER="$HOME/.local/share/nvcode"
 
-eval_environment() {
-	export SHELL=/bin/bash
-	NVCODE_CONFIG=${NVCODE_BASE}/nvim/init.lua
-	export XDG_CONFIG_HOME="$HOME/.config/nvcode"
-	export XDG_DATA_HOME="${NVCODE_USER}/data"	
-	export XDG_CACHE_HOME="${NVCODE_USER}/cache"
-	export XDG_CONFIG_DIRS="/usr/share:/usr/local/share:/usr/local/share/nvcode"
-}
+# NVCODE_USER_CONFIG:
+#   Path to the "users" local config dir.
+#
+NVCODE_USER_CONFIG="$HOME/.config/nvcode"
 
-user_environment() {
-	if [[ -f "${HOME}/.config/nvcode/init.lua" ]]; then
-		echo file
-    	NVCODE_BASE="${HOME}/.config/nvcode"
-	fi
+# NVCODE_BASE_CONFIG: 
+#   Path to the "base" config file.
+#
+NVCODE_BASE_CONFIG=${NVCODE_BASE}/nvim/init.lua
 
-	eval_environment
-}
+#
+# Initialise the users nvcode config if not already created.
+#
+if [ ! -f ${NVCODE_USER_CONFIG}/nvim/nv-settings.lua ]; then
+  NVCODE_CONFIG_INIT=1
+fi
 
-eval_environment
+#
+# Force a PackerSync if nvcode is updated, since the last run.
+#
+if [ ${NVCODE_BASE}/.packer_sync -nt ${NVCODE_USER}/.packer_sync ] || [ ! -f ${NVCODE_USER}/.packer_sync ]; then
+  NVCODE_SYNC=+PackerSync
+  echo "Update required! ${NVCODE_SYNC}"
+fi
+
+export SHELL=/bin/bash
+export XDG_CONFIG_HOME=${NVCODE_USER_CONFIG}
+export XDG_DATA_HOME="${NVCODE_USER}/data"	
+export XDG_CACHE_HOME="${NVCODE_USER}/cache"
+export XDG_CONFIG_DIRS="/usr/share:/usr/local/share:${NVCODE_BASE}"
 

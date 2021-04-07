@@ -9,6 +9,8 @@ if fn.empty(fn.glob(install_path)) > 0 then
     execute 'packadd packer.nvim'
 end
 
+local my = function(file) require(file) end
+
 vim.cmd 'autocmd BufWritePost plugins.lua PackerCompile' -- Auto compile when there are changes in plugins.lua
 
 -- require('packer').init({display = {non_interactive = true}})
@@ -47,6 +49,7 @@ return require('packer').startup(function(use)
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
     use 'p00f/nvim-ts-rainbow'
     use {'lukas-reineke/indent-blankline.nvim', branch = 'lua'}
+    use 'nvim-treesitter/playground'
     use 'JoosepAlviste/nvim-ts-context-commentstring'
     use 'windwp/nvim-ts-autotag'
 
@@ -55,7 +58,8 @@ return require('packer').startup(function(use)
     use 'ryanoasis/vim-devicons'
 
     -- Status Line and Bufferline
-    use 'glepnir/galaxyline.nvim'
+    --use { 'glepnir/galaxyline.nvim', config = my('nv-galaxyline') }
+    use { 'glepnir/galaxyline.nvim', config = function() require'nv-galaxyline' end } -- inline fn alternative
     use 'romgrk/barbar.nvim'
 
     -- Telescope
@@ -97,8 +101,14 @@ return require('packer').startup(function(use)
     -- use 'gennaro-tedesco/nvim-jqx'
     -- use 'turbio/bracey.vim'
 
+    -- Php
+    use 'phpactor/phpactor'
+
     -- Flutter
     use 'thosakwe/vim-flutter'
+
+    -- Dependency assistent
+    use 'akinsho/dependency-assist.nvim'
 
     -- Registers
     -- use 'gennaro-tedesco/nvim-peekup'
@@ -122,6 +132,15 @@ return require('packer').startup(function(use)
     use 'andymass/vim-matchup'
     use 'MattesGroeger/vim-bookmarks'
     use 'windwp/nvim-autopairs'
+    use 'mbbill/undotree'
+
+    -- Database
+    use 'tpope/vim-dadbod'
+    use 'kristijanhusak/vim-dadbod-ui'
+    use 'kristijanhusak/vim-dadbod-completion'
+
+    -- Documentation Generator 
+    use {'kkoomen/vim-doge', run = ':call doge#install()'}
 
     -- TODO put this back when stable for indent lines
     -- vim.g.indent_blankline_space_char = ''
