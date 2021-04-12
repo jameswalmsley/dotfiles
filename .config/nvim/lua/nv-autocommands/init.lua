@@ -44,10 +44,14 @@ utils.define_augroups({
         {'BufWinEnter', '.sol', 'setlocal filetype=solidity'}, {'BufRead', '*.sol', 'setlocal filetype=solidity'},
         {'BufNewFile', '*.sol', 'setlocal filetype=solidity'}
     },
+    _gemini = {
+        {'BufWinEnter', '.gmi', 'setlocal filetype=markdown'}, {'BufRead', '*.gmi', 'setlocal filetype=markdown'},
+        {'BufNewFile', '*.gmi', 'setlocal filetype=markdown'}
+    },
     _buffer_bindings = {
         {'FileType', 'dashboard', 'nnoremap <silent> <buffer> q :q<CR>'},
         {'FileType', 'lspinfo', 'nnoremap <silent> <buffer> q :q<CR>'},
-        {'FileType', 'floaterm', 'nnoremap <silent> <buffer> q :q<CR>'}
+        {'FileType', 'floaterm', 'nnoremap <silent> <buffer> q :q<CR>'},
     },
     _auto_formatters = auto_formatters
 })

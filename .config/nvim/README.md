@@ -2,7 +2,7 @@
 
 
 <a href="https://discord.gg/Xb9B4Ny"><img src="https://img.shields.io/discord/308323056592486420?logo=discord" alt="chat on Discord"></a>
-[![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/ChristianChiarulli/nvcode/blob/master/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/ChristianChiarulli/nvcode)](https://github.com/ChristianChiarulli/nvcode/blob/master/LICENSE)
 [![Open Source? Yes!](https://badgen.net/badge/Open%20Source%20%3F/Yes%21/blue?icon=github)](https://github.com/ChristianChiarulli/nvcode)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 <a href="https://patreon.com/chrisatmachine" title="Donate to this project using Patreon"><img src="https://img.shields.io/badge/patreon-donate-yellow.svg" alt="Patreon donate button" /></a>
@@ -205,10 +205,10 @@ To set up your particular debugger, look here:
 
 **HIGH PRIORITY**
 
-Move user config into `config.lua` ts-comment string for react
-From here I will update for bug fixes and implement low priority
+- Move user config into `config.lua` ts-comment string for react
+- From here I will update for bug fixes and implement low priority
 features when I have time
-highlight EndOfBuffer ctermfg=black ctermbg=black set to background color for lunar to Hide `~`s in 
+- different key to advance through snippets
 
 
 **LOW PRIORITY**

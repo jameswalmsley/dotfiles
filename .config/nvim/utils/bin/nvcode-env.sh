@@ -3,12 +3,20 @@
 # PREFIX:
 #   Where to install nvcode.
 #
-PREFIX=${PREFIX:-/opt}
+if [ -v GLOBAL ]; then
+	PREFIX=${PREFIX:-/opt}
+else
+	PREFIX=${PREFIX:-$HOME/.config}
+fi
+
 
 # NVCODE_BASE:
 #   Path to the "base" NVCode configuration (the global repo).
 #
-NVCODE_BASE="${PREFIX}/nvcode"
+NVCODE_BASE="${PREFIX}"
+[ -v GLOBAL ] && NVCODE_BASE=${NVCODE_BASE}/nvcode
+
+NVCODE_CONFIG_DIR=${NVCODE_BASE}/nvim
 
 # NVCODE_USER:
 #   Path to the "user" data/cache folders.
@@ -23,21 +31,23 @@ NVCODE_USER_CONFIG="$HOME/.config/nvcode"
 # NVCODE_BASE_CONFIG: 
 #   Path to the "base" config file.
 #
-NVCODE_BASE_CONFIG=${NVCODE_BASE}/nvim/init.lua
+NVCODE_BASE_CONFIG=${NVCODE_CONFIG_DIR}/init.lua
 
 #
 # Initialise the users nvcode config if not already created.
 #
 if [ ! -f ${NVCODE_USER_CONFIG}/nvim/nv-settings.lua ]; then
-  NVCODE_CONFIG_INIT=1
+	NVCODE_CONFIG_INIT=1
 fi
 
 #
 # Force a PackerSync if nvcode is updated, since the last run.
 #
-if [ ${NVCODE_BASE}/.packer_sync -nt ${NVCODE_USER}/.packer_sync ] || [ ! -f ${NVCODE_USER}/.packer_sync ]; then
-  NVCODE_SYNC=+PackerSync
-  echo "Update required! ${NVCODE_SYNC}"
+if [ -v GLOBAL ]; then
+	if [ ${NVCODE_BASE}/.packer_sync -nt ${NVCODE_USER}/.packer_sync ] || [ ! -f ${NVCODE_USER}/.packer_sync ]; then
+		NVCODE_SYNC=+PackerSync
+		echo "Update required! ${NVCODE_SYNC}"
+	fi
 fi
 
 export SHELL=/bin/bash

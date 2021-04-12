@@ -1,5 +1,7 @@
 #!/bin/bash
 
+GLOBAL=1
+
 source /opt/nvcode/nvim/utils/bin/nvcode-env.sh
 
 export NVCODE_BASE
@@ -12,6 +14,6 @@ fi
 
 if [ -v NVCODE_CONFIG_INIT ]; then
   mkdir -p ${NVCODE_USER_CONFIG}
-  cp ${NVCODE_BASE}/nvim/nv-settings.lua ${NVCODE_USER_CONFIG}/nvim/nv-settings.lua
+  cp ${NVCODE_CONFIG_DIR}/nv-settings.lua ${NVCODE_USER_CONFIG}/nvim/nv-settings.lua
   touch ${NVCODE_USER_CONFIG}/nvim/init.lua
 fi
