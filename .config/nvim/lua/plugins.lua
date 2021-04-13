@@ -58,8 +58,8 @@ return require('packer').startup(function(use)
     use 'ryanoasis/vim-devicons'
 
     -- Status Line and Bufferline
-    --use { 'glepnir/galaxyline.nvim', config = my('nv-galaxyline') }
-    use { 'glepnir/galaxyline.nvim', config = function() require'nv-galaxyline' end } -- inline fn alternative
+    use { 'glepnir/galaxyline.nvim' }
+    -- use { 'glepnir/galaxyline.nvim', config = function() require'nv-galaxyline' end } -- inline fn alternative
     use 'romgrk/barbar.nvim'
 
     -- Telescope
@@ -134,13 +134,14 @@ return require('packer').startup(function(use)
     use 'windwp/nvim-autopairs'
     use 'mbbill/undotree'
 	use 'nacro90/numb.nvim'
+	use 'turbio/bracey.vim'
 
     -- Database
     use 'tpope/vim-dadbod'
     use 'kristijanhusak/vim-dadbod-ui'
     use 'kristijanhusak/vim-dadbod-completion'
 
-    -- Documentation Generator 
+    -- Documentation Generator
     use {'kkoomen/vim-doge', run = ':call doge#install()'}
 
     -- TODO put this back when stable for indent lines
