@@ -65,7 +65,7 @@ return require('packer').startup(function(use)
     -- Telescope
     use 'nvim-lua/popup.nvim'
     use 'nvim-lua/plenary.nvim'
-    use 'jameswalmsley/telescope.nvim'
+    use 'nvim-telescope/telescope.nvim'
     use 'nvim-telescope/telescope-media-files.nvim'
     use 'nvim-telescope/telescope-fzy-native.nvim'
     use 'nvim-telescope/telescope-fzf-writer.nvim'
