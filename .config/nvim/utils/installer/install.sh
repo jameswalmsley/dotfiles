@@ -15,7 +15,7 @@ installnodeubuntu() {
 }
 
 moveoldnvim() {
-	echo "Not installing NVCode"
+	echo "Not installing LunarVim"
 	echo "Please move your ~/.config/nvim folder before installing"
 	exit
 }
@@ -25,11 +25,17 @@ installnodearch() {
 	sudo pacman -S npm
 }
 
+installnodefedora() {
+    sudo dnf install -y nodejs 
+    sudo dnf install -y npm
+}
+
 installnode() {
 	echo "Installing node..."
 	[ "$(uname)" == "Darwin" ] && installnodemac
 	[ -n "$(uname -a | grep Ubuntu)" ] && installnodeubuntu
 	[ -f "/etc/arch-release" ] && installnodearch
+	[ -f "/etc/fedora-release" ] && installnodefedora
 	[ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ] && echo "Windows not currently supported"
 	sudo npm i -g neovim
 }
@@ -48,11 +54,16 @@ installpiponarch() {
 	pacman -S python-pip
 }
 
+installpiponfedora() {
+	sudo dnf install -y pip >/dev/nul
+}
+
 installpip() {
 	echo "Installing pip..."
 	[ "$(uname)" == "Darwin" ] && installpiponmac
 	[ -n "$(uname -a | grep Ubuntu)" ] && installpiponubuntu
 	[ -f "/etc/arch-release" ] && installpiponarch
+	[ -f "/etc/fedora-release" ] && installpiponfedora
 	[ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ] && echo "Windows not currently supported"
 }
 
@@ -66,13 +77,13 @@ installpacker() {
 }
 
 cloneconfig() {
-	echo "Cloning NVCode configuration"
-	git clone https://github.com/ChristianChiarulli/nvcode.git ~/.config/nvim
-	mv $HOME/.config/nvim/init.lua $HOME/.config/nvim/init.lua.tmp
-	mv $HOME/.config/nvim/utils/init.lua $HOME/.config/nvim/init.lua
-	# nvim -u $HOME/.config/nvim/init.lua --headless --noplugin +PackerInstall +qall
-	rm $HOME/.config/nvim/init.lua
-	mv $HOME/.config/nvim/init.lua.tmp $HOME/.config/nvim/init.lua
+	echo "Cloning LunarVim configuration"
+	git clone https://github.com/ChristianChiarulli/lunarvim.git ~/.config/nvim
+	# mv $HOME/.config/nvim/init.lua $HOME/.config/nvim/init.lua.tmp
+	# mv $HOME/.config/nvim/utils/init.lua $HOME/.config/nvim/init.lua
+	nvim -u $HOME/.config/nvim/init.lua +PackerInstall
+	# rm $HOME/.config/nvim/init.lua
+	# mv $HOME/.config/nvim/init.lua.tmp $HOME/.config/nvim/init.lua
 }
 
 asktoinstallnode() {
@@ -115,15 +126,22 @@ installonarch() {
 	npm install -g tree-sitter-cli
 }
 
+installonfedora() {
+    sudo dnf groupinstall "X Software Development"
+    sudo dnf install -y fzf ripgrep ranger
+    pip3 install wheel ueberzug
+}
+
 installextrapackages() {
 	[ "$(uname)" == "Darwin" ] && installonmac
 	[ -n "$(uname -a | grep Ubuntu)" ] && installonubuntu
 	[ -f "/etc/arch-release" ] && installonarch
+	[ -f "/etc/fedora-release" ] && installonfedora
 	[ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ] && echo "Windows not currently supported"
 }
 
 # Welcome
-echo 'Installing NVCode'
+echo 'Installing LunarVim'
 
 # move old nvim directory if it exists
 [ -d "$HOME/.config/nvim" ] && moveoldnvim
@@ -143,17 +161,17 @@ else
 	installpacker
 fi
 
-if [ -a "$HOME/.config/nvcode/init.lua" ]; then
+if [ -a "$HOME/.config/nvim/init.lua" ]; then
 	echo 'nvcode already installed'
 else
 	# clone config down
 	cloneconfig
-	echo 'export PATH=$HOME/.config/nvcode/utils/bin:$PATH' >>~/.zshrc
-	echo 'export PATH=$HOME/.config/nvcode/utils/bin:$PATH' >>~/.bashrc
+	# echo 'export PATH=$HOME/.config/nvim/utils/bin:$PATH' >>~/.zshrc
+	# echo 'export PATH=$HOME/.config/nvcode/utils/bin:$PATH' >>~/.bashrc
 fi
 
 echo "I recommend you also install and activate a font from here: https://github.com/ryanoasis/nerd-fonts"
 
-echo "I also recommend you add 'set preview_images_method ueberzug' to ~/.config/ranger/rc.conf"
+# echo "I also recommend you add 'set preview_images_method ueberzug' to ~/.config/ranger/rc.conf"
 
-echo 'export PATH=/home/$USER/.config/nvcode/utils/bin:$PATH appending to zshrc/bashrc'
+# echo 'export PATH=/home/$USER/.config/nvcode/utils/bin:$PATH appending to zshrc/bashrc'
