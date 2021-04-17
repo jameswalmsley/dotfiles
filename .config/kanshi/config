@@ -23,3 +23,12 @@ profile Carbon_X1_Docked {
 	exec swaymsg output \"Goldstar Company Ltd LG Ultra HD 0x0000661B\" scale_filter linear
 }
 
+# Home Office with Carbon - Laptop + 4K.
+profile Carbon_X1_Docked {
+	output "Unknown 0x2036 0x00000000" mode 2560x1440 position 0,0
+	output "Goldstar Company Ltd LG Ultra HD 0x0000661B" mode 3840x2160 position 1920,0 scale 1.5
+
+	exec swaymsg output \"Unknown 0x2036 0x00000000\" scale 1.333
+	exec swaymsg output \"Unknown 0x2036 0x00000000\" scale_filter linear
+	exec swaymsg output \"Goldstar Company Ltd LG Ultra HD 0x0000661B\" scale_filter linear
+}
