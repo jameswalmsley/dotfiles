@@ -356,6 +356,9 @@ exec_always {
     #gsettings set $gnome-schema cursor-theme 'Yaru-dark'
 }
 
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec hash dbus-update-activation-environment 2>/dev/null && \
+     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec waybar
 exec nm-applet
 exec powerline-daemon
