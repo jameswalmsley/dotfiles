@@ -163,7 +163,7 @@ install_nvcode() {
 	echo installing
 	echo "Cloning NVCode configuration"
 	${global_cmd} mkdir -p ${NVCODE_CONFIG_DIR}
-	${global_cmd} git clone https://github.com/jameswalmsley/nvcode.git -b global-install ${NVCODE_CONFIG_DIR}
+	${global_cmd} git clone https://github.com/jameswalmsley/nvcode.git -b master ${NVCODE_CONFIG_DIR}
 	if [ -v GLOBAL ]; then
 		update_nv_script
 		${global_cmd} touch ${NVCODE_BASE}/.packer_sync
