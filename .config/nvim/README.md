@@ -66,7 +66,7 @@ sudo rm -r neovim
 ```
 or if you are on Arch you can get it from the AUR
 ```bash
-yay -S neovim-nightly-git
+yay -S neovim-git
 ```
 
 
