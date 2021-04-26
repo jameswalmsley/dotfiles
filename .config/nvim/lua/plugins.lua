@@ -88,7 +88,7 @@ return require("packer").startup(
         use {"romgrk/barbar.nvim", opt = true}
 
         -- James
-        use {"jameswalmsley/phabrik", opt = true}
+        use {"jameswalmsley/phabrik"}
         use 'jeffkreeftmeijer/vim-numbertoggle'
 
         require_plugin("nvim-lspconfig")
