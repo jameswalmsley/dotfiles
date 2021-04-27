@@ -77,13 +77,13 @@ yay -S neovim-git
 - Ubuntu
 
     ```bash
-    sudo apt install xsel
+    sudo apt install xclip
     ```
 
 - Arch
 
     ```bash
-    sudo pacman -S xsel
+    sudo pacman -S xclip
     ```
 
 - WSL2
