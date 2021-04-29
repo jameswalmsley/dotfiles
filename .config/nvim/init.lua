@@ -22,9 +22,9 @@ require('lv-nvimtree')
 require('lv-treesitter')
 require('lv-autopairs')
 require('lv-rnvimr')
+require('lv-which-key')
 
--- Which Key (Hope to replace with Lua plugin someday)
-vim.cmd('source ' .. lv_base .. '/vimscript/lv-whichkey/init.vim')
+-- TODO is there a way to do this without vimscript
 vim.cmd('source ' .. lv_base .. '/vimscript/functions.vim')
 
 -- LSP
@@ -53,7 +53,5 @@ require('lsp.svelte-ls')
 require('lsp.tailwindcss-ls')
 require('lsp.ruby-ls')
 require('lsp.kotlin-ls')
-require('lsp.lua-ls')
-
-require('packer').install()
+require('lsp.vue-ls')
 
