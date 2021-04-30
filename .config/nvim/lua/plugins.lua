@@ -9,7 +9,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 --- Check if a file or directory exists in this path
-local function require_plugin(plugin)
+local function require_plugin(plugin)    
     local plugin_prefix = fn.stdpath("data") .. "/site/pack/packer/opt/"
 
     local plugin_path = plugin_prefix .. plugin .. "/"
@@ -93,7 +93,7 @@ return require("packer").startup(
         use {"jameswalmsley/phabrik"}
         use 'jeffkreeftmeijer/vim-numbertoggle'
         use {"tpope/vim-sleuth"}
-
+        use {"cappyzawa/trim.nvim"}
         use {"phaazon/hop.nvim"}
 
         require_plugin("nvim-lspconfig")
@@ -118,6 +118,8 @@ return require("packer").startup(
         require_plugin("nvcode-color-schemes.vim")
         require_plugin("tokyonight.nvim")
         require_plugin("wind-colors")
+
+
         require_plugin("nvim-web-devicons")
         require_plugin("galaxyline.nvim")
         require_plugin("barbar.nvim")

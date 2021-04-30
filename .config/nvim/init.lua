@@ -24,6 +24,9 @@ require('lv-autopairs')
 require('lv-rnvimr')
 require('lv-which-key')
 
+-- James
+require('lv-trim')
+
 -- TODO is there a way to do this without vimscript
 vim.cmd('source ' .. lv_base .. '/vimscript/functions.vim')
 
@@ -54,4 +57,3 @@ require('lsp.tailwindcss-ls')
 require('lsp.ruby-ls')
 require('lsp.kotlin-ls')
 require('lsp.vue-ls')
-
