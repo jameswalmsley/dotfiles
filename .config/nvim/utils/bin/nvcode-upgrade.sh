@@ -150,11 +150,11 @@ update_nv_script() {
 	${global_cmd} sed -i "s:source.*:source ${NVCODE_CONFIG_DIR}/utils/bin/nvcode-env.sh:g" ${NVCODE_CONFIG_DIR}/utils/bin/nv
 }
 #
-# Upgrade is only used for global installations. 
+# Upgrade is only used for global installations.
 #
 upgrade_nvcode() {
 	echo upgrading
-	cd ${NVCODE_CONFIG_DIR} && sudo git fetch && sudo git reset --hard origin/global-install
+	cd ${NVCODE_CONFIG_DIR} && sudo git fetch && sudo git reset --hard master
 	update_nv_script
 	${global_cmd} touch ${NVCODE_BASE}/.packer_sync
 }
@@ -192,4 +192,3 @@ pip3 list | grep pynvim >/dev/null && echo "pynvim installed, moving on..." || i
 
 # Install nvcode configuration
 [ -d "${NVCODE_CONFIG_DIR}" ] && upgrade_nvcode || install_nvcode
-
