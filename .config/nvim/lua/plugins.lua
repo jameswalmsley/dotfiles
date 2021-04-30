@@ -13,7 +13,7 @@ local function require_plugin(plugin)
     local plugin_prefix = fn.stdpath("data") .. "/site/pack/packer/opt/"
 
     local plugin_path = plugin_prefix .. plugin .. "/"
-    --	print('test '..plugin_path)
+    --  print('test '..plugin_path)
     local ok, err, code = os.rename(plugin_path, plugin_path)
     if not ok then
         if code == 13 then
@@ -21,7 +21,7 @@ local function require_plugin(plugin)
             return true
         end
     end
-    --	print(ok, err, code)
+    --  print(ok, err, code)
     if ok then
         vim.cmd("packadd " .. plugin)
     end
@@ -80,6 +80,7 @@ return require("packer").startup(
         use {"morhetz/gruvbox", opt = true}
         use {"lifepillar/vim-solarized8", opt = true}
         use {"windwp/wind-colors", opt = true}
+        use {"folke/tokyonight.nvim", opt = true}
 
         -- Icons
         use {"kyazdani42/nvim-web-devicons", opt = true}
@@ -91,6 +92,9 @@ return require("packer").startup(
         -- James
         use {"jameswalmsley/phabrik"}
         use 'jeffkreeftmeijer/vim-numbertoggle'
+        use {"tpope/vim-sleuth"}
+
+        use {"phaazon/hop.nvim"}
 
         require_plugin("nvim-lspconfig")
         require_plugin("lspsaga.nvim")
@@ -112,6 +116,8 @@ return require("packer").startup(
         require_plugin("nvim-comment")
         require_plugin("nvim-bqf")
         require_plugin("nvcode-color-schemes.vim")
+        require_plugin("tokyonight.nvim")
+        require_plugin("wind-colors")
         require_plugin("nvim-web-devicons")
         require_plugin("galaxyline.nvim")
         require_plugin("barbar.nvim")
