@@ -203,6 +203,9 @@ bindsym $mod+r mode "resize"
 #        inactive_workspace #32323200 #32323200 #5c5c5c
 #    }
 #}
+bar {
+        swaybar_command waybar
+}
 
 mode "music" {
     bindsym p mode "default"; exec playerctl play-pause
@@ -359,7 +362,6 @@ exec_always {
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec hash dbus-update-activation-environment 2>/dev/null && \
      dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
-exec waybar
 exec nm-applet
 exec powerline-daemon
 exec mako
