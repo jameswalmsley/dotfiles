@@ -44,9 +44,9 @@ return require("packer").startup(
         use {"nvim-lua/popup.nvim", opt = true}
         use {"nvim-lua/plenary.nvim", opt = true}
         use {"nvim-telescope/telescope.nvim", opt = true}
-        use {"nvim-telescope/telescope-fzy-native.nvim", opt = false}
+        use {"nvim-telescope/telescope-fzy-native.nvim", opt = true}
         use {"nvim-telescope/telescope-fzf-writer.nvim", opt = false}
-        use {"nvim-telescope/telescope-dap.nvim", opt = false}
+        use {"nvim-telescope/telescope-dap.nvim", opt = true}
 
         -- Debugging
         use {"mfussenegger/nvim-dap", opt = true}
@@ -97,6 +97,10 @@ return require("packer").startup(
         use {"phaazon/hop.nvim"}
         use {"akinsho/nvim-toggleterm.lua"}
         use {"JRasmusBm/vim-peculiar"}          -- Nicer workflow for g/v commands
+        use {"sindrets/diffview.nvim"}          -- Diff view for any git revision.
+        use {"simrat39/symbols-outline.nvim"}
+        use {"folke/lsp-trouble.nvim"}          -- LSP Diagnostics
+        use { "ray-x/lsp_signature.nvim" }      -- Intellisense signature help.
 
         require_plugin("nvim-lspconfig")
         require_plugin("lspsaga.nvim")
