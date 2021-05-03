@@ -96,6 +96,7 @@ return require("packer").startup(
         use {"cappyzawa/trim.nvim"}
         use {"phaazon/hop.nvim"}
         use {"akinsho/nvim-toggleterm.lua"}
+        use {"JRasmusBm/vim-peculiar"}          -- Nicer workflow for g/v commands
 
         require_plugin("nvim-lspconfig")
         require_plugin("lspsaga.nvim")
