@@ -9,7 +9,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 --- Check if a file or directory exists in this path
-local function require_plugin(plugin)    
+local function require_plugin(plugin)
     local plugin_prefix = fn.stdpath("data") .. "/site/pack/packer/opt/"
 
     local plugin_path = plugin_prefix .. plugin .. "/"
@@ -95,6 +95,7 @@ return require("packer").startup(
         use {"tpope/vim-sleuth"}
         use {"cappyzawa/trim.nvim"}
         use {"phaazon/hop.nvim"}
+        use {"akinsho/nvim-toggleterm.lua"}
 
         require_plugin("nvim-lspconfig")
         require_plugin("lspsaga.nvim")
