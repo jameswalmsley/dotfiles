@@ -44,7 +44,7 @@ return require("packer").startup(
         use {"nvim-lua/popup.nvim", opt = true}
         use {"nvim-lua/plenary.nvim", opt = true}
         use {"nvim-telescope/telescope.nvim", opt = true}
-        use {"nvim-telescope/telescope-fzy-native.nvim", opt = true}
+        use {"nvim-telescope/telescope-fzy-native.nvim", opt = false}
         use {"nvim-telescope/telescope-fzf-writer.nvim", opt = false}
         use {"nvim-telescope/telescope-dap.nvim", opt = true}
 
