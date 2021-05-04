@@ -19,9 +19,9 @@ O.treesitter.ignore_install = {"haskell"}
 O.treesitter.highlight.enabled = true
 
 
-O.clang.diagnostics.virtual_text = false
-O.clang.diagnostics.signs = false
-O.clang.diagnostics.underline = false
+O.clang.diagnostics.virtual_text = true
+O.clang.diagnostics.signs = true
+O.clang.diagnostics.underline = true
 
 -- python
 -- add things like O.python.formatter.yapf.exec_path
