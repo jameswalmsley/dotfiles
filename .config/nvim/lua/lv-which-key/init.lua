@@ -86,13 +86,14 @@ local mappings = {
     g = {
         name = "+Git",
         j = {"<cmd>NextHunk<cr>", "Next Hunk"},
+        B = {"<cmd>BlameLine<cr>", "Blame current line"},
         k = {"<cmd>PrevHunk<cr>", "Prev Hunk"},
         p = {"<cmd>PreviewHunk<cr>", "Preview Hunk"},
         r = {"<cmd>ResetHunk<cr>", "Reset Hunk"},
         R = {"<cmd>ResetBuffer<cr>", "Reset Buffer"},
         s = {"<cmd>StageHunk<cr>", "Stage Hunk"},
         u = {"<cmd>UndoStageHunk<cr>", "Undo Stage Hunk"},
-        o = {"<cmd>Telescope git_status<cr>", "Open changed file"},
+        o = {"<cmd>Telescope git_status<cr>", "Git Status"},
         b = {"<cmd>Telescope git_branches<cr>", "Checkout branch"},
         c = {"<cmd>Telescope git_commits<cr>", "Checkout commit"},
         C = {"<cmd>Telescope git_bcommits<cr>", "Checkout commit(for current file)"},
@@ -114,6 +115,18 @@ local mappings = {
         x = {"<cmd>cclose<cr>", "Close Quickfix"},
         s = {"<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols"},
         S = {"<cmd>Telescope lsp_workspace_symbols<cr>", "Workspace Symbols"}
+    },
+
+    p = {
+        name = "+Phabricator",
+        o = {"<cmd>call phabrik#dashboard()<cr>", "Dashboard"},
+        r = {"<cmd> phabrik#refresh()", "Refresh Page"},
+        c = {"<cmd> phabrik#task_create()", "Create Task"},
+        u = {"<cmd> phabrik#task_update()", "Update Task"},
+        d = {"<cmd> phabrik#diff_abandon()", "Abandon Diff"},
+        a = {"<cmd> phabrik#diff_approve()", "Approve Diff"},
+        p = {"<cmd> phabrik#diff_patch()", "Patch Diff"},
+
     },
 
     s = {
