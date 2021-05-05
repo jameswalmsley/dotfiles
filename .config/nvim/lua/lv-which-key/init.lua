@@ -120,12 +120,12 @@ local mappings = {
     p = {
         name = "+Phabricator",
         o = {"<cmd>call phabrik#dashboard()<cr>", "Dashboard"},
-        r = {"<cmd> phabrik#refresh()", "Refresh Page"},
-        c = {"<cmd> phabrik#task_create()", "Create Task"},
-        u = {"<cmd> phabrik#task_update()", "Update Task"},
-        d = {"<cmd> phabrik#diff_abandon()", "Abandon Diff"},
-        a = {"<cmd> phabrik#diff_approve()", "Approve Diff"},
-        p = {"<cmd> phabrik#diff_patch()", "Patch Diff"},
+        r = {"<cmd>call phabrik#refresh()<cr>", "Refresh Page"},
+        c = {"<cmd>call phabrik#task_create()<cr>", "Create Task"},
+        u = {"<cmd>call phabrik#task_update()<cr>", "Update Task"},
+        d = {"<cmd>call phabrik#diff_abandon()<cr>", "Abandon Diff"},
+        a = {"<cmd>call phabrik#diff_approve()<cr>", "Approve Diff"},
+        p = {"<cmd>call phabrik#diff_patch()<cr>", "Patch Diff"},
 
     },
 
