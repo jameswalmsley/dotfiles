@@ -103,6 +103,7 @@ return require("packer").startup(
         use { "ray-x/lsp_signature.nvim" }      -- Intellisense signature help.
         use {"p00f/nvim-ts-rainbow"}
         use {"vimwiki/vimwiki"}
+        use {"rykka/riv.vim"} -- Restructured text
 
         require_plugin("nvim-lspconfig")
         require_plugin("lspsaga.nvim")

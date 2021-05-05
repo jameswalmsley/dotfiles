@@ -116,6 +116,24 @@ local mappings = {
         s = {"<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols"},
         S = {"<cmd>Telescope lsp_workspace_symbols<cr>", "Workspace Symbols"}
     },
+    m = {
+        name = "+MarkDown/rst",
+        c = {
+            name = "+create",
+            l = {"<cmd>RivCreateLiteralBlock<cr>", "Literal Block"},
+            t = {"<cmd>RivTableCreate", "Table"},
+        },
+
+        s = {
+            name = "+section headers",
+            ["1"] = {"<cmd>RivTitle1<cr>", "Level 1 title"},
+            ["2"] = {"<cmd>RivTitle1<cr>", "Level 2 title"},
+            ["3"] = {"<cmd>RivTitle1<cr>", "Level 3 title"},
+            ["4"] = {"<cmd>RivTitle1<cr>", "Level 4 title"},
+            ["5"] = {"<cmd>RivTitle1<cr>", "Level 5 title"},
+            ["6"] = {"<cmd>RivTitle1<cr>", "Level 6 title"},
+        },
+    },
 
     p = {
         name = "+Phabricator",
@@ -126,7 +144,6 @@ local mappings = {
         d = {"<cmd>call phabrik#diff_abandon()<cr>", "Abandon Diff"},
         a = {"<cmd>call phabrik#diff_approve()<cr>", "Approve Diff"},
         p = {"<cmd>call phabrik#diff_patch()<cr>", "Patch Diff"},
-
     },
 
     s = {
