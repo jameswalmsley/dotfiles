@@ -5,6 +5,13 @@ vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
 
 -- Change the "hint" color to the "orange" color, and make the "error" color bright red
 vim.g.tokyonight_colors = { hint = "orange", error = "#ff0000" }
+require'nvim-treesitter.configs'.setup {
+  rainbow = {
+    enable = true,
+    extended_mode = true, -- Highlight also non-parentheses delimiters, boolean or table: lang -> boolean
+    max_file_lines = 1000, -- Do not enable for files with more than 1000 lines, int
+  }
+}
 
 --[[
 O is the global options object
@@ -20,6 +27,10 @@ O.auto_complete = true
 O.colorscheme = 'tokyonight'
 O.auto_close_tree = 0
 O.wrap_lines = false
+
+-- dashboard 
+-- O.dashboard.custom_header = {""}
+-- O.dashboard.footer = {""}
 
 -- if you don't want all the parsers change this to a table of the ones you want
 O.treesitter.ensure_installed = "all"

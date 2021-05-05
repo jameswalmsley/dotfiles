@@ -62,7 +62,7 @@ return require("packer").startup(
         use {"windwp/nvim-ts-autotag", opt = true}
 
         -- Explorer
-        use "kyazdani42/nvim-tree.lua"
+        use {"kyazdani42/nvim-tree.lua", opt = true}
         -- TODO remove when open on dir is supported by nvimtree
         use "kevinhwang91/rnvimr"
 
@@ -101,6 +101,7 @@ return require("packer").startup(
         use {"simrat39/symbols-outline.nvim"}
         use {"folke/lsp-trouble.nvim"}          -- LSP Diagnostics
         use { "ray-x/lsp_signature.nvim" }      -- Intellisense signature help.
+        use {"p00f/nvim-ts-rainbow"}
 
         require_plugin("nvim-lspconfig")
         require_plugin("lspsaga.nvim")

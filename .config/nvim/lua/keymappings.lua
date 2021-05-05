@@ -9,8 +9,8 @@ vim.cmd('tnoremap <Esc> <C-\\><C-n>')
 vim.cmd([[
   nnoremap <silent> <C-Up>    :resize -2<CR>
   nnoremap <silent> <C-Down>  :resize +2<CR>
-  nnoremap <silent> <C-Left>  :vertical resize -2<CR>
-  nnoremap <silent> <C-Right> :vertical resize +2<CR>
+  nnoremap <silent> <C-Left>  :vertical resize +2<CR>
+  nnoremap <silent> <C-Right> :vertical resize -2<CR>
 ]])
 
 -- better indenting

@@ -4,11 +4,11 @@ require('environment')
 require('plugins')
 require('lv-globals')
 require('lv-utils')
-if io.open(CONFIG_PATH .. '/lv-settings.lua', 'r') then
-	vim.cmd('luafile ~/.config/nvim/lv-settings.lua')
-end
 require('lv-autocommands')
 require('settings')
+if io.open(CONFIG_PATH .. '/lv-settings.lua', 'r') then
+	vim.cmd('luafile ' .. CONFIG_PATH .. '/lv-settings.lua')
+end
 require('keymappings')
 require('colorscheme')
 require('lv-galaxyline')
