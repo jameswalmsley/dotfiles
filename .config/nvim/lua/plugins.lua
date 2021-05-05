@@ -102,6 +102,7 @@ return require("packer").startup(
         use {"folke/lsp-trouble.nvim"}          -- LSP Diagnostics
         use { "ray-x/lsp_signature.nvim" }      -- Intellisense signature help.
         use {"p00f/nvim-ts-rainbow"}
+        use {"vimwiki/vimwiki"}
 
         require_plugin("nvim-lspconfig")
         require_plugin("lspsaga.nvim")
