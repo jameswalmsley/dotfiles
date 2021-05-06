@@ -144,6 +144,7 @@ local mappings = {
         d = {"<cmd>call phabrik#diff_abandon()<cr>", "Abandon Diff"},
         a = {"<cmd>call phabrik#diff_approve()<cr>", "Approve Diff"},
         p = {"<cmd>call phabrik#diff_patch()<cr>", "Patch Diff"},
+
     },
 
     s = {
