@@ -127,11 +127,11 @@ local mappings = {
         s = {
             name = "+section headers",
             ["1"] = {"<cmd>RivTitle1<cr>", "Level 1 title"},
-            ["2"] = {"<cmd>RivTitle1<cr>", "Level 2 title"},
-            ["3"] = {"<cmd>RivTitle1<cr>", "Level 3 title"},
-            ["4"] = {"<cmd>RivTitle1<cr>", "Level 4 title"},
-            ["5"] = {"<cmd>RivTitle1<cr>", "Level 5 title"},
-            ["6"] = {"<cmd>RivTitle1<cr>", "Level 6 title"},
+            ["2"] = {"<cmd>RivTitle2<cr>", "Level 2 title"},
+            ["3"] = {"<cmd>RivTitle3<cr>", "Level 3 title"},
+            ["4"] = {"<cmd>RivTitle4<cr>", "Level 4 title"},
+            ["5"] = {"<cmd>RivTitle5<cr>", "Level 5 title"},
+            ["6"] = {"<cmd>RivTitle6<cr>", "Level 6 title"},
         },
     },
 
