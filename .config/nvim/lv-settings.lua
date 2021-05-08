@@ -27,9 +27,9 @@ O.auto_complete = true
 O.colorscheme = 'tokyonight'
 O.auto_close_tree = 0
 O.wrap_lines = false
-O.timeoutlen = 100
+O.timeoutlen = 500
 
--- dashboard 
+-- dashboard
 -- O.dashboard.custom_header = {""}
 -- O.dashboard.footer = {""}
 
