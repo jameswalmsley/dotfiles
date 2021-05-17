@@ -208,7 +208,7 @@ bar {
 }
 
 mode "music" {
-    bindsym p mode "default"; exec playerctl play-pause
+    bindsym p mode "default"; exec ~/.config/sway/scripts/music-toggle.sh
     bindsym comma exec playerctl previous
     bindsym period exec playerctl next
     bindsym Return mode "default"
@@ -216,7 +216,7 @@ mode "music" {
 }
 
 bindsym $mod+m mode "music"; workspace spotify
-bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioPlay exec ~/.config/sway/scripts/music-toggle.sh
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
@@ -258,8 +258,8 @@ bindsym $mod+Alt+$left move workspace to output left
 
 bindsym $mod+l exec swaylock
 
-bindsym XF86MonBrightnessUp exec lightctl raise
-bindsym XF86MonBrightnessDown exec lightctl lower
+bindsym XF86MonBrightnessUp exec light -A 5
+bindsym XF86MonBrightnessDown exec light -U 5
 
 set $volumectl  ~/.config/sway/scripts/volumectl.sh
 
