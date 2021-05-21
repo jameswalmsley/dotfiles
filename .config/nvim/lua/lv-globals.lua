@@ -59,7 +59,11 @@ O = {
         diagnostics = {virtual_text = {spacing = 0, prefix = ""}, signs = true, underline = true}
     },
     tailwindls = {filetypes = {'html', 'css', 'scss', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact'}},
-    clang = {diagnostics = {virtual_text = {spacing = 0, prefix = ""}, signs = true, underline = true}},
+    clang = {
+        cross_file_rename = true,
+        header_insertion = 'never',
+        diagnostics = {virtual_text = {spacing = 0, prefix = ""}, signs = true, underline = true}
+    },
 	ruby = {
 		diagnostics = {virtualtext = {spacing = 0, prefix = ""}, signs = true, underline = true},
 		filetypes = {'rb', 'erb', 'rakefile'}

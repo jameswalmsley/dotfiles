@@ -108,13 +108,14 @@ local mappings = {
         i = {"<cmd>LspInfo<cr>", "Info"},
         l = {"<cmd>Lspsaga lsp_finder<cr>", "LSP Finder"},
         L = {"<cmd>Lspsaga show_line_diagnostics<cr>", "Line Diagnostics"},
+        o = {"<cmd>SymbolsOutline<cr>", "Symbol Outline"},
         p = {"<cmd>Lspsaga preview_definition<cr>", "Preview Definition"},
         q = {"<cmd>Telescope quickfix<cr>", "Quickfix"},
         r = {"<cmd>Lspsaga rename<cr>", "Rename"},
         t = {"<cmd>LspTypeDefinition<cr>", "Type Definition"},
         x = {"<cmd>cclose<cr>", "Close Quickfix"},
-        s = {"<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols"},
-        S = {"<cmd>Telescope lsp_workspace_symbols<cr>", "Workspace Symbols"}
+        S = {"<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols"},
+        s = {"<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Workspace Symbols"}
     },
     m = {
         name = "+MarkDown/rst",
