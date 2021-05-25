@@ -60,6 +60,7 @@ return require("packer").startup(
         -- Treesitter
         use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
         use {"windwp/nvim-ts-autotag", opt = true}
+        use {"nvim-treesitter/nvim-treesitter-textobjects"}
 
         -- Explorer
         use {"kyazdani42/nvim-tree.lua", opt = true}
