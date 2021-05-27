@@ -101,7 +101,9 @@ end
 local lsp_config = {}
 
 function lsp_config.common_on_attach(client, bufnr)
-    documentHighlight(client, bufnr)
+    if O.document_highlight then
+        documentHighlight(client, bufnr)
+    end
     require "lsp_signature".on_attach()
 end
 

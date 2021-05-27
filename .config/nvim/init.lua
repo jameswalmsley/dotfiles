@@ -3,16 +3,16 @@ require('environment')
 
 require('plugins')
 require('lv-globals')
+if io.open(CONFIG_PATH .. '/lv-settings.lua', 'r') then
+	vim.cmd('luafile ' .. CONFIG_PATH .. '/lv-settings.lua')
+end
 require('settings')
 require('plugins')
 require('lv-utils')
 require('lv-autocommands')
-if io.open(CONFIG_PATH .. '/lv-settings.lua', 'r') then
-	vim.cmd('luafile ' .. CONFIG_PATH .. '/lv-settings.lua')
-end
 require('keymappings')
 require('lv-nvimtree') -- This plugin must be required somewhere before colorscheme.  Placing it after will break navigation keymappings
-require('colorscheme') -- This plugin must be required somewhere after nvimtree. Placing it before will break navigation keymappings 
+require('colorscheme') -- This plugin must be required somewhere after nvimtree. Placing it before will break navigation keymappings
 require('lv-galaxyline')
 require('lv-comment')
 require('lv-compe')
@@ -29,7 +29,7 @@ require('lv-which-key')
 require('lv-trim')
 
 -- TODO is there a way to do this without vimscript
-vim.cmd('source ' .. lv_base .. '/vimscript/functions.vim')
+vim.cmd('source ' .. CONFIG_PATH .. '/vimscript/functions.vim')
 
 -- LSP
 require('lsp')
@@ -60,4 +60,5 @@ require('lsp.terraform-ls')
 require('lsp.vim-ls')
 require('lsp.vue-ls')
 require('lsp.yaml-ls')
+require('lsp.elixir-ls')
 

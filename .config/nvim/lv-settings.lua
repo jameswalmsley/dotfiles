@@ -28,6 +28,7 @@ O.colorscheme = 'tokyonight'
 O.auto_close_tree = 0
 O.wrap_lines = false
 O.timeoutlen = 500
+O.document_highlight = true
 
 -- dashboard
 -- O.dashboard.custom_header = {""}
@@ -74,4 +75,10 @@ O.json.autoformat = true
 
 -- ruby
 O.ruby.autoformat = true
+
+-- go
+O.go.autoformat = true
 -- create custom autocommand field (This would be easy with lua)
+
+-- Turn off relative_numbers
+-- O.relative_number = false

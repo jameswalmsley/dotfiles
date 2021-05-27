@@ -104,6 +104,7 @@ return require("packer").startup(
         use { "ray-x/lsp_signature.nvim" }      -- Intellisense signature help.
         use {"p00f/nvim-ts-rainbow"}
         use {"rykka/riv.vim"} -- Restructured text
+        use {"glacambre/firenvim", run = ":call firenvim#install()"}
 
         require_plugin("nvim-lspconfig")
         require_plugin("lspsaga.nvim")
