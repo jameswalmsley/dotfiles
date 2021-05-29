@@ -1,10 +1,8 @@
 local actions = require('telescope.actions')
+local trouble = require("trouble.providers.telescope")
 -- Global remapping
 ------------------------------
 -- '--color=never',
-require('telescope').load_extension('fzy_native')
-require('telescope').load_extension('fzf_writer')
-
 require('telescope').setup {
     defaults = {
         find_command = {'rg', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case'},
@@ -14,6 +12,7 @@ require('telescope').setup {
         selection_caret = " ",
         entry_prefix = "  ",
         initial_mode = "insert",
+        -- initial_mode = "insert",
         selection_strategy = "reset",
         sorting_strategy = "descending",
         layout_strategy = "horizontal",
@@ -40,13 +39,15 @@ require('telescope').setup {
         buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker,
         mappings = {
             i = {
+                ["<C-c>"] = actions.close,
                 ["<C-j>"] = actions.move_selection_next,
                 ["<C-k>"] = actions.move_selection_previous,
+                ["<c-t>"] = trouble.open_with_trouble,
                 ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
                 -- To disable a keymap, put [map] = false
                 -- So, to not map "<C-n>", just put
                 -- ["<c-x>"] = false,
-                ["<esc>"] = actions.close,
+                -- ["<esc>"] = actions.close,
 
                 -- Otherwise, just set the mapping to the function that you want it to be.
                 -- ["<C-i>"] = actions.select_horizontal,
@@ -60,16 +61,14 @@ require('telescope').setup {
             n = {
                 ["<C-j>"] = actions.move_selection_next,
                 ["<C-k>"] = actions.move_selection_previous,
-                ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
+                ["<c-t>"] = trouble.open_with_trouble,
+                ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist
                 -- ["<C-i>"] = my_cool_custom_action,
             }
         }
     },
     extensions = {
-        fzy_native = {
-            override_generic_sorter = false,
-            override_file_sorter = true,
-        },
+        fzy_native = {override_generic_sorter = false, override_file_sorter = true},
         fzf_writer = {
             minimum_grep_characters = 2,
             minimum_files_characters = 1,
@@ -77,7 +76,9 @@ require('telescope').setup {
             -- Disabled by default.
             -- Will probably slow down some aspects of the sorter, but can make color highlights.
             -- I will work on this more later.
-            use_highlighter = true,
+            use_highlighter = true
         }
     }
 }
+
+require'telescope'.load_extension('project')
