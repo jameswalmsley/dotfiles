@@ -16,7 +16,7 @@ require'nvim-treesitter.configs'.setup {
       },
     -- indent = {enable = true, disable = {"python", "html", "javascript"}},
     -- TODO seems to be broken
-    indent = {enable = {"javascriptreact"}},
+    indent = {enable = true},
     autotag = {enable = true},
     textobjects = {
 	select = {
