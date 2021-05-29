@@ -107,6 +107,7 @@ return require("packer").startup(function(use)
     use {"p00f/nvim-ts-rainbow"}
     use {"rykka/riv.vim"}
     use {"glacambre/firenvim", run = ":call firenvim#install()"}
+    use {"tpope/vim-sleuth"}
 
     require_plugin("nvim-lspconfig")
     require_plugin("lspsaga.nvim")
