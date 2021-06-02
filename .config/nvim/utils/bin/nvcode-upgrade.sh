@@ -154,7 +154,7 @@ update_nv_script() {
 #
 upgrade_nvcode() {
 	echo upgrading
-	cd ${NVCODE_CONFIG_DIR} && sudo git fetch && sudo git reset --hard master
+	cd ${NVCODE_CONFIG_DIR} && sudo git fetch && sudo git reset --hard origin/master
 	update_nv_script
 	${global_cmd} touch ${NVCODE_BASE}/.packer_sync
 }
