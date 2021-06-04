@@ -42,8 +42,8 @@ require('lv-trim')
 
 
 -- TODO is there a way to do this without vimscript
-if io.open(CONFIG_PATH .. 'vimscript/functions.vim', 'r') then
-    vim.cmd('source ' .. CONFIG_PATH .. '/vimscript/functions.vim')
+if io.open(lv_base .. '/vimscript/functions.vim', 'r') then
+    vim.cmd('source ' .. lv_base .. '/vimscript/functions.vim')
 end
 
 -- LSP
