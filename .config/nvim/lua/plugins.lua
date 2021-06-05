@@ -101,7 +101,6 @@ return require("packer").startup(function(use)
     use {"jeffkreeftmeijer/vim-numbertoggle"}
     use {"cappyzawa/trim.nvim"}
     use {"sindrets/diffview.nvim"}          -- Diff view for any git revision.
-    use {"simrat39/symbols-outline.nvim"}
     use {"folke/lsp-trouble.nvim"}          -- LSP Diagnostics
     use { "ray-x/lsp_signature.nvim" }      -- Intellisense signature help.
     use {"p00f/nvim-ts-rainbow"}
