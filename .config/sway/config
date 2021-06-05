@@ -18,7 +18,8 @@ set $right Right
 set $term alacritty
 # Your preferred application launcher
 #set $menu ~/.config/sway/dmenu.sh
-set $menu wofi -f --show=drun,run
+#set $menu wofi -f --show=drun,run
+set $menu ulauncher-toggle
 
 ### Output configuration
 #
@@ -351,6 +352,8 @@ for_window [title="avizo"] border pixel 0
 for_window [title="avizo"] sticky toggle
 no_focus [title="avizo"]<Paste>
 
+for_window [app_id=ulauncher] border none
+
 set $gnome-schema org.gnome.desktop.interface
 
 exec_always {
@@ -378,5 +381,7 @@ exec $keyring
 exec alacritty --command aerc
 exec wl-paste -t text --watch clipman store
 exec wl-paste -p -t text --watch clipman store -P --histpath="~/.local/share/clipman-primary.json"
+exec spotpris2 --auto
+exec ulauncher
 bindsym $mod+Shift+p exec clipman pick -t wofi
 bindsym $mod+p exec clipman --histpath="~/.local/share/clipman-primary.json" pick -t wofi

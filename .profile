@@ -56,9 +56,6 @@ fi
 #
 # Evaluate the go environment.
 #
-set -a
-eval $(go env)
-set +a
 
 export PATH="$GOPATH/bin:$PATH"
 
@@ -71,4 +68,3 @@ if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ] || [ -n "$KITTY_WINDOW_ID" ] || [ -
 fi
 
 
-source "$HOME/.cargo/env"

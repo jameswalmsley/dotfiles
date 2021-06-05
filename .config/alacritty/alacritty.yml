@@ -407,7 +407,7 @@ font:
   #    - --login
   #
 shell:
-  program: /bin/bash
+  program: /usr/bin/fish
   args:
     - --login
 
