@@ -33,8 +33,10 @@ require('lv-zen')
 -- extras
 if O.extras then
     require('lv-numb')
+    require('lv-dial')
     require('lv-hop')
     require('lv-colorizer')
+    require('lv-symbols-outline')
 end
 
 -- James
@@ -42,15 +44,14 @@ require('lv-trim')
 
 
 -- TODO is there a way to do this without vimscript
-if io.open(lv_base .. '/vimscript/functions.vim', 'r') then
-    vim.cmd('source ' .. lv_base .. '/vimscript/functions.vim')
-end
+vim.cmd('source ' .. lv_base .. '/vimscript/functions.vim')
 
 -- LSP
 require('lsp')
 require('lsp.angular-ls')
 require('lsp.bash-ls')
 require('lsp.clangd')
+require('lsp.cmake-ls')
 require('lsp.css-ls')
 require('lsp.dart-ls')
 require('lsp.docker-ls')
