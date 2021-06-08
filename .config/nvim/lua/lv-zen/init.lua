@@ -34,7 +34,7 @@ require("true-zen").setup({
 		shown_signcolumn = "no"
 	},
 	ataraxis = {
-		just_do_it_for_me = false,
+		just_do_it_for_me = true,
 		left_padding = 5,
 		right_padding = 5,
 		top_padding = 1,
@@ -44,7 +44,7 @@ require("true-zen").setup({
 		integration_galaxyline = true,
 		integration_vim_airline = false,
 		integration_vim_powerline = false,
-		integration_tmux = false,
+		integration_tmux = true,
 		integration_express_line = false,
 		integration_gitgutter = false,
 		integration_vim_signify = false,
