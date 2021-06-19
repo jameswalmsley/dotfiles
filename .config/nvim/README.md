@@ -148,7 +148,7 @@ git clone https://github.com/neovim/neovim --depth 1
 cd neovim
 sudo make CMAKE_BUILD_TYPE=Release install
 cd ..
-rm -rf neovim
+sudo rm -r neovim
 ```
 
 or if you are on Arch you can get it from the AUR
@@ -157,6 +157,7 @@ or if you are on Arch you can get it from the AUR
 yay -S neovim-git
 ```
 
+if you are on Gentoo you have to emerge the 9999 neovim version with luajit as the lua single target
 # Getting started
 
 ## Home screen
