@@ -39,8 +39,6 @@ if O.extras then
     require('lv-symbols-outline')
 end
 
--- James
-require('lv-trim')
 
 
 -- TODO is there a way to do this without vimscript

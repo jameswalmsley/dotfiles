@@ -102,7 +102,7 @@ return require("packer").startup(function(use)
     -- James
     use {"jameswalmsley/phabrik"}
     use {"jeffkreeftmeijer/vim-numbertoggle"}
-    use {"cappyzawa/trim.nvim"}
+    use {"axelf4/vim-strip-trailing-whitespace"}
     use {"sindrets/diffview.nvim"}          -- Diff view for any git revision.
     use {"folke/lsp-trouble.nvim"}          -- LSP Diagnostics
     use { "ray-x/lsp_signature.nvim" }      -- Intellisense signature help.
