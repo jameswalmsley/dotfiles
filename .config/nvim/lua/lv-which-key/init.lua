@@ -78,6 +78,7 @@ local mappings = {
     ["f"] = "Find File",
     ["h"] = "No Highlight",
     ["p"] = "Projects",
+    ["b"] = {"<cmd>Telescope buffers<cr>", "Buffers"},
     d = {
         name = "+Diagnostics",
         t = {"<cmd>TroubleToggle<cr>", "trouble"},
