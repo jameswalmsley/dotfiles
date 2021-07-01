@@ -1,11 +1,11 @@
 
 local clangd_flags = {"--background-index"};
 
-if O.clang.cross_file_rename then
+if O.lang.clang.cross_file_rename then
    table.insert(clangd_flags, "--cross-file-rename")
 end
 
-table.insert(clangd_flags, "--header-insertion=" .. O.clang.header_insertion)
+table.insert(clangd_flags, "--header-insertion=" .. O.lang.clang.header_insertion)
 
 require'lspconfig'.clangd.setup {
     cmd = {DATA_PATH .. "/lspinstall/cpp/clangd/bin/clangd", unpack(clangd_flags) },
