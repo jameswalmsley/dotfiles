@@ -1,8 +1,22 @@
-vim.api.nvim_set_keymap('n', '-', ':RnvimrToggle<CR>', {noremap = true, silent = true})
+-- better window movement
+vim.api.nvim_set_keymap('n', '<C-h>', '<C-w>h', {silent = true})
+vim.api.nvim_set_keymap('n', '<C-j>', '<C-w>j', {silent = true})
+vim.api.nvim_set_keymap('n', '<C-k>', '<C-w>k', {silent = true})
+vim.api.nvim_set_keymap('n', '<C-l>', '<C-w>l', {silent = true})
 
 -- TODO fix this
 -- Terminal window navigation
-vim.cmd('tnoremap <Esc> <C-\\><C-n>')
+vim.cmd([[
+  tnoremap <C-h> <C-\><C-N><C-w>h
+  tnoremap <C-j> <C-\><C-N><C-w>j
+  tnoremap <C-k> <C-\><C-N><C-w>k
+  tnoremap <C-l> <C-\><C-N><C-w>l
+  inoremap <C-h> <C-\><C-N><C-w>h
+  inoremap <C-j> <C-\><C-N><C-w>j
+  inoremap <C-k> <C-\><C-N><C-w>k
+  inoremap <C-l> <C-\><C-N><C-w>l
+  tnoremap <Esc> <C-\><C-n>
+]])
 
 -- TODO fix this
 -- resize with arrows
@@ -69,12 +83,3 @@ vim.cmd('vnoremap P "0P')
 
 -- Toggle the QuickFix window
 vim.api.nvim_set_keymap('', '<C-q>', ':call QuickFixToggle()<CR>', {noremap = true, silent = true})
-
-
-
--- nvim-compe key map
-vim.cmd('inoremap <silent><expr> <C-Space> compe#complete()')
-vim.cmd("inoremap <silent><expr> <CR>      compe#confirm('<CR>')")
-vim.cmd("inoremap <silent><expr> <C-e>     compe#close('<C-e>')")
-vim.cmd("inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })")
-vim.cmd("inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })")
