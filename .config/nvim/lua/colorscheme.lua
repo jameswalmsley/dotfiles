@@ -1,2 +1,3 @@
--- TODO is there a lua native way to do this?
+require('lv-tokyonight')
 vim.cmd('colorscheme ' .. O.colorscheme)
+

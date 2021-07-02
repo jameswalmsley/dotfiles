@@ -97,7 +97,7 @@ return require("packer").startup(function(use)
     use {"morhetz/gruvbox", opt = false}
     use {"lifepillar/vim-solarized8", opt = false}
     use {"windwp/wind-colors", opt = false}
-    use {"folke/tokyonight.nvim", opt = false}
+    use {"folke/tokyonight.nvim", opt = false, config = function() require'lv-tokyonight' end }
 
     -- Icons
     use {"kyazdani42/nvim-web-devicons"}
