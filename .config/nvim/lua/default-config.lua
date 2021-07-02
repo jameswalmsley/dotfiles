@@ -5,7 +5,7 @@ CACHE_PATH = vim.fn.stdpath('cache')
 O = {
     auto_close_tree = 0,
     auto_complete = true,
-    colorscheme = 'lunar',
+    colorscheme = 'tokyonight',
     hidden_files = true,
     wrap_lines = false,
     number = true,
@@ -29,45 +29,45 @@ O = {
     database = {save_location = '~/.config/nvcode_db', auto_execute = 1},
 
     plugin = {
-        hop = {active = false},
+        hop = {active = true},
         dial = {active = false},
-        dashboard = {active = false},
-        matchup = {active = false},
-        colorizer = {active = false},
+        dashboard = {active = true},
+        matchup = {active = true},
+        colorizer = {active = true},
         numb = {active = false},
-        zen = {active = false},
-        ts_playground = {active = false},
-        indent_line = {active = false},
+        zen = {active = true},
+        ts_playground = {active = true},
+        indent_line = {active = true},
         ts_context_commentstring = {active = false},
-        symbol_outline = {active = false},
+        symbol_outline = {active = true},
         debug = {active = false},
-        bqf = {active = false},
-        trouble = {active = false},
-        floatterm = {active = false},
+        bqf = {active = true},
+        trouble = {active = true},
+        floatterm = {active = true},
         spectre = {active = false},
         lsp_rooter = {active = false},
         markdown_preview = {active = false},
         codi = {active = false},
-        telescope_fzy = {active = false},
-        sanegx = {active = false},
+        telescope_fzy = {active = true},
+        sanegx = {active = true},
         ranger = {active = false},
         todo_comments = {active = false},
-        lsp_colors = {active = false},
-        git_blame = {active = false},
+        lsp_colors = {active = true},
+        git_blame = {active = true},
         gist = {active = false},
         gitlinker = {active = false},
         lazygit = {active = false},
         octo = {active = false},
         lush = {active = false},
-        diffview = {active = false},
-        bracey = {active = false},
-        telescope_project = {active = false}
+        diffview = {active = true},
+        bracey = {active = true},
+        telescope_project = {active = true}
 
     },
 
     lang = {
         python = {
-            active = false,
+            active = true,
             linter = '',
             -- @usage can be 'yapf', 'black'
             formatter = '',
@@ -89,7 +89,7 @@ O = {
             sdk_path = '/usr/lib/dart/bin/snapshots/analysis_server.dart.snapshot'
         },
         lua = {
-            active = false,
+            active = true,
             -- @usage can be 'lua-format'
             formatter = '',
             autoformat = false,
@@ -100,7 +100,7 @@ O = {
             }
         },
         sh = {
-            active = false,
+            active = true,
             -- @usage can be 'shellcheck'
             linter = '',
             -- @usage can be 'shfmt'
@@ -113,7 +113,7 @@ O = {
             }
         },
         tsserver = {
-            active = false,
+            active = true,
             -- @usage can be 'eslint'
             linter = '',
             -- @usage can be 'prettier'
@@ -126,7 +126,7 @@ O = {
             }
         },
         json = {
-            active = false,
+            active = true,
             -- @usage can be 'prettier'
             formatter = '',
             autoformat = false,
@@ -144,7 +144,7 @@ O = {
             }
         },
         clang = {
-            active = false,
+            active = true,
                 cross_file_rename = true,
                 header_insertion = 'never',
                 diagnostics = {
@@ -162,13 +162,13 @@ O = {
             },
             filetypes = {'rb', 'erb', 'rakefile'}
         },
-        go = {active = false},
-        elixir = {active = false},
-        vim = {active = false},
-        yaml = {active = false},
-        terraform = {active = false},
+        go = {active = true},
+        elixir = {active = true},
+        vim = {active = true},
+        yaml = {active = true},
+        terraform = {active = true},
         rust = {
-            active = false,
+            active = true,
             linter = '',
             formatter = '',
             autoformat = false,
@@ -187,11 +187,11 @@ O = {
         emmet = {active = false},
         graphql = {active = false},
         efm = {active = true},
-        docker = {active = false},
-        cmake = {active = false},
+        docker = {active = true},
+        cmake = {active = true},
         java = {active = false},
         css = {
-            active = false,
+            active = true,
 
             formatter = '',
             autoformat = false,
@@ -243,8 +243,9 @@ require('lv-utils').define_augroups({
         }, {
             'BufNewFile', '*',
             'setlocal formatoptions-=c formatoptions-=r formatoptions-=o'
-        }, {'VimLeavePre', '*', 'set title set titleold='},
-        {'FileType', 'qf', 'set nobuflisted'}
+        },
+        --{'VimLeavePre', '*', 'set title set titleold='},
+        --{'FileType', 'qf', 'set nobuflisted'}
     },
     -- _solidity = {
     --     {'BufWinEnter', '.sol', 'setlocal filetype=solidity'}, {'BufRead', '*.sol', 'setlocal filetype=solidity'},

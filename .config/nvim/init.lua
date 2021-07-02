@@ -1,8 +1,8 @@
+require('environment')
 require('default-config')
 if io.open(CONFIG_PATH .. '/lv-config.lua', 'r') then
 	vim.cmd('luafile ' .. CONFIG_PATH .. '/lv-config.lua')
 end
-require('environment')
 require('settings')
 require('plugins')
 require('colorscheme')
@@ -10,7 +10,6 @@ require('lv-utils')
 require('keymappings')
 require('lv-galaxyline')
 require('lv-treesitter')
-require('lv-autopairs')
 require('lv-which-key')
 
 -- LSP

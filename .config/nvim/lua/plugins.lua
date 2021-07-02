@@ -47,7 +47,6 @@ return require("packer").startup(function(use)
     -- Autocomplete
     use {
         "hrsh7th/nvim-compe",
-        event = "InsertEnter",
         config = function()
             require("lv-compe").config()
         end
@@ -80,7 +79,9 @@ return require("packer").startup(function(use)
     use {"folke/which-key.nvim"}
 
     -- Autopairs
-    use {"windwp/nvim-autopairs"}
+    use {"windwp/nvim-autopairs",
+        config = function() require'lv-autopairs' end
+    }
 
     -- Comments
     use {
@@ -93,9 +94,10 @@ return require("packer").startup(function(use)
 
     -- Color
     use {"christianchiarulli/nvcode-color-schemes.vim", opt = true}
-    use {"morhetz/gruvbox", opt = true}
-    use {"lifepillar/vim-solarized8", opt = true}
-    use {"windwp/wind-colors", opt = true}
+    use {"morhetz/gruvbox", opt = false}
+    use {"lifepillar/vim-solarized8", opt = false}
+    use {"windwp/wind-colors", opt = false}
+    use {"folke/tokyonight.nvim", opt = false}
 
     -- Icons
     use {"kyazdani42/nvim-web-devicons"}
