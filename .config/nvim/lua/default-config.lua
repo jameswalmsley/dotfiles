@@ -17,6 +17,7 @@ O = {
     extras = false,
     ignore_case = true,
     smart_case = true,
+    lushmode = false,
 
     -- @usage pass a table with your desired languages
     treesitter = {
@@ -61,13 +62,12 @@ O = {
         lush = {active = false},
         diffview = {active = true},
         bracey = {active = true},
-        telescope_project = {active = true}
-
+        telescope_project = {active = true},
+        dap_install = {active = true}
     },
 
     lang = {
         python = {
-            active = true,
             linter = '',
             -- @usage can be 'yapf', 'black'
             formatter = '',
@@ -85,11 +85,9 @@ O = {
             }
         },
         dart = {
-            active = false,
             sdk_path = '/usr/lib/dart/bin/snapshots/analysis_server.dart.snapshot'
         },
         lua = {
-            active = true,
             -- @usage can be 'lua-format'
             formatter = '',
             autoformat = false,
@@ -100,7 +98,6 @@ O = {
             }
         },
         sh = {
-            active = true,
             -- @usage can be 'shellcheck'
             linter = '',
             -- @usage can be 'shfmt'
@@ -113,7 +110,6 @@ O = {
             }
         },
         tsserver = {
-            active = true,
             -- @usage can be 'eslint'
             linter = '',
             -- @usage can be 'prettier'
@@ -126,7 +122,6 @@ O = {
             }
         },
         json = {
-            active = true,
             -- @usage can be 'prettier'
             formatter = '',
             autoformat = false,
@@ -137,24 +132,21 @@ O = {
             }
         },
         tailwindcss = {
-            active = false,
             filetypes = {
                 'html', 'css', 'scss', 'javascript', 'javascriptreact',
                 'typescript', 'typescriptreact'
             }
         },
         clang = {
-            active = true,
-                cross_file_rename = true,
-                header_insertion = 'never',
-                diagnostics = {
+            diagnostics = {
                 virtual_text = {spacing = 0, prefix = ""},
                 signs = true,
                 underline = true
-            }
+            },
+            cross_file_rename = true,
+            header_insertion = 'never'
         },
         ruby = {
-            active = false,
             diagnostics = {
                 virtualtext = {spacing = 0, prefix = ""},
                 signs = true,
@@ -162,13 +154,12 @@ O = {
             },
             filetypes = {'rb', 'erb', 'rakefile'}
         },
-        go = {active = true},
-        elixir = {active = true},
-        vim = {active = true},
-        yaml = {active = true},
-        terraform = {active = true},
+        go = {},
+        elixir = {},
+        vim = {},
+        yaml = {},
+        terraform = {},
         rust = {
-            active = true,
             linter = '',
             formatter = '',
             autoformat = false,
@@ -178,21 +169,19 @@ O = {
                 underline = true
             }
         },
-        svelte = {active = false},
-        php = {active = false},
-        latex = {active = false},
-        kotlin = {active = false},
-        html = {active = false},
-        elm = {active = false},
-        emmet = {active = false},
-        graphql = {active = false},
-        efm = {active = true},
-        docker = {active = true},
-        cmake = {active = true},
-        java = {active = false},
+        svelte = {},
+        php = {},
+        latex = {},
+        kotlin = {},
+        html = {},
+        elm = {},
+        emmet = {active = true},
+        graphql = {},
+        efm = {},
+        docker = {},
+        cmake = {},
+        java = {},
         css = {
-            active = true,
-
             formatter = '',
             autoformat = false,
             virtual_text = true

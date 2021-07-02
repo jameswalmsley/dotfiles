@@ -1,3 +1,3 @@
 require('lv-tokyonight')
-vim.cmd('colorscheme ' .. O.colorscheme)
-
+vim.g.colors_name = O.colorscheme
+vim.g.syntax = true

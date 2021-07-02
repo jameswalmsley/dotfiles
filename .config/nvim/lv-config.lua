@@ -17,6 +17,7 @@ O.extras = true
 O.leader_key = ' '
 O.ignore_case = true
 O.smart_case = true
+O.lushmode = false
 
 -- After changing plugin config it is recommended to run :PackerCompile
 O.plugin.hop.active = true
@@ -50,7 +51,6 @@ O.lang.clang.diagnostics.underline = true
 -- add things like O.python.formatter.isort.exec_path
 O.lang.python.formatter = 'yapf'
 -- O.python.linter = 'flake8'
-O.lang.python.active = true
 O.lang.python.isort = true
 O.lang.python.autoformat = true
 O.lang.python.diagnostics.virtual_text = true
@@ -60,9 +60,9 @@ O.lang.python.analysis.type_checking = "off"
 O.lang.python.analysis.auto_search_paths = true
 O.lang.python.analysis.use_library_code_types = true
 
+
 -- lua
 -- TODO look into stylua
-O.lang.lua.active = true
 O.lang.lua.formatter = 'lua-format'
 -- O.lua.formatter = 'lua-format'
 O.lang.lua.autoformat = false
@@ -73,7 +73,6 @@ O.lang.tsserver.linter = nil
 O.lang.tsserver.autoformat = true
 
 -- json
-O.lang.json.active = true
 O.lang.json.autoformat = true
 
 -- ruby
