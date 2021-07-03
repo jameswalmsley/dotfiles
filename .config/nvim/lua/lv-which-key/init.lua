@@ -202,6 +202,7 @@ local mappings = {
         k = {"<cmd>Lspsaga diagnostic_jump_next<cr>", "Next Diagnostic"},
         l = {"<cmd>Lspsaga lsp_finder<cr>", "LSP Finder"},
         L = {"<cmd>Lspsaga show_line_diagnostics<cr>", "Line Diagnostics"},
+        o = {"<cmd>SymbolsOutline<cr>", "Symbols Outline"},
         p = {"<cmd>Lspsaga preview_definition<cr>", "Preview Definition"},
         q = {"<cmd>Telescope quickfix<cr>", "Quickfix"},
         r = {"<cmd>Lspsaga rename<cr>", "Rename"},

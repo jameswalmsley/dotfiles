@@ -18,6 +18,7 @@ O = {
     ignore_case = true,
     smart_case = true,
     lushmode = false,
+    leader_key = "space";
 
     -- @usage pass a table with your desired languages
     treesitter = {
@@ -142,7 +143,7 @@ O = {
             diagnostics = {
                 virtual_text = {spacing = 0, prefix = ""},
                 signs = true,
-                underline = true
+                underline = true,
             },
             cross_file_rename = true,
             header_insertion = 'never'
@@ -186,7 +187,8 @@ O = {
             formatter = '',
             autoformat = false,
             virtual_text = true
-        }
+        },
+        zig = {}
 
     },
 
