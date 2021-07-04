@@ -50,6 +50,10 @@ vim.api.nvim_set_keymap('i', '<A-k>', '<Esc>:m .-2<CR>==gi', {noremap = true, si
 vim.api.nvim_set_keymap('x', '<A-j>', ':m \'>+1<CR>gv-gv', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('x', '<A-k>', ':m \'<-2<CR>gv-gv', {noremap = true, silent = true})
 
+-- QuickFix
+vim.api.nvim_set_keymap('n', ']q', ':cnext<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '[q', ':cprev<CR>', {noremap = true, silent = true})
+
 -- Remove search highlight when pressing escape in normal mode.
 vim.api.nvim_set_keymap('n', '<esc>', ':noh<return><esc>', { noremap = true, silent = true})
 
