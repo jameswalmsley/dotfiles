@@ -27,12 +27,12 @@ done
 # set positional arguments in their proper place
 eval set -- "$PARAMS"
 
-source nvcode-env.sh
+source lunarvim-env.sh
 
 if [[ -v INFO ]]; then
-	echo "NVCODE_BASE: ${NVCODE_BASE}"
-	echo "NVCODE_USER: ${NVCODE_USER}"
-	echo "NVCODE_USER_CONFIG: ${NVCODE_USER_CONFIG}"
+	echo "LV_BASE: ${LV_BASE}"
+	echo "LV_USER: ${LV_USER}"
+	echo "LV_USER_CONFIG: ${LV_USER_CONFIG}"
 	exit 1
 fi
 
@@ -48,8 +48,8 @@ installnodeubuntu() {
 }
 
 moveoldnvim() {
-	echo "Not installing NVCode"
-	echo "Please move your ${NVCODE_CONFIG_DIR} folder before installing"
+	echo "Not installing lunarvim"
+	echo "Please move your ${LV_CONFIG_DIR} folder before installing"
 	exit
 }
 
@@ -144,41 +144,40 @@ installextrapackages() {
 global_cmd=""
 [ -v GLOBAL ] && global_cmd="sudo"
 
-update_nv_script() {
+update_lv_script() {
+	[ -f "/usr/local/bin/lv" ] && ${global_cmd} rm /usr/local/bin/lv
 	[ -f "/usr/local/bin/nv" ] && ${global_cmd} rm /usr/local/bin/nv
-	${global_cmd} ln -s ${NVCODE_CONFIG_DIR}/utils/bin/nv /usr/local/bin/nv
-	${global_cmd} sed -i "s:source.*:source ${NVCODE_CONFIG_DIR}/utils/bin/nvcode-env.sh:g" ${NVCODE_CONFIG_DIR}/utils/bin/nv
+	${global_cmd} ln -s ${LV_CONFIG_DIR}/utils/bin/lv /usr/local/bin/lv
+	${global_cmd} ln -s ${LV_CONFIG_DIR}/utils/bin/lv /usr/local/bin/nv
+	${global_cmd} sed -i "s:source.*:source ${LV_CONFIG_DIR}/utils/bin/lunarvim-env.sh:g" ${LV_CONFIG_DIR}/utils/bin/lv
 }
 #
 # Upgrade is only used for global installations.
 #
-upgrade_nvcode() {
+upgrade_lunarvim() {
 	echo upgrading
-	cd ${NVCODE_CONFIG_DIR} && sudo git fetch && sudo git reset --hard origin/master
-	update_nv_script
-	${global_cmd} touch ${NVCODE_BASE}/.packer_sync
+	cd ${LV_CONFIG_DIR} && sudo git fetch && sudo git reset --hard origin/master
+	update_lv_script
+	[ -v GLOBAL ] && ${global_cmd} touch ${LV_BASE}/.packer_sync
 }
 
-install_nvcode() {
+install_lunarvim() {
 	echo installing
-	echo "Cloning NVCode configuration"
-	${global_cmd} mkdir -p ${NVCODE_CONFIG_DIR}
-	${global_cmd} git clone https://github.com/jameswalmsley/nvcode.git -b master ${NVCODE_CONFIG_DIR}
-	if [ -v GLOBAL ]; then
-		update_nv_script
-		${global_cmd} touch ${NVCODE_BASE}/.packer_sync
-	fi
+	echo "Cloning lunarvim configuration"
+	${global_cmd} mkdir -p ${LV_CONFIG_DIR}
+	${global_cmd} git clone https://github.com/jameswalmsley/lunarvim.git -b master ${LV_CONFIG_DIR}
+	[ -v GLOBAL ] && update_lv_script
+	${global_cmd} touch ${LV_BASE}/.packer_sync
 }
-
 
 # Welcome
-echo 'Installing NVCode'
+echo 'Installing lunarvim'
 
 if [ -v GLOBAL ]; then
-	echo "Install a global configuration to ${NVCODE_CONFIG_DIR}"
+	echo "Install a global configuration to ${LV_CONFIG_DIR}"
 else
-	echo "Installing a local configuration to ${NVCODE_CONFIG_DIR}"
-	[ -d "${NVCODE_CONFIG_DIR}" ] && moveoldnvim
+	echo "Installing a local configuration to ${LV_CONFIG_DIR}"
+	[ -d "${LV_CONFIG_DIR}" ] && moveoldnvim
 fi
 
 # install pip
@@ -190,5 +189,6 @@ which node >/dev/null && echo "node installed, moving on..." || asktoinstallnode
 # install pynvim
 pip3 list | grep pynvim >/dev/null && echo "pynvim installed, moving on..." || installpynvim
 
-# Install nvcode configuration
-[ -d "${NVCODE_CONFIG_DIR}" ] && upgrade_nvcode || install_nvcode
+# Install lunarvim configuration
+[ -d "${LV_CONFIG_DIR}" ] && upgrade_lunarvim || install_lunarvim
+
