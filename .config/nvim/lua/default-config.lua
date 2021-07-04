@@ -149,7 +149,8 @@ O = {
                 underline = true,
             },
             cross_file_rename = true,
-            header_insertion = 'never'
+            header_insertion = 'never',
+            autoformat = false  -- update this to true for enabling autoformat
         },
         ruby = {
             diagnostics = {
@@ -157,7 +158,7 @@ O = {
                 signs = true,
                 underline = true
             },
-            filetypes = {'rb', 'erb', 'rakefile'}
+            filetypes = {'rb', 'erb', 'rakefile', 'ruby'}
         },
         go = {},
         elixir = {},
@@ -165,6 +166,9 @@ O = {
         yaml = {},
         terraform = {},
         rust = {
+            rust_tools = {
+                active = false
+            },
             linter = '',
             formatter = '',
             autoformat = false,
