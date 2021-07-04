@@ -34,7 +34,9 @@ return require("packer").startup(function(use)
     -- TODO refactor all of this (for now it works, but yes I know it could be wrapped in a simpler function)
     use {"neovim/nvim-lspconfig"}
     use {"glepnir/lspsaga.nvim"}
-    use {"kabouzeid/nvim-lspinstall"}
+    use {"kabouzeid/nvim-lspinstall", 
+        cmd = "LspInstall",
+    }
     -- Telescope
     use {"nvim-lua/popup.nvim"}
     use {"nvim-lua/plenary.nvim"}
@@ -426,9 +428,14 @@ return require("packer").startup(function(use)
     use {"simrat39/rust-tools.nvim", disable = not O.lang.rust.rust_tools.active}
 
     -- Elixir
-    use {"elixir-editors/vim-elixir",
-        ft = {"elixir", "eelixir"},
-        disable = not O.lang.elixir.active
+    use {"elixir-editors/vim-elixir", ft = {"elixir", "eelixir", "euphoria3"}}
+
+    -- Tabnine
+    use {
+        "tzachar/compe-tabnine",
+        run="./install.sh",
+        requires = "hrsh7th/nvim-compe",
+        disable = not O.plugin.tabnine.active
     }
     use {"tpope/vim-sleuth"}
     use {"axelf4/vim-strip-trailing-whitespace"}

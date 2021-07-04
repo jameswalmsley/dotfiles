@@ -25,15 +25,6 @@ vim.api.nvim_set_keymap('n', '<C-Down>', ':resize +2<CR>', {silent = true})
 vim.api.nvim_set_keymap('n', '<C-Left>', ':vertical resize -2<CR>', {silent = true})
 vim.api.nvim_set_keymap('n', '<C-Right>', ':vertical resize +2<CR>', {silent = true})
 
-vim.cmd([[
-  nnoremap <A-j> :m .+1<CR>==
-  nnoremap <A-k> :m .-2<CR>==
-  inoremap <A-j> <Esc>:m .+1<CR>==gi
-  inoremap <A-k> <Esc>:m .-2<CR>==gi
-  vnoremap <A-j> :m '>+1<CR>gv=gv
-  vnoremap <A-k> :m '<-2<CR>gv=gv
-]])
-
 -- better indenting
 vim.api.nvim_set_keymap('v', '<', '<gv', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('v', '>', '>gv', {noremap = true, silent = true})
@@ -51,14 +42,16 @@ vim.api.nvim_set_keymap('n', '<S-TAB>', ':bprevious<CR>', {noremap = true, silen
 vim.api.nvim_set_keymap('x', 'K', ':move \'<-2<CR>gv-gv', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('x', 'J', ':move \'>+1<CR>gv-gv', {noremap = true, silent = true})
 
+-- Move current line / block with Alt-j/k ala vscode.
+vim.api.nvim_set_keymap('n', '<A-j>', ':m .+1<CR>==', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<A-k>', ':m .-2<CR>==', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('i', '<A-j>', '<Esc>:m .+1<CR>==gi', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('i', '<A-k>', '<Esc>:m .-2<CR>==gi', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('x', '<A-j>', ':m \'>+1<CR>gv-gv', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('x', '<A-k>', ':m \'<-2<CR>gv-gv', {noremap = true, silent = true})
+
 -- Remove search highlight when pressing escape in normal mode.
 vim.api.nvim_set_keymap('n', '<esc>', ':noh<return><esc>', { noremap = true, silent = true})
-
--- QuickFix
-vim.cmd([[
-  nnoremap <silent> <C-j> :cnext<CR>
-  nnoremap <silent> <C-k> :cprev<CR>
-]])
 
 -- Better nav for omnicomplete
 vim.cmd('inoremap <expr> <c-j> (\"\\<C-n>\")')

@@ -68,7 +68,9 @@ O = {
         diffview = {active = true},
         bracey = {active = true},
         telescope_project = {active = true},
-        dap_install = {active = true}
+        dap_install = {active = true},
+        tabnine = {active = false}
+
     },
 
     lang = {
@@ -241,9 +243,8 @@ require('lv-utils').define_augroups({
         }, {
             'BufNewFile', '*',
             'setlocal formatoptions-=c formatoptions-=r formatoptions-=o'
-        },
-        --{'VimLeavePre', '*', 'set title set titleold='},
-        --{'FileType', 'qf', 'set nobuflisted'}
+        }, {'VimLeavePre', '*', 'set title set titleold='},
+        {'FileType', 'qf', 'set nobuflisted'}
     },
     -- _solidity = {
     --     {'BufWinEnter', '.sol', 'setlocal filetype=solidity'}, {'BufRead', '*.sol', 'setlocal filetype=solidity'},

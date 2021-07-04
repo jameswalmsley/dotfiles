@@ -1,3 +1,7 @@
+-- if not package.loaded['which-key'] then
+--  return
+-- end
+
 require("which-key").setup {
     plugins = {
         marks = true, -- shows a list of your marks on ' and `
@@ -35,9 +39,15 @@ require("which-key").setup {
 }
 
 -- Set leader
+if O.leader_key == ' ' or O.leader_key == 'space' then
     vim.api.nvim_set_keymap('n', '<Space>', '<NOP>',
                             {noremap = true, silent = true})
-    vim.g.mapleader = " "
+    vim.g.mapleader = ' '
+else
+    vim.api.nvim_set_keymap('n', O.leader_key, '<NOP>',
+                            {noremap = true, silent = true})
+    vim.g.mapleader = O.leader_key
+end
 
 local opts = {
     mode = "n", -- NORMAL mode
@@ -47,6 +57,10 @@ local opts = {
     noremap = true, -- use `noremap` when creating keymaps
     nowait = false -- use `nowait` when creating keymaps
 }
+
+-- Set leader
+-- vim.api.nvim_set_keymap('n', '<Space>', '<NOP>', {noremap = true, silent = true})
+vim.g.mapleader = ' '
 
 -- no hl
 vim.api.nvim_set_keymap('n', '<Leader>h', ':let @/=""<CR>',
@@ -82,7 +96,7 @@ vim.api.nvim_set_keymap("v", "<leader>/", ":CommentToggle<CR>",
                         {noremap = true, silent = true})
 
 -- close buffer
-vim.api.nvim_set_keymap("n", "<leader>c", ":BufferClose<CR>",
+vim.api.nvim_set_keymap("n", "<leader>c", ":bdelete<CR>",
                         {noremap = true, silent = true})
 
 -- TODO create entire treesitter section
