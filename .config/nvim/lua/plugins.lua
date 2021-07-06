@@ -352,6 +352,7 @@ return require("packer").startup(function(use)
 
   use {"tpope/vim-sleuth"}
   use {"axelf4/vim-strip-trailing-whitespace"}
+  use {"ggandor/lightspeed.nvim"}
 
   for _, plugin in pairs(O.custom_plugins) do
     packer.use(plugin)
