@@ -76,12 +76,7 @@ vim.api.nvim_set_keymap(
 --                         ":NvimTreeToggle<CR>",
 --                         {noremap = true, silent = true})
 
--- telescope or snap
-if O.plugin.snap.active then
-  vim.api.nvim_set_keymap("n", "<Leader>f", ":Snap find_files<CR>", { noremap = true, silent = true })
-else
-  vim.api.nvim_set_keymap("n", "<Leader>f", ":Telescope find_files<CR>", { noremap = true, silent = true })
-end
+vim.api.nvim_set_keymap("n", "<Leader>f", ":Telescope find_files<CR>", { noremap = true, silent = true })
 
 -- dashboard
 vim.api.nvim_set_keymap("n", "<Leader>;", ":Dashboard<CR>", { noremap = true, silent = true })
@@ -91,7 +86,7 @@ vim.api.nvim_set_keymap("n", "<leader>/", ":CommentToggle<CR>", { noremap = true
 vim.api.nvim_set_keymap("v", "<leader>/", ":CommentToggle<CR>", { noremap = true, silent = true })
 
 -- close buffer
-vim.api.nvim_set_keymap("n", "<leader>c", ":bdelete!<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>c", ":BufferClose<CR>", { noremap = true, silent = true })
 
 -- TODO create entire treesitter section
 
@@ -105,7 +100,7 @@ local mappings = {
   b = {
     name = "Buffers",
     j = { "<cmd>BufferPick<cr>", "jump to buffer" },
-    f = { O.plugin.snap.active and "<cmd>Snap buffers<cr>" or "<cmd>Telescope buffers<cr>", "Find buffer" },
+    f = { "<cmd>Telescope buffers<cr>", "Find buffer" },
     w = { "<cmd>BufferWipeout<cr>", "wipeout buffer" },
     e = {
       "<cmd>BufferCloseAllButCurrent<cr>",
@@ -125,7 +120,14 @@ local mappings = {
       "sort BufferLines automatically by language",
     },
   },
-
+  p = {
+    name = "Packer",
+    c = { "<cmd>PackerCompile<cr>", "Compile" },
+    i = { "<cmd>PackerInstall<cr>", "Install" },
+    r = { ":luafile %<cr>", "Reload" },
+    s = { "<cmd>PackerSync<cr>", "Sync" },
+    u = { "<cmd>PackerUpdate<cr>", "Update" },
+  },
   -- diagnostics vanilla nvim
   -- -- diagnostic
   -- function lv_utils.get_all()
@@ -155,20 +157,20 @@ local mappings = {
   -- "   https://microsoft.github.io/debug-adapter-protocol/
   -- " Debugging
   d = {
-      name = "Debug",
-      t = {"<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Toggle Breakpoint"},
-      b = {"<cmd>lua require'dap'.step_back()<cr>", "Step Back"},
-      c = {"<cmd>lua require'dap'.continue()<cr>", "Continue"},
-      C = {"<cmd>lua require'dap'.run_to_cursor()<cr>", "Run To Cursor"},
-      d = {"<cmd>lua require'dap'.disconnect()<cr>", "Disconnect"},
-      g = {"<cmd>lua require'dap'.session()<cr>", "Get Session"},
-      i = {"<cmd>lua require'dap'.step_into()<cr>", "Step Into"},
-      o = {"<cmd>lua require'dap'.step_over()<cr>", "Step Over"},
-      u = {"<cmd>lua require'dap'.step_out()<cr>", "Step Out"},
-      p = {"<cmd>lua require'dap'.pause.toggle()<cr>", "Pause"},
-      r = {"<cmd>lua require'dap'.repl.toggle()<cr>", "Toggle Repl"},
-      s = {"<cmd>lua require'dap'.continue()<cr>", "Start"},
-      q = {"<cmd>lua require'dap'.stop()<cr>", "Quit"}
+    name = "Debug",
+    t = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Toggle Breakpoint" },
+    b = { "<cmd>lua require'dap'.step_back()<cr>", "Step Back" },
+    c = { "<cmd>lua require'dap'.continue()<cr>", "Continue" },
+    C = { "<cmd>lua require'dap'.run_to_cursor()<cr>", "Run To Cursor" },
+    d = { "<cmd>lua require'dap'.disconnect()<cr>", "Disconnect" },
+    g = { "<cmd>lua require'dap'.session()<cr>", "Get Session" },
+    i = { "<cmd>lua require'dap'.step_into()<cr>", "Step Into" },
+    o = { "<cmd>lua require'dap'.step_over()<cr>", "Step Over" },
+    u = { "<cmd>lua require'dap'.step_out()<cr>", "Step Out" },
+    p = { "<cmd>lua require'dap'.pause.toggle()<cr>", "Pause" },
+    r = { "<cmd>lua require'dap'.repl.toggle()<cr>", "Toggle Repl" },
+    s = { "<cmd>lua require'dap'.continue()<cr>", "Start" },
+    q = { "<cmd>lua require'dap'.stop()<cr>", "Quit" },
   },
   g = {
     name = "Git",
@@ -204,8 +206,8 @@ local mappings = {
     },
     f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
     i = { "<cmd>LspInfo<cr>", "Info" },
-    j = { "<cmd>lua vim.lsp.diagnostic.goto_next()<cr>", "Next Diagnostic" },
-    k = { "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>", "Prev Diagnostic" },
+    j = { "<cmd>lua vim.lsp.diagnostic.goto_next({popup_opts = {border = O.lsp.popup_border}})<cr>", "Next Diagnostic" },
+    k = { "<cmd>lua vim.lsp.diagnostic.goto_prev({popup_opts = {border = O.lsp.popup_border}})<cr>", "Prev Diagnostic" },
     q = { "<cmd>Telescope quickfix<cr>", "Quickfix" },
     r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
     s = {
@@ -221,21 +223,12 @@ local mappings = {
     name = "Search",
     b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
     c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
-    -- d = {
-    --     "<cmd>Telescope lsp_document_diagnostics<cr>",
-    --     "Document Diagnostics"
-    -- },
-    -- D = {
-    --     "<cmd>Telescope lsp_workspace_diagnostics<cr>",
-    --     "Workspace Diagnostics"
-    -- },
-    f = { O.plugin.snap.active and "<cmd>Snap find_files<cr>" or "<cmd>Telescope find_files<cr>", "Find File" },
+    f = { "<cmd>Telescope find_files<cr>", "Find File" },
     h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
-    -- m = {"<cmd>Telescope marks<cr>", "Marks"},
     M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
-    r = { O.plugin.snap.active and "<cmd>Snap oldfiles<cr>" or "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
+    r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
     R = { "<cmd>Telescope registers<cr>", "Registers" },
-    t = { O.plugin.snap.active and "<cmd>Snap live_grep<cr>" or "<cmd>Telescope live_grep<cr>", "Text" },
+    t = { "<cmd>Telescope live_grep<cr>", "Text" },
   },
   S = {
     name = "Session",
@@ -247,17 +240,6 @@ local mappings = {
     i = { ":TSConfigInfo<cr>", "Info" },
   },
 }
-
-if O.plugin.spectre.active then
-  mappings["r"] = {
-    name = "Replace",
-    f = {
-      "<cmd>lua require('spectre').open_file_search()<cr>",
-      "Current File",
-    },
-    p = { "<cmd>lua require('spectre').open()<cr>", "Project" },
-  }
-end
 
 -- if O.plugin.trouble.active then
 --   mappings["d"] = {
@@ -271,8 +253,9 @@ end
 --   }
 -- end
 
-if O.plugin.gitlinker.active then
-  mappings["gy"] = "Gitlink"
+if O.plugin.symbol_outline.active then
+  vim.api.nvim_set_keymap("n", "<leader>o", ":SymbolsOutline<CR>", { noremap = true, silent = true })
+  mappings["o"] = "Symbols outline"
 end
 
 if O.plugin.ts_playground.active then
@@ -284,19 +267,23 @@ if O.plugin.zen.active then
   vim.api.nvim_set_keymap("n", "<leader>z", ":ZenMode<CR>", { noremap = true, silent = true })
   mappings["z"] = "Zen"
 end
-if O.plugin.lazygit.active then
-  vim.api.nvim_set_keymap("n", "<leader>gg", ":LazyGit<CR>", { noremap = true, silent = true })
+if O.plugin.floatterm.active then
+  vim.api.nvim_set_keymap("n", "<leader>gg", "<CMD>lua _G.__fterm_lazygit()<CR>", { noremap = true, silent = true })
+  vim.api.nvim_set_keymap("n", "<A-i>", "<CMD>lua require('FTerm').toggle()<CR>", { noremap = true, silent = true })
+  vim.api.nvim_set_keymap("t", "<A-i>", "<C-\\><C-n><CMD>lua require('FTerm').toggle()<CR>", { noremap = true, silent = true })
+  vim.api.nvim_set_keymap("n", "<A-l>", "<CMD>lua _G.__fterm_lazygit()<CR>", { noremap = true, silent = true })
+  vim.api.nvim_set_keymap("t", "<A-l>", "<C-\\><C-n><CMD>lua _G.__fterm_lazygit()<CR>", { noremap = true, silent = true })
   mappings["gg"] = "LazyGit"
 end
 if O.plugin.telescope_project.active then
   -- open projects
   vim.api.nvim_set_keymap(
     "n",
-    "<leader>p",
+    "<leader>P",
     ":lua require'telescope'.extensions.project.project{}<CR>",
     { noremap = true, silent = true }
   )
-  mappings["p"] = "Projects"
+  mappings["P"] = "Projects"
 end
 
 -- [";"] = "Dashboard",
