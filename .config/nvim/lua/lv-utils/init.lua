@@ -76,6 +76,10 @@ lv_utils.define_augroups {
     -- will cause split windows to be resized evenly if main window is resized
     { "VimResized ", "*", "wincmd =" },
   },
+  _fterm_lazygit = {
+    -- will cause esc key to exit lazy git
+    {"TermEnter", "*", "call LazyGitNativation()"}
+  },
   -- _mode_switching = {
   --   -- will switch between absolute and relative line numbers depending on mode
   --   {'InsertEnter', '*', 'if &relativenumber | let g:ms_relativenumberoff = 1 | setlocal number norelativenumber | endif'},
@@ -84,6 +88,17 @@ lv_utils.define_augroups {
   --   {'InsertLeave', '*', 'if exists("g:ms_cursorlineoff") | setlocal cursorline | endif'},
   -- },
 }
+
+vim.cmd([[
+  function! QuickFixToggle()
+    if empty(filter(getwininfo(), 'v:val.quickfix'))
+      copen
+    else
+      cclose
+    endif
+endfunction
+]]
+)
 
 return lv_utils
 
