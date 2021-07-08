@@ -17,9 +17,6 @@ end
 
 --- COLORSCHEME ---
 
-if package.loaded['lv-tokyonight'] then
-	require('lv-tokyonight')
-end
 vim.g.colors_name = O.colorscheme
 
 ---  SETTINGS  ---

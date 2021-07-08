@@ -119,7 +119,17 @@ return require("packer").startup(function(use)
   use {"morhetz/gruvbox", opt = false}
   use {"lifepillar/vim-solarized8", opt = false}
   use {"windwp/wind-colors", opt = false}
-  use {"folke/tokyonight.nvim", opt = false}
+  use {
+    "folke/tokyonight.nvim",
+    opt = false,
+    config = function()
+     vim.g.tokyonight_style = "night"
+     vim.g.tokyonight_italic_functions = true
+     vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
+     vim.g.tokyonight_colors = { hint = "orange", error = "#ff0000" }
+     vim.cmd[[colorscheme tokyonight]]
+    end,
+  }
 
 
   -- Icons
