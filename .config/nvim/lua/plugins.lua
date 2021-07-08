@@ -56,7 +56,7 @@ return require("packer").startup(function(use)
 
   -- Neoformat
   use {
-    "sbdchd/neoformat",
+    "jameswalmsley/neoformat",
     config = function()
       require "lv-neoformat"
     end,
