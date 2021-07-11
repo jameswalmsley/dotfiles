@@ -3,7 +3,8 @@ local lv_utils = {}
 function lv_utils.reload_lv_config()
   vim.cmd "source ~/.config/nvim/lv-config.lua"
   vim.cmd "source ~/.config/nvim/lua/plugins.lua"
-  vim.cmd "source ~/.config/nvim/lua/lv-neoformat/init.lua"
+  vim.cmd "source ~/.config/nvim/lua/settings.lua"
+  vim.cmd "source ~/.config/nvim/lua/lv-formatter/init.lua"
   vim.cmd ":PackerCompile"
   vim.cmd ":PackerInstall"
 end
@@ -65,7 +66,12 @@ lv_utils.define_augroups {
       "setlocal formatoptions-=c formatoptions-=r formatoptions-=o",
     },
     { "BufWritePost", "lv-config.lua", "lua require('lv-utils').reload_lv_config()" },
-    { "VimLeavePre", "*", "set title set titleold=" },
+    -- { "VimLeavePre", "*", "set title set titleold=" },
+  },
+  _solidity = {
+    { "BufWinEnter", ".tf", "setlocal filetype=hcl" },
+    { "BufRead", "*.tf", "setlocal filetype=hcl" },
+    { "BufNewFile", "*.tf", "setlocal filetype=hcl" },
   },
   -- _solidity = {
   --     {'BufWinEnter', '.sol', 'setlocal filetype=solidity'}, {'BufRead', '*.sol', 'setlocal filetype=solidity'},
@@ -115,4 +121,4 @@ endfunction
 
 return lv_utils
 
--- TODO find a new home for these autocommands
+-- TODO: find a new home for these autocommands

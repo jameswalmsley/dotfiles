@@ -6,12 +6,6 @@ source /opt/nvcode/nvim/utils/bin/lunarvim-env.sh
 
 export LV_BASE=${LV_BASE}
 
-NVIM_BIN=nvim
-
-if [ -f "/usr/local/bin/nvim" ]; then
-    NVIM_BIN=/usr/local/bin/nvim
-fi
-
 nvim -u ${LV_BASE_CONFIG} ${LV_SYNC} $@
 
 if [ -v LV_SYNC ]; then
