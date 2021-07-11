@@ -149,7 +149,10 @@ O = {
       },
     },
     kotlin = {},
-    latex = {},
+    latex = {
+      auto_save = false,
+      ignore_errors = { },
+    },
     lua = {
       diagnostics = {
         virtual_text = { spacing = 0, prefix = "" },
@@ -223,7 +226,7 @@ O = {
       -- @usage can be clippy
       formatter = {
         exe = "rustfmt",
-        args = { "--emit=stdout" },
+        args = { "--emit=stdout", "--edition=2018" },
       },
       linter = "",
       diagnostics = {
@@ -261,12 +264,13 @@ O = {
       },
       formatter = {
         exe = "prettier",
-        args = { "--stdin-filepath", vim.api.nvim_buf_get_name(0), "--single-quote" },
+        args = { "--write", "--stdin-filepath", vim.api.nvim_buf_get_name(0), "--single-quote" },
+        stdin = false,
       },
     },
     terraform = {},
     tsserver = {
-      -- @usage can be 'eslint'
+      -- @usage can be 'eslint' or 'eslint_d'
       linter = "",
       diagnostics = {
         virtual_text = { spacing = 0, prefix = "" },
@@ -275,7 +279,8 @@ O = {
       },
       formatter = {
         exe = "prettier",
-        args = { "--stdin-filepath", vim.api.nvim_buf_get_name(0), "--single-quote" },
+        args = { "--write", "--stdin-filepath", vim.api.nvim_buf_get_name(0), "--single-quote" },
+        stdin = false,
       },
     },
     vim = {},
