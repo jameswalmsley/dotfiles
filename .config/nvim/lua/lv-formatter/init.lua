@@ -28,6 +28,9 @@ local function formatter_return(lang_formatter)
     exe = lang_formatter.exe,
     args = lang_formatter.args,
     stdin = not (lang_formatter.stdin ~= nil),
+    cwd = lang_formatter.cwd or function()
+          return vim.fn.expand('%:p:h')
+    end,
   }
 end
 
