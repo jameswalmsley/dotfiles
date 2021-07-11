@@ -76,7 +76,7 @@ return require("packer").startup(function(use)
 
   -- Formatter.nvim
   use {
-    "mhartington/formatter.nvim",
+    "jameswalmsley/formatter.nvim",
     config = function()
       require "lv-formatter"
     end,

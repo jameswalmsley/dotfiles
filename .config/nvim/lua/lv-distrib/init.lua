@@ -18,7 +18,7 @@ O.distrib = {
         vim.g.tokyonight_colors = { hint = "orange", error = "#ff0000" }
 
         -- Load the colorscheme
-        vim.cmd([[colorscheme tokyonight]])
+        vim.cmd [[colorscheme tokyonight]]
       end,
     },
     {
@@ -53,13 +53,15 @@ O.distrib = {
       event = "BufRead",
     },
     { "p00f/nvim-ts-rainbow" },
-    {"tpope/vim-sleuth"},
-    {"axelf4/vim-strip-trailing-whitespace"},
-    {"ggandor/lightspeed.nvim"},
+    { "tpope/vim-sleuth" },
+    { "axelf4/vim-strip-trailing-whitespace" },
+    { "ggandor/lightspeed.nvim" },
   },
 
-  which_key = { },
+  which_key = {},
 }
+
+O.format_on_save = false
 
 O.plugin.dashboard.active = true
 O.plugin.galaxyline.active = true
