@@ -33,6 +33,15 @@ If you help to develop Lunarvim, you can install a specific branch branch direct
 LVBRANCH=rolling bash <(curl -s https://raw.githubusercontent.com/ChristianChiarulli/lunarvim/rolling/utils/installer/install.sh)
 ```
 
+If your installation is stuck on `Ok to remove? [y/N]`, it means there are some leftovers, \
+you can run the script with `--overwrite` but be warned this will remove the following folder:
+- `~/.config/nvim`
+- `~/.cache/nvim`
+- `~/.local/share/nvim/site/pack/packer`
+```bash
+curl -s https://raw.githubusercontent.com/ChristianChiarulli/lunarvim/rolling/utils/installer/install.sh| LVBRANCH=rolling bash -s -- --overwrite
+```
+
 
 ## Installing LSP for your language
 
@@ -51,6 +60,7 @@ Example:
 
 -- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
 -- general
+-- O.default_options.wrap = true -- wrap long lines
 O.completion.autocomplete = true
 O.default_options.relativenumber = true
 O.colorscheme = 'spacegray'
@@ -61,7 +71,6 @@ O.leader_key = ' '
 O.plugin.dashboard.active = true
 O.plugin.floatterm.active = true
 O.plugin.zen.active = true
-O.plugin.telescope_project.active = true
 
 -- if you don't want all the parsers change this to a table of the ones you want
 O.treesitter.ensure_installed = "all"
@@ -91,11 +100,16 @@ O.lang.python.analysis.use_library_code_types = true
 
 -- Additional Plugins
 -- O.user_plugins = {
---     {"folke/tokyonight.nvim"}, {
---         "ray-x/lsp_signature.nvim",
---         config = function() require"lsp_signature".on_attach() end,
---         event = "InsertEnter"
---     } 
+--   {"folke/tokyonight.nvim"},
+--   {
+--     "ray-x/lsp_signature.nvim",
+--     config = function()
+--       require"lsp_signature".on_attach()
+--     end,
+--     event = "InsertEnter"
+--   },
+-- }
+
 -- }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
@@ -109,6 +123,9 @@ O.lang.python.analysis.use_library_code_types = true
 --     b = { "<cmd>echo 'second custom command'<cr>", "Description for b" },
 --   },
 -- }
+
+-- To link your init.vim (until you find Lua replacements)
+-- vim.cmd('source ' .. CONFIG_PATH .. '/lua/lv-user/init.vim')
 ```
 
 ## Updating LunarVim
@@ -129,6 +146,29 @@ cd ~/.config/nvim && git pull
 
 To update Neovim use your package manager
 
+## Project Goals
+
+1. Provide basic functionalities required from an IDE
+    - LSP
+    - Formatting/Linting
+    - Debugging
+    - Treesitter
+    - Colorschemes
+2. Be as fast and lean as possible 
+    - Lazy loading
+    - Not a single extra plugin
+    - User configurable lang/feature enable/disable
+3. Provide a [simple and easy](https://github.com/LunarVim/LunarVimCommunity) way for users to share their own configuration or use others. 
+4. Hot reload of configurations
+    - Hot install of lsp/treesitter/formatter required upon openning a filetype for the first time
+5. Provide a stable & maintainable error free configuration layer over neovim 
+    - With the help of the community behind it
+    - Github workflow testing
+    - Freezing plugin versions
+6. Provide detailed documentation
+    - Video series on how to configure LunarVim as an IDE for each lang
+7. Valhalla
+
 ## Resources
 
 - [YouTube](https://www.youtube.com/channel/UCS97tchJDq17Qms3cux8wcA)
@@ -147,8 +187,8 @@ To update Neovim use your package manager
 > "My minimal config with a good amount less code than LunarVim loads 40ms slower. Time to switch."
 > - @mvllow, Potential LunarVim user.
 
-<div align="center">
+<div align="center" id="madewithlua">
 	
-[![Lua](https://img.shields.io/badge/Made%20with%20Lua-blue.svg?style=for-the-badge&logo=lua)]()
+[![Lua](https://img.shields.io/badge/Made%20with%20Lua-blue.svg?style=for-the-badge&logo=lua)](#madewithlua)
 	
 </div>

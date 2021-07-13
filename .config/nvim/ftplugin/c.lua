@@ -1,3 +1,20 @@
+O.formatters.filetype["c"] = {
+  -- prettier
+  function()
+    return {
+      exe = "clang-format",
+      args = {},
+      stdin = true,
+      cwd = vim.fn.expand "%:p:h",
+    }
+  end,
+}
+
+require("formatter.config").set_defaults {
+  logging = false,
+  filetype = O.formatters.filetype,
+}
+
 if require("lv-utils").check_lsp_client_active "clangd" then
   return
 end

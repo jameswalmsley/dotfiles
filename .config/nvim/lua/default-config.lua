@@ -55,6 +55,8 @@ O = {
     scrolloff = 8, -- is one of my fav
   },
 
+  plugin = {},
+
   -- TODO: refactor for tree
   auto_close_tree = 0,
   nvim_tree_disable_netrw = 0,
@@ -65,17 +67,6 @@ O = {
   },
 
   database = { save_location = "~/.config/lunarvim_db", auto_execute = 1 },
-
-  plugin = {
-    -- Builtins
-    diffview = { active = false },
-    ts_hintobjects = { active = false },
-    ts_textobjects = { active = false },
-    ts_textsubjects = { active = false },
-    telescope_project = { active = false },
-    indent_line = { active = false },
-    lush = { active = false },
-  },
 
   -- TODO: just using mappings (leader mappings)
   user_which_key = {},
@@ -88,6 +79,11 @@ O = {
     { "FileType", "qf", "set nobuflisted" },
   },
 
+  formatters = {
+    filetype = {},
+  },
+
+  -- TODO move all of this into lang specific files, only require when using
   lang = {
     cmake = {
       formatter = {
@@ -122,7 +118,7 @@ O = {
     docker = {},
     efm = {},
     elm = {},
-    emmet = { active = true },
+    emmet = { active = false },
     elixir = {},
     graphql = {},
     go = {
@@ -151,7 +147,7 @@ O = {
     kotlin = {},
     latex = {
       auto_save = false,
-      ignore_errors = { },
+      ignore_errors = {},
     },
     lua = {
       diagnostics = {
@@ -293,14 +289,13 @@ O = {
   },
 }
 
-require "lv-zen.config"
-require "lv-compe.config"
-require "lv-dashboard.config"
-require "lv-floatterm.config"
-require "lv-galaxyline.config"
-require "lv-gitsigns.config"
-require "lv-telescope.config"
-require "lv-floatterm.config"
-require "lv-dap.config"
-require "lv-which-key.config"
-require "lv-treesitter.config"
+require "core.status_colors"
+require("core.gitsigns").config()
+require("core.compe").config()
+require("core.dashboard").config()
+require("core.dap").config()
+require("core.floatterm").config()
+require("core.zen").config()
+require("core.telescope").config()
+require("core.treesitter").config()
+require("core.which-key").config()

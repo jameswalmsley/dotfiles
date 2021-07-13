@@ -22,7 +22,6 @@ O.leader_key = " "
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 O.plugin.dashboard.active = true
 O.plugin.floatterm.active = true
-O.plugin.indent_line.active = false
 O.plugin.zen.active = false
 O.plugin.zen.window.height = 0.90
 
@@ -48,10 +47,10 @@ O.lang.python.analysis.use_library_code_types = true
 O.lang.tsserver.linter = nil
 
 -- rust
-O.lang.rust.formatter = {
-  exe = "rustfmt",
-  args = {"--emit=stdout"},
-}
+-- O.lang.rust.formatter = {
+--   exe = "rustfmt",
+--   args = {"--emit=stdout", "--edition=2018"},
+-- }
 
 -- latex
 -- O.lang.latex.auto_save = false
