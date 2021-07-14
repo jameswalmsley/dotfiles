@@ -1,11 +1,9 @@
 O.formatters.filetype["lua"] = {
-  -- prettier
   function()
     return {
-      exe = "stylua",
-      --  TODO: append to this for args don't overwrite
-      args = {},
-      stdin = false,
+      exe = O.lang.lua.formatter.exe,
+      args = O.lang.lua.formatter.args,
+      stdin = not (O.lang.lua.formatter.stdin ~= nil),
       cwd = vim.fn.expand "%:p:h",
     }
   end,
@@ -44,18 +42,6 @@ if not require("lv-utils").check_lsp_client_active "sumneko_lua" then
           maxPreload = 100000,
           preloadFileSize = 1000,
         },
-      },
-    },
-  }
-end
-
-if O.lang.lua.autoformat then
-  require("lv-utils").define_augroups {
-    _lua_autoformat = {
-      {
-        "BufWritePre",
-        "*.lua",
-        "lua vim.lsp.buf.formatting_sync(nil, 1000)",
       },
     },
   }

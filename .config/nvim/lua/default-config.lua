@@ -10,7 +10,7 @@ O = {
   line_wrap_cursor_movement = true,
   transparent_window = false,
   format_on_save = true,
-  vnsip_dir = vim.fn.stdpath "config" .. "/snippets",
+  vsnip_dir = vim.fn.stdpath "config" .. "/snippets",
 
   default_options = {
     backup = false, -- creates a backup file
@@ -258,11 +258,6 @@ O = {
         "typescript",
         "typescriptreact",
       },
-      formatter = {
-        exe = "prettier",
-        args = { "--write", "--stdin-filepath", vim.api.nvim_buf_get_name(0), "--single-quote" },
-        stdin = false,
-      },
     },
     terraform = {},
     tsserver = {
@@ -275,8 +270,7 @@ O = {
       },
       formatter = {
         exe = "prettier",
-        args = { "--write", "--stdin-filepath", vim.api.nvim_buf_get_name(0), "--single-quote" },
-        stdin = false,
+        args = { "--stdin-filepath", vim.api.nvim_buf_get_name(0), "--single-quote" },
       },
     },
     vim = {},

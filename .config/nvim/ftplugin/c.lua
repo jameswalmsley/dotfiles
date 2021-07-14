@@ -1,13 +1,18 @@
 O.formatters.filetype["c"] = {
-  -- prettier
   function()
     return {
-      exe = "clang-format",
-      args = {},
-      stdin = true,
+      exe = O.lang.c.formatter.exe,
+      args = O.lang.c.formatter.args,
+      stdin = not (O.lang.c.formatter.stdin ~= nil),
       cwd = vim.fn.expand "%:p:h",
     }
   end,
+}
+O.formatters.filetype["cpp"] = O.formatters.filetype["c"]
+
+require("formatter.config").set_defaults {
+  logging = false,
+  filetype = O.formatters.filetype,
 }
 
 require("formatter.config").set_defaults {
