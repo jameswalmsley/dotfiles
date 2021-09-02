@@ -1,3 +1,2 @@
-require "lsp.tsserver-ls"
-
-vim.cmd "setl ts=2 sw=2"
+require("lsp").setup "typescript"
+require("lsp").setup "tailwindcss"

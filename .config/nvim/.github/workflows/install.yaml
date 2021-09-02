@@ -1,0 +1,74 @@
+name: install
+on:
+  push:
+    branches: "**"
+  pull_request:
+    branches:
+      - "master"
+      - "rolling"
+
+jobs:
+  unixish:
+    name: ${{ matrix.os }} ${{ matrix.runner }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: ubuntu-20.04
+            os: linux
+          - runner: macos-10.15
+            os: osx
+    runs-on: ${{ matrix.runner }}
+    if: github.event.pull_request.draft == false
+    steps:
+      - uses: actions/checkout@v2
+
+      # sha256sum is not available by default
+      - name: Installl dependencies for OSX
+        if: matrix.os == 'osx'
+        run: |
+          echo "HOMEBREW_NO_AUTO_UPDATE=1" >> $GITHUB_ENV
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+          brew install coreutils
+
+      - name: Install neovim binary
+        run: |
+          bash ./utils/installer/install-neovim-from-release
+
+      - name: Install LunarVim
+        timeout-minutes: 4
+        run: |
+          mkdir -p "$HOME"/.local/share/lunarvim/lvim
+          mkdir -p "$HOME"/.config/lvim
+          ln -s "$PWD"/* "$HOME"/.local/share/lunarvim/lvim/.
+          bash ./utils/installer/install.sh
+
+      - name: Test LunarVim PackerCompile
+        run: if "$HOME"/.local/bin/lvim --headless +PackerCompile -c ':qall' 2>&1|grep -q 'Error'; then false; fi
+
+      - name: Test LunarVim Health
+        run: if "$HOME"/.local/bin/lvim --headless +checkhealth -c ':qall' 2>&1|grep -q 'Error'; then false; fi
+#   freebsd:
+#     runs-on: macos-latest
+#     if: github.event.pull_request.draft == false
+#     continue-on-error: true # we don't support freebsd yet
+#     name: "FreeBSD macos-latest"
+#     steps:
+#       - uses: actions/checkout@v2
+
+#       - name: Install dependencies for FreeBSD
+#         uses: vmactions/freebsd-vm@v0.1.5
+#         with:
+#           prepare: pkg install -y curl neovim
+#           run: bash ./utils/installer/install.sh
+
+#       - name: Test LunarVim PackerCompile
+#         uses: vmactions/freebsd-vm@v0.1.5
+#         with:
+#           run: if nvim --headless +PackerCompile -c ':qall' 2>&1|grep -q 'Error'; then false; fi
+
+#       - name: Test LunarVim Health
+#         uses: vmactions/freebsd-vm@v0.1.5
+#         with:
+#           run: if nvim --headless +checkhealth -c ':qall' 2>&1|grep -q 'Error'; then false; fi
+

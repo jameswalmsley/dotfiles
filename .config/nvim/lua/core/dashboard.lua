@@ -1,8 +1,13 @@
 local M = {}
-M.config = function()
-  O.plugin.dashboard = {
+local home_dir = vim.loop.os_homedir()
+
+M.config = function(config)
+  lvim.builtin.dashboard = {
     active = false,
+    on_config_done = nil,
     search_handler = "telescope",
+    disable_at_vim_enter = 0,
+    session_directory = home_dir .. "/.cache/lvim/sessions",
     custom_header = {
       "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⣀⣀⣀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
       "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣤⣶⣾⠿⠿⠟⠛⠛⠛⠛⠿⠿⣿⣷⣤⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
@@ -30,58 +35,52 @@ M.config = function()
         command = "Telescope find_files",
       },
       b = {
+        description = { "  Recent Projects    " },
+        command = "Telescope projects",
+      },
+      c = {
         description = { "  Recently Used Files" },
         command = "Telescope oldfiles",
       },
-      -- c = {
-      --   description = { "  Load Last Session  " },
-      --   command = "SessionLoad",
-      -- },
-      c = {
+      d = {
         description = { "  Find Word          " },
         command = "Telescope live_grep",
       },
-      d = {
-        description = { "  Settings           " },
-        command = ":e " .. CONFIG_PATH .. "/lv-config.lua",
+      e = {
+        description = { "  Configuration      " },
+        command = ":e " .. config.path,
       },
     },
 
-    footer = { "chrisatmachine.com" },
+    footer = { "lunarvim.org" },
   }
 end
 
 M.setup = function()
-  vim.g.dashboard_disable_at_vimenter = 0
+  vim.g.dashboard_disable_at_vimenter = lvim.builtin.dashboard.disable_at_vim_enter
 
-  vim.g.dashboard_custom_header = O.plugin.dashboard.custom_header
+  vim.g.dashboard_custom_header = lvim.builtin.dashboard.custom_header
 
-  vim.g.dashboard_default_executive = O.plugin.dashboard.search_handler
+  vim.g.dashboard_default_executive = lvim.builtin.dashboard.search_handler
 
-  vim.g.dashboard_custom_section = O.plugin.dashboard.custom_section
+  vim.g.dashboard_custom_section = lvim.builtin.dashboard.custom_section
 
-  -- f = {
-  --   description = { "  Neovim Config Files" },
-  --   command = "Telescope find_files cwd=" .. CONFIG_PATH,
-  -- },
-  -- e = {description = {'  Marks              '}, command = 'Telescope marks'}
-  vim.cmd "let g:dashboard_session_directory = $HOME..'/.config/nvim/.sessions'"
-  vim.cmd "let packages = len(globpath('~/.local/share/nvim/site/pack/packer/start', '*', 0, 1))"
+  lvim.builtin.which_key.mappings[";"] = { "<cmd>Dashboard<CR>", "Dashboard" }
+
+  vim.g.dashboard_session_directory = lvim.builtin.dashboard.session_directory
+
+  vim.cmd "let packages = len(globpath('~/.local/share/lunarvim/site/pack/packer/start', '*', 0, 1))"
 
   vim.api.nvim_exec(
     [[
-    let g:dashboard_custom_footer = ['LuaJIT loaded '..packages..' plugins']
+    let g:dashboard_custom_footer = ['LunarVim loaded '..packages..' plugins  ']
 ]],
     false
   )
 
-  -- file_browser = {description = {' File Browser'}, command = 'Telescope find_files'},
-
-  -- vim.g.dashboard_session_directory = CACHE_PATH..'/session'
-  -- vim.g.dashboard_custom_footer = O.dashboard.footer
-  require("lv-utils").define_augroups {
+  require("core.autocmds").define_augroups {
     _dashboard = {
-      -- seems to be nobuflisted that makes my stuff disapear will do more testing
+      -- seems to be nobuflisted that makes my stuff disappear will do more testing
       {
         "FileType",
         "dashboard",
@@ -90,11 +89,15 @@ M.setup = function()
       {
         "FileType",
         "dashboard",
-        "set showtabline=0 | autocmd BufLeave <buffer> set showtabline=2",
+        "set showtabline=0 | autocmd BufLeave <buffer> set showtabline=" .. vim.opt.showtabline._value,
       },
       { "FileType", "dashboard", "nnoremap <silent> <buffer> q :q<CR>" },
     },
   }
+
+  if lvim.builtin.dashboard.on_config_done then
+    lvim.builtin.dashboard.on_config_done()
+  end
 end
 
 return M

@@ -1,6 +1,6 @@
 # Contributing to LunarVim
 
-Welcome to the LunarVim contributing guide. We are excited about the prospect of you joining our [community](https://github.com/ChristianChiarulli/LunarVim/graphs/contributors)!
+Welcome to the LunarVim contributing guide. We are excited about the prospect of you joining our [community](https://github.com/lunarvim/LunarVim/graphs/contributors)!
 
 There are many opportunities to contributing to the project at any level. Every contribution is highly valued and no contribution is too small.
 
@@ -11,14 +11,25 @@ One of the best ways to begin contributing in a meaningful way is by helping fin
 ## Getting Started
 
 1. Backup your ~/.config/nvim
-2. Follow the [Installation](https://github.com/ChristianChiarulli/LunarVim/wiki/Installation) guide
-3. Link your fork with the repository `git remote add upstream https://github.com/ChristianChiarulli/LunarVim.git`
+2. Follow the [Installation](https://github.com/lunarvim/LunarVim/wiki/Installation) guide
+3. Link your fork with the repository `git remote add upstream https://github.com/lunarvim/LunarVim.git`
 4. That's it ! You can now `git fetch upstream` and `git rebase [-i] upstream/rolling` to update your branches with the latest contributions.
 
 ## Setting up development tools
 
-1. Install [stylua](https://github.com/johnnymorganz/stylua#installation)
-2. Copy tools/.stylua.toml into the LunarVim root directory
+### For editing Lua files
+
+1. Formatter: [stylua](https://github.com/johnnymorganz/stylua#installation).
+2. Linter:  [luacheck](https://github.com/luarocks/luacheck).
+
+### For editing shell scripts
+
+1. Formatter: [shfmt](https://github.com/mvdan/sh#shfmt).
+2. Linter: [shellcheck](https://github.com/koalaman/shellcheck).
+
+### (Optional)
+
+Install [pre-commit](https://github.com/pre-commit/pre-commit) which will run all linters and formatters for you as a pre-commit-hook.
 
 ## Some Guidelines
 
@@ -39,6 +50,16 @@ ex: (feature|bugfix|hotfix)/what-my-pr-does
 All lua code is formatted with [Stylua](https://github.com/JohnnyMorganz/StyLua).
 * Use snake_case
 * Avoid platform-dependent code
+```bash
+stylua --config-path ./utils/.stylua.toml -c .
+```
+
+All shell code is formatted according to [Google Shell Style Guide](https://google.github.io/styleguide/shellguide.html)
+* use two spaces instead of tabs
+```bash
+shfmt -i 2 -ci -l -d .
+```
+
 
 ## Communication
 

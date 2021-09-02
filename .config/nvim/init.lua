@@ -1,22 +1,48 @@
-require "default-config"
-require "keymappings"
-require "lv-distrib"
-if io.open(CONFIG_PATH .. "/lv-config.lua", "r") then
-  local status_ok, _ = pcall(vim.cmd, "luafile " .. CONFIG_PATH .. "/lv-config.lua")
-  if not status_ok then
-    print "something is wrong with your lv-config"
-  end
+-- {{{ Bootstrap
+local home_dir = vim.loop.os_homedir()
+
+vim.cmd [[let &packpath = &runtimepath]]
+-- }}}
+
+local config = require "config"
+config:init()
+config:load()
+
+local plugins = require "plugins"
+local plugin_loader = require("plugin-loader").init()
+plugin_loader:load { plugins, lvim.plugins }
+
+local Log = require "core.log"
+Log:info "Starting LunarVim"
+
+vim.g.colors_name = lvim.colorscheme -- Colorscheme must get called after plugins are loaded or it will break new installs.
+vim.cmd("colorscheme " .. lvim.colorscheme)
+
+local utils = require "utils"
+utils.toggle_autoformat()
+local commands = require "core.commands"
+commands.load(commands.defaults)
+
+require("lsp").config()
+
+local null_status_ok, null_ls = pcall(require, "null-ls")
+if null_status_ok then
+  null_ls.config {}
+  require("lspconfig")["null-ls"].setup(lvim.lsp.null_ls.setup)
 end
-require "environment"
-require "plugins"
-vim.g.colors_name = O.colorscheme -- Colorscheme must get called after plugins are loaded or it will break new installs.
-require "settings"
-require "lv-utils"
+
+local lsp_settings_status_ok, lsp_settings = pcall(require, "nlspsettings")
+if lsp_settings_status_ok then
+  lsp_settings.setup {
+    config_home = vim.fn.stdpath('config') .. "/lsp-settings",
+  }
+end
+
+require("keymappings").setup()
 
 -- TODO: these guys need to be in language files
--- require "lsp"
--- if O.lang.emmet.active then
+-- if lvim.lang.emmet.active then
 --   require "lsp.emmet-ls"
 -- end
--- if O.lang.tailwindcss.active then
+-- if lvim.lang.tailwindcss.active then
 --   require "lsp.tailwind

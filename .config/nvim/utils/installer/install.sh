@@ -1,223 +1,301 @@
-#!/bin/sh
-#Set Variable to master is not set differently
-LVBRANCH="${LVBRANCH:-master}"
-set -o nounset # error when referencing undefined variable
-set -o errexit # exit when command fails
+#!/usr/bin/env bash
+set -eo pipefail
 
-installnodemac() {
-    brew install lua
-    brew install node
-    brew install yarn
+#Set branch to master unless specified by the user
+declare -r LV_BRANCH="${LV_BRANCH:-rolling}"
+declare -r LV_REMOTE="${LV_REMOTE:-lunarvim/lunarvim.git}"
+declare -r INSTALL_PREFIX="${INSTALL_PREFIX:-"$HOME/.local"}"
+
+declare -r XDG_DATA_HOME="${XDG_DATA_HOME:-"$HOME/.local/share"}"
+declare -r XDG_CACHE_HOME="${XDG_CACHE_HOME:-"$HOME/.cache"}"
+declare -r XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-"$HOME/.config"}"
+
+# TODO: Use a dedicated cache directory #1256
+declare -r NEOVIM_CACHE_DIR="$XDG_CACHE_HOME/nvim"
+
+declare -r LUNARVIM_RUNTIME_DIR="${LUNARVIM_RUNTIME_DIR:-"$XDG_DATA_HOME/lunarvim"}"
+declare -r LUNARVIM_CONFIG_DIR="${LUNARVIM_CONFIG_DIR:-"$XDG_CONFIG_HOME/lvim"}"
+
+declare -a __lvim_dirs=(
+  "$LUNARVIM_CONFIG_DIR"
+  "$LUNARVIM_RUNTIME_DIR"
+  "$NEOVIM_CACHE_DIR" # for now this is shared with neovim
+)
+
+declare -a __npm_deps=(
+  "neovim"
+  "tree-sitter-cli"
+)
+
+declare -a __pip_deps=(
+  "pynvim"
+)
+
+function main() {
+  cat <<'EOF'
+
+      88\                                                   88\               
+      88 |                                                  \__|              
+      88 |88\   88\ 888888$\   888888\   888888\ 88\    88\ 88\ 888888\8888\  
+      88 |88 |  88 |88  __88\  \____88\ 88  __88\\88\  88  |88 |88  _88  _88\ 
+      88 |88 |  88 |88 |  88 | 888888$ |88 |  \__|\88\88  / 88 |88 / 88 / 88 |
+      88 |88 |  88 |88 |  88 |88  __88 |88 |       \88$  /  88 |88 | 88 | 88 |
+      88 |\888888  |88 |  88 |\888888$ |88 |        \$  /   88 |88 | 88 | 88 |
+      \__| \______/ \__|  \__| \_______|\__|         \_/    \__|\__| \__| \__|
+
+EOF
+
+  __add_separator "80"
+
+  echo "Detecting platform for managing any additional neovim dependencies"
+  detect_platform
+
+  if [ -n "$GITHUB_ACTIONS" ]; then
+    install_packer
+    setup_lvim
+    exit 0
+  fi
+
+  check_system_deps
+
+  __add_separator "80"
+
+  echo "Would you like to check lunarvim's NodeJS dependencies?"
+  read -p "[y]es or [n]o (default: no) : " -r answer
+  [ "$answer" != "${answer#[Yy]}" ] && install_nodejs_deps
+
+  echo "Would you like to check lunarvim's Python dependencies?"
+  read -p "[y]es or [n]o (default: no) : " -r answer
+  [ "$answer" != "${answer#[Yy]}" ] && install_python_deps
+
+  echo "Would you like to check lunarvim's Rust dependencies?"
+  read -p "[y]es or [n]o (default: no) : " -r answer
+  [ "$answer" != "${answer#[Yy]}" ] && install_rust_deps
+
+  __add_separator "80"
+
+  echo "Backing up old LunarVim configuration"
+  backup_old_config
+
+  __add_separator "80"
+
+  case "$@" in
+    *--overwrite*)
+      echo "!!Warning!! -> Removing all lunarvim related config \
+        because of the --overwrite flag"
+      read -p "Would you like to continue? [y]es or [n]o : " -r answer
+      [ "$answer" == "${answer#[Yy]}" ] && exit 1
+      for dir in "${__lvim_dirs[@]}"; do
+        [ -d "$dir" ] && rm -rf "$dir"
+      done
+      ;;
+  esac
+
+  if [ -e "$LUNARVIM_RUNTIME_DIR/site/pack/packer/start/packer.nvim" ]; then
+    echo "Packer already installed"
+  else
+    install_packer
+  fi
+
+  __add_separator "80"
+
+  if [ -e "$LUNARVIM_RUNTIME_DIR/lvim/init.lua" ]; then
+    echo "Updating LunarVim"
+    update_lvim
+  else
+    clone_lvim
+    setup_lvim
+  fi
+
+  __add_separator "80"
+
 }
 
-installnodeubuntu() {
-    sudo apt install nodejs
-    sudo apt install npm
+function detect_platform() {
+  OS="$(uname -s)"
+  case "$OS" in
+    Linux)
+      if [ -f "/etc/arch-release" ] || [ -f "/etc/artix-release" ]; then
+        RECOMMEND_INSTALL="sudo pacman -S"
+      elif [ -f "/etc/fedora-release" ] || [ -f "/etc/redhat-release" ]; then
+        RECOMMEND_INSTALL="sudo dnf install -y"
+      elif [ -f "/etc/gentoo-release" ]; then
+        RECOMMEND_INSTALL="emerge install -y"
+      else # assume debian based
+        RECOMMEND_INSTALL="sudo apt install -y"
+      fi
+      ;;
+    Darwin)
+      RECOMMEND_INSTALL="brew install"
+      ;;
+    *)
+      echo "OS $OS is not currently supported."
+      exit 1
+      ;;
+  esac
 }
 
-moveoldnvim() {
-    echo "Not installing LunarVim"
-    echo "Please move your ~/.config/nvim folder before installing"
-    exit
+function print_missing_dep_msg() {
+  echo "[ERROR]: Unable to find dependency [$1]"
+  echo "Please install it first and re-run the installer. Try: $RECOMMEND_INSTALL $1"
 }
 
-installnodearch() {
-    sudo pacman -S nodejs
-    sudo pacman -S npm
+function check_dep() {
+  if ! command -v "$1" &>/dev/null; then
+    print_missing_dep_msg "$1"
+    exit 1
+  fi
 }
 
-installnodefedora() {
-    sudo dnf install -y nodejs
-    sudo dnf install -y npm
+function check_system_deps() {
+  if ! command -v git &>/dev/null; then
+    print_missing_dep_msg "git"
+    exit 1
+  fi
+  if ! command -v nvim &>/dev/null; then
+    print_missing_dep_msg "neovim"
+    exit 1
+  fi
 }
 
-installnodegentoo() {
-    echo "Printing current node status..."
-    emerge -pqv net-libs/nodejs
-    echo "Make sure the npm USE flag is enabled for net-libs/nodejs"
-    echo "If it isn't enabled, would you like to enable it with flaggie? (Y/N)"
-    read answer
-    [ "$answer" != "${answer#[Yy]}" ] && sudo flaggie net-libs/nodejs +npm
-    sudo emerge -avnN net-libs/nodejs
-}
-
-installnode() {
-    echo "Installing node..."
-    [ "$(uname)" == "Darwin" ] && installnodemac
-    [ -n "$(cat /etc/os-release | grep Ubuntu)" ] && installnodeubuntu
-    [ -f "/etc/arch-release" ] && installnodearch
-    [ -f "/etc/artix-release" ] && installnodearch
-    [ -f "/etc/fedora-release" ] && installnodefedora
-    [ -f "/etc/gentoo-release" ] && installnodegentoo
-    [ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ] && echo "Windows not currently supported"
-    sudo npm i -g neovim
-}
-
-installpiponmac() {
-    sudo curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-    python3 get-pip.py
-    rm get-pip.py
-}
-
-installpiponubuntu() {
-    sudo apt install python3-pip >/dev/null
-}
-
-installpiponarch() {
-    sudo pacman -S python-pip
-}
-
-installpiponfedora() {
-    sudo dnf install -y pip >/dev/nul
-}
-
-installpipongentoo() {
-    sudo emerge -avn dev-python/pip
-}
-
-installpip() {
-    echo "Installing pip..."
-    [ "$(uname)" == "Darwin" ] && installpiponmac
-    [ -n "$(cat /etc/os-release | grep Ubuntu)" ] && installpiponubuntu
-    [ -f "/etc/arch-release" ] && installpiponarch
-    [ -f "/etc/fedora-release" ] && installpiponfedora
-    [ -f "/etc/gentoo-release" ] && installpipongentoo
-    [ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ] && echo "Windows not currently supported"
-}
-
-installpynvim() {
-    echo "Installing pynvim..."
-    if [ -f "/etc/gentoo-release" ]; then
-        echo "Installing using Portage"
-        sudo emerge -avn dev-python/pynvim
-    else
-        pip3 install pynvim --user
+function install_nodejs_deps() {
+  check_dep "npm"
+  echo "Installing node modules with npm.."
+  for dep in "${__npm_deps[@]}"; do
+    if ! npm ls -g "$dep" &>/dev/null; then
+      printf "installing %s .." "$dep"
+      npm install -g "$dep"
     fi
+  done
+  echo "All NodeJS dependencies are succesfully installed"
 }
 
-installpacker() {
-    git clone https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+function install_python_deps() {
+  echo "Verifying that pip is available.."
+  if ! python3 -m ensurepip &>/dev/null; then
+    if ! python3 -m pip --version &>/dev/null; then
+      print_missing_dep_msg "pip"
+      exit 1
+    fi
+  fi
+  echo "Installing with pip.."
+  for dep in "${__pip_deps[@]}"; do
+    python3 -m pip install --user "$dep"
+  done
+  echo "All Python dependencies are succesfully installed"
 }
 
-cloneconfig() {
-    echo "Cloning LunarVim configuration"
-    git clone --branch $LVBRANCH https://github.com/ChristianChiarulli/lunarvim.git ~/.config/nvim
-    cp $HOME/.config/nvim/utils/installer/lv-config.example-no-ts.lua $HOME/.config/nvim/lv-config.lua
-    nvim --headless \
-        +'autocmd User PackerComplete sleep 100m | qall' \
-        +PackerInstall
-
-    nvim --headless \
-        +'autocmd User PackerComplete sleep 100m | qall' \
-        +PackerSync
-
-    echo -e "\nCompile Complete"
-    rm $HOME/.config/nvim/lv-config.lua
-    cp $HOME/.config/nvim/utils/installer/lv-config.example.lua $HOME/.config/nvim/lv-config.lua
-    # nvim --headless -cq ':silent TSUpdate' -cq ':qall' >/dev/null 2>&1
+function __attempt_to_install_with_cargo() {
+  if ! command -v cargo &>/dev/null; then
+    echo "Installing missing Rust dependency with cargo"
+    cargo install "$1"
+  else
+    echo "[WARN]: Unable to find fd. Make sure to install it to avoid any problems"
+  fi
 }
 
-asktoinstallnode() {
-    echo "node not found"
-    echo -n "Would you like to install node now (y/n)? "
-    read answer
-    [ "$answer" != "${answer#[Yy]}" ] && installnode
+# we try to install the missing one with cargo even though it's unlikely to be found
+function install_rust_deps() {
+  if ! command -v fd &>/dev/null; then
+    __attempt_to_install_with_cargo "fd-find"
+  fi
+  if ! command -v rg &>/dev/null; then
+    __attempt_to_install_with_cargo "ripgrep"
+  fi
+  echo "All Rust dependencies are succesfully installed"
 }
 
-asktoinstallpip() {
-    # echo "pip not found"
-    # echo -n "Would you like to install pip now (y/n)? "
-    # read answer
-    # [ "$answer" != "${answer#[Yy]}" ] && installpip
-    echo "Please install pip3 before continuing with install"
-    exit
+function backup_old_config() {
+  for dir in "${__lvim_dirs[@]}"; do
+    # we create an empty folder for subsequent commands \
+    # that require an existing directory
+    mkdir -p "$dir" "$dir.bak"
+    touch "$dir/ignore"
+    if command -v rsync &>/dev/null; then
+      rsync --archive -hh --partial --progress --cvs-exclude \
+        --modify-window=1 "$dir"/ "$dir.bak"
+    else
+      OS="$(uname -s)"
+      case "$OS" in
+        Linux)
+          cp -r "$dir/"* "$dir.bak/."
+          ;;
+        Darwin)
+          cp -R "$dir/"* "$dir.bak/."
+          ;;
+        *)
+          echo "OS $OS is not currently supported."
+          ;;
+      esac
+    fi
+  done
+  echo "Backup operation complete"
 }
 
-installonmac() {
-    brew install ripgrep fzf ranger
-    npm install -g tree-sitter-cli
+function install_packer() {
+  git clone --depth 1 https://github.com/wbthomason/packer.nvim \
+    "$LUNARVIM_RUNTIME_DIR/site/pack/packer/start/packer.nvim"
 }
 
-pipinstallueberzug() {
-    which pip3 >/dev/null && pip3 install ueberzug || echo "Not installing ueberzug pip not found"
+function clone_lvim() {
+  echo "Cloning LunarVim configuration"
+  if ! git clone --branch "$LV_BRANCH" \
+    --depth 1 "https://github.com/${LV_REMOTE}" "$LUNARVIM_RUNTIME_DIR/lvim"; then
+    echo "Failed to clone repository. Installation failed."
+    exit 1
+  fi
 }
 
-installonubuntu() {
-    sudo apt install ripgrep fzf ranger
-    sudo apt install libjpeg8-dev zlib1g-dev python-dev python3-dev libxtst-dev
-    pip3 install ueberzug
-    pip3 install neovim-remote
-    npm install -g tree-sitter-cli
+function setup_shim() {
+  if [ ! -d "$INSTALL_PREFIX/bin" ]; then
+    mkdir -p "$INSTALL_PREFIX/bin"
+  fi
+  cat >"$INSTALL_PREFIX/bin/lvim" <<EOF
+#!/bin/sh
+
+export LUNARVIM_CONFIG_DIR="\${LUNARVIM_CONFIG_DIR:-$LUNARVIM_CONFIG_DIR}"
+export LUNARVIM_RUNTIME_DIR="\${LUNARVIM_RUNTIME_DIR:-$LUNARVIM_RUNTIME_DIR}"
+
+exec nvim -u "\$LUNARVIM_RUNTIME_DIR/lvim/init.lua" "\$@"
+EOF
+  chmod +x "$INSTALL_PREFIX/bin/lvim"
 }
 
-installonarch() {
-    sudo pacman -S ripgrep fzf ranger
-    which yay >/dev/null && yay -S python-ueberzug-git || pipinstallueberzug
-    pip3 install neovim-remote
-    npm install -g tree-sitter-cli
+function setup_lvim() {
+  echo "Installing LunarVim shim"
+
+  setup_shim
+
+  echo "Preparing Packer setup"
+
+  cp "$LUNARVIM_RUNTIME_DIR/lvim/utils/installer/config.example-no-ts.lua" \
+    "$LUNARVIM_CONFIG_DIR/config.lua"
+
+  nvim -u "$LUNARVIM_RUNTIME_DIR/lvim/init.lua" --headless \
+    -c 'autocmd User PackerComplete quitall' \
+    -c 'PackerSync'
+
+  echo "Packer setup complete"
+
+  cp "$LUNARVIM_RUNTIME_DIR/lvim/utils/installer/config.example.lua" "$LUNARVIM_CONFIG_DIR/config.lua"
+
+  echo "Thank you for installing LunarVim!!"
+  echo "You can start it by running: $INSTALL_PREFIX/bin/lvim"
+  echo "Do not forget to use a font with glyphs (icons) support [https://github.com/ryanoasis/nerd-fonts]"
 }
 
-installonfedora() {
-    sudo dnf groupinstall "X Software Development"
-    sudo dnf install -y fzf ripgrep ranger
-    pip3 install wheel ueberzug
+function update_lvim() {
+  git -C "$LUNARVIM_RUNTIME_DIR/lvim" fetch --quiet
+  if ! git -C "$LUNARVIM_RUNTIME_DIR/lvim" diff --quiet "@{upstream}"; then
+    git -C "$LUNARVIM_RUNTIME_DIR/lvim" merge --ff-only --progress ||
+      echo "Unable to guarantee data integrity while updating. Please do that manually instead." && exit 1
+  fi
+  echo "Your LunarVim installation is now up to date!"
 }
 
-installongentoo() {
-    sudo emerge -avn sys-apps/ripgrep app-shells/fzf app-misc/ranger dev-python/neovim-remote virtual/jpeg sys-libs/zlib
-    pipinstallueberzug
-    npm install -g tree-sitter-cli
+function __add_separator() {
+  local DIV_WIDTH="$1"
+  printf "%${DIV_WIDTH}s\n" ' ' | tr ' ' -
 }
 
-installextrapackages() {
-    [ "$(uname)" == "Darwin" ] && installonmac
-    [ -n "$(cat /etc/os-release | grep Ubuntu)" ] && installonubuntu
-    [ -f "/etc/arch-release" ] && installonarch
-    [ -f "/etc/artix-release" ] && installonarch
-    [ -f "/etc/fedora-release" ] && installonfedora
-    [ -f "/etc/gentoo-release" ] && installongentoo
-    [ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ] && echo "Windows not currently supported"
-}
-
-# Welcome
-echo 'Installing LunarVim'
-
-if [[ $* == *--overwrite* ]]; then
-  echo '!!Warning!! -> Removing all nvim related config because of the --overwrite flag'
-  rm -rf "$HOME/.config/nvim"
-  rm -rf "$HOME/.cache/nvim"
-  rm -rf "$HOME/.local/share/nvim/site/pack/packer"
-fi
-
-# move old nvim directory if it exists
-[ -d "$HOME/.config/nvim" ] && moveoldnvim
-
-# install pip
-which pip3 >/dev/null && echo "pip installed, moving on..." || asktoinstallpip
-
-# install node and neovim support
-which node >/dev/null && echo "node installed, moving on..." || asktoinstallnode
-
-# install pynvim
-pip3 list | grep pynvim >/dev/null && echo "pynvim installed, moving on..." || installpynvim
-
-if [ -e "$HOME/.local/share/nvim/site/pack/packer/start/packer.nvim" ]; then
-    echo 'packer already installed'
-else
-    installpacker
-fi
-
-if [ -e "$HOME/.config/nvim/init.lua" ]; then
-    echo 'LunarVim already installed'
-else
-    # clone config down
-    cloneconfig
-    # echo 'export PATH=$HOME/.config/nvim/utils/bin:$PATH' >>~/.zshrc
-    # echo 'export PATH=$HOME/.config/lunarvim/utils/bin:$PATH' >>~/.bashrc
-fi
-
-echo "I recommend you also install and activate a font from here: https://github.com/ryanoasis/nerd-fonts"
-
-# echo "I also recommend you add 'set preview_images_method ueberzug' to ~/.config/ranger/rc.conf"
-
-# echo 'export PATH=/home/$USER/.config/lunarvim/utils/bin:$PATH appending to zshrc/bashrc'
+main "$@"
