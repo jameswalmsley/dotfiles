@@ -136,10 +136,11 @@ lvim.lang = {
   },
   c = {
     formatters = {
-      -- {
-      --   exe = "clang_format",
-      --   args = {},
-      -- },
+      {
+         exe = "clang-format",
+         args = {},
+         cwd = vim.fn.expand("%:p:h")
+      },
       -- {
       --   exe = "uncrustify",
       --   args = {},
