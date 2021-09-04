@@ -134,13 +134,26 @@ lvim.lang = {
       },
     },
   },
+  bicep = {
+    formatters = {},
+    linters = {},
+    lsp = {
+      provider = "bicep",
+      setup = {
+        cmd = {
+          "dotnet",
+          DATA_PATH .. "/lspinstall/bicep/Bicep.LangServer.dll",
+        },
+        filetypes = { "bicep" },
+      },
+    },
+  },
   c = {
     formatters = {
-      {
-         exe = "clang-format",
-         args = {},
-         cwd = vim.fn.expand("%:p:h")
-      },
+      -- {
+      --   exe = "clang_format",
+      --   args = {},
+      -- },
       -- {
       --   exe = "uncrustify",
       --   args = {},
