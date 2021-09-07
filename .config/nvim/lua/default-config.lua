@@ -51,6 +51,7 @@ O = {
         codi = {active = false},
         telescope_fzy = {active = true},
         sanegx = {active = true},
+        snap = {active = false},
         ranger = {active = false},
         todo_comments = {active = false},
         lsp_colors = {active = true},

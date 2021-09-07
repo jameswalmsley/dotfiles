@@ -5,7 +5,9 @@ if io.open(CONFIG_PATH .. '/lv-config.lua', 'r') then
 end
 require('settings')
 require('plugins')
-require('colorscheme')
+require('lv-tokyonight')
+vim.g.colors_name = O.colorscheme
+vim.g.syntax = true
 require('lv-utils')
 require('keymappings')
 require('lv-galaxyline')
