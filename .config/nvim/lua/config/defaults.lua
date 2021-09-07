@@ -348,7 +348,7 @@ lvim.lang = {
       },
     },
   },
-  docker = {
+  dockerfile = {
     formatters = {},
     linters = {},
     lsp = {
@@ -696,6 +696,16 @@ lvim.lang = {
     lsp = {
       provider = "",
       setup = {},
+    },
+  },
+  solidity = {
+    formatters = {},
+    linters = {},
+    lsp = {
+      provider = "solang",
+      setup = {
+        cmd = { "solang", "--language-server" },
+      },
     },
   },
   sql = {

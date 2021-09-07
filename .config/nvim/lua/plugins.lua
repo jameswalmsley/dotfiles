@@ -116,7 +116,7 @@ return {
     "terrortylor/nvim-comment",
     event = "BufRead",
     config = function()
-      require("nvim_comment").setup()
+      require("core.comment").setup()
     end,
     disable = not lvim.builtin.comment.active,
   },
@@ -183,7 +183,7 @@ return {
 
   -- Terminal
   {
-    "akinsho/nvim-toggleterm.lua",
+    "akinsho/toggleterm.nvim",
     event = "BufWinEnter",
     config = function()
       require("core.terminal").setup()
