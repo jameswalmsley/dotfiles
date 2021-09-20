@@ -2,7 +2,7 @@
 
 local vim = vim
 local uv = vim.loop
-local impatient_start = uv.hrtime()
+local impatient_load_start = uv.hrtime()
 local api = vim.api
 local ffi = require "ffi"
 
@@ -15,7 +15,7 @@ local M = {
   cache = {},
   profile = nil,
   dirty = false,
-  path = vim.fn.stdpath('data') .. "/cache",
+  path = nil,
   log = {},
 }
 
@@ -25,13 +25,17 @@ _G.__luacache = M
 local cachepack = {}
 
 -- using double for packing/unpacking numbers has no conversion overhead
-local c_double = ffi.typeof "double[1]"
-local sizeof_c_double = ffi.sizeof "double"
+-- 32-bit ARM causes a bus error when casting to double, so use int there
+local number_t = jit.arch ~= "arm" and "double" or "int"
+ffi.cdef("typedef " .. number_t .. " number_t;")
+
+local c_number_t = ffi.typeof "number_t[1]"
+local c_sizeof_number_t = ffi.sizeof "number_t"
 
 local out_buf = {}
 
 function out_buf.write_number(buf, num)
-  buf[#buf + 1] = ffi.string(c_double(num), sizeof_c_double)
+  buf[#buf + 1] = ffi.string(c_number_t(num), c_sizeof_number_t)
 end
 
 function out_buf.write_string(buf, str)
@@ -49,8 +53,8 @@ function in_buf.read_number(buf)
   if buf.size < buf.pos then
     error "buffer access violation"
   end
-  local res = ffi.cast("double*", buf.ptr + buf.pos)[0]
-  buf.pos = buf.pos + sizeof_c_double
+  local res = ffi.cast("number_t*", buf.ptr + buf.pos)[0]
+  buf.pos = buf.pos + c_sizeof_number_t
   return res
 end
 
@@ -269,7 +273,17 @@ function M.clear_cache()
   os.remove(M.path)
 end
 
-local function setup()
+impatient_dur = uv.hrtime() - impatient_load_start
+
+function M.setup(opts)
+  opts = opts or {}
+  M.path = opts.path or vim.fn.stdpath "cache" .. "/luacache"
+
+  if opts.enable_profiling then
+    M.enable_profile()
+  end
+
+  local impatient_setup_start = uv.hrtime()
   local stat = uv.fs_stat(M.path)
   if stat then
     log("Loading cache file %s", M.path)
@@ -339,10 +353,8 @@ local function setup()
     command! LuaCacheClear lua _G.__luacache.clear_cache()
     command! LuaCacheLog   lua _G.__luacache.print_log()
   ]]
+
+  impatient_dur = impatient_dur + (uv.hrtime() - impatient_setup_start)
 end
-
-setup()
-
-impatient_dur = uv.hrtime() - impatient_start
 
 return M
