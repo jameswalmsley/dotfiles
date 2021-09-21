@@ -1,6 +1,9 @@
 lvim.builtin.dashboard.active = true
 lvim.builtin.nvimtree.side = "right"
-lvim.format_on_save = false
+lvim.format_on_save = true
+
+lvim.keys.normal_mode["<C-j>"] = ":cnext<CR>"
+lvim.keys.normal_mode["<C-k>"] = ":cprev<CR>"
 
 lvim.plugins = {
   {
@@ -54,7 +57,63 @@ lvim.plugins = {
   },
   {
     "sindrets/diffview.nvim",
-    event = "BufRead",
+  },
+  {
+    "TimUntersberger/neogit",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "sindrets/diffview.nvim"
+
+    },
+
+    config = function()
+      local neogit = require("neogit")
+
+      neogit.setup {
+        disable_signs = false,
+        disable_context_highlighting = false,
+        disable_commit_confirmation = false,
+        auto_refresh = true,
+        disable_builtin_notifications = false,
+        commit_popup = {
+          kind = "split",
+        },
+        -- customize displayed signs
+        signs = {
+          -- { CLOSED, OPENED }
+          section = { ">", "v" },
+          item = { ">", "v" },
+          hunk = { "", "" },
+        },
+        integrations = {
+          -- Neogit only provides inline diffs. If you want a more traditional way to look at diffs, you can use `sindrets/diffview.nvim`.
+          -- The diffview integration enables the diff popup, which is a wrapper around `sindrets/diffview.nvim`.
+          --
+          -- Requires you to have `sindrets/diffview.nvim` installed.
+          -- use {
+          --   'TimUntersberger/neogit',
+          --   requires = {
+          --     'nvim-lua/plenary.nvim',
+          --     'sindrets/diffview.nvim'
+          --   }
+          -- }
+          --
+          diffview = true
+        },
+        -- override/add mappings
+        mappings = {
+          -- modify status buffer mappings
+          status = {
+            -- Adds a mapping with "B" as key that does the "BranchPopup" command
+            ["B"] = "BranchPopup",
+            -- Removes the default mapping of "s"
+            ["s"] = "",
+          }
+        }
+      }
+
+    end,
+
   },
   {
     "p00f/nvim-ts-rainbow",
@@ -79,6 +138,31 @@ lvim.plugins = {
     config = function()
       require "lsp_signature".setup()
     end
+  },
+  {
+    "kevinhwang91/nvim-bqf",
+    config = function()
+      require("bqf").setup({
+        auto_enable = true,
+        preview = {
+          win_height = 12,
+          win_vheight = 12,
+          delay_syntax = 80,
+          border_chars = { "┃", "┃", "━", "━", "┏", "┓", "┗", "┛", "█" },
+        },
+        func_map = {
+          vsplit = "",
+          ptogglemode = "z,",
+          stoggleup = "",
+        },
+        filter = {
+          fzf = {
+            action_for = { ["ctrl-s"] = "split" },
+            extra_opts = { "--bind", "ctrl-o:toggle-all", "--prompt", "> " },
+          },
+        },
+      })
+    end,
   }
 }
 
