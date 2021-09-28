@@ -163,6 +163,10 @@ lvim.plugins = {
         },
       })
     end,
+  },
+  {
+    "jameswalmsley/phabrik",
+    run = ":call phabrik#install()<CR>"
   }
 }
 
