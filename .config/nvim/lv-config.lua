@@ -5,7 +5,9 @@ lvim.lang.cpp.formatters = {
   {
     exe = 'clang_format',
     args = {},
-    cwd = vim.fn.expand("%:p:h")
+    opts = {
+      cwd = vim.fn.expand("%:p:h")
+    }
   }
 }
 

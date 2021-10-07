@@ -21,26 +21,49 @@ local function lsp_highlight_document(client)
   end
 end
 
-local function add_lsp_buffer_keybindings(bufnr)
-  local status_ok, wk = pcall(require, "which-key")
-  if not status_ok then
+local function lsp_code_lens_refresh(client)
+  if lvim.lsp.code_lens_refresh == false then
     return
   end
 
-  local keys = {
-    ["K"] = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Show hover" },
-    ["gd"] = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Goto Definition" },
-    ["gD"] = { "<cmd>lua vim.lsp.buf.declaration()<CR>", "Goto declaration" },
-    ["gr"] = { "<cmd>lua vim.lsp.buf.references()<CR>", "Goto references" },
-    ["gI"] = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Goto Implementation" },
-    ["gs"] = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "show signature help" },
-    ["gp"] = { "<cmd>lua require'lsp.peek'.Peek('definition')<CR>", "Peek definition" },
-    ["gl"] = {
-      "<cmd>lua require'lsp.handlers'.show_line_diagnostics()<CR>",
-      "Show line diagnostics",
-    },
+  if client.resolved_capabilities.code_lens then
+    vim.api.nvim_exec(
+      [[
+      augroup lsp_code_lens_refresh
+        autocmd! * <buffer>
+        autocmd InsertLeave <buffer> lua vim.lsp.codelens.refresh()
+        autocmd InsertLeave <buffer> lua vim.lsp.codelens.display()
+      augroup END
+    ]],
+      false
+    )
+  end
+end
+
+local function add_lsp_buffer_keybindings(bufnr)
+  local mappings = {
+    normal_mode = "n",
+    insert_mode = "i",
+    visual_mode = "v",
   }
-  wk.register(keys, { mode = "n", buffer = bufnr })
+
+  if lvim.builtin.which_key.active then
+    -- Remap using which_key
+    local status_ok, wk = pcall(require, "which-key")
+    if not status_ok then
+      return
+    end
+    for mode_name, mode_char in pairs(mappings) do
+      wk.register(lvim.lsp.buffer_mappings[mode_name], { mode = mode_char, buffer = bufnr })
+    end
+  else
+    -- Remap using nvim api
+    for mode_name, mode_char in pairs(mappings) do
+      for key, remap in pairs(lvim.lsp.buffer_mappings[mode_name]) do
+        vim.api.nvim_buf_set_keymap(bufnr, mode_char, key, remap[1], { noremap = true, silent = true })
+      end
+    end
+  end
 end
 
 function M.common_capabilities()
@@ -95,6 +118,7 @@ function M.common_on_attach(client, bufnr)
     Log:debug "Called lsp.on_attach_callback"
   end
   lsp_highlight_document(client)
+  lsp_code_lens_refresh(client)
   add_lsp_buffer_keybindings(bufnr)
 end
 
