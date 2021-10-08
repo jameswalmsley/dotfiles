@@ -5,6 +5,9 @@ local M = {}
 function M:init(opts)
   opts = opts or {}
   self.path = opts.path
+  if os.getenv('LV_BASE') then
+    self.path = os.getenv('LV_BASE') .. "/nvim" .. "/lv-config.lua"
+  end
   local utils = require "utils"
 
   require "config.defaults"
