@@ -6,7 +6,6 @@ end
 require("bootstrap"):init()
 
 local config = require "config"
--- config:init()
 config:load()
 
 local plugins = require "plugins"
