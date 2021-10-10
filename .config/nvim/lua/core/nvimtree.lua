@@ -6,13 +6,21 @@ function M.config()
     active = true,
     on_config_done = nil,
     setup = {
-      open_on_setup = 0,
-      auto_close = 1,
-      open_on_tab = 0,
+      open_on_setup = false,
+      auto_close = true,
+      open_on_tab = false,
       update_focused_file = {
-        enable = 1,
+        enable = true,
       },
-      lsp_diagnostics = 1,
+      diagnostics = {
+        enable = true,
+        icons = {
+          hint = "",
+          info = "",
+          warning = "",
+          error = "",
+        },
+      },
       view = {
         width = 30,
         side = "left",
@@ -74,10 +82,10 @@ function M.setup()
   -- Implicitly update nvim-tree when project module is active
   if lvim.builtin.project.active then
     lvim.builtin.nvimtree.respect_buf_cwd = 1
-    lvim.builtin.nvimtree.setup.update_cwd = 1
-    lvim.builtin.nvimtree.setup.disable_netrw = 0
-    lvim.builtin.nvimtree.setup.hijack_netrw = 0
-    vim.g.netrw_banner = 0
+    lvim.builtin.nvimtree.setup.update_cwd = true
+    lvim.builtin.nvimtree.setup.disable_netrw = false
+    lvim.builtin.nvimtree.setup.hijack_netrw = false
+    vim.g.netrw_banner = false
   end
 
   local tree_cb = nvim_tree_config.nvim_tree_callback
