@@ -14,3 +14,4 @@ lvim.lang.cpp.formatters = {
 lvim.keys.normal_mode["<C-j>"] = ":cnext<CR>"
 lvim.keys.normal_mode["<C-k>"] = ":cprev<CR>"
 
+vim.opt.relativenumber=true

@@ -1,6 +1,7 @@
-if os.getenv "LUNARVIM_RUNTIME_DIR" then
+if os.getenv "LUNARVIM_INSTALL_DIR" then
   local path_sep = vim.loop.os_uname().version:match "Windows" and "\\" or "/"
-  vim.opt.rtp:append(os.getenv "LUNARVIM_RUNTIME_DIR" .. path_sep .. "lvim")
+  local rtp = os.getenv "LUNARVIM_INSTALL_DIR"
+  vim.opt.rtp:append(rtp)
 end
 
 require("lvim.bootstrap"):init()

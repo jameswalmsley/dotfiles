@@ -94,13 +94,13 @@ lvim.autocommands = {
   --   -- will cause esc key to exit lazy git
   --   {"TermEnter", "*", "call LazyGitNativation()"}
   -- },
-  -- _mode_switching = {
-  --   -- will switch between absolute and relative line numbers depending on mode
-  --   {'InsertEnter', '*', 'if &relativenumber | let g:ms_relativenumberoff = 1 | setlocal number norelativenumber | endif'},
-  --   {'InsertLeave', '*', 'if exists("g:ms_relativenumberoff") | setlocal relativenumber | endif'},
-  --   {'InsertEnter', '*', 'if &cursorline | let g:ms_cursorlineoff = 1 | setlocal nocursorline | endif'},
-  --   {'InsertLeave', '*', 'if exists("g:ms_cursorlineoff") | setlocal cursorline | endif'},
-  -- },
+  _mode_switching = {
+    -- will switch between absolute and relative line numbers depending on mode
+    {'InsertEnter', '*', 'if &relativenumber | let g:ms_relativenumberoff = 1 | setlocal number norelativenumber | endif'},
+    {'InsertLeave', '*', 'if exists("g:ms_relativenumberoff") | setlocal relativenumber | endif'},
+    {'InsertEnter', '*', 'if &cursorline | let g:ms_cursorlineoff = 1 | setlocal nocursorline | endif'},
+    {'InsertLeave', '*', 'if exists("g:ms_cursorlineoff") | setlocal cursorline | endif'},
+  },
   custom_groups = {},
 }
 

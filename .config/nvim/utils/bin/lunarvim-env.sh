@@ -21,12 +21,12 @@ LV_CONFIG_DIR=${LV_BASE}/nvim
 # LV_USER:
 #   Path to the "user" data/cache folders.
 #
-LV_USER="$HOME/.local/share/lunarvim"
+LV_USER="$HOME/.local/share/lvim"
 
 # LV_USER_CONFIG:
 #   Path to the "users" local config dir.
 #
-LV_USER_CONFIG="$HOME/.config/lunarvim"
+LV_USER_CONFIG="$HOME/.config/lvim"
 
 # LV_BASE_CONFIG:
 #   Path to the "base" config file.
@@ -54,5 +54,5 @@ export SHELL=/bin/bash
 export XDG_CONFIG_HOME=${LV_USER_CONFIG}
 export XDG_DATA_HOME="${LV_USER}/data"
 export XDG_CACHE_HOME="${LV_USER}/cache"
-export XDG_CONFIG_DIRS="/usr/share:/usr/local/share:${LV_BASE}"
+#export XDG_CONFIG_DIRS="/usr/share:/usr/local/share:${LV_BASE}"
 

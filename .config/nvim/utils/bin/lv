@@ -9,13 +9,14 @@ export LUNARVIM_INSTALL_DIR=${LV_BASE}/nvim
 export LUNARVIM_CACHE_DIR=${LV_USER}/cache
 export LUNARVIM_CONFIG_DIR=${LV_USER_CONFIG}
 
-nvim -u ${LV_BASE_CONFIG} ${LV_SYNC} $@
+if [ -v LV_CONFIG_INIT ]; then
+  mkdir -p ${LV_USER_CONFIG}
+  touch ${LV_USER_CONFIG}/config.lua
+fi
 
 if [ -v LV_SYNC ]; then
   touch ${LV_USER}/.packer_sync
 fi
 
-if [ -v LV_CONFIG_INIT ]; then
-  mkdir -p ${LV_USER_CONFIG}
-  touch ${LV_USER_CONFIG}/nvim/init.lua
-fi
+exec nvim -u "${LV_BASE_CONFIG}" ${LV_SYNC} "$@"
+
