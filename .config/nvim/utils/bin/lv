@@ -4,7 +4,10 @@ GLOBAL=1
 
 source /opt/lunarvim/nvim/utils/bin/lunarvim-env.sh
 
-export LV_BASE=${LV_BASE}
+export LUNARVIM_RUNTIME_DIR=${LV_USER}/data
+export LUNARVIM_INSTALL_DIR=${LV_BASE}/nvim
+export LUNARVIM_CACHE_DIR=${LV_USER}/cache
+export LUNARVIM_CONFIG_DIR=${LV_USER_CONFIG}
 
 nvim -u ${LV_BASE_CONFIG} ${LV_SYNC} $@
 
