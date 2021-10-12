@@ -5,6 +5,8 @@ local M = {}
 local user_config_dir = get_config_dir()
 local user_config_file = utils.join_paths(user_config_dir, "config.lua")
 
+---Get the full path to the user configuration file
+---@return string
 function M:get_user_config_path()
   return user_config_file
 end
@@ -17,13 +19,6 @@ function M:init()
     local home_dir = vim.loop.os_homedir()
     lvim.vsnip_dir = utils.join_paths(home_dir, ".config", "snippets")
     lvim.database = { save_location = utils.join_paths(home_dir, ".config", "lunarvim_db"), auto_execute = 1 }
-  end
-
-  -- Fallback config.lua to lv-config.lua
-  if not utils.is_file(user_config_file) then
-    local lv_config = utils.join_paths(user_config_dir, "lv-config.lua")
-    Log:warn(string.format("[%s] not found, falling back to [%s]", user_config_file, lv_config))
-    user_config_file = lv_config
   end
 
   local builtins = require "lvim.core.builtins"
@@ -157,11 +152,15 @@ end
 --- Override the configuration with a user provided one
 -- @param config_path The path to the configuration overrides
 function M:load(config_path)
-  pcall(dofile, "/opt/lunarvim/nvim/lv-config.lua")
+  require "distro.config"
   config_path = config_path or self.get_user_config_path()
-  local ok, _ = pcall(dofile, config_path)
+  local ok, err = pcall(dofile, config_path)
   if not ok then
-    Log:warn("Invalid configuration: " .. config_path)
+    if utils.is_file(user_config_file) then
+      Log:warn("Invalid configuration: " .. err)
+    else
+      Log:warn(string.format("Unable to find configuration file [%s]", config_path))
+    end
   end
 
 

@@ -1,15 +1,7 @@
 lvim.builtin.dashboard.active = true
 lvim.builtin.nvimtree.side = "right"
 lvim.format_on_save = true
-lvim.lang.cpp.formatters = {
-  {
-    exe = 'clang_format',
-    args = {},
-    opts = {
-      cwd = vim.fn.expand("%:p:h")
-    }
-  }
-}
+
 
 lvim.keys.normal_mode["<C-j>"] = ":cnext<CR>"
 lvim.keys.normal_mode["<C-k>"] = ":cprev<CR>"
@@ -23,4 +15,7 @@ lvim.builtin.lualine.options = {
 lvim.builtin.lualine.sections.lualine_z = {
   "location"
 }
+require("null-ls").config({
+    debug = true
+})
 
