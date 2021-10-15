@@ -15,7 +15,5 @@ lvim.builtin.lualine.options = {
 lvim.builtin.lualine.sections.lualine_z = {
   "location"
 }
-require("null-ls").config({
-    debug = true
-})
+
 
