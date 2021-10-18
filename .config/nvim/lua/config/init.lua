@@ -22,6 +22,126 @@ function M:init(opts)
 
   local settings = require "config.settings"
   settings.load_options()
+
+  local lvim_lsp_config = require "lsp.config"
+  lvim.lsp = vim.deepcopy(lvim_lsp_config)
+
+  local supported_languages = {
+    "asm",
+    "bash",
+    "beancount",
+    "bibtex",
+    "bicep",
+    "c",
+    "c_sharp",
+    "clojure",
+    "cmake",
+    "comment",
+    "commonlisp",
+    "cpp",
+    "crystal",
+    "cs",
+    "css",
+    "cuda",
+    "d",
+    "dart",
+    "dockerfile",
+    "dot",
+    "elixir",
+    "elm",
+    "emmet",
+    "erlang",
+    "fennel",
+    "fish",
+    "fortran",
+    "gdscript",
+    "glimmer",
+    "go",
+    "gomod",
+    "graphql",
+    "haskell",
+    "hcl",
+    "heex",
+    "html",
+    "java",
+    "javascript",
+    "javascriptreact",
+    "jsdoc",
+    "json",
+    "json5",
+    "jsonc",
+    "julia",
+    "kotlin",
+    "latex",
+    "ledger",
+    "less",
+    "lua",
+    "markdown",
+    "nginx",
+    "nix",
+    "ocaml",
+    "ocaml_interface",
+    "perl",
+    "php",
+    "pioasm",
+    "ps1",
+    "puppet",
+    "python",
+    "ql",
+    "query",
+    "r",
+    "regex",
+    "rst",
+    "ruby",
+    "rust",
+    "scala",
+    "scss",
+    "sh",
+    "solidity",
+    "sparql",
+    "sql",
+    "supercollider",
+    "surface",
+    "svelte",
+    "swift",
+    "tailwindcss",
+    "terraform",
+    "tex",
+    "tlaplus",
+    "toml",
+    "tsx",
+    "turtle",
+    "typescript",
+    "typescriptreact",
+    "verilog",
+    "vim",
+    "vue",
+    "yaml",
+    "yang",
+    "zig",
+  }
+
+  require("lsp.manager").init_defaults(supported_languages)
+end
+
+local function deprecation_notice()
+  local in_headless = #vim.api.nvim_list_uis() == 0
+  if in_headless then
+    return
+  end
+
+  for lang, entry in pairs(lvim.lang) do
+    local deprecated_config = entry["lsp"] or {}
+    if not vim.tbl_isempty(deprecated_config) then
+      local msg = string.format(
+        "Deprecation notice: [lvim.lang.%s.lsp] setting is no longer supported. See https://github.com/LunarVim/LunarVim#breaking-changes",
+        lang
+      )
+      vim.schedule(function()
+        vim.notify(msg, vim.log.levels.WARN)
+      end)
+    end
+  end
 end
 
 --- Override the configuration with a user provided one
@@ -36,6 +156,8 @@ function M:load(config_path)
     print(err)
     return
   end
+
+  deprecation_notice()
 
   self.path = config_path
 

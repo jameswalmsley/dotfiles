@@ -148,9 +148,9 @@ M.config = function()
           "<cmd>Telescope lsp_workspace_diagnostics<cr>",
           "Workspace Diagnostics",
         },
-        -- f = { "<cmd>silent FormatWrite<cr>", "Format" },
         f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
         i = { "<cmd>LspInfo<cr>", "Info" },
+        I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
         j = {
           "<cmd>lua vim.lsp.diagnostic.goto_next({popup_opts = {border = lvim.lsp.popup_border}})<cr>",
           "Next Diagnostic",
@@ -192,17 +192,24 @@ M.config = function()
           "<cmd>lua require('core.info').toggle_popup(vim.bo.filetype)<cr>",
           "Toggle LunarVim Info",
         },
+        I = {
+          "<cmd>lua require('core.telescope').view_lunarvim_changelog()<cr>",
+          "View LunarVim's changelog",
+        },
         l = {
           name = "+logs",
           d = {
-            "<cmd>lua require('core.terminal').toggle_log_view('lunarvim')<cr>",
+            "<cmd>lua require('core.terminal').toggle_log_view(require('core.log').get_path())<cr>",
             "view default log",
           },
-          D = { "<cmd>exe 'edit '.stdpath('cache').'/lunarvim.log'<cr>", "Open the default logfile" },
-          n = { "<cmd>lua require('core.terminal').toggle_log_view('lsp')<cr>", "view lsp log" },
+          D = { "<cmd>lua vim.fn.execute('edit ' .. require('core.log').get_path())<cr>", "Open the default logfile" },
+          l = { "<cmd>lua require('core.terminal').toggle_log_view(vim.lsp.get_log_path())<cr>", "view lsp log" },
+          L = { "<cmd>lua vim.fn.execute('edit ' .. vim.lsp.get_log_path())<cr>", "Open the LSP logfile" },
+          n = {
+            "<cmd>lua require('core.terminal').toggle_log_view(os.getenv('NVIM_LOG_FILE'))<cr>",
+            "view neovim log",
+          },
           N = { "<cmd>edit $NVIM_LOG_FILE<cr>", "Open the Neovim logfile" },
-          l = { "<cmd>lua require('core.terminal').toggle_log_view('nvim')<cr>", "view neovim log" },
-          L = { "<cmd>exe 'edit '.stdpath('cache').'/lsp.log'<cr>", "Open the LSP logfile" },
           p = {
             "<cmd>lua require('core.terminal').toggle_log_view('packer.nvim')<cr>",
             "view packer log",
@@ -210,6 +217,7 @@ M.config = function()
           P = { "<cmd>exe 'edit '.stdpath('cache').'/packer.nvim.log'<cr>", "Open the Packer logfile" },
         },
         r = { "<cmd>lua require('utils').reload_lv_config()<cr>", "Reload configurations" },
+        u = { "<cmd>LvimUpdate<cr>", "Update LunarVim" },
       },
       s = {
         name = "Search",
