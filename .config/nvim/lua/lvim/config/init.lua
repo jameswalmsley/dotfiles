@@ -23,10 +23,12 @@ function M:init()
 
   local builtins = require "lvim.core.builtins"
   builtins.config { user_config_file = user_config_file }
-  builtins.config { user_config_file = "/opt/lunarvim/nvim/lv-config.lua"}
 
   local settings = require "lvim.config.settings"
   settings.load_options()
+
+  local autocmds = require "lvim.core.autocmds"
+  lvim.autocommands = autocmds.load_augroups()
 
   local lvim_lsp_config = require "lvim.lsp.config"
   lvim.lsp = vim.deepcopy(lvim_lsp_config)
@@ -153,7 +155,6 @@ end
 -- @param config_path The path to the configuration overrides
 function M:load(config_path)
   local autocmds = require "lvim.core.autocmds"
-  pcall(dofile, "/opt/lunarvim/nvim/lv-config.lua")
   require "distro.config"
   config_path = config_path or self.get_user_config_path()
   local ok, err = pcall(dofile, config_path)
@@ -164,7 +165,6 @@ function M:load(config_path)
       Log:warn(string.format("Unable to find configuration file [%s]", config_path))
     end
   end
-
 
   deprecation_notice()
 

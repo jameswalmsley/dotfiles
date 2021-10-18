@@ -1,10 +1,10 @@
-if os.getenv "LUNARVIM_INSTALL_DIR" then
-  local path_sep = vim.loop.os_uname().version:match "Windows" and "\\" or "/"
-  local rtp = os.getenv "LUNARVIM_INSTALL_DIR"
-  vim.opt.rtp:append(rtp)
+local lvim_base_dir = debug.getinfo(1, 'S').source:match("(.*[/\\])"):sub(2, -2)
+
+if lvim_base_dir ~= vim.fn.stdpath('config') then
+  vim.opt.rtp:append(lvim_base_dir)
 end
 
-require("lvim.bootstrap"):init()
+require("lvim.bootstrap"):init(lvim_base_dir)
 
 require("lvim.config"):load()
 
@@ -24,3 +24,4 @@ commands.load(commands.defaults)
 require("lvim.keymappings").setup()
 
 require("lvim.lsp").setup()
+

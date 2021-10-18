@@ -1,4 +1,5 @@
 local M = {}
+local lvim_base_dir
 
 package.loaded["lvim.utils.hooks"] = nil
 local _, hooks = pcall(require, "lvim.utils.hooks")
@@ -46,12 +47,7 @@ end
 ---Get the full path to the currently installed lunarvim repo
 ---@return string
 local function get_install_path()
-  local lvim_runtime_dir = os.getenv "LUNARVIM_INSTALL_DIR"
-  if not lvim_runtime_dir then
-    -- when nvim is used directly
-    return vim.fn.stdpath "config"
-  end
-  return join_paths(lvim_runtime_dir, "lvim")
+  return lvim_base_dir
 end
 
 ---Get currently installed version of LunarVim
@@ -73,11 +69,12 @@ end
 
 ---Initialize the `&runtimepath` variables and prepare for startup
 ---@return table
-function M:init()
+function M:init(lvim_base)
   self.runtime_dir = get_runtime_dir()
   self.config_dir = get_config_dir()
   self.cache_path = get_cache_dir()
-  self.install_path = get_install_path()
+  self.install_path = lvim_base --get_install_path()
+  lvim_base_dir = lvim_base
 
   self.pack_dir = join_paths(self.runtime_dir, "site", "pack")
   self.packer_install_dir = join_paths(self.runtime_dir, "site", "pack", "packer", "start", "packer.nvim")
