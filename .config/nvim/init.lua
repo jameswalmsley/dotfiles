@@ -1,10 +1,11 @@
-local lvim_base_dir = debug.getinfo(1, 'S').source:match("(.*[/\\])"):sub(2, -2)
+local init_path = debug.getinfo(1, "S").source:sub(2)
+local base_dir = init_path:match("(.*[/\\])"):sub(1, -2)
 
-if lvim_base_dir ~= vim.fn.stdpath('config') then
-  vim.opt.rtp:append(lvim_base_dir)
+if not vim.tbl_contains(vim.opt.rtp:get(), base_dir) then
+  vim.opt.rtp:append(base_dir)
 end
 
-require("lvim.bootstrap"):init(lvim_base_dir)
+require("lvim.bootstrap"):init(base_dir)
 
 require("lvim.config"):load()
 
