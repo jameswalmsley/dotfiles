@@ -104,12 +104,12 @@ return {
 
       -- add formatter
       local formatters = require "lvim.lsp.null-ls.formatters"
-      local supported_formatters = formatters.list_supported_names(buf_ft)
+      local supported_formatters = formatters.list_registered_providers(buf_ft)
       vim.list_extend(buf_client_names, supported_formatters)
 
       -- add linter
       local linters = require "lvim.lsp.null-ls.linters"
-      local supported_linters = linters.list_supported_names(buf_ft)
+      local supported_linters = linters.list_registered_providers(buf_ft)
       vim.list_extend(buf_client_names, supported_linters)
 
       return table.concat(buf_client_names, ", ")
@@ -122,11 +122,14 @@ return {
   progress = { "progress", cond = conditions.hide_in_width, color = {} },
   spaces = {
     function()
-      local label = "Spaces: "
       if not vim.api.nvim_buf_get_option(0, "expandtab") then
-        label = "Tab size: "
+        return "Tab size: " .. vim.api.nvim_buf_get_option(0, "tabstop") .. " "
       end
-      return label .. vim.api.nvim_buf_get_option(0, "shiftwidth") .. " "
+      local size = vim.api.nvim_buf_get_option(0, "shiftwidth")
+      if size == 0 then
+        size = vim.api.nvim_buf_get_option(0, "tabstop")
+      end
+      return "Spaces: " .. size .. " "
     end,
     cond = conditions.hide_in_width,
     color = {},
