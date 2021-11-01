@@ -43,7 +43,7 @@ function plugin_loader:cache_clear()
 end
 
 function plugin_loader:cache_reset()
-  self.cache_clear()
+  plugin_loader:cache_clear()
   require("packer").compile()
   if utils.is_file(compile_path) then
     Log:debug "generated packer_compiled.lua"
@@ -58,6 +58,20 @@ function plugin_loader:load(configurations)
       end
     end
   end)
+end
+
+function plugin_loader:get_core_plugins()
+  local list = {}
+  local plugins = require "lvim.plugins"
+  for _, item in pairs(plugins) do
+    table.insert(list, item[1]:match "/(%S*)")
+  end
+  return list
+end
+
+function plugin_loader:sync_core_plugins()
+  local core_plugins = plugin_loader.get_core_plugins()
+  vim.cmd("PackerSync " .. unpack(core_plugins))
 end
 
 return plugin_loader
