@@ -36,16 +36,6 @@ function M.setup()
         if not vim.api.nvim_buf_is_loaded(bufnr) then
           return
         end
-
-        local sign_names = {
-          "DiagnosticSignError",
-          "DiagnosticSignWarn",
-          "DiagnosticSignInfo",
-          "DiagnosticSignHint",
-        }
-        for i, sign in ipairs(lvim.lsp.diagnostics.signs.values) do
-          vim.fn.sign_define(sign_names[i], { texthl = sign_names[i], text = sign.text, numhl = "" })
-        end
         vim_diag.show(namespace, bufnr, diagnostics, config)
       else
         vim.lsp.diagnostic.save(diagnostics, bufnr, ctx.client_id)
@@ -125,7 +115,18 @@ function M.show_line_diagnostics()
   table.sort(diagnostics, function(a, b)
     return a.severity < b.severity
   end)
-  for i, diagnostic in ipairs(diagnostics) do
+
+  local hash = {}
+  local diagnostics_no_dupes = {}
+  for _, v in ipairs(diagnostics) do
+    if not hash[v["message"]] then
+      diagnostics_no_dupes[#diagnostics_no_dupes + 1] = v -- you could print here instead of saving to result table if you wanted
+      hash[v["message"]] = true
+    end
+  end
+  -- print(vim.inspect(diagnostics_no_dupes))
+
+  for i, diagnostic in ipairs(diagnostics_no_dupes) do
     local source = diagnostic.source
     diag_message = diagnostic.message:gsub("[\n\r]", " ")
     if source then
