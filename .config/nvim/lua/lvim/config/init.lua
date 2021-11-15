@@ -20,20 +20,19 @@ end
 -- Define lvim global variable
 function M:init()
   if vim.tbl_isempty(lvim or {}) then
-    lvim = require "lvim.config.defaults"
+    lvim = vim.deepcopy(require "lvim.config.defaults")
     local home_dir = vim.loop.os_homedir()
     lvim.vsnip_dir = utils.join_paths(home_dir, ".config", "snippets")
     lvim.database = { save_location = utils.join_paths(home_dir, ".config", "lunarvim_db"), auto_execute = 1 }
   end
+
+  lvim.keys = apply_defaults(lvim.keys, require("lvim.keymappings").get_defaults())
 
   local builtins = require "lvim.core.builtins"
   builtins.config { user_config_file = user_config_file }
 
   local settings = require "lvim.config.settings"
   settings.load_options()
-
-  local default_keymaps = require("lvim.keymappings").get_defaults()
-  lvim.keys = apply_defaults(lvim.keys, default_keymaps)
 
   local autocmds = require "lvim.core.autocmds"
   lvim.autocommands = apply_defaults(lvim.autocommands, autocmds.load_augroups())
@@ -90,6 +89,9 @@ function M:load(config_path)
   autocmds.define_augroups(lvim.autocommands)
 
   vim.g.mapleader = (lvim.leader == "space" and " ") or lvim.leader
+
+  local default_keymaps = require("lvim.keymappings").get_defaults()
+  lvim.keys = apply_defaults(lvim.keys, default_keymaps)
   require("lvim.keymappings").load(lvim.keys)
 
   local settings = require "lvim.config.settings"
@@ -99,6 +101,8 @@ end
 --- Override the configuration with a user provided one
 -- @param config_path The path to the configuration overrides
 function M:reload()
+  require("lvim.keymappings").clear(lvim.keys)
+
   local lvim_modules = {}
   for module, _ in pairs(package.loaded) do
     if module:match "lvim.core" then
@@ -111,7 +115,8 @@ function M:reload()
   M:load()
 
   local plugins = require "lvim.plugins"
-  utils.toggle_autoformat()
+  local autocmds = require "lvim.core.autocmds"
+  autocmds.configure_format_on_save()
   local plugin_loader = require "lvim.plugin-loader"
   plugin_loader.cache_clear()
   plugin_loader.load { plugins, lvim.plugins }
