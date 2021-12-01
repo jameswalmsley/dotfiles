@@ -2,6 +2,7 @@ local M = {}
 
 local uv = vim.loop
 local path_sep = uv.os_uname().version:match "Windows" and "\\" or "/"
+local in_headless = #vim.api.nvim_list_uis() == 0
 
 ---Join path segments that were passed as input
 ---@return string
@@ -77,7 +78,7 @@ function M:init(base_dir)
   vim.fn.mkdir(get_cache_dir(), "p")
 
   -- FIXME: currently unreliable in unit-tests
-  if not os.getenv "LVIM_TEST_ENV" then
+  if not in_headless then
     _G.PLENARY_DEBUG = false
     require("lvim.impatient").setup {
       path = join_paths(self.cache_dir, "lvim_cache"),
@@ -174,10 +175,23 @@ end
 function M:get_version(type)
   type = type or ""
   local opts = { cwd = get_lvim_base_dir() }
-  local status_ok, results = git_cmd({ "describe", "--tags" }, opts)
+
+  local _, branch = git_cmd({ "branch", "--show-current" }, opts)
+
+  local is_on_master = branch == "master"
+  if not is_on_master then
+    local log_status_ok, log_results = git_cmd({ "log", "--pretty=format:%h", "-1" }, opts)
+    local abbrev_version = log_results[1] or ""
+    if not log_status_ok or string.match(abbrev_version, "%d") == nil then
+      return nil
+    end
+    return "dev-" .. abbrev_version
+  end
+
+  local tag_status_ok, results = git_cmd({ "describe", "--tags" }, opts)
   local lvim_full_ver = results[1] or ""
 
-  if not status_ok or string.match(lvim_full_ver, "%d") == nil then
+  if not tag_status_ok or string.match(lvim_full_ver, "%d") == nil then
     return nil
   end
   if type == "short" then

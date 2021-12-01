@@ -40,10 +40,12 @@ return {
   },
   null_ls = {
     setup = {},
+    config = {},
   },
   override = {
     "angularls",
     "ansiblels",
+    "csharp_ls",
     "denols",
     "ember",
     "emmet_ls",

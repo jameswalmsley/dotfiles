@@ -1,50 +1,53 @@
 local commit = {
-  packer = "7f62848f3a92eac61ae61def5f59ddb5e2cc6823",
-  lsp_config = "903a1fbca91b74e6fbc905366ce38364b9d7ba98",
-  nlsp_settings = "29f49afe27b43126d45a05baf3161a28b929f2f1",
-  null_ls = "3bf64acca268f3d7e0455501b82cf3f02f38c292",
-  fix_cursor_hold = "0e4e22d21975da60b0fd2d302285b3b603f9f71e",
-  lsp_installer = "37d9326f4ca4093b04eabdb697fec3764e226f88",
-  nvim_notify = "ee79a5e2f8bde0ebdf99880a98d1312da83a3caa",
-  structlog = "6f1403a192791ff1fa7ac845a73de9e860f781f1",
-  popup = "f91d80973f80025d4ed00380f2e06c669dfda49d",
-  plenary = "96e821e8001c21bc904d3c15aa96a70c11462c5f",
-  telescope = "078a48db9e0720b07bfcb8b59342c5305a1d1fdc",
-  telescope_fzf_native = "59e38e1661ffdd586cb7fc22ca0b5a05c7caf988",
-  nvim_cmp = "ca6386854982199a532150cf3bd711395475ebd2",
-  friendly_snippets = "94f1d917435c71bc6494d257afa90d4c9449aed2",
-  autopairs = "f858ab38b532715dbaf7b2773727f8622ba04322",
-  treesitter = "47cfda2c6711077625c90902d7722238a8294982",
-  context_commentstring = "159c5b9a2cdb8a8fe342078b7ac8139de76bad62",
-  nvim_tree = "f92b7e7627c5a36f4af6814c408211539882c4f3",
-  gitsigns = "61a81b0c003de3e12555a5626d66fb6a060d8aca",
-  which_key = "d3032b6d3e0adb667975170f626cb693bfc66baa",
-  comment = "620445b87a0d1640fac6991f9c3338af8dec1884",
-  project = "3a1f75b18f214064515ffba48d1eb7403364cc6a",
-  nvim_web_devicons = "ee101462d127ed6a5561ce9ce92bfded87d7d478",
-  lualine = "3f5cdc51a08c437c7705e283eebd4cf9fbb18f80",
   barbar = "6e638309efcad2f308eb9c5eaccf6f62b794bbab",
-  dap = "dd778f65dc95323f781f291fb7c5bf3c17d057b1",
-  dap_install = "dd09e9dd3a6e29f02ac171515b8a089fb82bb425",
-  toggleterm = "5f9ba91157a25be5ee7395fbc11b1a8f25938365",
-  luasnip = "bab7cc2c32fba00776d2f2fc4704bed4eee2d082",
+  cmp_buffer = "a706dc69c49110038fe570e5c9c33d6d4f67015b",
   cmp_luasnip = "16832bb50e760223a403ffa3042859845dd9ef9d",
-  cmp_buffer = "d1ca295ce584ec80763a6dc043080874b57ccffc",
-  cmp_nvim_lsp = "accbe6d97548d8d3471c04d512d36fa61d0e4be8",
-  cmp_path = "97661b00232a2fe145fe48e295875bc3299ed1f7",
+  cmp_nvim_lsp = "134117299ff9e34adde30a735cd8ca9cf8f3db81",
   cmp_nvim_lua = "d276254e7198ab7d00f117e88e223b4bd8c02d21",
+  cmp_path = "e30d3fdee650a07330654efab1951b2f1b91435e",
+  comment = "a6e1c127fa7f19ec4e3edbffab1aacb2852b6db3",
+  dapinstall = "dd09e9dd3a6e29f02ac171515b8a089fb82bb425",
+  fixcursorhold = "0e4e22d21975da60b0fd2d302285b3b603f9f71e",
+  friendly_snippets = "e3506d575e120253b4aa47ec2100786fd1e9c38d",
+  gitsigns = "9678750f209671551c335c4f22658a6554c2f439",
+  lualine = "1ae4f0aa74f0b34222c5ef3281b34602a76b2b00",
+  luasnip = "7fc3cc24f3c1f1a43e861f589ca48ff3dff0b213",
+  nlsp_settings = "199bc1b2859206488423b676da4a7d010b1a3373",
+  null_ls = "128b8d85506e44f1e7e0f4acd9f2ba02fc7cee05",
+  nvim_autopairs = "fba2503bd8cd0d8861054523aae39c4ac0680c07",
+  nvim_cmp = "d17d41bdbd4731759d1b3d368204dc18ce3c84f3",
+  nvim_dap = "4e8bb7ca12dc8ca6f7a500cbb4ecea185665c7f1",
+  nvim_lsp_installer = "a4016db22296e4eefbcda2e8b94de74db2d7cb65",
+  nvim_lspconfig = "5b8624c1bcd332e9fd7ae33a2ca910adb31a7ae7",
+  nvim_notify = "36012703049bc7be9d4de97cb96c6d17ccf978cd",
+  nvim_tree = "e842f088847c98da59e14eb543bde11c45c87ef7",
+  nvim_treesitter = "8d1547f0bcd0831876678eeb238c3ba9a528189b",
+  nvim_ts_context_commentstring = "9f5e422e1030e7073e593ad32c5354aa0bcb0176",
+  nvim_web_devicons = "8df4988ecf8599fc1f8f387bbf2eae790e4c5ffb",
+  packer = "db3c3e3379613443d94e677a6ac3f61278e36e47",
+  plenary = "1c31adb35fcebe921f65e5c6ff6d5481fa5fa5ac",
+  popup = "b7404d35d5d3548a82149238289fa71f7f6de4ac",
+  project = "71d0e23dcfc43cfd6bb2a97dc5a7de1ab47a6538",
+  structlog = "6f1403a192791ff1fa7ac845a73de9e860f781f1",
+  telescope = "ef245548a858690fa8f2db1f1a0eaf41b93a6ef6",
+  telescope_fzf_native = "b8662b076175e75e6497c59f3e2799b879d7b954",
+  toggleterm = "265bbff68fbb8b2a5fb011272ec469850254ec9f",
+  which_key = "d3032b6d3e0adb667975170f626cb693bfc66baa",
 }
 
 return {
   -- Packer can manage itself as an optional plugin
   { "wbthomason/packer.nvim", commit = commit.packer },
-  { "neovim/nvim-lspconfig", commit = commit.lsp_config },
+  { "neovim/nvim-lspconfig", commit = commit.nvim_lspconfig },
   { "tamago324/nlsp-settings.nvim", commit = commit.nlsp_settings },
-  { "jose-elias-alvarez/null-ls.nvim", commit = commit.null_ls },
-  { "antoinemadec/FixCursorHold.nvim", commit = commit.fix_cursor_hold }, -- Needed while issue https://github.com/neovim/neovim/issues/12587 is still open
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+    commit = commit.null_ls,
+  },
+  { "antoinemadec/FixCursorHold.nvim", commit = commit.fixcursorhold }, -- Needed while issue https://github.com/neovim/neovim/issues/12587 is still open
   {
     "williamboman/nvim-lsp-installer",
-    commit = commit.lsp_installer,
+    commit = commit.nvim_lsp_installer,
   },
   {
     "rcarriga/nvim-notify",
@@ -75,24 +78,29 @@ return {
     "hrsh7th/nvim-cmp",
     commit = commit.nvim_cmp,
     config = function()
-      require("lvim.core.cmp").setup()
-    end,
-    run = function()
-      -- cmp's config requires cmp to be installed to run the first time
-      if not lvim.builtin.cmp then
-        require("lvim.core.cmp").config()
+      if lvim.builtin.cmp then
+        require("lvim.core.cmp").setup()
       end
     end,
+    requires = {
+      "L3MON4D3/LuaSnip",
+      "rafamadriz/friendly-snippets",
+    },
   },
   {
     "rafamadriz/friendly-snippets",
     commit = commit.friendly_snippets,
-    -- event = "InsertCharPre",
-    -- disable = not lvim.builtin.compe.active,
   },
   {
     "L3MON4D3/LuaSnip",
+    config = function()
+      require("luasnip/loaders/from_vscode").lazy_load()
+    end,
     commit = commit.luasnip,
+  },
+  {
+    "hrsh7th/cmp-nvim-lsp",
+    commit = commit.cmp_nvim_lsp,
   },
   {
     "saadparwaiz1/cmp_luasnip",
@@ -101,10 +109,6 @@ return {
   {
     "hrsh7th/cmp-buffer",
     commit = commit.cmp_buffer,
-  },
-  {
-    "hrsh7th/cmp-nvim-lsp",
-    commit = commit.cmp_nvim_lsp,
   },
   {
     "hrsh7th/cmp-path",
@@ -118,7 +122,7 @@ return {
   -- Autopairs
   {
     "windwp/nvim-autopairs",
-    commit = commit.autopairs,
+    commit = commit.nvim_autopairs,
     -- event = "InsertEnter",
     config = function()
       require("lvim.core.autopairs").setup()
@@ -138,7 +142,7 @@ return {
   },
   {
     "JoosepAlviste/nvim-ts-context-commentstring",
-    commit = commit.context_commentstring,
+    commit = commit.nvim_ts_context_commentstring,
     event = "BufReadPost",
   },
 
@@ -225,7 +229,7 @@ return {
   -- Debugging
   {
     "mfussenegger/nvim-dap",
-    commit = commit.dap,
+    commit = commit.nvim_dap,
     -- event = "BufWinEnter",
     config = function()
       require("lvim.core.dap").setup()
@@ -236,7 +240,7 @@ return {
   -- Debugger management
   {
     "Pocco81/DAPInstall.nvim",
-    commit = commit.dap_install,
+    commit = commit.dapinstall,
     -- event = "BufWinEnter",
     -- event = "BufRead",
     disable = not lvim.builtin.dap.active,
