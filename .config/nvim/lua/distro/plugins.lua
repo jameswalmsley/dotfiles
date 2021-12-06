@@ -1,3 +1,4 @@
+lvim.plugins['neuron'] = { active = false }
 return {
   {
     "folke/tokyonight.nvim",
@@ -168,6 +169,7 @@ return {
       'nvim-telescope/telescope.nvim',
     },
     branch = 'unstable',
+    disable = not lvim.plugins.neuron.active,
     config = function()
       require'neuron'.setup {
         virtual_titles = true,
