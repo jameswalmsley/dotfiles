@@ -40,9 +40,8 @@ M.config = function()
     -- lvim.builtin.terminal.execs = {{}} to overwrite
     -- lvim.builtin.terminal.execs[#lvim.builtin.terminal.execs+1] = {"gdb", "tg", "GNU Debugger"}
     execs = {
-      -- TODO: this should probably be removed since it's hard to hit <leader>gg within the timeoutlen
       { "lazygit", "<leader>gg", "LazyGit", "float" },
-      { "lazygit", "<c-\\>", "LazyGit", "float" },
+      { "lazygit", "<c-\\><c-g>", "LazyGit", "float" },
     },
   }
 end
@@ -60,7 +59,9 @@ M.setup = function()
     direction = lvim.builtin.terminal.direction,
     size = lvim.builtin.terminal.size,
   }
-  M.add_exec(default_term_opts)
+  if lvim.builtin.terminal.open_mapping then
+    M.add_exec(default_term_opts)
+  end
 
   for i, exec in pairs(lvim.builtin.terminal.execs) do
     local opts = {
@@ -83,7 +84,7 @@ end
 M.add_exec = function(opts)
   local binary = opts.cmd:match "(%S+)"
   if vim.fn.executable(binary) ~= 1 then
-    Log:error("Unable to run executable " .. binary .. ". Please make sure it is installed properly.")
+    Log:debug("Skipping configuring executable " .. binary .. ". Please make sure it is installed properly.")
     return
   end
 
