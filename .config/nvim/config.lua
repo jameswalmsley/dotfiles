@@ -5,6 +5,8 @@ lvim.format_on_save = false
 lvim.builtin.notify.active = true
 lvim.builtin.project.manual_mode = true
 
+lvim.builtin.nvimtree.quit_on_open = true
+
 
 lvim.keys.normal_mode["<C-j>"] = ":cnext<CR>"
 lvim.keys.normal_mode["<C-k>"] = ":cprev<CR>"

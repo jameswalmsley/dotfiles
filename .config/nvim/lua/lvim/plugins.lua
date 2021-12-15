@@ -37,31 +37,31 @@ local commit = {
 
 return {
   -- Packer can manage itself as an optional plugin
-  { "wbthomason/packer.nvim", commit = commit.packer },
-  { "neovim/nvim-lspconfig", commit = commit.nvim_lspconfig },
-  { "tamago324/nlsp-settings.nvim", commit = commit.nlsp_settings },
+  { "wbthomason/packer.nvim", --[[ commit = commit.packer  ]]},
+  { "neovim/nvim-lspconfig", --[[ commit = commit.nvim_lspconfig  ]]},
+  { "tamago324/nlsp-settings.nvim", --[[ commit = commit.nlsp_settings  ]]},
   {
     "jose-elias-alvarez/null-ls.nvim",
-    commit = commit.null_ls,
+    --[[ commit = commit.null_ls, ]]
   },
-  { "antoinemadec/FixCursorHold.nvim", commit = commit.fixcursorhold }, -- Needed while issue https://github.com/neovim/neovim/issues/12587 is still open
+  { "antoinemadec/FixCursorHold.nvim", --[[ commit = commit.fixcursorhold  ]]}, -- Needed while issue https://github.com/neovim/neovim/issues/12587 is still open
   {
     "williamboman/nvim-lsp-installer",
-    commit = commit.nvim_lsp_installer,
+    --[[ commit = commit.nvim_lsp_installer, ]]
   },
   {
     "rcarriga/nvim-notify",
-    commit = commit.nvim_notify,
+    --[[ commit = commit.nvim_notify, ]]
     disable = not lvim.builtin.notify.active,
   },
   { "Tastyep/structlog.nvim", commit = commit.structlog },
 
-  { "nvim-lua/popup.nvim", commit = commit.popup },
-  { "nvim-lua/plenary.nvim", commit = commit.plenary },
+  { "nvim-lua/popup.nvim", --[[ commit = commit.popup  ]]},
+  { "nvim-lua/plenary.nvim", --[[ commit = commit.plenary  ]]},
   -- Telescope
   {
     "nvim-telescope/telescope.nvim",
-    commit = commit.telescope,
+    --[[ commit = commit.telescope, ]]
     config = function()
       require("lvim.core.telescope").setup()
     end,
@@ -69,14 +69,14 @@ return {
   },
   {
     "nvim-telescope/telescope-fzf-native.nvim",
-    commit = commit.telescope_fzf_native,
+    --[[ commit = commit.telescope_fzf_native, ]]
     run = "make",
     disable = not lvim.builtin.telescope.active,
   },
   -- Install nvim-cmp, and buffer source as a dependency
   {
     "hrsh7th/nvim-cmp",
-    commit = commit.nvim_cmp,
+    --[[ commit = commit.nvim_cmp, ]]
     config = function()
       if lvim.builtin.cmp then
         require("lvim.core.cmp").setup()
@@ -89,40 +89,40 @@ return {
   },
   {
     "rafamadriz/friendly-snippets",
-    commit = commit.friendly_snippets,
+    --[[ commit = commit.friendly_snippets, ]]
   },
   {
     "L3MON4D3/LuaSnip",
     config = function()
       require("luasnip/loaders/from_vscode").lazy_load()
     end,
-    commit = commit.luasnip,
+    --[[ commit = commit.luasnip, ]]
   },
   {
     "hrsh7th/cmp-nvim-lsp",
-    commit = commit.cmp_nvim_lsp,
+    --[[ commit = commit.cmp_nvim_lsp, ]]
   },
   {
     "saadparwaiz1/cmp_luasnip",
-    commit = commit.cmp_luasnip,
+    --[[ commit = commit.cmp_luasnip, ]]
   },
   {
     "hrsh7th/cmp-buffer",
-    commit = commit.cmp_buffer,
+    --[[ commit = commit.cmp_buffer, ]]
   },
   {
     "hrsh7th/cmp-path",
-    commit = commit.cmp_path,
+    --[[ commit = commit.cmp_path, ]]
   },
   {
     "hrsh7th/cmp-nvim-lua",
-    commit = commit.cmp_nvim_lua,
+    --[[ commit = commit.cmp_nvim_lua, ]]
   },
 
   -- Autopairs
   {
     "windwp/nvim-autopairs",
-    commit = commit.nvim_autopairs,
+    --[[ commit = commit.nvim_autopairs, ]]
     -- event = "InsertEnter",
     config = function()
       require("lvim.core.autopairs").setup()
@@ -133,7 +133,7 @@ return {
   -- Treesitter
   {
     "nvim-treesitter/nvim-treesitter",
-    commit = commit.nvim_treesitter,
+    --commit = commit.nvim_treesitter,
     branch = vim.fn.has "nvim-0.6" == 1 and "master" or "0.5-compat",
     -- run = ":TSUpdate",
     config = function()
@@ -142,7 +142,7 @@ return {
   },
   {
     "JoosepAlviste/nvim-ts-context-commentstring",
-    commit = commit.nvim_ts_context_commentstring,
+    --[[ commit = commit.nvim_ts_context_commentstring, ]]
     event = "BufReadPost",
   },
 
@@ -151,7 +151,7 @@ return {
     "kyazdani42/nvim-tree.lua",
     -- event = "BufWinOpen",
     -- cmd = "NvimTreeToggle",
-    commit = commit.nvim_tree,
+    --[[ commit = commit.nvim_tree, ]]
     config = function()
       require("lvim.core.nvimtree").setup()
     end,
@@ -160,7 +160,7 @@ return {
 
   {
     "lewis6991/gitsigns.nvim",
-    commit = commit.gitsigns,
+    --[[ commit = commit.gitsigns, ]]
 
     config = function()
       require("lvim.core.gitsigns").setup()
@@ -172,7 +172,7 @@ return {
   -- Whichkey
   {
     "folke/which-key.nvim",
-    commit = commit.which_key,
+    --[[ commit = commit.which_key, ]]
     config = function()
       require("lvim.core.which-key").setup()
     end,
@@ -183,7 +183,7 @@ return {
   -- Comments
   {
     "numToStr/Comment.nvim",
-    commit = commit.comment,
+    --[[ commit = commit.comment, ]]
     event = "BufRead",
     config = function()
       require("lvim.core.comment").setup()
@@ -194,7 +194,7 @@ return {
   -- project.nvim
   {
     "ahmedkhalf/project.nvim",
-    commit = commit.project,
+    --[[ commit = commit.project, ]]
     config = function()
       require("lvim.core.project").setup()
     end,
@@ -202,13 +202,13 @@ return {
   },
 
   -- Icons
-  { "kyazdani42/nvim-web-devicons", commit = commit.nvim_web_devicons },
+  { "kyazdani42/nvim-web-devicons", --[[ commit = commit.nvim_web_devicons  ]]},
 
   -- Status Line and Bufferline
   {
     -- "hoob3rt/lualine.nvim",
     "nvim-lualine/lualine.nvim",
-    commit = commit.lualine,
+    --[[ commit = commit.lualine, ]]
     -- "Lunarvim/lualine.nvim",
     config = function()
       require("lvim.core.lualine").setup()
@@ -218,7 +218,7 @@ return {
 
   {
     "romgrk/barbar.nvim",
-    commit = commit.barbar,
+    --[[ commit = commit.barbar, ]]
     config = function()
       require("lvim.core.bufferline").setup()
     end,
@@ -229,7 +229,7 @@ return {
   -- Debugging
   {
     "mfussenegger/nvim-dap",
-    commit = commit.nvim_dap,
+    --[[ commit = commit.nvim_dap, ]]
     -- event = "BufWinEnter",
     config = function()
       require("lvim.core.dap").setup()
@@ -240,7 +240,7 @@ return {
   -- Debugger management
   {
     "Pocco81/DAPInstall.nvim",
-    commit = commit.dapinstall,
+    --[[ commit = commit.dapinstall, ]]
     -- event = "BufWinEnter",
     -- event = "BufRead",
     disable = not lvim.builtin.dap.active,
@@ -259,7 +259,7 @@ return {
   -- Terminal
   {
     "akinsho/toggleterm.nvim",
-    commit = commit.toggleterm,
+    --[[ commit = commit.toggleterm, ]]
     event = "BufWinEnter",
     config = function()
       require("lvim.core.terminal").setup()
