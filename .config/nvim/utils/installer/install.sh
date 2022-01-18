@@ -171,12 +171,11 @@ function print_missing_dep_msg() {
 }
 
 function check_neovim_min_version() {
-  # TODO: consider locking the requirement to 0.6+
-  local verify_version_cmd='if !has("nvim-0.5.1") | cquit | else | quit | endif'
+  local verify_version_cmd='if !has("nvim-0.6.0") | cquit | else | quit | endif'
 
   # exit with an error if min_version not found
   if ! nvim --headless -u NONE -c "$verify_version_cmd"; then
-    echo "[ERROR]: LunarVim requires at least Neovim v0.5.1 or higher"
+    echo "[ERROR]: LunarVim requires at least Neovim v0.6.0 or higher"
     exit 1
   fi
 }
@@ -210,6 +209,7 @@ function __install_nodejs_deps_npm() {
       npm install -g "$dep"
     fi
   done
+
   echo "All NodeJS dependencies are successfully installed"
 }
 
@@ -219,10 +219,32 @@ function __install_nodejs_deps_yarn() {
   echo "All NodeJS dependencies are successfully installed"
 }
 
+function __validate_node_installation() {
+  local pkg_manager="$1"
+  local manager_home
+
+  if ! command -v "$pkg_manager" &>/dev/null; then
+    return 1
+  fi
+
+  if [ "$pkg_manager" == "npm" ]; then
+    manager_home="$(npm config get prefix 2>/dev/null)"
+  else
+    manager_home="$(yarn global bin 2>/dev/null)"
+  fi
+
+  if [ ! -d "$manager_home" ] || [ ! -w "$manager_home" ]; then
+    echo "[ERROR] Unable to install using [$pkg_manager] without administrative privileges."
+    return 1
+  fi
+
+  return 0
+}
+
 function install_nodejs_deps() {
   local -a pkg_managers=("yarn" "npm")
   for pkg_manager in "${pkg_managers[@]}"; do
-    if command -v "$pkg_manager" &>/dev/null; then
+    if __validate_node_installation "$pkg_manager"; then
       eval "__install_nodejs_deps_$pkg_manager"
       return
     fi
@@ -330,11 +352,7 @@ function link_local_lvim() {
 }
 
 function setup_shim() {
-  if [ ! -d "$INSTALL_PREFIX/bin" ]; then
-    mkdir -p "$INSTALL_PREFIX/bin"
-  fi
-  cp "$LUNARVIM_RUNTIME_DIR/lvim/utils/bin/lvim" "$INSTALL_PREFIX/bin/lvim"
-  chmod +x "$INSTALL_PREFIX/bin/lvim"
+  make -C "$LUNARVIM_BASE_DIR" install-bin
 }
 
 function remove_old_cache_files() {
