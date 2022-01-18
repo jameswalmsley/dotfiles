@@ -21,4 +21,4 @@ lvim.builtin.lualine.sections.lualine_z = {
   "location"
 }
 
-vim.notify = require("notify")
+--vim.notify = require("notify")
