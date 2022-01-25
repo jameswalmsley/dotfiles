@@ -15,10 +15,6 @@ return {
     end,
   },
   {
-    "JoosepAlviste/nvim-ts-context-commentstring",
-    event = "BufRead",
-  },
-  {
     "simrat39/symbols-outline.nvim",
     cmd = "SymbolsOutline",
   },
