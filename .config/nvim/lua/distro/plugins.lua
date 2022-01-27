@@ -27,13 +27,6 @@ return {
     event = "BufRead",
   },
   {
-    "nvim-telescope/telescope-project.nvim",
-    event = "BufRead",
-    setup = function()
-      vim.cmd [[packadd telescope.nvim]]
-    end,
-  },
-  {
     "felipec/vim-sanegx",
     event = "BufRead",
   },
