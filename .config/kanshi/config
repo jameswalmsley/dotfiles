@@ -32,3 +32,9 @@ profile Carbon_X1_Docked {
 	exec swaymsg output \"Unknown 0x2036 0x00000000\" scale_filter linear
 	exec swaymsg output \"Goldstar Company Ltd LG Ultra HD 0x0000661B\" scale_filter linear
 }
+
+profile Erlen_basement {
+	output "Samsung Electric Company SMB2430L H9XB802792" mode 1920x1080 position 1920,0
+	output "Sharp Corporation 0x14D1 0x00000000" mode 1920x1200@60Hz position 0,0
+	exec swaymsg output \"Sharp Corporation 0x14D1 0x00000000\" enable
+}
