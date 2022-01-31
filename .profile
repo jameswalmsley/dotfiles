@@ -60,7 +60,7 @@ fi
 export PATH="$GOPATH/bin:$PATH"
 
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ] || [ -n "$KITTY_WINDOW_ID" ] || [ -n "$ALACRITTY_LOG" ] ; then
-    if [ -f "/usr/local/bin/fish" ] ; then
+    if [ -f "$(which fish)" ] ; then
     	SHELL=fish
 	powerline-daemon -q
     	exec fish
