@@ -6,6 +6,12 @@ profile Dell_5550 {
 	exec swaymsg [workspace=1] move workspace to output "Samsung Electric Company S27H85x H4ZM303519"
 }
 
+profile Dell_5550_WFH {
+	output "Goldstar Company Ltd LG Ultra HD 0x0000661B" mode 3840x2160 position 0,0 scale 1.5
+	output "Sharp Corporation 0x14D1 0x00000000" mode 1920x1200 position 2560,0
+	exec swaymsg [workspace=1] move workspace to output "Goldstar Company Ltd LG Ultra HD 0x0000661"
+}
+
 # Thinkpad Carbon X1 6th Gen - Alone.
 profile Carbon_X1 {
 	output "Unknown 0x2036 0x00000000" mode 2560x1440 position 0,0 scale 1.333333
