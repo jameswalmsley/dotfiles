@@ -180,6 +180,18 @@ return {
   },
   {
     'renerocksai/calendar-vim',
-  }
+  },
+  {
+    'pwntester/octo.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope.nvim',
+      'kyazdani42/nvim-web-devicons',
+    },
+    event = "BufRead",
+    config = function ()
+      require"octo".setup()
+    end
+  },
 }
 

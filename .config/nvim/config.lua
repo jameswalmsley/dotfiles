@@ -2,7 +2,6 @@
 lvim.builtin.dashboard.active = true
 lvim.builtin.nvimtree.side = "right"
 lvim.format_on_save = false
-lvim.builtin.notify.active = true
 lvim.builtin.project.manual_mode = true
 lvim.builtin.bufferline.active = true
 
