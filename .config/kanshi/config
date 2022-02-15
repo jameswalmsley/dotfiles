@@ -3,40 +3,34 @@ profile Dell_5550 {
 	output "Samsung Electric Company S27H85x H4ZM303519" mode 2560x1440 position 0,0
 	output "Samsung Electric Company S27H85x H4ZKC00773" mode 2560x1440 position 2560,0
 	output "Sharp Corporation 0x14D1 0x00000000" mode 1920x1200 position 5120,0
-	exec swaymsg [workspace=1] move workspace to output "Samsung Electric Company S27H85x H4ZM303519"
+	exec swaymsg [workspace=1] move workspace to output \"Samsung Electric Company S27H85x H4ZM303519\"
 }
 
 profile Dell_5550_WFH {
-	output "Goldstar Company Ltd LG Ultra HD 0x0000661B" mode 3840x2160 position 0,0 scale 1.5
-	output "Sharp Corporation 0x14D1 0x00000000" mode 1920x1200 position 2560,0
-	exec swaymsg [workspace=1] move workspace to output "Goldstar Company Ltd LG Ultra HD 0x0000661"
+	output "Goldstar Company Ltd LG Ultra HD 0x0000661B" mode 3840x2160 position 0,0 scale 1.333
+	output "Sharp Corporation 0x14D1 0x00000000" mode 1920x1200 position 2882,0
+	exec swaymsg [workspace=1] move workspace to output \"Goldstar Company Ltd LG Ultra HD 0x0000661B\"
 }
 
 # Thinkpad Carbon X1 6th Gen - Alone.
 profile Carbon_X1 {
-	output "Unknown 0x2036 0x00000000" mode 2560x1440 position 0,0 scale 1.333333
-	exec swaymsg output \"Unknown 0x2036 0x00000000\" scale_filter linear
+	output "Unknown 0x2036 0x00000000" mode 2560x1440 position 0,0 scale 1.333
 }
 
 # Home Office with Carbon - Laptop + 1080p + 4K.
 profile Carbon_X1_Docked {
 	output "BenQ Corporation BenQ GL2450 Y9D00749019" mode 1920x1080 position 0,0
-	output "Unknown 0x2036 0x00000000" mode 2560x1440 position 1920,0
-	output "Goldstar Company Ltd LG Ultra HD 0x0000661B" mode 3840x2160 position 4480,0 scale 1.5
+	output "Unknown 0x2036 0x00000000" mode 2560x1440 position 1920,0 scale 1.333
+	output "Goldstar Company Ltd LG Ultra HD 0x0000661B" mode 3840x2160 position 4480,0 scale 1.333
 
-	exec swaymsg output \"Unknown 0x2036 0x00000000\" scale 1.333
-	exec swaymsg output \"Unknown 0x2036 0x00000000\" scale_filter linear
-	exec swaymsg output \"Goldstar Company Ltd LG Ultra HD 0x0000661B\" scale_filter linear
+	exec swaymsg [workspace=1] move workspace to output \"Goldstar Company Ltd LG Ultra HD 0x0000661B\"
 }
 
 # Home Office with Carbon - Laptop + 4K.
 profile Carbon_X1_Docked {
-	output "Unknown 0x2036 0x00000000" mode 2560x1440 position 0,0
-	output "Goldstar Company Ltd LG Ultra HD 0x0000661B" mode 3840x2160 position 1920,0 scale 1.5
-
-	exec swaymsg output \"Unknown 0x2036 0x00000000\" scale 1.333
-	exec swaymsg output \"Unknown 0x2036 0x00000000\" scale_filter linear
-	exec swaymsg output \"Goldstar Company Ltd LG Ultra HD 0x0000661B\" scale_filter linear
+	output "Unknown 0x2036 0x00000000" mode 2560x1440 position 0,0 scale 1.333
+	output "Goldstar Company Ltd LG Ultra HD 0x0000661B" mode 3840x2160 position 1920,0 scale 1.333
+	exec swaymsg [workspace=1] move workspace to output \"Goldstar Company Ltd LG Ultra HD 0x0000661B\"
 }
 
 profile Erlen_basement {
