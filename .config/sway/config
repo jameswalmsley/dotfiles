@@ -216,10 +216,14 @@ mode "music" {
     bindsym Escape mode "default"
 }
 
-bindsym $mod+m mode "music"; workspace spotify
+bindsym $mod+m workspace music
+bindsym $mod+Shift+m move container to workspace music
 bindsym XF86AudioPlay exec ~/.config/sway/scripts/music-toggle.sh
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
+
+bindsym $mod+n workspace notes
+bindsym $mod+Shift+n move container to workspace notes
 
 mode "utils" {
     bindsym i mode "default"; exec firefox
@@ -236,8 +240,8 @@ mode "utils" {
 mode "switch-workspace" {
     bindsym z mode "default"; workspace zoom
     bindsym shift+z mode "default"; move container to workspace zoom
-    bindsym s mode "default"; workspace spotify
-    bindsym shift+s mode "default"; move container to workspace spotify
+    bindsym s mode "default"; workspace music
+    bindsym shift+s mode "default"; move container to workspace music
     bindsym w mode "default"; workspace whatsapp
     bindsym shift+w mode "default"; move container to workspace whatsapp
     bindsym Return mode "default"
@@ -346,7 +350,7 @@ for_window [app_id="firefox" title="^Picture-in-Picture$"] \
     floating enable, move position 877 450, sticky enable
 
 assign [class="Code*"] workspace 3
-for_window [class="Spotify*"] move to workspace spotify
+for_window [class="Spotify*"] move to workspace music
 
 for_window [title="avizo"] border pixel 0
 for_window [title="avizo"] sticky toggle
