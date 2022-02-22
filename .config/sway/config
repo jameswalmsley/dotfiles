@@ -369,7 +369,7 @@ exec_always {
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec hash dbus-update-activation-environment 2>/dev/null && \
      dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP=sway
-exec nm-applet
+exec nm-applet --indicator
 exec powerline-daemon
 exec mako
 exec redshift
@@ -377,7 +377,7 @@ exec ibus-daemon --xim
 exec_always "pkill kanshi; sleep 1; kanshi"
 exec speedcrunch
 exec avizo-service
-exec solaar
+exec solaar -w hide
 exec blueman-applet
 exec xrdb -load ~/.Xresources
 set $keyring "/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh"
@@ -386,6 +386,6 @@ exec alacritty --command aerc
 exec wl-paste -t text --watch clipman store
 exec wl-paste -p -t text --watch clipman store -P --histpath="~/.local/share/clipman-primary.json"
 exec spotpris2 --auto
-exec ulauncher
+exec ulauncher --hide-window
 bindsym $mod+Shift+p exec clipman pick -t wofi
 bindsym $mod+p exec clipman --histpath="~/.local/share/clipman-primary.json" pick -t wofi
