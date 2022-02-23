@@ -16,4 +16,9 @@ lvim.builtin.lualine.sections.lualine_z = {
   "location"
 }
 
-
+lvim.builtin.which_key.mappings["o"] = {
+  name = "Octo",
+  i = {
+    c = {},
+  }
+}
