@@ -263,8 +263,8 @@ bindsym $mod+Alt+$left move workspace to output left
 
 bindsym $mod+l exec swaylock
 
-bindsym XF86MonBrightnessUp exec light -A 5
-bindsym XF86MonBrightnessDown exec light -U 5
+bindsym XF86MonBrightnessUp exec lightctl raise 5
+bindsym XF86MonBrightnessDown exec lightctl lower 5
 
 set $volumectl  ~/.config/sway/scripts/volumectl.sh
 
@@ -354,7 +354,11 @@ for_window [class="Spotify*"] move to workspace music
 
 for_window [title="avizo"] border pixel 0
 for_window [title="avizo"] sticky toggle
-no_focus [title="avizo"]<Paste>
+no_focus [title="avizo"]
+
+for_window [title="wlosd"] border pixel 0
+for_window [title="wlosd"] sticky toggle
+no_focus [title="wlosd"]
 
 for_window [app_id=ulauncher] border none
 
