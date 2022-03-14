@@ -277,13 +277,14 @@ bindsym XF86AudioMicMute exec pactl set-source-mute 1 toggle
 # Input Config
 #
 
-input 2:7:SynPS/2_Synaptics_TouchPad {
+input 1739:0:Synaptics_TM3289-021 {
     tap enabled
     natural_scroll disable
     scroll_method two_finger
     scroll_factor 0.3
     pointer_accel 0.5
     accel_profile flat
+    click_method clickfinger
 }
 
 input 1133:16458:Logitech_MX_Anywhere_2 {
