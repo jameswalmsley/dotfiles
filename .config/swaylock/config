@@ -1,6 +1,6 @@
 clock
 indicator
-screenshots
+image=~/Pictures/wallpaper
 effect-vignette=0.4:0.7
 effect-blur=7x5
 effect-greyscale
