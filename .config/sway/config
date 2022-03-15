@@ -9,10 +9,10 @@
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
 # Home row direction keys, like vim
-set $left Left
-set $down Down
-set $up Up
-set $right Right
+set $left h
+set $down j
+set $up k
+set $right l
 # Your preferred terminal emulator
 #set $term 'SHELL=~/.local/bin/fishlogin termite'
 set $term alacritty
@@ -149,7 +149,7 @@ output * background ~/Pictures/wallpaper fill #000000
     # move focus to the parent container
     bindsym $mod+a focus parent
 
-    bindsym $mod+Shift+s sticky toggle
+
 #
 # Scratchpad:
 #
@@ -261,7 +261,7 @@ bindswitch --locked lid:off output $laptop enable
 bindsym $mod+Alt+$right move workspace to output right
 bindsym $mod+Alt+$left move workspace to output left
 
-bindsym $mod+l exec swaylock
+bindsym Alt++l exec swaylock
 
 bindsym XF86MonBrightnessUp exec lightctl raise 5
 bindsym XF86MonBrightnessDown exec lightctl lower 5
@@ -278,6 +278,16 @@ bindsym XF86AudioMicMute exec pactl set-source-mute 1 toggle
 #
 
 input 1739:0:Synaptics_TM3289-021 {
+    tap enabled
+    natural_scroll disable
+    scroll_method two_finger
+    scroll_factor 0.3
+    pointer_accel 0.5
+    accel_profile flat
+    click_method clickfinger
+}
+
+input 1267:12572:DLL0945:00_04F3:311C_Touchpad {
     tap enabled
     natural_scroll disable
     scroll_method two_finger
@@ -330,6 +340,10 @@ bindsym $mod+Shift+d		gaps inner current set 0; gaps outer current set 0
 hide_edge_borders both
 default_border none
 
+bindsym $mod+Shift+s exec ~/.config/sway/scripts/screenshot-window.sh
+bindsym $mod+Alt+Shift+s exec ~/.config/sway/scripts/screenshot-screen.sh
+bindsym $mod+Ctrl+Alt+Shift+s exec ~/.config/sway/scripts/screenshot-selection.sh
+
 bindsym Print exec ~/.config/sway/scripts/screenshot-window.sh
 bindsym $mod+Print exec ~/.config/sway/scripts/screenshot-screen.sh
 bindsym Shift+Print exec ~/.config/sway/scripts/screenshot-selection.sh
@@ -377,13 +391,13 @@ exec hash dbus-update-activation-environment 2>/dev/null && \
 exec nm-applet --indicator
 exec powerline-daemon
 exec mako
-exec redshift
+exec wlsunset
 exec ibus-daemon --xim
 exec_always "pkill kanshi; sleep 1; kanshi"
 exec speedcrunch
 exec avizo-service
 exec solaar -w hide
-exec blueman-applet
+exec PYTHONPATH=/usr/lib/python3.8/site-packages blueman-applet
 exec xrdb -load ~/.Xresources
 set $keyring "/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh"
 exec $keyring
