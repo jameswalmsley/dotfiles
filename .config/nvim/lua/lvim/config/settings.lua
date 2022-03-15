@@ -34,8 +34,8 @@ M.load_default_options = function()
     updatetime = 300, -- faster completion
     writebackup = false, -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
     expandtab = true, -- convert tabs to spaces
-    --shiftwidth = 2, -- the number of spaces inserted for each indentation
-    --tabstop = 2, -- insert 2 spaces for a tab
+    shiftwidth = 2, -- the number of spaces inserted for each indentation
+    tabstop = 2, -- insert 2 spaces for a tab
     cursorline = true, -- highlight the current line
     number = true, -- set numbered lines
     relativenumber = false, -- set relative numbered lines
@@ -51,7 +51,8 @@ M.load_default_options = function()
   }
 
   ---  SETTINGS  ---
-  vim.opt.shortmess:append "c"
+  vim.opt.shortmess:append "c" -- don't show redundant messages from ins-completion-menu
+  vim.opt.shortmess:append "I" -- don't show the default intro message
   vim.opt.whichwrap:append "<,>,[,],h,l"
 
   for k, v in pairs(default_options) do

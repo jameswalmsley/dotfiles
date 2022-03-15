@@ -11,7 +11,7 @@ return {
       },
     },
     virtual_text = true,
-    update_in_insert = true,
+    update_in_insert = false,
     underline = true,
     severity_sort = true,
     float = {
@@ -83,6 +83,7 @@ return {
     "psalm",
     "pylsp",
     "quick_lint_js",
+    "reason_ls",
     "remark_ls",
     "rome",
     "scry",
