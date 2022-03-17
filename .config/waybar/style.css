@@ -10,7 +10,7 @@
 }
 
 window {
-   color: #b58900;
+   color: #F8BD96;
    background:      rgba(0,0,0, 1);
    margin-top: 0px;
    margin-bottom:0px;
@@ -25,13 +25,14 @@ window#waybar.solo {
 
 #workspaces {
    border-radius: 5px;
-   background: #073642;
+   background: #1E1E2E;
    transition: none;
 }
 
 #workspaces button {
+   border-top: 1px solid #1E1E2E;
    transition: none;
-   color:      rgba(217, 216, 216, 0.4);
+   color:      #FAE3B0;
    background: transparent;
 }
 
@@ -41,16 +42,16 @@ window#waybar.solo {
 }
 
 #workspaces button.focused {
-   border-top: 1px solid #b58900;
-   color: #b58900;
+   border-top: 1px solid #e8a2af;
+   color: #abe9b3;
 }
 
 #workspaces button:hover {
-   border-top: 1px solid #d33682;
+   border-top: 1px solid #f28fad;
    transition: none;
    box-shadow: inherit;
    text-shadow: inherit;
-   color: #d33682;
+   color: #f5c2e7;
 }
 
 #workspaces button.urgent {
