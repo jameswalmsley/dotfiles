@@ -377,13 +377,18 @@ no_focus [title="wlosd"]
 
 for_window [app_id=ulauncher] border none
 
+#
+# Themes
+#
+set $theme Catppuccin
 set $gnome-schema org.gnome.desktop.interface
 
 exec_always {
-    gsettings set $gnome-schema gtk-theme 'Yaru-dark'
-    #gsettings set $gnome-schema icon-theme 'Yaru-dark'
-    #gsettings set $gnome-schema cursor-theme 'Yaru-dark'
+    gsettings set $gnome-schema gtk-theme $theme-blue
+    gsettings set $gnome-schema cursor-theme $theme-Blue-Cursors
 }
+
+seat seat0 xcursor_theme Catppuccin-Blue-Cursors 24
 
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec hash dbus-update-activation-environment 2>/dev/null && \
