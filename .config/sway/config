@@ -209,7 +209,7 @@ bar {
 }
 
 mode "music" {
-    bindsym p mode "default"; exec ~/.config/sway/scripts/music-toggle.sh
+    bindsym p mode "default"; exec playerctl play-pause
     bindsym comma exec playerctl previous
     bindsym period exec playerctl next
     bindsym Return mode "default"
@@ -218,7 +218,7 @@ mode "music" {
 
 bindsym $mod+m workspace music
 bindsym $mod+Shift+m move container to workspace music
-bindsym XF86AudioPlay exec ~/.config/sway/scripts/music-toggle.sh
+bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
