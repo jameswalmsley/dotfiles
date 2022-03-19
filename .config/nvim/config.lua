@@ -1,9 +1,10 @@
 
-lvim.builtin.dashboard.active = true
-lvim.builtin.nvimtree.side = "right"
-lvim.format_on_save = false
+--lvim.builtin.alpha.active = true
+--lvim.builtin.nvimtree.side = "right"
+-- lvim.format_on_save = false
 lvim.builtin.project.manual_mode = true
-lvim.builtin.bufferline.active = true
+-- lvim.builtin.bufferline.active = true
+lvim.builtin.lualine.options.globalstatus = true
 
 lvim.builtin.nvimtree.quit_on_open = true
 

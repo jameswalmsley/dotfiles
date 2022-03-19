@@ -1,4 +1,5 @@
-lvim.builtin.dashboard.active = true
+lvim.builtin.alpha.active = true
+lvim.builtin.lualine.options.globalstatus = true
 lvim.builtin.nvimtree.side = "right"
 lvim.format_on_save = true
 
