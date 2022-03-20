@@ -180,6 +180,28 @@ return {
     run = function()
       vim.fn["firenvim#install"](0)
     end,
+    config = function()
+      vim.cmd [[
+        let g:firenvim_config = { 
+            \ 'globalSettings': {
+                \ 'alt': 'all',
+            \  },
+            \ 'localSettings': {
+                \ '.*': {
+                    \ 'cmdline': 'neovim',
+                    \ 'content': 'text',
+                    \ 'priority': 0,
+                    \ 'selector': 'textarea',
+                    \ 'takeover': 'never',
+                \ },
+            \ }
+        \ }
+
+        if exists('g:started_by_firenvim')
+          set guifont=guifont=Fira_Code:h22
+        endif
+      ]]
+    end,
   },
   {
     "renerocksai/telekasten.nvim",
