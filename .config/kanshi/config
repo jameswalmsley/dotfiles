@@ -8,7 +8,7 @@ profile Dell_5550 {
 
 profile Dell_5550_WFH {
 	output "Goldstar Company Ltd LG Ultra HD 0x0000661B" mode 3840x2160 position 0,0 scale 1.333
-	output "Sharp Corporation 0x1515 0x00000000" mode 1920x1200 position 2560,0
+	output "Sharp Corporation 0x1515 0x00000000" mode 1920x1200 position 2882,0
 	exec swaymsg [workspace=1] move workspace to output \"Goldstar Company Ltd LG Ultra HD 0x0000661B\"
 }
 
