@@ -10,17 +10,16 @@
 }
 
 window {
-   color: #F8BD96;
-   background:      rgba(0,0,0, 1);
+   color: #FAE3B0;
+   background: #161320;
    margin-top: 0px;
    margin-bottom:0px;
    opacity: 0.7;
-   ;
 }
 
 window#waybar.solo {
-   color: #b58900;
-   background:      rgba(0,0,0, 1);
+   color: #FAE3B0;
+   /* background: #1E1E2E; */
 }
 
 #workspaces {
