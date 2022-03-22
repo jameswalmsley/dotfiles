@@ -61,8 +61,8 @@ window#waybar.solo {
 #mode, #battery, #cpu, #memory, #network, #pulseaudio, #idle_inhibitor, #backlight, #custom-storage, #custom-spotify, #custom-weather, #custom-mail {
    margin:     0px 0px 0px 0px;
    min-width:  25px;
-   color: #859900;
-   background: #073642;
+   color: #FAE3B0;
+   background: #1e1e2e;
    border-radius: 5px;
 }
 
@@ -73,8 +73,6 @@ window#waybar.solo {
    padding-right: 10px;
    border-radius: 5px;
    transition: none;
-   color: #d33682;
-   background: #073642;
 }
 
 #network {
@@ -118,7 +116,7 @@ window#waybar.solo {
 }
 
 #battery.charging {
-   color:      #b58900;
+   color:      #FAE3B0;
 }
 
 #custom-tidepool {
@@ -220,8 +218,7 @@ window#waybar.solo {
    padding-right: 10px;
    border-radius: 5px;
    transition: none;
-   color: #2aa198;
-   background: #073642;
+   background: #1E1E2E;
 }
 
 #cpu {
@@ -231,8 +228,8 @@ window#waybar.solo {
    padding-right: 10px;
    border-radius: 5px;
    transition: none;
-   color: #4d4d4d;
-   background: rgba(205, 92, 92, 0.85);
+   color: #FAE3B0;
+   background: #1E1E2E
 }
 
 #battery {
@@ -242,8 +239,7 @@ window#waybar.solo {
    padding-right: 10px;
    border-radius: 5px;
    transition: none;
-   color: #b58900;
-   background: #073642;
+   background: #1E1E2E;
 }
 
 #memory {
@@ -264,8 +260,7 @@ window#waybar.solo {
    padding-right: 10px;
    border-radius: 5px;
    transition: none;
-   color: #4d4d4d;
-   background: #073642;
+   background: #1e1e2e;
 }
 
 #custom-storage.warning {
