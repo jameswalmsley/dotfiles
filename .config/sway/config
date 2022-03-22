@@ -396,7 +396,7 @@ exec hash dbus-update-activation-environment 2>/dev/null && \
 exec nm-applet --indicator
 exec powerline-daemon
 exec mako
-exec wlsunset
+exec wlsunset -l 51.8 -L -3.0 -t 3000 -T 5700
 exec ibus-daemon --xim
 exec_always "pkill kanshi; sleep 1; kanshi"
 exec speedcrunch
