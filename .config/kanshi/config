@@ -1,9 +1,9 @@
 # Work Office with P1
 profile Dell_5550 {
-	output "Samsung Electric Company S27H85x H4ZM303519" mode 2560x1440 position 0,0
-	output "Samsung Electric Company S27H85x H4ZKC00773" mode 2560x1440 position 2560,0
-	output "Sharp Corporation 0x14D1 0x00000000" mode 1920x1200 position 5120,0
-	exec swaymsg [workspace=1] move workspace to output \"Samsung Electric Company S27H85x H4ZM303519\"
+	output "Samsung Electric Company S27H85x H4ZK901108" mode 2560x1440 position 0,0 enable
+	output "Samsung Electric Company S27H85x H4ZKA00811" mode 2560x1440 position 2560,0 enable
+	output "Sharp Corporation 0x1515 0x00000000" mode 1920x1200 position 5120,0 enable
+	exec swaymsg [workspace=1] move workspace to output \"Samsung Electric Company S27H85x H4ZK901108\"
 }
 
 profile Dell_5550_WFH {
