@@ -358,8 +358,8 @@ for_window [instance="tmuxdd"] border pixel 3
 # for_window [instance="tmuxdd"] sticky enable
 
 
-for_window [app_id="org.speedcrunch.speedcrunch"] floating enable
-for_window [app_id="org.speedcrunch.speedcrunch"] move scratchpad
+for_window [app_id="gnome-calculator"] floating enable
+for_window [app_id="gnome-calculator"] move scratchpad
 
 for_window [app_id="firefox" title="^Picture-in-Picture$"] \
     floating enable, move position 877 450, sticky enable
@@ -399,7 +399,7 @@ exec mako
 exec wlsunset -l 51.8 -L -3.0 -t 3000 -T 5700
 exec ibus-daemon --xim
 exec_always "pkill kanshi; sleep 1; kanshi"
-exec speedcrunch
+exec gnome-calculator
 exec avizo-service
 exec solaar -w hide
 exec PYTHONPATH=/usr/lib/python3.8/site-packages blueman-applet
