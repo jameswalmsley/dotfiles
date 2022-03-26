@@ -1,5 +1,8 @@
 lvim.colorscheme = "catppuccin"
 lvim.builtin.alpha.active = true
+lvim.builtin.terminal.active = true
+lvim.builtin.terminal.direction = "horizontal"
+lvim.builtin.treesitter.ensure_installed = "maintained"
 lvim.builtin.lualine.options.globalstatus = true
 lvim.builtin.nvimtree.setup.quit_on_open = true
 lvim.builtin.nvimtree.setup.view.side = "right"
