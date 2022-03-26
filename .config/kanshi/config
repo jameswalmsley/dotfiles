@@ -7,34 +7,34 @@ profile Dell_5550 {
 }
 
 profile Dell_5550_WFH {
-	output "Goldstar Company Ltd LG Ultra HD 0x0000661B" mode 3840x2160 position 0,0 scale 1.333
-	output "Sharp Corporation 0x1515 0x00000000" mode 1920x1200 position 2882,0
-	exec swaymsg [workspace=1] move workspace to output \"Goldstar Company Ltd LG Ultra HD 0x0000661B\"
+	output "Goldstar Company Ltd LG Ultra HD 0x0000661B" mode 3840x2160 position 0,0 scale 1.333 enable 
+	output "Sharp Corporation 0x1515 0x00000000" mode 1920x1200 position 2882,0 enable
+	exec swaymsg [workspace=1] move workspace to output \"Goldstar Company Ltd LG Ultra HD 0x0000661B\" enable
 }
 
 # Thinkpad Carbon X1 6th Gen - Alone.
 profile Carbon_X1 {
-	output "Unknown 0x2036 0x00000000" mode 2560x1440 position 0,0 scale 1.333
+	output "Unknown 0x2036 0x00000000" mode 2560x1440 position 0,0 scale 1.333 enable
 }
 
 # Home Office with Carbon - Laptop + 1080p + 4K.
-profile Carbon_X1_Docked {
-	output "BenQ Corporation BenQ GL2450 Y9D00749019" mode 1920x1080 position 0,0
-	output "Unknown 0x2036 0x00000000" mode 2560x1440 position 1920,0 scale 1.333
-	output "Goldstar Company Ltd LG Ultra HD 0x0000661B" mode 3840x2160 position 4480,0 scale 1.333
+profile Carbon_X1_Docked_3 {
+	output "BenQ Corporation BenQ GL2450 Y9D00749019" mode 1920x1080 position 0,0 enable
+	output "Unknown 0x2036 0x00000000" mode 2560x1440 position 1920,0 scale 1.333 enable
+	output "Goldstar Company Ltd LG Ultra HD 0x0000661B" mode 3840x2160 position 4480,0 scale 1.333 enable
 
 	exec swaymsg [workspace=1] move workspace to output \"Goldstar Company Ltd LG Ultra HD 0x0000661B\"
 }
 
 # Home Office with Carbon - Laptop + 4K.
 profile Carbon_X1_Docked {
-	output "Unknown 0x2036 0x00000000" mode 2560x1440 position 0,0 scale 1.333
-	output "Goldstar Company Ltd LG Ultra HD 0x0000661B" mode 3840x2160 position 1920,0 scale 1.333
+	output "Unknown 0x2036 0x00000000" mode 2560x1440 position 0,0 scale 1.333 enable
+	output "Goldstar Company Ltd LG Ultra HD 0x0000661B" mode 3840x2160 position 1920,0 scale 1.333 enable
 	exec swaymsg [workspace=1] move workspace to output \"Goldstar Company Ltd LG Ultra HD 0x0000661B\"
 }
 
 profile Erlen_basement {
-	output "Samsung Electric Company SMB2430L H9XB802792" mode 1920x1080 position 1920,0
-	output "Sharp Corporation 0x14D1 0x00000000" mode 1920x1200@60Hz position 0,0
+	output "Samsung Electric Company SMB2430L H9XB802792" mode 1920x1080 position 1920,0 enable
+	output "Sharp Corporation 0x14D1 0x00000000" mode 1920x1200@60Hz position 0,0 enable
 	exec swaymsg output \"Sharp Corporation 0x14D1 0x00000000\" enable
 }
