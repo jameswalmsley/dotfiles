@@ -43,5 +43,19 @@ local linters = require "lvim.lsp.null-ls.linters"
 linters.setup {
   exe = "shellcheck",
   args = { "--severity", "warning" },
-  filetypes = "sh"
+  filetypes = "sh",
 }
+
+local clangd_flags = {
+  "--background-index",
+  "--cross-file-rename",
+  "--completion-style=bundled",
+  "--header-insertion=never",
+  "--suggest-missing-includes",
+  "-j=8",
+  "--pch-storage=memory",
+}
+
+require("lvim.lsp.manager").setup("clangd", {
+  cmd = { "clangd", unpack(clangd_flags)},
+})
