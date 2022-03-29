@@ -1,0 +1,3 @@
+#!/bin/bash 
+
+exec mpv --title=wcmirror --player-operation-mode=pseudo-gui av://v4l2:/dev/video$1 --demuxer-lavf-o=video_size=1920x1080,input_format=mjpeg -vf=hflip --profile=low-latency --untimed

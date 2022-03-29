@@ -235,6 +235,7 @@ mode "utils" {
     bindsym z mode "default"; exec /opt/zoom/ZoomLauncher
     bindsym s mode "default"; exec spotify
     bindsym b mode "default"; exec blueman-applet
+    bindsym m mode "default"; exec ~/.local/bin/wcmirror 4
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
@@ -357,10 +358,17 @@ for_window [instance="tmuxdd"] floating enable
 for_window [instance="tmuxdd"] resize set 625 450
 for_window [instance="tmuxdd"] move scratchpad
 for_window [instance="tmuxdd"] border pixel 3
+
+set $swaymove exec ~/.config/sway/scripts/sway-move-to
 # for_window [instance="tmuxdd"] sticky enable
 
+for_window [app_id="mpv" title="wcmirror"] floating enable
+for_window [app_id="mpv" title="wcmirror"] sticky toggle
+for_window [app_id="mpv" title="wcmirror"] resize set 538 303
+for_window [app_id="mpv" title="wcmirror"] $swaymove top-right
 
 for_window [app_id="gnome-calculator"] floating enable
+for_window [app_id="gnome-calculator"] sticky toggle
 for_window [app_id="gnome-calculator"] move scratchpad
 
 for_window [app_id="firefox" title="^Picture-in-Picture$"] \
