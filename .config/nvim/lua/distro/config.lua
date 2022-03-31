@@ -12,7 +12,10 @@ lvim.builtin.project.manual_mode = true
 lvim.keys.normal_mode["<C-j>"] = ":cnext<CR>"
 lvim.keys.normal_mode["<C-k>"] = ":cprev<CR>"
 
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
 vim.opt.relativenumber = true
+
 
 lvim.builtin.lualine.options = {
   component_separators = { left = "", right = "" },
