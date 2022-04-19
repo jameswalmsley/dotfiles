@@ -232,8 +232,9 @@ M.config = function()
         require("luasnip").lsp_expand(args.body)
       end,
     },
-    documentation = {
-      border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+    window = {
+      completion = cmp.config.window.bordered(),
+      documentation = cmp.config.window.bordered(),
     },
     sources = {
       { name = "nvim_lsp" },
@@ -247,7 +248,7 @@ M.config = function()
       { name = "treesitter" },
       { name = "crates" },
     },
-    mapping = {
+    mapping = cmp.mapping.preset.insert {
       ["<C-k>"] = cmp.mapping.select_prev_item(),
       ["<C-j>"] = cmp.mapping.select_next_item(),
       ["<C-d>"] = cmp.mapping.scroll_docs(-4),

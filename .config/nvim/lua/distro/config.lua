@@ -8,6 +8,7 @@ lvim.builtin.nvimtree.setup.quit_on_open = true
 lvim.builtin.nvimtree.setup.view.side = "right"
 lvim.format_on_save = false
 lvim.builtin.project.manual_mode = true
+lvim.builtin.telescope.pickers = { find_files = { hidden = true } }
 
 lvim.keys.normal_mode["<C-j>"] = ":cnext<CR>"
 lvim.keys.normal_mode["<C-k>"] = ":cprev<CR>"
