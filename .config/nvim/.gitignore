@@ -21,7 +21,6 @@ nv-settings.lua
 lv-settings.lua
 lua/lv-user/
 lua/lv-user-config/
-config.lua
 
 *.tmp
 *.temp
