@@ -28,12 +28,4 @@ lua/lv-user-config/
 *.backup
 *.old
 
-lsp-installer.log
-lsp.log
-luacache_*
-lvim.log
-lvim.shada
-packer.nvim.log
-project_nvim
-wget-log
-undo/*
+.luacheckcache
