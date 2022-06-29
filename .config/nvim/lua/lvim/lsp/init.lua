@@ -80,14 +80,6 @@ function M.common_on_attach(client, bufnr)
   add_lsp_buffer_keybindings(bufnr)
 end
 
-local function bootstrap_nlsp(opts)
-  opts = opts or {}
-  local lsp_settings_status_ok, lsp_settings = pcall(require, "nlspsettings")
-  if lsp_settings_status_ok then
-    lsp_settings.setup(opts)
-  end
-end
-
 function M.get_common_opts()
   return {
     on_attach = M.common_on_attach,
@@ -117,15 +109,13 @@ function M.setup()
     require("lvim.lsp.templates").generate_templates()
   end
 
-  bootstrap_nlsp {
-    config_home = utils.join_paths(get_config_dir(), "lsp-settings"),
-    append_default_schemas = true,
-  }
+  pcall(function()
+    require("nlspsettings").setup(lvim.lsp.nlsp_settings.setup)
+  end)
 
-  require("nvim-lsp-installer").setup {
-    -- use the default nvim_data_dir, since the server binaries are independent
-    install_root_dir = utils.join_paths(vim.call("stdpath", "data"), "lsp_servers"),
-  }
+  pcall(function()
+    require("nvim-lsp-installer").setup(lvim.lsp.installer.setup)
+  end)
 
   require("lvim.lsp.null-ls").setup()
 

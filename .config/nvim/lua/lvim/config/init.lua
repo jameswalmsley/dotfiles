@@ -105,8 +105,8 @@ end
 -- @param config_path The path to the configuration overrides
 function M:load(config_path)
   local autocmds = require "lvim.core.autocmds"
-  pcall(require "distro.config")
-  config_path = config_path or self:get_user_config_path()
+  require "distro.config"
+  config_path = config_path or self.get_user_config_path()
   local ok, err = pcall(dofile, config_path)
   if not ok then
     if utils.is_file(user_config_file) then

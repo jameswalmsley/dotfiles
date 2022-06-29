@@ -121,10 +121,8 @@ end
 ---pulls the latest changes from github and, resets the startup cache
 function M:update()
   require_clean("lvim.utils.hooks").run_pre_update()
-  local ret = require_clean("lvim.utils.git").update_base_lvim()
-  if ret then
-    require_clean("lvim.utils.hooks").run_post_update()
-  end
+  -- require_clean("lvim.utils.git").update_base_lvim()
+  require_clean("lvim.utils.hooks").run_post_update()
 end
 
 return M
