@@ -1,9 +1,13 @@
 lvim.colorscheme = "catppuccin"
 lvim.builtin.alpha.active = true
 lvim.builtin.lualine.options.globalstatus = true
-lvim.builtin.nvimtree.setup.quit_on_open = true
+lvim.builtin.nvimtree.setup.actions.open_file.quit_on_open = true
 lvim.builtin.nvimtree.setup.view.side = "right"
+lvim.builtin.nvimtree.setup.update_cwd = false
+lvim.builtin.nvimtree.setup.update_focused_file.enable = true
+lvim.builtin.nvimtree.setup.update_focused_file.update_cwd = false
 lvim.format_on_save = false
+lvim.builtin.project.active = false
 lvim.builtin.project.manual_mode = true
 
 lvim.keys.normal_mode["<C-j>"] = ":cnext<CR>"
