@@ -1,6 +1,7 @@
 lvim.colorscheme = "catppuccin"
 lvim.builtin.alpha.active = true
 lvim.builtin.lualine.options.globalstatus = true
+lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.actions.open_file.quit_on_open = true
 lvim.builtin.nvimtree.setup.view.side = "right"
 lvim.builtin.nvimtree.setup.update_cwd = false
