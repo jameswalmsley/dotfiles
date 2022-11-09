@@ -46,6 +46,11 @@ function M:init()
       friendly_snippets = true,
     },
   }
+
+  ---@deprecated
+  lvim.builtin.notify = {
+    active = false,
+  }
 end
 
 local function handle_deprecated_settings()
@@ -91,6 +96,11 @@ local function handle_deprecated_settings()
   -- dashboard.nvim
   if lvim.builtin.dashboard.active then
     deprecation_notice("lvim.builtin.dashboard", "Use `lvim.builtin.alpha` instead. See LunarVim#1906")
+  end
+
+  -- notify.nvim
+  if lvim.builtin.notify.active then
+    deprecation_notice("lvim.builtin.notify", "See LunarVim#3294")
   end
 
   if lvim.autocommands.custom_groups then

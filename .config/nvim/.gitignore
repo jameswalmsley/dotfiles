@@ -26,5 +26,12 @@ lua/lv-user-config/
 *.bak
 *.backup
 *.old
+*.log
 
 .luacheckcache
+plugin/
+undo/
+luacache_*
+project_nvim/
+config.lua
+
