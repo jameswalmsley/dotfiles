@@ -45,6 +45,7 @@ lvim.builtin.which_key.mappings["z"] = {
   p = { function() require("telekasten").panel() end, "Panel" },
 }
 
+local function init_linters()
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
   {
@@ -61,3 +62,6 @@ linters.setup {
   args = { "--severity", "warning" },
   filetypes = "sh",
 }
+end
+
+pcall(init_linters)
