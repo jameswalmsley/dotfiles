@@ -217,9 +217,6 @@ function setup_lvim() {
     $exampleConfig = "$env:LUNARVIM_BASE_DIR\utils\installer\config_win.example.lua"
     Copy-Item -Force "$exampleConfig" "$env:LUNARVIM_CONFIG_DIR\config.lua"
 
-    # FIXME: this has never worked
-    # Invoke-Expression "$INSTALL_PREFIX\bin\lvim.ps1 --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'"
-
     Write-Host "Make sure to run `:PackerSync` at first launch" -ForegroundColor Green
 
     create_alias
@@ -265,6 +262,13 @@ function create_alias {
     if ($lvim_alias.Definition -eq $lvim_bin) {
         Write-Output "Alias is already set and will not be reset."
         return
+    }
+
+    try {
+        Get-Content $PROFILE -ErrorAction Stop
+    }
+    catch {
+        New-Item -Path $PROFILE -ItemType "file" -Force
     }
 
     Add-Content -Path $PROFILE -Value $("`r`nSet-Alias lvim $lvim_bin")

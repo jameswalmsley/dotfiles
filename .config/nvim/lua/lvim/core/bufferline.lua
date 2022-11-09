@@ -6,7 +6,11 @@ end
 
 local function diagnostics_indicator(num, _, diagnostics, _)
   local result = {}
-  local symbols = { error = "", warning = "", info = "" }
+  local symbols = {
+    error = lvim.icons.diagnostics.Error,
+    warning = lvim.icons.diagnostics.Warning,
+    info = lvim.icons.diagnostics.Information,
+  }
   if not lvim.use_icons then
     return "(" .. num .. ")"
   end
@@ -45,27 +49,28 @@ M.config = function()
     },
     highlights = {
       background = {
-        gui = "italic",
+        italic = true,
       },
       buffer_selected = {
-        gui = "bold",
+        bold = true,
       },
     },
     options = {
+      mode = "buffers", -- set to "tabs" to only show tabpages instead
       numbers = "none", -- can be "none" | "ordinal" | "buffer_id" | "both" | function
       close_command = "bdelete! %d", -- can be a string | function, see "Mouse actions"
       right_mouse_command = "vert sbuffer %d", -- can be a string | function, see "Mouse actions"
       left_mouse_command = "buffer %d", -- can be a string | function, see "Mouse actions"
       middle_mouse_command = nil, -- can be a string | function, see "Mouse actions"
-      -- NOTE: this plugin is designed with this icon in mind,
-      -- and so changing this is NOT recommended, this is intended
-      -- as an escape hatch for people who cannot bear it for whatever reason
-      indicator_icon = "▎",
-      buffer_close_icon = "",
-      modified_icon = "●",
-      close_icon = "",
-      left_trunc_marker = "",
-      right_trunc_marker = "",
+      indicator = {
+        icon = lvim.icons.ui.BoldLineLeft, -- this should be omitted if indicator style is not 'icon'
+        style = "icon", -- can also be 'underline'|'none',
+      },
+      buffer_close_icon = lvim.icons.ui.Close,
+      modified_icon = lvim.icons.ui.Circle,
+      close_icon = lvim.icons.ui.BoldClose,
+      left_trunc_marker = lvim.icons.ui.ArrowCircleLeft,
+      right_trunc_marker = lvim.icons.ui.ArrowCircleRight,
       --- name_formatter can be used to change the buffer's label in the bufferline.
       --- Please note some names can/will break the
       --- bufferline so use this at your discretion knowing that it has
@@ -78,6 +83,7 @@ M.config = function()
       end,
       max_name_length = 18,
       max_prefix_length = 15, -- prefix used when a buffer is de-duplicated
+      truncate_names = true, -- whether or not tab names should be truncated
       tab_size = 18,
       diagnostics = "nvim_lsp",
       diagnostics_update_in_insert = false,
@@ -115,6 +121,7 @@ M.config = function()
           padding = 1,
         },
       },
+      color_icons = true, -- whether or not to add the filetype icon highlights
       show_buffer_icons = lvim.use_icons, -- disable filetype icons for buffers
       show_buffer_close_icons = lvim.use_icons,
       show_close_icon = false,
@@ -125,6 +132,11 @@ M.config = function()
       separator_style = "thin",
       enforce_regular_tabs = false,
       always_show_bufferline = false,
+      hover = {
+        enabled = false, -- requires nvim 0.8+
+        delay = 200,
+        reveal = { "close" },
+      },
       sort_by = "id",
     },
   }
@@ -132,7 +144,13 @@ end
 
 M.setup = function()
   require("lvim.keymappings").load(lvim.builtin.bufferline.keymap)
-  require("bufferline").setup {
+
+  local status_ok, bufferline = pcall(require, "bufferline")
+  if not status_ok then
+    return
+  end
+
+  bufferline.setup {
     options = lvim.builtin.bufferline.options,
     highlights = lvim.builtin.bufferline.highlights,
   }

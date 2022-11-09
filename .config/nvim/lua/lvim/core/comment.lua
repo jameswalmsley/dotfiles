@@ -1,11 +1,10 @@
 local M = {}
 
 function M.config()
-  local pre_hook = nil
-  if lvim.builtin.treesitter.context_commentstring.enable then
-    pre_hook = function(_ctx)
-      return require("ts_context_commentstring.internal").calculate_commentstring()
-    end
+  local pre_hook
+  local loaded, ts_comment = pcall(require, "ts_context_commentstring.integrations.comment_nvim")
+  if loaded and ts_comment then
+    pre_hook = ts_comment.create_pre_hook()
   end
   lvim.builtin.comment = {
     active = true,
@@ -13,6 +12,11 @@ function M.config()
     ---Add a space b/w comment and the line
     ---@type boolean
     padding = true,
+
+    ---Whether cursor should stay at the
+    ---same position. Only works in NORMAL
+    ---mode mappings
+    sticky = true,
 
     ---Lines to be ignored while comment/uncomment.
     ---Could be a regex string or a function that returns a regex string.
@@ -26,9 +30,9 @@ function M.config()
       ---operator-pending mapping
       ---Includes `gcc`, `gcb`, `gc[count]{motion}` and `gb[count]{motion}`
       basic = true,
-      ---extended mapping
-      ---Includes `g>`, `g<`, `g>[count]{motion}` and `g<[count]{motion}`
-      extra = false,
+      ---Extra mapping
+      ---Includes `gco`, `gcO`, `gcA`
+      extra = true,
     },
 
     ---LHS of line and block comment toggle mapping in NORMAL/VISUAL mode
@@ -47,6 +51,17 @@ function M.config()
       line = "gc",
       ---block-comment opfunc mapping
       block = "gb",
+    },
+
+    ---LHS of extra mappings
+    ---@type table
+    extra = {
+      ---Add comment on the line above
+      above = "gcO",
+      ---Add comment on the line below
+      below = "gco",
+      ---Add comment at the end of line
+      eol = "gcA",
     },
 
     ---Pre-hook, called before commenting the line

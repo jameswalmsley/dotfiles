@@ -3,6 +3,12 @@ local Log = require "lvim.core.log"
 local utils = require "lvim.utils"
 local autocmds = require "lvim.core.autocmds"
 
+local function add_lsp_buffer_options(bufnr)
+  for k, v in pairs(lvim.lsp.buffer_options) do
+    vim.api.nvim_buf_set_option(bufnr, k, v)
+  end
+end
+
 local function add_lsp_buffer_keybindings(bufnr)
   local mappings = {
     normal_mode = "n",
@@ -10,26 +16,20 @@ local function add_lsp_buffer_keybindings(bufnr)
     visual_mode = "v",
   }
 
-  if lvim.builtin.which_key.active then
-    -- Remap using which_key
-    local status_ok, wk = pcall(require, "which-key")
-    if not status_ok then
-      return
-    end
-    for mode_name, mode_char in pairs(mappings) do
-      wk.register(lvim.lsp.buffer_mappings[mode_name], { mode = mode_char, buffer = bufnr })
-    end
-  else
-    -- Remap using nvim api
-    for mode_name, mode_char in pairs(mappings) do
-      for key, remap in pairs(lvim.lsp.buffer_mappings[mode_name]) do
-        vim.api.nvim_buf_set_keymap(bufnr, mode_char, key, remap[1], { noremap = true, silent = true })
-      end
+  for mode_name, mode_char in pairs(mappings) do
+    for key, remap in pairs(lvim.lsp.buffer_mappings[mode_name]) do
+      local opts = { buffer = bufnr, desc = remap[2], noremap = true, silent = true }
+      vim.keymap.set(mode_char, key, remap[1], opts)
     end
   end
 end
 
 function M.common_capabilities()
+  local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+  if status_ok then
+    return cmp_nvim_lsp.default_capabilities()
+  end
+
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   capabilities.textDocument.completion.completionItem.snippetSupport = true
   capabilities.textDocument.completion.completionItem.resolveSupport = {
@@ -39,11 +39,6 @@ function M.common_capabilities()
       "additionalTextEdits",
     },
   }
-
-  local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-  if status_ok then
-    capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
-  end
 
   return capabilities
 end
@@ -78,6 +73,8 @@ function M.common_on_attach(client, bufnr)
     lu.setup_codelens_refresh(client, bufnr)
   end
   add_lsp_buffer_keybindings(bufnr)
+  add_lsp_buffer_options(bufnr)
+  lu.setup_document_symbols(client, bufnr)
 end
 
 function M.get_common_opts()
@@ -114,7 +111,10 @@ function M.setup()
   end)
 
   pcall(function()
-    require("nvim-lsp-installer").setup(lvim.lsp.installer.setup)
+    require("mason-lspconfig").setup(lvim.lsp.installer.setup)
+    local util = require "lspconfig.util"
+    -- automatic_installation is handled by lsp-manager
+    util.on_setup = nil
   end)
 
   require("lvim.lsp.null-ls").setup()

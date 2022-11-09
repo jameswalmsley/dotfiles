@@ -11,8 +11,12 @@ lvim.format_on_save = false
 lvim.builtin.project.active = false
 lvim.builtin.project.manual_mode = true
 
+vim.opt.foldenable = false
+
 lvim.keys.normal_mode["<C-j>"] = ":cnext<CR>"
 lvim.keys.normal_mode["<C-k>"] = ":cprev<CR>"
+
+lvim.builtin.terminal.open_mapping = "<c-t>"
 
 vim.opt.relativenumber = true
 
@@ -31,6 +35,16 @@ lvim.builtin.which_key.mappings["o"] = {
   },
 }
 
+lvim.builtin.which_key.mappings["z"] = {
+  name = "find notes",
+  f = { function() require("telekasten").find_notes() end, "Find notes" },
+  F = { function() require("telekasten").find_friends() end, "Find friends" },
+  d = { function() require("telekasten").find_daily_notes() end, "Find daily notes" },
+  g = { function() require("telekasten").search_notes() end, "Search  notes" },
+  z = { function() require("telekasten").follow_link() end, "Follow link" },
+  p = { function() require("telekasten").panel() end, "Panel" },
+}
+
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
   {
@@ -45,5 +59,5 @@ local linters = require "lvim.lsp.null-ls.linters"
 linters.setup {
   exe = "shellcheck",
   args = { "--severity", "warning" },
-  filetypes = "sh"
+  filetypes = "sh",
 }

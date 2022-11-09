@@ -2,20 +2,20 @@
 set -eo pipefail
 
 #Set branch to master unless specified by the user
-declare LV_BRANCH="${LV_BRANCH:-"master"}"
-declare -r LV_REMOTE="${LV_REMOTE:-lunarvim/lunarvim.git}"
-declare -r INSTALL_PREFIX="${INSTALL_PREFIX:-"$HOME/.local"}"
+declare -x LV_BRANCH="${LV_BRANCH:-"master"}"
+declare -xr LV_REMOTE="${LV_REMOTE:-lunarvim/lunarvim.git}"
+declare -xr INSTALL_PREFIX="${INSTALL_PREFIX:-"$HOME/.local"}"
 
-declare -r XDG_DATA_HOME="${XDG_DATA_HOME:-"$HOME/.local/share"}"
-declare -r XDG_CACHE_HOME="${XDG_CACHE_HOME:-"$HOME/.cache"}"
-declare -r XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-"$HOME/.config"}"
+declare -xr XDG_DATA_HOME="${XDG_DATA_HOME:-"$HOME/.local/share"}"
+declare -xr XDG_CACHE_HOME="${XDG_CACHE_HOME:-"$HOME/.cache"}"
+declare -xr XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-"$HOME/.config"}"
 
-declare -r LUNARVIM_RUNTIME_DIR="${LUNARVIM_RUNTIME_DIR:-"$XDG_DATA_HOME/lunarvim"}"
-declare -r LUNARVIM_CONFIG_DIR="${LUNARVIM_CONFIG_DIR:-"$XDG_CONFIG_HOME/lvim"}"
-declare -r LUNARVIM_CACHE_DIR="${LUNARVIM_CACHE_DIR:-"$XDG_CACHE_HOME/lvim"}"
-declare -r LUNARVIM_BASE_DIR="${LUNARVIM_BASE_DIR:-"$LUNARVIM_RUNTIME_DIR/lvim"}"
+declare -xr LUNARVIM_RUNTIME_DIR="${LUNARVIM_RUNTIME_DIR:-"$XDG_DATA_HOME/lunarvim"}"
+declare -xr LUNARVIM_CONFIG_DIR="${LUNARVIM_CONFIG_DIR:-"$XDG_CONFIG_HOME/lvim"}"
+declare -xr LUNARVIM_CACHE_DIR="${LUNARVIM_CACHE_DIR:-"$XDG_CACHE_HOME/lvim"}"
+declare -xr LUNARVIM_BASE_DIR="${LUNARVIM_BASE_DIR:-"$LUNARVIM_RUNTIME_DIR/lvim"}"
 
-declare -r LUNARVIM_LOG_LEVEL="${LUNARVIM_LOG_LEVEL:-warn}"
+declare -xr LUNARVIM_LOG_LEVEL="${LUNARVIM_LOG_LEVEL:-warn}"
 
 declare BASEDIR
 BASEDIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
@@ -26,6 +26,7 @@ declare ARGS_LOCAL=0
 declare ARGS_OVERWRITE=0
 declare ARGS_INSTALL_DEPENDENCIES=1
 declare INTERACTIVE_MODE=1
+declare ADDITIONAL_WARNINGS=""
 
 declare -a __lvim_dirs=(
   "$LUNARVIM_CONFIG_DIR"
@@ -50,7 +51,7 @@ function usage() {
   echo "    -l, --local                              Install local copy of LunarVim"
   echo "    -y, --yes                                Disable confirmation prompts (answer yes to all questions)"
   echo "    --overwrite                              Overwrite previous LunarVim configuration (a backup is always performed first)"
-  echo "    --[no]-install-dependencies              Whether to automatically install external dependencies (will prompt by default)"
+  echo "    --[no-]install-dependencies              Whether to automatically install external dependencies (will prompt by default)"
 }
 
 function parse_arguments() {
@@ -148,6 +149,7 @@ function main() {
 
   setup_lvim
 
+  msg "$ADDITIONAL_WARNINGS"
   msg "Thank you for installing LunarVim!!"
   echo "You can start it by running: $INSTALL_PREFIX/bin/lvim"
   echo "Do not forget to use a font with glyphs (icons) support [https://github.com/ryanoasis/nerd-fonts]"
@@ -199,11 +201,11 @@ function print_missing_dep_msg() {
 }
 
 function check_neovim_min_version() {
-  local verify_version_cmd='if !has("nvim-0.7") | cquit | else | quit | endif'
+  local verify_version_cmd='if !has("nvim-0.8") | cquit | else | quit | endif'
 
   # exit with an error if min_version not found
   if ! nvim --headless -u NONE -c "$verify_version_cmd"; then
-    echo "[ERROR]: LunarVim requires at least Neovim v0.7 or higher"
+    echo "[ERROR]: LunarVim requires at least Neovim v0.8 or higher"
     exit 1
   fi
 }
@@ -211,7 +213,7 @@ function check_neovim_min_version() {
 function verify_core_plugins() {
   msg "Verifying core plugins"
   if ! bash "$LUNARVIM_BASE_DIR/utils/ci/verify_plugins.sh"; then
-    echo "[ERROR]: Unable to verify plugins, makde sure to manually run ':PackerSync' when starting lvim for the first time."
+    echo "[ERROR]: Unable to verify plugins, make sure to manually run ':PackerSync' when starting lvim for the first time."
     exit 1
   fi
   echo "Verification complete!"
@@ -226,7 +228,25 @@ function validate_lunarvim_files() {
   fi
 }
 
+function validate_install_prefix() {
+  local prefix="$1"
+  case $PATH in
+    *"$prefix/bin"*)
+      return
+      ;;
+  esac
+  local profile="$HOME/.profile"
+  test -z "$ZSH_VERSION" && profile="$HOME/.zshenv"
+  ADDITIONAL_WARNINGS="[WARN] the folder $prefix/bin is not on PATH, consider adding 'export PATH=$prefix/bin:\$PATH' to your $profile"
+
+  # avoid problems when calling any verify_* function
+  export PATH="$prefix/bin:$PATH"
+}
+
 function check_system_deps() {
+
+  validate_install_prefix "$INSTALL_PREFIX"
+
   if ! command -v git &>/dev/null; then
     print_missing_dep_msg "git"
     exit 1
@@ -279,7 +299,6 @@ function __validate_node_installation() {
   fi
 
   if [ ! -d "$manager_home" ] || [ ! -w "$manager_home" ]; then
-    echo "[ERROR] Unable to install using [$pkg_manager] without administrative privileges."
     return 1
   fi
 
@@ -294,21 +313,21 @@ function install_nodejs_deps() {
       return
     fi
   done
-  print_missing_dep_msg "${pkg_managers[@]}"
-  exit 1
+  echo "[WARN]: skipping installing optional nodejs dependencies due to insufficient permissions."
+  echo "check how to solve it: https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally"
 }
 
 function install_python_deps() {
   echo "Verifying that pip is available.."
-  if ! python3 -m ensurepip &>/dev/null; then
+  if ! python3 -m ensurepip >/dev/null; then
     if ! python3 -m pip --version &>/dev/null; then
-      print_missing_dep_msg "pip"
-      exit 1
+      echo "[WARN]: skipping installing optional python dependencies"
+      return 1
     fi
   fi
   echo "Installing with pip.."
   for dep in "${__pip_deps[@]}"; do
-    python3 -m pip install --user "$dep"
+    python3 -m pip install --user "$dep" || return 1
   done
   echo "All Python dependencies are successfully installed"
 }
@@ -376,7 +395,7 @@ function backup_old_config() {
 function clone_lvim() {
   msg "Cloning LunarVim configuration"
   if ! git clone --branch "$LV_BRANCH" \
-    --depth 1 "https://github.com/${LV_REMOTE}" "$LUNARVIM_BASE_DIR"; then
+    "https://github.com/${LV_REMOTE}" "$LUNARVIM_BASE_DIR"; then
     echo "Failed to clone repository. Installation failed."
     exit 1
   fi
@@ -420,18 +439,35 @@ function setup_lvim() {
 
   setup_shim
 
-  cp "$LUNARVIM_BASE_DIR/utils/installer/config.example.lua" "$LUNARVIM_CONFIG_DIR/config.lua"
+  create_desktop_file
+
+  [ ! -f "$LUNARVIM_CONFIG_DIR/config.lua" ] \
+    && cp "$LUNARVIM_BASE_DIR/utils/installer/config.example.lua" "$LUNARVIM_CONFIG_DIR/config.lua"
 
   echo "Preparing Packer setup"
 
   "$INSTALL_PREFIX/bin/lvim" --headless \
-    -c "lua require('lvim.core.log'):set_level([[$LUNARVIM_LOG_LEVEL]])" \
     -c 'autocmd User PackerComplete quitall' \
     -c 'PackerSync'
 
   echo "Packer setup complete"
 
   verify_core_plugins
+}
+
+function create_desktop_file() {
+  OS="$(uname -s)"
+  # TODO: Any other OSes that use desktop files?
+  ([ "$OS" != "Linux" ] || ! command -v xdg-desktop-menu &>/dev/null) && return
+  echo "Creating desktop file"
+
+  for d in "$LUNARVIM_BASE_DIR"/utils/desktop/*/; do
+    size_folder=$(basename "$d")
+    mkdir -p "$XDG_DATA_HOME/icons/hicolor/$size_folder/apps/"
+    cp "$LUNARVIM_BASE_DIR/utils/desktop/$size_folder/lvim.svg" "$XDG_DATA_HOME/icons/hicolor/$size_folder/apps"
+  done
+
+  xdg-desktop-menu install --novendor "$LUNARVIM_BASE_DIR/utils/desktop/lvim.desktop"
 }
 
 function print_logo() {

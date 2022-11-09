@@ -1,3 +1,4 @@
+-- local require = require("lvim.utils.require").require
 local core_plugins = {
   -- Packer can manage itself as an optional plugin
   { "wbthomason/packer.nvim" },
@@ -6,21 +7,15 @@ local core_plugins = {
   {
     "jose-elias-alvarez/null-ls.nvim",
   },
-  { "antoinemadec/FixCursorHold.nvim" }, -- Needed while issue https://github.com/neovim/neovim/issues/12587 is still open
+  { "williamboman/mason-lspconfig.nvim" },
   {
-    "williamboman/nvim-lsp-installer",
+    "williamboman/mason.nvim",
+    config = function()
+      require("lvim.core.mason").setup()
+    end,
   },
   {
-    "lunarvim/onedarker.nvim",
-    config = function()
-      pcall(function()
-        if lvim and lvim.colorscheme == "onedarker" then
-          require("onedarker").setup()
-          lvim.builtin.lualine.options.theme = "onedarker"
-        end
-      end)
-    end,
-    disable = lvim.colorscheme ~= "onedarker",
+    "folke/tokyonight.nvim",
   },
   {
     "rcarriga/nvim-notify",
@@ -37,6 +32,7 @@ local core_plugins = {
   -- Telescope
   {
     "nvim-telescope/telescope.nvim",
+    branch = "0.1.x",
     config = function()
       require("lvim.core.telescope").setup()
     end,
@@ -96,9 +92,8 @@ local core_plugins = {
     "hrsh7th/cmp-path",
   },
   {
-    -- NOTE: Temporary fix till folke comes back
-    "max397574/lua-dev.nvim",
-    module = "lua-dev",
+    "folke/neodev.nvim",
+    module = "neodev",
   },
 
   -- Autopairs
@@ -134,7 +129,15 @@ local core_plugins = {
     end,
     disable = not lvim.builtin.nvimtree.active,
   },
-
+  -- Lir
+  {
+    "christianchiarulli/lir.nvim",
+    config = function()
+      require("lvim.core.lir").setup()
+    end,
+    requires = { "kyazdani42/nvim-web-devicons" },
+    disable = not lvim.builtin.lir.active,
+  },
   {
     "lewis6991/gitsigns.nvim",
 
@@ -147,7 +150,7 @@ local core_plugins = {
 
   -- Whichkey
   {
-    "max397574/which-key.nvim",
+    "folke/which-key.nvim",
     config = function()
       require("lvim.core.which-key").setup()
     end,
@@ -191,6 +194,15 @@ local core_plugins = {
     disable = not lvim.builtin.lualine.active,
   },
 
+  -- breadcrumbs
+  {
+    "SmiteshP/nvim-navic",
+    config = function()
+      require("lvim.core.breadcrumbs").setup()
+    end,
+    disable = not lvim.builtin.breadcrumbs.active,
+  },
+
   {
     "akinsho/bufferline.nvim",
     config = function()
@@ -211,12 +223,12 @@ local core_plugins = {
     disable = not lvim.builtin.dap.active,
   },
 
-  -- Debugger management
+  -- Debugger user interface
   {
-    "Pocco81/dap-buddy.nvim",
-    branch = "dev",
-    -- event = "BufWinEnter",
-    -- event = "BufRead",
+    "rcarriga/nvim-dap-ui",
+    config = function()
+      require("lvim.core.dap").setup_ui()
+    end,
     disable = not lvim.builtin.dap.active,
   },
 
@@ -244,6 +256,36 @@ local core_plugins = {
   {
     "b0o/schemastore.nvim",
   },
+
+  {
+    "RRethy/vim-illuminate",
+    config = function()
+      require("lvim.core.illuminate").setup()
+    end,
+    disable = not lvim.builtin.illuminate.active,
+  },
+
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    config = function()
+      require("lvim.core.indentlines").setup()
+    end,
+    disable = not lvim.builtin.indentlines.active,
+  },
+
+  {
+    "lunarvim/onedarker.nvim",
+    branch = "freeze",
+    config = function()
+      pcall(function()
+        if lvim and lvim.colorscheme == "onedarker" then
+          require("onedarker").setup()
+          lvim.builtin.lualine.options.theme = "onedarker"
+        end
+      end)
+    end,
+    disable = lvim.colorscheme ~= "onedarker",
+  },
 }
 
 local default_snapshot_path = join_paths(get_lvim_base_dir(), "snapshots", "default.json")
@@ -255,8 +297,8 @@ local get_default_sha1 = function(spec)
   return default_sha1[short_name] and default_sha1[short_name].commit
 end
 
-for _, spec in ipairs(core_plugins) do
-  if not vim.env.LVIM_DEV_MODE then
+if not vim.env.LVIM_DEV_MODE then
+  for _, spec in ipairs(core_plugins) do
     -- Manually lock the commit hash since Packer's snapshots are unreliable in headless mode
     spec["commit"] = get_default_sha1(spec)
   end

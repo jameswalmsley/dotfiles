@@ -22,7 +22,7 @@ function M.config()
     detection_methods = { "pattern" },
 
     ---@usage patterns used to detect root dir, when **"pattern"** is in detection_methods
-    patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json" },
+    patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json", "pom.xml" },
 
     ---@ Show hidden files in telescope when searching for files in a project
     show_hidden = false,
@@ -41,7 +41,10 @@ function M.config()
 end
 
 function M.setup()
-  local project = require "project_nvim"
+  local status_ok, project = pcall(require, "project_nvim")
+  if not status_ok then
+    return
+  end
 
   project.setup(lvim.builtin.project)
   if lvim.builtin.project.on_config_done then
