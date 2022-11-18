@@ -22,8 +22,55 @@ M.config = function()
       linehl = "Visual",
       numhl = "DiagnosticSignWarn",
     },
+    log = {
+      level = "info",
+    },
     ui = {
       auto_open = true,
+      notify = {
+        threshold = vim.log.levels.INFO,
+      },
+      config = {
+        expand_lines = true,
+        icons = { expanded = "", collapsed = "", circular = "" },
+        mappings = {
+          -- Use a table to apply multiple mappings
+          expand = { "<CR>", "<2-LeftMouse>" },
+          open = "o",
+          remove = "d",
+          edit = "e",
+          repl = "r",
+          toggle = "t",
+        },
+        layouts = {
+          {
+            elements = {
+              { id = "scopes", size = 0.33 },
+              { id = "breakpoints", size = 0.17 },
+              { id = "stacks", size = 0.25 },
+              { id = "watches", size = 0.25 },
+            },
+            size = 0.33,
+            position = "right",
+          },
+          {
+            elements = {
+              { id = "repl", size = 0.45 },
+              { id = "console", size = 0.55 },
+            },
+            size = 0.27,
+            position = "bottom",
+          },
+        },
+        floating = {
+          max_height = 0.9,
+          max_width = 0.5, -- Floats will be treated as percentage of your screen.
+          border = vim.g.border_chars, -- Border style. Can be 'single', 'double' or 'rounded'
+          mappings = {
+            close = { "q", "<Esc>" },
+          },
+        },
+      },
     },
   }
 end
@@ -40,23 +87,7 @@ M.setup = function()
     vim.fn.sign_define("DapStopped", lvim.builtin.dap.stopped)
   end
 
-  lvim.builtin.which_key.mappings["d"] = {
-    name = "Debug",
-    t = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Toggle Breakpoint" },
-    b = { "<cmd>lua require'dap'.step_back()<cr>", "Step Back" },
-    c = { "<cmd>lua require'dap'.continue()<cr>", "Continue" },
-    C = { "<cmd>lua require'dap'.run_to_cursor()<cr>", "Run To Cursor" },
-    d = { "<cmd>lua require'dap'.disconnect()<cr>", "Disconnect" },
-    g = { "<cmd>lua require'dap'.session()<cr>", "Get Session" },
-    i = { "<cmd>lua require'dap'.step_into()<cr>", "Step Into" },
-    o = { "<cmd>lua require'dap'.step_over()<cr>", "Step Over" },
-    u = { "<cmd>lua require'dap'.step_out()<cr>", "Step Out" },
-    p = { "<cmd>lua require'dap'.pause()<cr>", "Pause" },
-    r = { "<cmd>lua require'dap'.repl.toggle()<cr>", "Toggle Repl" },
-    s = { "<cmd>lua require'dap'.continue()<cr>", "Start" },
-    q = { "<cmd>lua require'dap'.close()<cr>", "Quit" },
-    U = { "<cmd>lua require'dapui'.toggle()<cr>", "Toggle UI" },
-  }
+  dap.set_log_level(lvim.builtin.dap.log.level)
 
   if lvim.builtin.dap.on_config_done then
     lvim.builtin.dap.on_config_done(dap)
@@ -69,47 +100,7 @@ M.setup_ui = function()
     return
   end
   local dapui = require "dapui"
-  dapui.setup {
-    expand_lines = true,
-    icons = { expanded = "", collapsed = "", circular = "" },
-    mappings = {
-      -- Use a table to apply multiple mappings
-      expand = { "<CR>", "<2-LeftMouse>" },
-      open = "o",
-      remove = "d",
-      edit = "e",
-      repl = "r",
-      toggle = "t",
-    },
-    layouts = {
-      {
-        elements = {
-          { id = "scopes", size = 0.33 },
-          { id = "breakpoints", size = 0.17 },
-          { id = "stacks", size = 0.25 },
-          { id = "watches", size = 0.25 },
-        },
-        size = 0.33,
-        position = "right",
-      },
-      {
-        elements = {
-          { id = "repl", size = 0.45 },
-          { id = "console", size = 0.55 },
-        },
-        size = 0.27,
-        position = "bottom",
-      },
-    },
-    floating = {
-      max_height = 0.9,
-      max_width = 0.5, -- Floats will be treated as percentage of your screen.
-      border = vim.g.border_chars, -- Border style. Can be 'single', 'double' or 'rounded'
-      mappings = {
-        close = { "q", "<Esc>" },
-      },
-    },
-  }
+  dapui.setup(lvim.builtin.dap.ui.config)
 
   if lvim.builtin.dap.ui.auto_open then
     dap.listeners.after.event_initialized["dapui_config"] = function()
@@ -121,6 +112,43 @@ M.setup_ui = function()
     -- dap.listeners.before.event_exited["dapui_config"] = function()
     --   dapui.close()
     -- end
+  end
+
+  local Log = require "lvim.core.log"
+
+  -- until rcarriga/nvim-dap-ui#164 is fixed
+  local function notify_handler(msg, level, opts)
+    if level >= lvim.builtin.dap.ui.notify.threshold then
+      return vim.notify(msg, level, opts)
+    end
+
+    opts = vim.tbl_extend("keep", opts or {}, {
+      title = "dap-ui",
+      icon = "",
+      on_open = function(win)
+        vim.api.nvim_buf_set_option(vim.api.nvim_win_get_buf(win), "filetype", "markdown")
+      end,
+    })
+
+    -- vim_log_level can be omitted
+    if level == nil then
+      level = Log.levels["INFO"]
+    elseif type(level) == "string" then
+      level = Log.levels[(level):upper()] or Log.levels["INFO"]
+    else
+      -- https://github.com/neovim/neovim/blob/685cf398130c61c158401b992a1893c2405cd7d2/runtime/lua/vim/lsp/log.lua#L5
+      level = level + 1
+    end
+
+    msg = string.format("%s: %s", opts.title, msg)
+    Log:add_entry(level, msg)
+  end
+
+  local dapui_ok, _ = xpcall(function()
+    require("dapui.util").notify = notify_handler
+  end, debug.traceback)
+  if not dapui_ok then
+    Log:debug "Unable to override dap-ui logging level"
   end
 end
 

@@ -2,7 +2,7 @@
 $ErrorActionPreference = "Stop" # exit when command fails
 
 # set script variables
-$LV_BRANCH = $LV_BRANCH ?? "rolling"
+$LV_BRANCH = $LV_BRANCH ?? "master"
 $LV_REMOTE = $LV_REMOTE ??  "lunarvim/lunarvim.git"
 $INSTALL_PREFIX = $INSTALL_PREFIX ?? "$HOME\.local"
 
@@ -231,7 +231,7 @@ function setup_lvim() {
 function validate_lunarvim_files() {
     Set-Alias lvim "$INSTALL_PREFIX\bin\lvim.ps1"
     try {
-        $verify_version_cmd='if v:errmsg != "" | cquit | else | quit | endif'
+        $verify_version_cmd="if v:errmsg != \`"\`" | cquit | else | quit | endif"
         Invoke-Command -ScriptBlock { lvim --headless -c 'LvimUpdate' -c "$verify_version_cmd" } -ErrorAction SilentlyContinue
     }
     catch {
@@ -271,7 +271,7 @@ function create_alias {
         New-Item -Path $PROFILE -ItemType "file" -Force
     }
 
-    Add-Content -Path $PROFILE -Value $("`r`nSet-Alias lvim $lvim_bin")
+    Add-Content -Path $PROFILE -Value $("`r`nSet-Alias lvim '$lvim_bin'")
 
     Write-Host 'To use the new alias in this window reload your profile with: `. $PROFILE`' -ForegroundColor Green
 }

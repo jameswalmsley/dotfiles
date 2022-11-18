@@ -28,6 +28,7 @@ lua/lv-user-config/
 *.old
 *.log
 
+.luarc.json
 .luacheckcache
 plugin/
 undo/

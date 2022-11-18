@@ -53,14 +53,6 @@ function M.load_defaults()
     {
       "FileType",
       {
-        group = "_filetype_settings",
-        pattern = { "gitcommit", "markdown" },
-        command = "setlocal wrap spell",
-      },
-    },
-    {
-      "FileType",
-      {
         group = "_buffer_mappings",
         pattern = { "qf", "help", "man", "floaterm", "lspinfo", "lsp-installer", "null-ls-info" },
         command = "nnoremap <silent> <buffer> q :close<CR>",
@@ -96,6 +88,28 @@ function M.load_defaults()
         callback = function()
           vim.opt_local.number = false
           vim.opt_local.relativenumber = false
+        end,
+      },
+    },
+    {
+      "ColorScheme",
+      {
+        group = "_lvim_colorscheme",
+        callback = function()
+          if lvim.builtin.breadcrumbs.active then
+            require("lvim.core.breadcrumbs").get_winbar()
+          end
+          local statusline_hl = vim.api.nvim_get_hl_by_name("StatusLine", true)
+          local cursorline_hl = vim.api.nvim_get_hl_by_name("CursorLine", true)
+          local normal_hl = vim.api.nvim_get_hl_by_name("Normal", true)
+          vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
+          vim.api.nvim_set_hl(0, "CmpItemKindTabnine", { fg = "#CA42F0" })
+          vim.api.nvim_set_hl(0, "CmpItemKindCrate", { fg = "#F64D00" })
+          vim.api.nvim_set_hl(0, "CmpItemKindEmoji", { fg = "#FDE030" })
+          vim.api.nvim_set_hl(0, "SLCopilot", { fg = "#6CC644", bg = statusline_hl.background })
+          vim.api.nvim_set_hl(0, "SLGitIcon", { fg = "#E8AB53", bg = cursorline_hl.background })
+          vim.api.nvim_set_hl(0, "SLBranchName", { fg = normal_hl.foreground, bg = cursorline_hl.background })
+          vim.api.nvim_set_hl(0, "SLSeparator", { fg = cursorline_hl.background, bg = statusline_hl.background })
         end,
       },
     },
@@ -136,7 +150,9 @@ function M.disable_format_on_save()
 end
 
 function M.configure_format_on_save()
-  if lvim.format_on_save then
+  if type(lvim.format_on_save) == "table" and lvim.format_on_save.enabled then
+    M.enable_format_on_save()
+  elseif lvim.format_on_save == true then
     M.enable_format_on_save()
   else
     M.disable_format_on_save()
@@ -162,8 +178,9 @@ function M.enable_reload_config_on_save()
     -- autocmds require forward slashes even on windows
     user_config_file = user_config_file:gsub("\\", "/")
   end
+  vim.api.nvim_create_augroup("lvim_reload_config_on_save", {})
   vim.api.nvim_create_autocmd("BufWritePost", {
-    group = "_general_settings",
+    group = "lvim_reload_config_on_save",
     pattern = user_config_file,
     desc = "Trigger LvimReload on saving config.lua",
     callback = function()

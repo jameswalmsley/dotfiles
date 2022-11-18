@@ -10,7 +10,6 @@ end
 
 local uv = vim.loop
 local path_sep = uv.os_uname().version:match "Windows" and "\\" or "/"
-local in_headless = #vim.api.nvim_list_uis() == 0
 
 ---Join path segments that were passed as input
 ---@return string
@@ -96,9 +95,7 @@ function M:init(base_dir)
     vim.cmd [[let &packpath = &runtimepath]]
   end
 
-  -- FIXME: currently unreliable in unit-tests
-  if not in_headless then
-    _G.PLENARY_DEBUG = false
+  if not vim.env.LVIM_TEST_ENV then
     require "lvim.impatient"
   end
 
@@ -109,15 +106,23 @@ function M:init(base_dir)
     install_path = self.packer_install_dir,
   }
 
+  require("lvim.core.mason").bootstrap()
+
   return self
 end
 
 ---Update LunarVim
 ---pulls the latest changes from github and, resets the startup cache
 function M:update()
-  require_clean("lvim.utils.hooks").run_pre_update()
-  -- require_clean("lvim.utils.git").update_base_lvim()
-  require_clean("lvim.utils.hooks").run_post_update()
+  require("lvim.core.log"):info "Trying to update LunarVim..."
+
+  vim.schedule(function()
+    reload("lvim.utils.hooks").run_pre_update()
+    local ret = reload("lvim.utils.git").update_base_lvim()
+    if ret then
+      reload("lvim.utils.hooks").run_post_update()
+    end
+  end)
 end
 
 return M

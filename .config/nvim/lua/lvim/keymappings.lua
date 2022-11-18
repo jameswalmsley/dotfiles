@@ -109,11 +109,11 @@ end
 function M.clear(keymaps)
   local default = M.get_defaults()
   for mode, mappings in pairs(keymaps) do
-    local translated_mode = mode_adapters[mode] or mode
+    local translated_mode = mode_adapters[mode] and mode_adapters[mode] or mode
     for key, _ in pairs(mappings) do
-      -- some plugins may override default bindings that the user hasn't manually overridden
+      -- some plugins may override default bindings that the user hasn't manually overriden
       if default[mode][key] ~= nil or (default[translated_mode] ~= nil and default[translated_mode][key] ~= nil) then
-        pcall(vim.keymap.del, translated_mode, key)
+        pcall(vim.api.nvim_del_keymap, translated_mode, key)
       end
     end
   end
