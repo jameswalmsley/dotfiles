@@ -266,8 +266,8 @@ bindsym $mod+Alt+$left move workspace to output left
 
 bindsym $mod+l exec swaylock
 
-bindsym XF86MonBrightnessUp exec lightctl raise 5
-bindsym XF86MonBrightnessDown exec lightctl lower 5
+bindsym XF86MonBrightnessUp exec light -A 10
+bindsym XF86MonBrightnessDown exec light -U 10
 
 set $volumectl volumectl
 
@@ -291,6 +291,16 @@ input 1739:0:Synaptics_TM3289-021 {
 }
 
 input 1267:12572:DLL0945:00_04F3:311C_Touchpad {
+    tap enabled
+    natural_scroll disable
+    scroll_method two_finger
+    scroll_factor 0.3
+    pointer_accel 0.5
+    accel_profile flat
+    click_method clickfinger
+}
+
+input 1739:52862:VEN_06CB:00_06CB:CE7E_Touchpad {
     tap enabled
     natural_scroll disable
     scroll_method two_finger
@@ -387,6 +397,8 @@ no_focus [title="wlosd"]
 
 for_window [app_id=ulauncher] border none
 
+for_window [app_id="chrome-pkooggnaalmfkidjmlhoelhdllpphaga-Default"] shortcuts_inhibitor disable
+
 #
 # Themes
 #
@@ -423,3 +435,7 @@ exec spotpris2 --auto
 exec ulauncher --hide-window
 bindsym $mod+Shift+p exec clipman pick -t wofi
 bindsym $mod+p exec clipman --histpath="~/.local/share/clipman-primary.json" pick -t wofi
+
+exec swayidle -w \
+    timeout 240 'swaylock' \
+    before-sleep 'swaylock'
