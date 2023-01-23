@@ -26,7 +26,7 @@ end
 #alias nvim=nvr -s
 alias vim=nvim
 
-alias tm="tmux attach || tmux new"
+alias tm="tmux new-session -A -s main"
 
 alias t.wc="kitty @ set-colors -a ~/.config/kitty/kitty-themes/themes/WildCherry.conf"
 alias t.sl="kitty @ set-colors -a ~/.config/kitty/kitty-themes/themes/Solarized_Light.conf"
