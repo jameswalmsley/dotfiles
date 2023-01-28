@@ -1,13 +1,27 @@
 profile Dell_5570 {
 	output "Samsung Electric Company LS34A650U H1AK500000" mode 3440x1440 position 0,0 enable
 	output "LG Display 0x06B3 Unknown" mode 1920x1200 position 3440,0 enable
-	exec swaymsg [workspace=1] move workspace to output \"Samsung Electric Company S27H85x H4ZK901108\"
+	exec swaymsg [workspace=1] move workspace to output \"Samsung Electric Company LS34A650U H1AK500000\"
+	exec swaymsg [workspace=2] move workspace to output \"Samsung Electric Company LS34A650U H1AK500000\"
+	exec swaymsg [workspace=3] move workspace to output \"Samsung Electric Company LS34A650U H1AK500000\"
+	exec swaymsg [workspace=4] move workspace to output \"Samsung Electric Company LS34A650U H1AK500000\"
+	exec swaymsg [workspace=5] move workspace to output \"Samsung Electric Company LS34A650U H1AK500000\"
+	exec swaymsg [workspace=8] move workspace to output eDP-1
+	exec swaymsg [workspace=9] move workspace to output eDP-1
+	exec swaymsg [workspace=music] move workspace to output eDP-1
 }
 
 profile Dell_5550_WFH {
 	output "LG Electronics LG Ultra HD 0x0000661B" mode 3840x2160 position 0,0 scale 1.333 enable 
 	output "LG Display 0x06B3 Unknown" mode 1920x1200 position 2882,0 enable
-	exec swaymsg [workspace=1] move workspace to output \"Goldstar Company Ltd LG Ultra HD 0x0000661B\" enable
+	exec swaymsg [workspace=1] move workspace to output \"LG Electronics LG Ultra HD 0x0000661B\"
+	exec swaymsg [workspace=2] move workspace to output \"LG Electronics LG Ultra HD 0x0000661B\"
+	exec swaymsg [workspace=3] move workspace to output \"LG Electronics LG Ultra HD 0x0000661B\"
+	exec swaymsg [workspace=4] move workspace to output \"LG Electronics LG Ultra HD 0x0000661B\"
+	exec swaymsg [workspace=5] move workspace to output \"LG Electronics LG Ultra HD 0x0000661B\"
+	exec swaymsg [workspace=8] move workspace to output eDP-1
+	exec swaymsg [workspace=9] move workspace to output eDP-1
+	exec swaymsg [workspace=music] move workspace to output eDP-1
 }
 
 # Thinkpad Carbon X1 6th Gen - Alone.
