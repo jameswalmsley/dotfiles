@@ -18,7 +18,11 @@ M.config = function()
 
   lvim.builtin.lir = vim.tbl_extend("force", lvim.builtin.lir, {
     show_hidden_files = false,
-    devicons_enable = true,
+    ignore = {}, -- { ".DS_Store" "node_modules" } etc.
+    devicons = {
+      enable = true,
+      highlight_dirname = true,
+    },
     mappings = {
       ["l"] = actions.edit,
       ["<CR>"] = actions.edit,
@@ -52,8 +56,8 @@ M.config = function()
         highlight_dirname = true,
       },
 
-      -- -- You can define a function that returns a table to be passed as the third
-      -- -- argument of nvim_open_win().
+      -- You can define a function that returns a table to be passed as the third
+      -- argument of nvim_open_win().
       win_opts = function()
         local width = math.floor(vim.o.columns * 0.7)
         local height = math.floor(vim.o.lines * 0.7)
@@ -61,8 +65,6 @@ M.config = function()
           border = "rounded",
           width = width,
           height = height,
-          -- row = 1,
-          -- col = math.floor((vim.o.columns - width) / 2),
         }
       end,
     },
@@ -76,14 +78,16 @@ M.config = function()
         ':<C-u>lua require"lir.mark.actions".toggle_mark("v")<CR>',
         { noremap = true, silent = true }
       )
-
-      -- echo cwd
-      -- vim.api.nvim_echo({ { vim.fn.expand "%:p", "Normal" } }, false, {})
     end,
   })
 end
 
 function M.icon_setup()
+  local devicons_ok, devicons = pcall(require, "nvim-web-devicons")
+  if not devicons_ok then
+    return
+  end
+
   local function get_hl_by_name(name)
     local ret = vim.api.nvim_get_hl_by_name(name.group, true)
     return string.format("#%06x", ret[name.property])
@@ -94,7 +98,7 @@ function M.icon_setup()
     icon_hl = "#42A5F5"
   end
 
-  require("nvim-web-devicons").set_icon {
+  devicons.set_icon {
     lir_folder_icon = {
       icon = lvim.builtin.lir.icon,
       color = icon_hl,
@@ -108,6 +112,11 @@ function M.setup()
   if not status_ok then
     return
   end
+
+  if not lvim.use_icons then
+    lvim.builtin.lir.devicons.enable = false
+  end
+
   lir.setup(lvim.builtin.lir)
 
   if lvim.builtin.lir.on_config_done then

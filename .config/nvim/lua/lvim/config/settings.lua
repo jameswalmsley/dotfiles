@@ -64,6 +64,17 @@ M.load_default_options = function()
   for k, v in pairs(default_options) do
     vim.opt[k] = v
   end
+
+  vim.filetype.add {
+    extension = {
+      tex = "tex",
+      zir = "zir",
+      cr = "crystal",
+    },
+    pattern = {
+      ["[jt]sconfig.*.json"] = "jsonc",
+    },
+  }
 end
 
 M.load_headless_options = function()
