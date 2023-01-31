@@ -271,10 +271,10 @@ bindsym XF86MonBrightnessDown exec lightctl lower 5
 
 set $volumectl volumectl
 
-bindsym XF86AudioMute exec $volumectl toggle-mute
-bindsym XF86AudioRaiseVolume exec $volumectl +
-bindsym XF86AudioLowerVolume exec $volumectl -
-bindsym XF86AudioMicMute exec $volumectl -m toggle-mute
+bindsym XF86AudioMute exec $volumectl mute
+bindsym XF86AudioRaiseVolume exec $volumectl raise
+bindsym XF86AudioLowerVolume exec $volumectl lower
+bindsym XF86AudioMicMute exec $volumectl -m mute
 
 #
 # Input Config
