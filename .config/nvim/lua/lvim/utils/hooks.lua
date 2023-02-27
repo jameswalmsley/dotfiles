@@ -27,7 +27,6 @@ end
 ---It also forces regenerating any template ftplugin files
 ---Tip: Useful for clearing any outdated settings
 function M.reset_cache()
-  plugin_loader.reset_cache()
   local lvim_modules = {}
   for module, _ in pairs(package.loaded) do
     if module:match "lvim.core" or module:match "lvim.lsp" then
@@ -59,6 +58,7 @@ function M.run_post_update()
   M.reset_cache()
 
   Log:debug "Syncing core plugins"
+  plugin_loader.reload { reload "lvim.plugins", lvim.plugins }
   plugin_loader.sync_core_plugins()
 
   if not in_headless then

@@ -18,7 +18,7 @@ M.config = function()
     -- direction = 'vertical' | 'horizontal' | 'window' | 'float',
     direction = "float",
     close_on_exit = true, -- close the terminal window when the process exits
-    shell = vim.o.shell, -- change the default shell
+    shell = nil, -- change the default shell
     -- This field is only relevant if direction is set to 'float'
     float_opts = {
       -- The border key is *almost* the same as 'nvim_win_open'
@@ -77,15 +77,12 @@ local function get_dynamic_terminal_size(direction, size)
   end
 end
 
-M.setup = function()
-  local terminal = require "toggleterm"
-  terminal.setup(lvim.builtin.terminal)
-
+M.init = function()
   for i, exec in pairs(lvim.builtin.terminal.execs) do
     local direction = exec[4] or lvim.builtin.terminal.direction
 
     local opts = {
-      cmd = exec[1] or lvim.builtin.terminal.shell,
+      cmd = exec[1] or lvim.builtin.terminal.shell or vim.o.shell,
       keymap = exec[2],
       label = exec[3],
       -- NOTE: unable to consistently bind id/count <= 9, see #2146
@@ -98,7 +95,11 @@ M.setup = function()
 
     M.add_exec(opts)
   end
+end
 
+M.setup = function()
+  local terminal = require "toggleterm"
+  terminal.setup(lvim.builtin.terminal)
   if lvim.builtin.terminal.on_config_done then
     lvim.builtin.terminal.on_config_done(terminal)
   end

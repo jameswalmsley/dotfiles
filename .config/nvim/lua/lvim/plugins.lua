@@ -9,6 +9,13 @@ local core_plugins = {
   {
     "williamboman/mason-lspconfig.nvim",
     cmd = { "LspInstall", "LspUninstall" },
+    config = function()
+      require("mason-lspconfig").setup(lvim.lsp.installer.setup)
+
+      -- automatic_installation is handled by lsp-manager
+      local settings = require "mason-lspconfig.settings"
+      settings.current.automatic_installation = false
+    end,
     lazy = true,
     dependencies = "mason.nvim",
   },
@@ -110,6 +117,7 @@ local core_plugins = {
       require("lvim.core.autopairs").setup()
     end,
     enabled = lvim.builtin.autopairs.active,
+    dependencies = { "nvim-treesitter/nvim-treesitter", "hrsh7th/nvim-cmp" },
   },
 
   -- Treesitter
@@ -122,7 +130,15 @@ local core_plugins = {
       vim.opt.rtp:prepend(path) -- treesitter needs to be before nvim's runtime in rtp
       require("lvim.core.treesitter").setup()
     end,
-    cmd = { "TSInstall", "TSUninstall", "TSUpdate", "TSInstallInfo", "TSInstallSync", "TSInstallFromGrammar" },
+    cmd = {
+      "TSInstall",
+      "TSUninstall",
+      "TSUpdate",
+      "TSUpdateSync",
+      "TSInstallInfo",
+      "TSInstallSync",
+      "TSInstallFromGrammar",
+    },
     event = "User FileOpened",
   },
   {
@@ -265,11 +281,22 @@ local core_plugins = {
   -- Terminal
   {
     "akinsho/toggleterm.nvim",
-    event = "VeryLazy",
     branch = "main",
+    init = function()
+      require("lvim.core.terminal").init()
+    end,
     config = function()
       require("lvim.core.terminal").setup()
     end,
+    cmd = {
+      "ToggleTerm",
+      "TermExec",
+      "ToggleTermToggleAll",
+      "ToggleTermSendCurrentLine",
+      "ToggleTermSendVisualLines",
+      "ToggleTermSendVisualSelection",
+    },
+    keys = lvim.builtin.terminal.open_mapping,
     enabled = lvim.builtin.terminal.active,
   },
 

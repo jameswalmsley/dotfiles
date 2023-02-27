@@ -116,8 +116,14 @@ return {
     --     }
     --   end,
     -- },
-    { "tpope/vim-sleuth" },
-    -- { "axelf4/vim-strip-trailing-whitespace" },
+    -- { "axelf
+    {
+        "nmac427/guess-indent.nvim",
+        config = function()
+            require('guess-indent').setup()
+        end,
+    },
+    { "axelf4/vim-strip-trailing-whitespace" },
     { "ggandor/lightspeed.nvim" },
     {
         "ray-x/lsp_signature.nvim",

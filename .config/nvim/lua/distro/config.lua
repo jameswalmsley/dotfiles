@@ -3,7 +3,7 @@ lvim.builtin.alpha.active = true
 lvim.builtin.lualine.options.globalstatus = true
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.actions.open_file.quit_on_open = true
-lvim.builtin.nvimtree.setup.view.side = "right"
+-- lvim.builtin.nvimtree.setup.view.side = "right"
 lvim.builtin.nvimtree.setup.update_cwd = false
 lvim.builtin.nvimtree.setup.update_focused_file.enable = true
 lvim.builtin.nvimtree.setup.update_focused_file.update_cwd = false
@@ -46,22 +46,22 @@ lvim.builtin.which_key.mappings["z"] = {
 }
 
 local function init_linters()
-local formatters = require "lvim.lsp.null-ls.formatters"
-formatters.setup {
-  {
-    exe = "stylua",
-  },
-  {
-    exe = "black",
-  },
-}
+  local formatters = require "lvim.lsp.null-ls.formatters"
+  formatters.setup {
+    {
+      exe = "stylua",
+    },
+    {
+      exe = "black",
+    },
+  }
 
-local linters = require "lvim.lsp.null-ls.linters"
-linters.setup {
-  exe = "shellcheck",
-  args = { "--severity", "warning" },
-  filetypes = "sh",
-}
+  local linters = require "lvim.lsp.null-ls.linters"
+  linters.setup {
+    exe = "shellcheck",
+    args = { "--severity", "warning" },
+    filetypes = "sh",
+  }
 end
 
 pcall(init_linters)
