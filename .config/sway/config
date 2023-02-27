@@ -261,6 +261,8 @@ set $laptop eDP-1
 bindswitch --locked lid:on output $laptop disable
 bindswitch --locked lid:off output $laptop enable
 
+bindsym $mod+Alt+$up move workspace to output up
+bindsym $mod+Alt+$down move workspace to output down
 bindsym $mod+Alt+$right move workspace to output right
 bindsym $mod+Alt+$left move workspace to output left
 
@@ -377,9 +379,9 @@ for_window [app_id="mpv" title="wcmirror"] sticky toggle
 for_window [app_id="mpv" title="wcmirror"] resize set 538 303
 for_window [app_id="mpv" title="wcmirror"] $swaymove top-right
 
-for_window [app_id="gnome-calculator"] floating enable
-for_window [app_id="gnome-calculator"] sticky toggle
-for_window [app_id="gnome-calculator"] move scratchpad
+for_window [app_id="org.gnome.Calculator"] floating enable
+for_window [app_id="org.gnome.Calculator"] sticky toggle
+for_window [app_id="org.gnome.Calculator"] move scratchpad
 
 for_window [app_id="firefox" title="^Picture-in-Picture$"] \
     floating enable, move position 877 450, sticky enable
@@ -437,5 +439,5 @@ bindsym $mod+Shift+p exec clipman pick -t wofi
 bindsym $mod+p exec clipman --histpath="~/.local/share/clipman-primary.json" pick -t wofi
 
 exec swayidle -w \
-    timeout 240 'swaylock' \
+    timeout 1800 'swaylock' \
     before-sleep 'swaylock'
