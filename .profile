@@ -20,6 +20,11 @@ fi
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
+#
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
 
 export PATH="/usr/local/bin:$PATH"
 
@@ -59,14 +64,17 @@ fi
 
 export PATH="$GOPATH/bin:$PATH"
 
-if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ] || [ -n "$KITTY_WINDOW_ID" ] || [ -n "$ALACRITTY_LOG" ] ; then
-    if [ -f "$(which fish)" ] ; then
-    	SHELL=fish
-	if [ -f "$(which powerline-daemon)" ]; then
-	    powerline-daemon -q
-	fi
-    	exec fish
-    fi
-fi
+# if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ] || [ -n "$KITTY_WINDOW_ID" ] || [ -n "$ALACRITTY_LOG" ] ; then
+#     if [ -f "$(which fish)" ] ; then
+#     	# export SHELL=fish
+# 	if [ -f "$(which powerline-daemon)" ]; then
+# 	    powerline-daemon -q
+# 	fi
+#     	exec fish
+#     fi
+# fi
+
+export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
+
 
 
