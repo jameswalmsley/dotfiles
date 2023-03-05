@@ -1,4 +1,4 @@
-    local M = {}
+local M = {}
 
 if vim.fn.has "nvim-0.8" ~= 1 then
   vim.notify("Please upgrade your Neovim base installation. Lunarvim requires v0.8+", vim.log.levels.WARN)

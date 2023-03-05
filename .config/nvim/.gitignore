@@ -20,19 +20,20 @@ nv-settings.lua
 lv-settings.lua
 lua/lv-user/
 lua/lv-user-config/
+undo/*
+project_nvim/*
+luacache_*
+lvim.log
+packer.nvim.log
+plugin/*
+lsp.log
+lsp-installer.log
 
 *.tmp
 *.temp
 *.bak
 *.backup
 *.old
-*.log
 
 .luarc.json
 .luacheckcache
-plugin/
-undo/
-luacache_*
-project_nvim/
-config.lua
-
