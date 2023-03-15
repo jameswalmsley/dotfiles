@@ -13,8 +13,9 @@ require("lvim.bootstrap"):init(base_dir)
 require("lvim.config"):load()
 
 local plugins = require "lvim.plugins"
+local distro_plugins = require "distro.plugins"
 
-require("lvim.plugin-loader").load { plugins, lvim.plugins }
+require("lvim.plugin-loader").load { plugins, distro_plugins, lvim.plugins }
 
 require("lvim.core.theme").setup()
 
