@@ -10,6 +10,8 @@ end
 
 require("lvim.bootstrap"):init(base_dir)
 
+local utils = require "lvim.utils"
+require("lvim.config"):load(utils.join_paths(base_dir, 'lua/distro/config.lua'))
 require("lvim.config"):load()
 
 local plugins = require "lvim.plugins"

@@ -70,7 +70,7 @@ M.config = function()
         v = { "j", "k" },
       },
       -- disable the WhichKey popup for certain buf types and file types.
-      -- Disabled by deafult for Telescope
+      -- Disabled by default for Telescope
       disable = {
         buftypes = {},
         filetypes = { "TelescopePrompt" },
@@ -97,6 +97,10 @@ M.config = function()
     -- see https://neovim.io/doc/user/map.html#:map-cmd
     vmappings = {
       ["/"] = { "<Plug>(comment_toggle_linewise_visual)", "Comment toggle linewise (visual)" },
+      l = {
+        name = "LSP",
+        a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
+      },
     },
     mappings = {
       [";"] = { "<cmd>Alpha<CR>", "Dashboard" },

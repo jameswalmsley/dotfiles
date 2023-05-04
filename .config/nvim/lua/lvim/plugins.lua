@@ -17,6 +17,7 @@ local core_plugins = {
       settings.current.automatic_installation = false
     end,
     lazy = true,
+    event = "User FileOpened",
     dependencies = "mason.nvim",
   },
   { "tamago324/nlsp-settings.nvim", cmd = "LspSettings", lazy = true },
@@ -27,6 +28,12 @@ local core_plugins = {
       require("lvim.core.mason").setup()
     end,
     cmd = { "Mason", "MasonInstall", "MasonUninstall", "MasonUninstallAll", "MasonLog" },
+    build = function()
+      pcall(function()
+        require("mason-registry").refresh()
+      end)
+    end,
+    event = "User FileOpened",
     lazy = true,
   },
   {
@@ -38,8 +45,6 @@ local core_plugins = {
     lazy = lvim.colorscheme ~= "lunar",
   },
   { "Tastyep/structlog.nvim", lazy = true },
-
-  { "nvim-lua/popup.nvim", lazy = true },
   { "nvim-lua/plenary.nvim", cmd = { "PlenaryBustedFile", "PlenaryBustedDirectory" }, lazy = true },
   -- Telescope
   {
@@ -255,6 +260,9 @@ local core_plugins = {
       require("lvim.core.dap").setup()
     end,
     lazy = true,
+    dependencies = {
+      "rcarriga/nvim-dap-ui",
+    },
     enabled = lvim.builtin.dap.active,
   },
 
