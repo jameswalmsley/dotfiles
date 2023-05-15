@@ -2,7 +2,7 @@
 Type=Application
 Name=Spotify (Wayland)
 GenericName=Music Player
-Icon=/snap/spotify/current/usr/share/spotify/icons/spotify-linux-512.png
+Icon=spotify-client
 TryExec=spotify
 Exec=spotify --enable-features=UseOzonePlatform --ozone-platform=wayland %U
 Terminal=false

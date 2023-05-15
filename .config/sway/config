@@ -15,6 +15,7 @@ set $up Up
 set $right Right
 # Your preferred terminal emulator
 #set $term 'SHELL=~/.local/bin/fishlogin termite'
+# set $term kitty
 set $term alacritty
 # Your preferred application launcher
 #set $menu ~/.config/sway/dmenu.sh
@@ -224,8 +225,8 @@ bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
-bindsym $mod+n workspace notes
-bindsym $mod+Shift+n move container to workspace notes
+#bindsym $mod+n workspace notes
+#bindsym $mod+Shift+n move container to workspace notes
 
 mode "utils" {
     bindsym i mode "default"; exec firefox
@@ -236,6 +237,7 @@ mode "utils" {
     bindsym s mode "default"; exec spotify
     bindsym b mode "default"; exec blueman-applet
     bindsym m mode "default"; exec ~/.local/bin/wcmirror 4
+    bindsym x mode "default"; exec /bin/xterm
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
@@ -404,13 +406,14 @@ for_window [app_id="chrome-pkooggnaalmfkidjmlhoelhdllpphaga-Default"] shortcuts_
 #
 # Themes
 #
-set $theme Catppuccin
+set $theme Catppuccin-Macchiato-Standard-Pink-Dark
 set $gnome-schema org.gnome.desktop.interface
 
-exec_always {
-    gsettings set $gnome-schema gtk-theme $theme-blue
-    gsettings set $gnome-schema cursor-theme $theme-Blue-Cursors
-}
+exec_always import-gsettings \
+  gtk-theme:$theme \
+  icon-theme:Adwaita \
+  cursor-theme:Adwaita
+
 
 seat seat0 xcursor_theme Catppuccin-Blue-Cursors 24
 
@@ -419,8 +422,16 @@ exec hash dbus-update-activation-environment 2>/dev/null && \
      dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP=sway
 exec nm-applet --indicator
 exec powerline-daemon
-exec mako
+#exec mako
+exec swaync
+bindsym $mod+Shift+n exec swaync-client -t -sw
+
+# UK
 exec wlsunset -l 51.8 -L -3.0 -t 3000 -T 5700
+
+# California
+#exec wlsunset -l 37.77 -L -122.41 -t 3000 -T 5700
+
 exec ibus-daemon --xim
 exec_always "pkill kanshi; sleep 1; kanshi"
 exec gnome-calculator
@@ -434,7 +445,8 @@ exec alacritty --command aerc
 exec wl-paste -t text --watch clipman store
 exec wl-paste -p -t text --watch clipman store -P --histpath="~/.local/share/clipman-primary.json"
 exec spotpris2 --auto
-exec ulauncher --hide-window
+exec ulauncher --no-window
+
 bindsym $mod+Shift+p exec clipman pick -t wofi
 bindsym $mod+p exec clipman --histpath="~/.local/share/clipman-primary.json" pick -t wofi
 

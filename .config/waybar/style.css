@@ -94,6 +94,10 @@ window#waybar.solo {
    color: #4d4d4d;
    background: rgb(238,130,238);
 }
+#custom-notification {
+  font-family: "NotoSansMono Nerd Font";
+}
+
 
 #custom-cmus {
    margin-left: 4px;
