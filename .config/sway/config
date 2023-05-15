@@ -17,6 +17,7 @@ set $right Right
 #set $term 'SHELL=~/.local/bin/fishlogin termite'
 # set $term kitty
 set $term alacritty
+#set $term foot
 # Your preferred application launcher
 #set $menu ~/.config/sway/dmenu.sh
 #set $menu wofi -f --show=drun,run
@@ -275,10 +276,10 @@ bindsym XF86MonBrightnessDown exec light -U 10
 
 set $volumectl volumectl
 
-bindsym XF86AudioMute exec $volumectl mute
+bindsym XF86AudioMute exec $volumectl toggle-mute
 bindsym XF86AudioRaiseVolume exec $volumectl raise
 bindsym XF86AudioLowerVolume exec $volumectl lower
-bindsym XF86AudioMicMute exec $volumectl -m mute
+bindsym XF86AudioMicMute exec $volumectl -m toggle-mute
 
 #
 # Input Config
