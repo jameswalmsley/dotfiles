@@ -13,6 +13,12 @@ do
                 break
         fi
 
+        if echo $model | grep -q ^Integrated_Webcam_HD; then
+                echo Found::# $model -- $dev
+                device=$dev
+                break
+        fi
+
 done
 
 exec mpv --title=wcmirror --player-operation-mode=pseudo-gui av://v4l2:$device --demuxer-lavf-o=video_size=1920x1080,input_format=mjpeg -vf=hflip --profile=low-latency --untimed
