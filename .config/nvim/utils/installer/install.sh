@@ -33,7 +33,6 @@ declare INTERACTIVE_MODE=1
 declare ADDITIONAL_WARNINGS=""
 
 declare -a __lvim_dirs=(
-  "$LUNARVIM_CONFIG_DIR"
   "$LUNARVIM_RUNTIME_DIR"
   "$LUNARVIM_CACHE_DIR"
   "$LUNARVIM_BASE_DIR"
@@ -136,13 +135,13 @@ function main() {
 
   if [ "$ARGS_INSTALL_DEPENDENCIES" -eq 1 ]; then
     if [ "$INTERACTIVE_MODE" -eq 1 ]; then
-      if confirm "Would you like to install LunarVim's NodeJS dependencies: $(stringify_array ${__npm_deps[@]})?"; then
+      if confirm "Would you like to install LunarVim's NodeJS dependencies: $(stringify_array "${__npm_deps[@]}")?"; then
         install_nodejs_deps
       fi
-      if confirm "Would you like to install LunarVim's Python dependencies: $(stringify_array ${__pip_deps[@]})?"; then
+      if confirm "Would you like to install LunarVim's Python dependencies: $(stringify_array "${__pip_deps[@]}")?"; then
         install_python_deps
       fi
-      if confirm "Would you like to install LunarVim's Rust dependencies: $(stringify_array ${__rust_deps[@]})?"; then
+      if confirm "Would you like to install LunarVim's Rust dependencies: $(stringify_array "${__rust_deps[@]}")?"; then
         install_rust_deps
       fi
     else
@@ -215,11 +214,11 @@ function print_missing_dep_msg() {
 }
 
 function check_neovim_min_version() {
-  local verify_version_cmd='if !has("nvim-0.8") | cquit | else | quit | endif'
+  local verify_version_cmd='if !has("nvim-0.9") | cquit | else | quit | endif'
 
   # exit with an error if min_version not found
   if ! nvim --headless -u NONE -c "$verify_version_cmd"; then
-    echo "[ERROR]: LunarVim requires at least Neovim v0.8 or higher"
+    echo "[ERROR]: LunarVim requires at least Neovim v0.9 or higher"
     exit 1
   fi
 }
@@ -388,6 +387,7 @@ function verify_lvim_dirs() {
     fi
     mkdir -p "$dir"
   done
+  mkdir -p "$LUNARVIM_CONFIG_DIR"
 }
 
 function clone_lvim() {
