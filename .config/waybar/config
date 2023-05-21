@@ -1,33 +1,32 @@
 {
         "layer": "top",
-                "modules-left": ["sway/workspaces", "sway/mode"],
-                "modules-center": ["sway/window"],
-                "modules-right": ["sway/language", "battery", "clock", "cpu", "backlight", "pulseaudio", "custom/notification", "tray"],
-                "sway/workspaces": {
-                        "disable-scroll": true,
-                        "all-outputs": false,
-                        "format": "{name}: {icon}",
-                        "format-icons": {
-                                "1": "",
-                                "2": "",
-                                "3": "",
-                                "6": "",
-                                "spotify": "",
-                                "urgent": "",
-                                "focused": "",
-                                "default": ""
-                        }
-                },
+        "modules-left": ["sway/workspaces", "sway/mode"],
+        "modules-center": ["sway/window"],
+        "modules-right": ["sway/language", "battery", "clock", "cpu", "backlight", "pulseaudio", "custom/notification", "tray"],
+        "sway/workspaces": {
+                "disable-scroll": true,
+                "all-outputs": false,
+                "format": "{name}: {icon}",
+                "format-icons": {
+                        "1": "",
+                        "2": "",
+                        "3": "",
+                        "6": "",
+                        "spotify": "",
+                        "urgent": "",
+                        "focused": "",
+                        "default": ""
+                }
+        },
 
-                "sway/window": {
-                        "max-length": 50
-                },
+        "sway/window": {
+                "max-length": 50
+        },
 
-                "sway/language": {
-                        "format": "{}",
-                        "max-length": 50
-                },
-},
+        "sway/language": {
+                "format": "{}",
+                "max-length": 50
+        },
         "battery": {
                 "format": "<span font='Font Awesome 5 Free 11'>{icon}</span>  {capacity}% - {time}",
                 "format-icons": ["", "", "", "", ""],
@@ -116,4 +115,4 @@
                 "on-click-right": "swaync-client -d -sw",
                 "escape": true
         },
-        }
+}
