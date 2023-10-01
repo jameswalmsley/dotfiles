@@ -418,9 +418,6 @@ exec_always import-gsettings \
 
 seat seat0 xcursor_theme Catppuccin-Blue-Cursors 24
 
-exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
-exec hash dbus-update-activation-environment 2>/dev/null && \
-     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP=sway
 exec nm-applet --indicator
 exec powerline-daemon
 #exec mako
@@ -433,15 +430,14 @@ exec wlsunset -l 51.8 -L -3.0 -t 3000 -T 5700
 # California
 #exec wlsunset -l 37.77 -L -122.41 -t 3000 -T 5700
 
-exec ibus-daemon --xim
-exec_always "pkill kanshi; sleep 1; kanshi"
+# exec ibus-daemon --xim
+# exec_always "pkill kanshi; sleep 1; kanshi"
+exec kanshi
 exec gnome-calculator
 exec avizo-service
 exec solaar -w hide
-exec PYTHONPATH=/usr/lib/python3.8/site-packages blueman-applet
-exec xrdb -load ~/.Xresources
-set $keyring "/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh"
-exec $keyring
+# set $keyring "/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh"
+# exec $keyring
 exec alacritty --command aerc
 exec wl-paste -t text --watch clipman store
 exec wl-paste -p -t text --watch clipman store -P --histpath="~/.local/share/clipman-primary.json"
@@ -454,3 +450,6 @@ bindsym $mod+p exec clipman --histpath="~/.local/share/clipman-primary.json" pic
 exec swayidle -w \
     timeout 1800 'swaylock' \
     before-sleep 'swaylock'
+
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
