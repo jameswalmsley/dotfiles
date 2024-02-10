@@ -8,7 +8,10 @@ systemd-cryptenroll --wipe-slot=tpm2 /dev/vg.system/lv.cryptswap
 
 echo Enrolling!
 echo System
-systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=0+1+2+3+4+5+7+8 --tpm2-with-pin=yes /dev/vg.system/lv.cryptsystem
+
+pcrs=0+1+7+8
+
+systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=$pcrs /dev/vg.system/lv.cryptsystem
 echo Swap
-systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=0+1+2+3+4+5+7+8 --tpm2-with-pin=yes /dev/vg.system/lv.cryptswap
+systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=$pcrs /dev/vg.system/lv.cryptswap
 

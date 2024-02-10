@@ -235,8 +235,22 @@ bindsym $mod+Shift+t move container to workspace chat
 bindsym $mod+o workspace outlook
 bindsym $mod+Shift+o move container to workspace outlook
 
-#bindsym $mod+n workspace notes
-#bindsym $mod+Shift+n move container to workspace notes
+bindsym $mod+z workspace zoom
+bindsym $mod+Shift+z move container to workspace zoom
+
+# ~/.config/sway/config.d/zoom.us.conf
+# 
+# Zoom Meeting App
+# 
+# Default for all windows is non-floating.
+# 
+# For pop up notification windows that don't use notifications api
+for_window [app_id="Zoom" title="^zoom$"] border none, floating enable
+# For specific Zoom windows
+for_window [app_id="Zoom" title="^(Zoom|About)$"] border pixel, floating enable
+for_window [app_id="Zoom" title="Settings"] floating enable, floating_minimum_size 960 x 700
+# Open Zoom Meeting windows on a new workspace (a bit hacky)
+for_window [app_id="Zoom" title="Zoom Meeting"] workspace next_on_output --create, move container to workspace current, floating disable, inhibit_idle open
 
 mode "utils" {
     bindsym i mode "default"; exec firefox
@@ -362,11 +376,11 @@ smart_gaps off
 gaps inner 15
 gaps outer 5
 
-bindsym $mod+z		        gaps inner current plus 5
-bindsym $mod+Shift+z		gaps inner current minus 5
-bindsym $mod+x			    gaps outer current plus 5
-bindsym $mod+Shift+x		gaps outer current minus 5
-bindsym $mod+Shift+d		gaps inner current set 0; gaps outer current set 0
+# bindsym $mod+z		        gaps inner current plus 5
+# bindsym $mod+Shift+z		gaps inner current minus 5
+# bindsym $mod+x			    gaps outer current plus 5
+# bindsym $mod+Shift+x		gaps outer current minus 5
+# bindsym $mod+Shift+d		gaps inner current set 0; gaps outer current set 0
 
 hide_edge_borders both
 default_border none
@@ -405,9 +419,11 @@ for_window [app_id="firefox" title="^Picture-in-Picture$"] \
 assign [class="Code*"] workspace 3
 for_window [class="Spotify*"] move to workspace music
 
-for_window [title="Google Keep"] move to workspace notes
+for_window [title="^Google Keep$"] move to workspace notes
 for_window [title="Outlook*"] move to workspace outlook
 for_window [app_id="Slack"] move to workspace chat
+for_window [app_id="Zoom"] move to workspace zoom
+
 
 for_window [title="avizo"] border pixel 0
 for_window [title="avizo"] sticky toggle
@@ -461,5 +477,5 @@ exec swayidle -w \
     timeout 1800 'swaylock' \
     before-sleep 'swaylock'
 
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+#exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 

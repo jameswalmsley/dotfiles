@@ -23,8 +23,7 @@ function h.omf
     curl -L https://get.oh-my.fish | fish
 end
 
-#alias nvim=nvr -s
-alias vim=nvim
+alias vim="nvim"
 
 alias tm="tmux new-session -A -s main"
 
@@ -34,3 +33,6 @@ alias t.sd="kitty @ set-colors -a ~/.config/kitty/kitty-themes/themes/Solarized_
 alias t.at="kitty @ set-colors -a ~/.config/kitty/kitty-themes/themes/AdventureTime.conf"
 
 alias gl="git log --graph --pretty=format:\"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset\" --abbrev-commit"
+
+alias cp.h="env GIT_WORK_TREE=$HOME GIT_DIR=$HOME/.config/chargepoint/.dot-files.git"
+
