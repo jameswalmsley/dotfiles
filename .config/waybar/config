@@ -1,8 +1,23 @@
 {
         "layer": "top",
-        "modules-left": ["sway/workspaces", "sway/mode"],
+        "modules-left": ["hyprland/workspaces", "sway/workspaces", "sway/mode"],
         "modules-center": ["sway/window"],
         "modules-right": ["sway/language", "battery", "clock", "cpu", "backlight", "pulseaudio", "custom/notification", "tray"],
+        "hyprland/workspaces": {
+                "disable-scroll": true,
+                "all-outputs": false,
+                "format": "{name}: {icon}",
+                "format-icons": {
+                        "1": "",
+                        "2": "",
+                        "3": "",
+                        "6": "",
+                        "spotify": "",
+                        "urgent": "",
+                        "focused": "",
+                        "default": ""
+                }
+        },
         "sway/workspaces": {
                 "disable-scroll": true,
                 "all-outputs": false,

@@ -477,5 +477,5 @@ exec swayidle -w \
     timeout 1800 'swaylock' \
     before-sleep 'swaylock'
 
-#exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 

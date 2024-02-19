@@ -155,7 +155,7 @@ env:
   #size: 11.0
 
 font:
-  size: 11.0
+  size: 10.0
   normal:
     family: Source Code Pro
   bold:
