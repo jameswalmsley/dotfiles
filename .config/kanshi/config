@@ -8,3 +8,81 @@ profile Dell_5570_Wales {
     output "Dell Inc. DELL P2722HE D93V0P3" mode 1920x1080@60Hz     position 0,0        scale 1.0   enable
     output "LG Display 0x06B3 Unknown"      mode 1920x1200          position 1920,0     scale 1.0   enable
 }
+
+profile Dell_5550_California {
+	output "LG Electronics LG HDR WQHD 0x00006F79" mode 3440x1440 position 0,0 scale 1 enable
+	output "LG Display 0x06B3 Unknown" mode 1920x1200 position 3440,0 enable
+	exec swaymsg [workspace=1] move workspace to output \"LG Electronics LG HDR WQHD 0x00006F79\"
+	exec swaymsg [workspace=2] move workspace to output \"LG Electronics LG HDR WQHD 0x00006F79\"
+	exec swaymsg [workspace=3] move workspace to output \"LG Electronics LG HDR WQHD 0x00006F79\"
+	exec swaymsg [workspace=4] move workspace to output \"LG Electronics LG HDR WQHD 0x00006F79\"
+	exec swaymsg [workspace=5] move workspace to output \"LG Electronics LG HDR WQHD 0x00006F79\"
+	exec swaymsg [workspace=8] move workspace to output eDP-1
+	exec swaymsg [workspace=9] move workspace to output eDP-1
+	exec swaymsg [workspace=music] move workspace to output eDP-1
+}
+
+profile Dell_5550_Radstadt {
+	output "Dell Inc. DELL S3423DWC 8WZXNH3" mode 3440x1440 position 0,0 scale 1 enable
+	output "LG Display 0x06B3 Unknown" mode 1920x1200 position 3440,0 enable
+	exec swaymsg [workspace=1] move workspace to output \"LG Electronics LG HDR WQHD 0x00006F79\"
+	exec swaymsg [workspace=2] move workspace to output \"LG Electronics LG HDR WQHD 0x00006F79\"
+	exec swaymsg [workspace=3] move workspace to output \"LG Electronics LG HDR WQHD 0x00006F79\"
+	exec swaymsg [workspace=4] move workspace to output \"LG Electronics LG HDR WQHD 0x00006F79\"
+	exec swaymsg [workspace=5] move workspace to output \"LG Electronics LG HDR WQHD 0x00006F79\"
+	exec swaymsg [workspace=8] move workspace to output eDP-1
+	exec swaymsg [workspace=9] move workspace to output eDP-1
+	exec swaymsg [workspace=music] move workspace to output eDP-1
+}
+
+profile Dell_5550_Radstadt_DAVID {
+	output "LG Display 0x06B3 Unknown" mode 1920x1200 position 0,0 enable
+	output "Iiyama North America PL2492H 11511012A1412" mode 1920x1080 position 1920,0 enable
+	output "LG Electronics BK750Y 904NTUW8P318" mode 1920x1080 position 3840,0 enable
+	exec swaymsg [workspace=1] move workspace to output \"LG Electronics LG HDR WQHD 0x00006F79\"
+	exec swaymsg [workspace=2] move workspace to output \"LG Electronics LG HDR WQHD 0x00006F79\"
+	exec swaymsg [workspace=3] move workspace to output \"LG Electronics LG HDR WQHD 0x00006F79\"
+	exec swaymsg [workspace=4] move workspace to output \"LG Electronics LG HDR WQHD 0x00006F79\"
+	exec swaymsg [workspace=5] move workspace to output \"LG Electronics LG HDR WQHD 0x00006F79\"
+	exec swaymsg [workspace=8] move workspace to output eDP-1
+	exec swaymsg [workspace=9] move workspace to output eDP-1
+	exec swaymsg [workspace=music] move workspace to output eDP-1
+}
+
+# Thinkpad Carbon X1 6th Gen - Alone.
+profile Carbon_X1 {
+	output "AU Optronics 0x2036 Unknown" mode 2560x1440 position 0,0 scale 1.3 enable
+}
+
+profile Carbon_X1_Docked_single_Reading {
+	output "LG Electronics LG Ultra HD 0x0000661B" mode 3840x2160 position 0,0 scale 1.333 enable
+	output "AU Optronics 0x2036 Unknown" disable
+}
+
+profile Carbon_X1_Docked_single_Wales {
+	output "Dell Inc. DELL P2722HE D93V0P3" mode 1920x1080 position 0,0 scale 1.0 enable
+	output "AU Optronics 0x2036 Unknown" position 1920,0 scale 1.333 enable
+}
+
+# Home Office with Carbon - Laptop + 1080p + 4K.
+profile Carbon_X1_Docked_3 {
+	output "BenQ Corporation BenQ GL2450 Y9D00749019" mode 1920x1080 position 0,0 enable
+	output "Unknown 0x2036 0x00000000" mode 2560x1440 position 1920,0 scale 1.333 enable
+	output "Goldstar Company Ltd LG Ultra HD 0x0000661B" mode 3840x2160 position 4480,0 scale 1.333 enable
+
+	exec swaymsg [workspace=1] move workspace to output \"Goldstar Company Ltd LG Ultra HD 0x0000661B\"
+}
+
+# Home Office with Carbon - Laptop + 4K.
+profile Carbon_X1_Docked {
+	output "Goldstar Company Ltd LG Ultra HD 0x0000661B" mode 3840x2160 position 0,0 scale 1.333 enable
+	output "Unknown 0x2036 0x00000000" mode 2560x1440 position 2882,0 scale 1.333 enable
+	exec swaymsg [workspace=1] move workspace to output \"Goldstar Company Ltd LG Ultra HD 0x0000661B\"
+}
+
+profile Erlen_basement {
+	output "Samsung Electric Company SMB2430L H9XB802792" mode 1920x1080 position 1920,0 enable
+	output "Sharp Corporation 0x14D1 0x00000000" mode 1920x1200@60Hz position 0,0 enable
+	exec swaymsg output \"Sharp Corporation 0x14D1 0x00000000\" enable
+>>>>>>> Stashed changes
+}

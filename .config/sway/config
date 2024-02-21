@@ -479,3 +479,7 @@ exec swayidle -w \
 
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
+input * xkb_layout gb
+input * xkb_variant basic
+# input * xkb_options $kb_gb_options_capsswap
+input * xkb_options caps:escape
