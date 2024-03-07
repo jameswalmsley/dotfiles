@@ -3,3 +3,6 @@
 -- Add any additional options here
 --
 vim.opt.winbar = "%=%m %f"
+vim.autoformat = false
+vim.swapfile = false
+vim.o.tabstop = 4
