@@ -26,7 +26,8 @@ set $menu ulauncher-toggle
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * background ~/Pictures/wallpaper fill #000000
+#output * background ~/Pictures/wallpaper fill #000000
+
 #output * bg /usr/share/backgrounds/Morning_by_Bernhard_Hanakam.jpg fill
 #exec settimed /usr/share/backgrounds/gnome/mojave-timed.xml
 #
