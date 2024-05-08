@@ -8,3 +8,5 @@ vim.keymap.set(
   require("telescope.builtin").resume,
   { noremap = true, silent = true, desc = "Resume" }
 )
+
+vim.keymap.set("n", "<leader>e", "<cmd>Neotree reveal<CR>", { noremap = true, silent = true, desc = "Open Neotree" })

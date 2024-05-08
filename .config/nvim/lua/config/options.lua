@@ -3,6 +3,9 @@
 -- Add any additional options here
 --
 vim.opt.winbar = "%=%m %f"
-vim.autoformat = false
+vim.g.autoformat = false
 vim.swapfile = false
 vim.o.tabstop = 4
+vim.o.shiftwidth = 4
+
+vim.g.root_spec = { "cwd" }
