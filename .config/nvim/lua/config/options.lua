@@ -4,6 +4,7 @@
 --
 vim.opt.winbar = "%=%m %f"
 vim.g.autoformat = false
+vim.cmd("set noswapfile")
 vim.swapfile = false
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
